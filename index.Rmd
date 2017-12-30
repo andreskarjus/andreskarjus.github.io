@@ -4,7 +4,9 @@ output:
   html_document: 
     theme: spacelab
     toc: yes
+    toc_depth: 1
 ---
+
 <style>
 body {
 text-align: justify}
