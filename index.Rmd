@@ -12,7 +12,7 @@ text-align: justify}
 
 # Short academic bio
 
-<IMG SRC="IMG_2657.JPG" ALIGN="right" BR CLEAR="left" style="margin-left:10px"; /> 
+<IMG SRC="IMG_2657.jpg" ALIGN="right" BR CLEAR="left" style="margin-left:10px"; /> 
 I am a PhD student in linguistics based at the [Centre for Language Evolution at the University of Edinburgh](http://www.lel.ed.ac.uk/cle/), working on evolutionary variant selection in language with [Kenny Smith](www.lel.ed.ac.uk/~kenny), [Simon Kirby](www.lel.ed.ac.uk/~simon) and [Richard A. Blythe](https://www2.ph.ed.ac.uk/~rblythe3/), utilizing massive corpora and natural language processing to hunt traces of selection and competition between elements of language. My research is supported by a Kristjan Jaak scholarship from the Archimedes Foundation of Estonia (incidentally which is where I am from). 
 
 Besides my PhD, I am engaged in teaching stats and programming to [Edinburgh Uni psychology](https://www.ed.ac.uk/ppls/psychology) masters students, and occasionally consult as a written communication tutor at the [PPLS Writing Centre](http://writingcentre.ppls.ed.ac.uk/). 
