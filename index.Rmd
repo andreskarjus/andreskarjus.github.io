@@ -8,20 +8,17 @@ output:
 ---
 
 <style>
-body {
-text-align: justify}
+body {text-align: justify}
 </style>
 
 # Short academic bio
 
 <IMG SRC="IMG_2657.jpg" ALIGN="right" BR CLEAR="left" style="margin-left:10px"; /> 
-I am a PhD student in linguistics based at the [Centre for Language Evolution at the University of Edinburgh](http://www.lel.ed.ac.uk/cle/), working on evolutionary variant selection in language with [Kenny Smith](http://www.lel.ed.ac.uk/~kenny), [Simon Kirby](http://www.lel.ed.ac.uk/~simon) and [Richard A. Blythe](http://www2.ph.ed.ac.uk/~rblythe3/), utilizing massive corpora and natural language processing to hunt traces of selection and competition between elements of language. My research is supported by a Kristjan Jaak scholarship from the Archimedes Foundation of Estonia (incidentally which is where I am from). 
-
-Besides my PhD, I am engaged in teaching stats and programming to [Edinburgh Uni psychology](https://www.ed.ac.uk/ppls/psychology) masters students, and occasionally consult as a written communication tutor at the [PPLS Writing Centre](http://writingcentre.ppls.ed.ac.uk/). 
+I am a PhD student in linguistics based at the [Centre for Language Evolution at the University of Edinburgh](http://www.lel.ed.ac.uk/cle/), working on evolutionary variant selection in language with [Kenny Smith](http://www.lel.ed.ac.uk/~kenny), [Simon Kirby](http://www.lel.ed.ac.uk/~simon) and [Richard A. Blythe](http://www2.ph.ed.ac.uk/~rblythe3/), utilizing massive corpora and natural language processing to hunt traces of selection and competition between elements of language. My research is supported by a Kristjan Jaak scholarship from the Archimedes Foundation of Estonia.
 
 I am also affiliated with the University of Tartu as a (part-time) junior researcher in sociolinguistics at the [EKKAM](http://ekkam.ut.ee/en/) research group, specializing in data analysis and agent-based models.
 
-Before coming to Edinburgh, I worked as a teaching assistant in informatics at the University of Tartu, before that studied artificial intelligence and natural language processing at KU Leuven (MSc) and linguistics at the University of Tartu (BA, MA). Somewhere in between I also did exchanges to the University of Iceland and the University Vienna, attended a dozen-odd academic summer schools, taught Icelandic to art students and Estonian to Norwegian teachers, worked as an assistant at the Estonian Wordnet project, and did internships at CrossLang NV in Belgium and at the (then still present linguistics department of the) Max Planck Institute for Evolutionary Anthropology in Leipzig.
+Before coming to Edinburgh, I worked as a teaching assistant in informatics at the University of Tartu, before that studied artificial intelligence and natural language processing at KU Leuven (MSc) and linguistics at the University of Tartu (BA, MA). Somewhere in between I also did exchanges to the University of Iceland and the University Vienna, attended a dozen-odd academic summer schools, taught Icelandic to art students and Estonian to Norwegian teachers, worked as an assistant at the Estonian Wordnet project, and did internships at CrossLang NV in Belgium and at the (then still existing linguistics department of the) Max Planck Institute for Evolutionary Anthropology in Leipzig.
 
 # Research
 
@@ -39,15 +36,23 @@ Before coming to Edinburgh, I worked as a teaching assistant in informatics at t
 
 ## Conferences
 
-I will be attending the [LSA2018](https://www.linguisticsociety.org/event/lsa-2018-annual-meeting) and presenting a poster at the co-occurring inaugural meeting of the [Society for Computation in Linguistics](https://blogs.umass.edu/scil/scil-2018/). I will also be giving a talk at [Evolang 2018](http://evolang.cles.umk.pl).
+I am presenting my research at the following venues in 2018: 
 
-# Consulting and workshops (+booking information)
+- [The inaugural meeting of the Society for Computation in Linguistics](https://blogs.umass.edu/scil/scil-2018/), part of [LSA 2018](https://www.linguisticsociety.org/event/lsa-2018-annual-meeting) | [poster pdf](scilposter_sizeA1.pdf)
+- [Edinburgh Language Lunch](http://groups.inf.ed.ac.uk/langlunch/)
+- [Evolang 2018](http://evolang.cles.umk.pl)
+- [Applications in Cultural Evolution: Arts, Languages, Technologies](https://cultevol.ut.ee/)
+- [51st Annual Meeting of the Societas Linguistica Europaea](http://sle2018.eu/)
 
-I am available for booking as a written communication consultant - specializing in writing about and presenting (graphs and figures of) data and data analysis results - via the Edinburgh University School of Psychology, Philosophy and Language Sciences Writing Centre (this service is available to students of the School only; feel free to [click here to book a session with me](http://writingcentre.ppls.ed.ac.uk/appointments/) if you are eligible). I am also occasionally holding workshops on using R for visualizing data, also via the Writing Centre - the dates and booking information are available [here](http://writingcentre.ppls.ed.ac.uk/workshops/); feel free to have a look at the workshop materials [here](https://andreskarjus.github.io/artofthefigure/).
+# Consulting and workshops (&booking information)
 
-I have also organized similar things in the past. I developed and held a workshop on corpus linguistics using R for the [Academia Salensis](http://academiasalensis.org) summer school of 2012, and co-developed and co-taught a course on data analysis for digital humanities at the University of Tartu in 2015. 
+[I am available for booking](http://writingcentre.ppls.ed.ac.uk/appointments/) as a written communication consultant via the Edinburgh University School of Psychology, Philosophy and Language Sciences Writing Centre - specializing in writing about and presenting (graphs and figures of) data and data analysis results (this service is available to students of the School only). I am also occasionally holding workshops on using R for visualizing data for the Writing Centre - the dates and booking information are available [here](http://writingcentre.ppls.ed.ac.uk/workshops/). Feel free to have a look at the workshop materials [here](https://andreskarjus.github.io/artofthefigure/).
 
-Feel free to get in touch if you are interested in inviting me to teach a workshop on anything related to data science, statistics, R, corpus linguistics, natural language processing, digital humanities.
+I will be holding a day-long session on data visualization using R at the [Scottish Graduate School of Social Science Summer School 2018](http://www.socsciscotland.ac.uk/skills_and_training/summer_school).
+
+I have also organized similar things in the past: a workshop on corpus linguistics using R for the [Academia Salensis](http://academiasalensis.org) summer school of 2012, and a course on data analysis for digital humanities at the University of Tartu in 2015. Besides my PhD studies, I am currently engaged in teaching stats and R to [Edinburgh Uni psychology](https://www.ed.ac.uk/ppls/psychology) masters students.
+
+Feel free to get in touch if you are interested in inviting me to teach a workshop on anything between data science and statistics for the humanties and social sciences, R, corpus linguistics, natural language processing, digital humanities, etc.
 
 # Other semi-academic activities
 
@@ -56,7 +61,7 @@ I currently co-organize the bimonthly [Edinburgh Language Lunch](http://groups.i
 
 # Other stuff
 
-Besides research and teaching and consulting and whatnot, I (fortunately) also do other things, which currently mostly consist of dance (lindy hop, salsa, bachata), listening to jazz, outdoorsy stuff (cycling, hillwalking and scrambling), boardgames, and various other things. I also blog about the wonderful oddities of life abroad ([but it's all in untranslatable Estonian](http://postkaartkaledooniast.blogspot.com)). In earlier years, I worked various studenty sort of jobs to support my studies (not to list them all, but one of them involved swords and another one regularly mowing grass off the roof of a small building).
+Besides research and teaching and consulting and whatnot, I (fortunately) also do other things, which currently mostly consist of dance (lindy hop, salsa, bachata), listening to jazz, outdoorsy stuff (cycling, hillwalking and scrambling), boardgames, and various other things. I also blog about the wonderful oddities of life abroad (but it's all in [untranslatable Estonian](http://postkaartkaledooniast.blogspot.com)). In earlier years, I worked various studenty sort of jobs to support my studies (not to list them all, but one of them involved swords and another one regularly mowing grass off the roof of a small building).
 
 # Contact
 
