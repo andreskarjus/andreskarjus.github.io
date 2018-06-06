@@ -47,7 +47,7 @@ h2 { /* Header 2 */
 
 ### New things
 
-- _Selection above the baseline: quantifying the advection effect in four domains of cumulative culture_ @ the [Applications in Cultural Evolution: Arts, Languages, Technologies](https://cultevol.ut.ee/) conference: slides with a bunch of interactive plots that allow playing with the massive datasets [now available here](https://andreskarjus.github.io/cultevol_tartu_slides)
+- _Selection above the baseline: quantifying the advection effect in four domains of cumulative culture_ @ the [Applications in Cultural Evolution: Arts, Languages, Technologies](https://cultevol.ut.ee/) conference: slides with a bunch of interactive plots that allow playing with the massive datasets [now available here](https://andreskarjus.github.io/cultevol_tartu_slides), and all the code [here](https://github.com/andreskarjus/cultural_advection_Tartuce).
 
 ### What I do
 
@@ -77,7 +77,7 @@ I am presenting my research at the following venues in 2018:
 - [The inaugural meeting of the Society for Computation in Linguistics](https://blogs.umass.edu/scil/scil-2018/), part of [LSA 2018](https://www.linguisticsociety.org/event/lsa-2018-annual-meeting) | download [poster](scilposter_sizeA1.pdf)
 - [Edinburgh Language Lunch](http://groups.inf.ed.ac.uk/langlunch/)
 - [Evolang 2018](http://evolang.cles.umk.pl) | [slides](https://drive.google.com/open?id=10az7BOV_tT-mAwMZXDoguKmZeTErnfzB) | [open-access proceedings](http://evolang.org/torun/proceedings/papertemplate.html?p=117) 
-- [Applications in Cultural Evolution: Arts, Languages, Technologies](https://cultevol.ut.ee/) | [slides with interactive data&plots](https://andreskarjus.github.io/cultevol_tartu_slides)
+- [Applications in Cultural Evolution: Arts, Languages, Technologies](https://cultevol.ut.ee/) | [slides](https://andreskarjus.github.io/cultevol_tartu_slides) with interactive data&plots | [code](https://github.com/andreskarjus/cultural_advection_Tartuce)
 - New directions in language evolution research workshop, at the [51st Annual Meeting of the Societas Linguistica Europaea](http://sle2018.eu/)
 
 <br>
