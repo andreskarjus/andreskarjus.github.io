@@ -47,8 +47,8 @@ h2 { /* Header 2 */
 
 ### New things
 
-- Code to run the topical-cultural advection model on COHA (as described in the recent [arXiv preprint](https://arxiv.org/abs/1806.00699)) now available [on Github](https://github.com/andreskarjus/topical_cultural_advection_model).
-- _Selection above the baseline: quantifying the advection effect in four domains of cumulative culture_ @ the [Applications in Cultural Evolution: Arts, Languages, Technologies](https://cultevol.ut.ee/) conference: slides with a bunch of interactive plots that allow playing with the massive datasets [now available here](https://andreskarjus.github.io/cultevol_tartu_slides), and all the code [here](https://github.com/andreskarjus/cultural_advection_Tartuce).
+- Code to run the topical-cultural advection model on COHA (or other corpora; as described in the recent [arXiv preprint](https://arxiv.org/abs/1806.00699)) is now available [on Github](https://github.com/andreskarjus/topical_cultural_advection_model).
+- _Selection above the baseline: quantifying the advection effect in four domains of cumulative culture_ @ the [Applications in Cultural Evolution](https://cultevol.ut.ee/) conference: slides with a bunch of interactive plots that allow playing with the massive datasets [now available here](https://andreskarjus.github.io/cultevol_tartu_slides), and all the code [here](https://github.com/andreskarjus/cultural_advection_Tartuce).
 
 ### What I do
 
