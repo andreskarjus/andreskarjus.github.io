@@ -54,7 +54,7 @@ h2 { /* Header 2 */
 
 <IMG SRC="IMG_2657.jpg" ALIGN="right" BR CLEAR="left" style="margin-left:10px; width: 49%; height: auto;"; /> 
 <div style="text-align: justify"> 
-I am a PhD student in linguistics based at the [Centre for Language Evolution at the University of Edinburgh](http://www.lel.ed.ac.uk/cle/), working on lexical dynamics and evolutionary variant selection in language with [Kenny Smith](http://www.lel.ed.ac.uk/~kenny), [Simon Kirby](http://www.lel.ed.ac.uk/~simon) and [Richard A. Blythe](http://www2.ph.ed.ac.uk/~rblythe3/), utilizing massive corpora and natural language processing to hunt traces of selection and competition in language. This research is supported by a Kristjan Jaak scholarship from the Archimedes Foundation of Estonia. I am also affiliated as a (part-time) junior researcher with the University of Tartu [EKKAM](http://ekkam.ut.ee/en/) sociolinguistics group, working on data visualization and agent-based models. I am also engaged in [teaching and consulting](https://andreskarjus.github.io/#teaching-consulting-r-workshops) data sciency things for the humanities and social sciences. On the right is the picture obligatory for all academic home pages to subtly suggest that in fact I do not spend _all_ my time in the office at all.
+I am a PhD student in linguistics based at the [Centre for Language Evolution at the University of Edinburgh](http://www.lel.ed.ac.uk/cle/), working on lexical dynamics and evolutionary variant selection in language with [Kenny Smith](http://www.lel.ed.ac.uk/~kenny), [Simon Kirby](http://www.lel.ed.ac.uk/~simon) and [Richard A. Blythe](http://www2.ph.ed.ac.uk/~rblythe3/), utilizing massive corpora and natural language processing to hunt traces of selection and competition in language. This research is supported by a Kristjan Jaak scholarship from the Archimedes Foundation of Estonia. I am also affiliated as a (part-time) junior researcher with the University of Tartu [EKKAM](http://ekkam.ut.ee/en/) sociolinguistics group, working on data visualization and agent-based models. I am also engaged in teaching and consulting (see the tab above) data sciency things for the humanities and social sciences. On the right is the picture obligatory for all academic home pages to subtly suggest that in fact I do not spend _all_ my time in the office at all.
 
 ### Research
 
@@ -90,9 +90,10 @@ I am presenting my research at the following venues in 2018:
 <div style="text-align: justify"> 
 - I will be holding a full day session on data visualization using R at the [Scottish Graduate School of Social Science Summer School 2018](http://www.socsciscotland.ac.uk/skills_and_training/summer_school).
 
-**Current**
+**Ongoing**
 
-- [I am available for booking](http://writingcentre.ppls.ed.ac.uk/appointments/) as a written communication consultant via the Edinburgh University School of Psychology, Philosophy and Language Sciences Writing Centre - specializing in writing about and presenting (graphs and figures of) data and data analysis results. This service is available to students of the School only. 
+- [I am available for booking](http://writingcentre.ppls.ed.ac.uk/appointments/) year around as a written communication consultant via the Edinburgh University School of Psychology, Philosophy and Language Sciences Writing Centre - specializing in writing about and presenting (graphs and figures of) data and data analysis results. This service is available to students of the School only. To book, go to the [appointments](http://writingcentre.ppls.ed.ac.uk/appointments/) page -> Book an appointment -> look for my name in the list of tutors in the 'Select staff' dropdown menu.
+
 - I am also occasionally holding workshops on using R for visualizing data for the Writing Centre - the dates and booking information are available [here](http://writingcentre.ppls.ed.ac.uk/workshops/). Feel free to have a look at the workshop materials [here](https://andreskarjus.github.io/artofthefigure/).
 - I am also currently engaged in teaching stats and R to [Edinburgh Uni psychology](https://www.ed.ac.uk/ppls/psychology) masters students.
 
