@@ -47,8 +47,8 @@ h2 { /* Header 2 */
 
 ### New things
 
-- Code to run the topical-cultural advection model on COHA (or other corpora; as described in the recent [arXiv preprint](https://arxiv.org/abs/1806.00699)) is now available [on Github](https://github.com/andreskarjus/topical_cultural_advection_model).
-- _Selection above the baseline: quantifying the advection effect in four domains of cumulative culture_ @ the [Applications in Cultural Evolution](https://cultevol.ut.ee/) conference: slides with a bunch of interactive plots that allow playing with the massive datasets [now available here](https://andreskarjus.github.io/cultevol_tartu_slides), and all the code [here](https://github.com/andreskarjus/cultural_advection_Tartuce).
+- July 2018: the [Quantifying the dynamics of topical fluctuations in language](https://arxiv.org/abs/1806.00699) paper got awarded the University of Edinburgh PPLS [Gray postgraduate publication prize](https://www.ed.ac.uk/ppls/philosophy/current/postgraduate/fees-and-funding/ppls-gray-postgraduate-publication-prize).
+
 
 ### What I do
 
@@ -60,7 +60,7 @@ I am a PhD student in linguistics based at the [Centre for Language Evolution at
 
 #### Publications
 
-* Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith, 2018. Quantifying the dynamics of topical fluctuations in language. | [arXiv preprint](https://arxiv.org/abs/1806.00699)
+* Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith, 2018. Quantifying the dynamics of topical fluctuations in language. | [arXiv preprint](https://arxiv.org/abs/1806.00699) | [code](https://github.com/andreskarjus/topical_cultural_advection_model)
 * Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith, 2018. Topical advection as a baseline model for diachronic lexical dynamics. Proceedings of The Society for Computation in Linguistics. Volume 1. [extended abstract] | [open access](http://scholarworks.umass.edu/scil/) | <a href="karjus_topical_2018.bib" target="_blank">bib</a>
 * Andres Karjus, Martin Ehala, [accepted]. Testing an agent based model of language choice on sociolinguistic survey data. Language Dynamics and Change.
 *	Martin Haspelmath, Andres Karjus, 2017. Explaining asymmetries in number marking: Singulatives, pluratives and usage frequency. Linguistics, volume 55, issue 6. | [online version](https://www.degruyter.com/view/j/ling.2017.55.issue-6/ling-2017-0026/ling-2017-0026.xml)  | [preprint](https://www.academia.edu/25032500/Explaining_asymmetries_in_number_marking_Singulatives_pluratives_and_usage_frequency) | <a href="haspelmath_explaining_2017.bib" target="_blank">bib</a>
@@ -78,7 +78,7 @@ I am presenting my research at the following venues in 2018:
 - [The inaugural meeting of the Society for Computation in Linguistics](https://blogs.umass.edu/scil/scil-2018/), part of [LSA 2018](https://www.linguisticsociety.org/event/lsa-2018-annual-meeting) | download [poster](scilposter_sizeA1.pdf)
 - [Edinburgh Language Lunch](http://groups.inf.ed.ac.uk/langlunch/)
 - [Evolang 2018](http://evolang.cles.umk.pl) | [slides](https://drive.google.com/open?id=10az7BOV_tT-mAwMZXDoguKmZeTErnfzB) | [open-access proceedings](http://evolang.org/torun/proceedings/papertemplate.html?p=117) 
-- [Applications in Cultural Evolution: Arts, Languages, Technologies](https://cultevol.ut.ee/) | [slides](https://andreskarjus.github.io/cultevol_tartu_slides) with interactive data&plots | [code](https://github.com/andreskarjus/cultural_advection_Tartuce)
+- [Applications in Cultural Evolution: Arts, Languages, Technologies](https://cultevol.ut.ee/) | _Selection above the baseline: quantifying the advection effect in four domains of cumulative culture_ [slides](https://andreskarjus.github.io/cultevol_tartu_slides) with interactive data&plots | [code](https://github.com/andreskarjus/cultural_advection_Tartuce)
 - New directions in language evolution research workshop, at the [51st Annual Meeting of the Societas Linguistica Europaea](http://sle2018.eu/)
 
 <br>
@@ -86,26 +86,26 @@ I am presenting my research at the following venues in 2018:
 
 ## Teaching, consulting & R workshops
 
-**Upcoming**
+
 <div style="text-align: justify"> 
-- I will be holding a full day session on data visualization using R at the [Scottish Graduate School of Social Science Summer School 2018](http://www.socsciscotland.ac.uk/skills_and_training/summer_school).
 
 **Ongoing**
 
+- I have been developing materials on data visualization using R; these have been used during 2017-2018 in a number of different workshops for humanities and social science audiences, collectively under the name of _aRt of the Figure_ (all the materials and code available [here](https://andreskarjus.github.io/artofthefigure/)).
+- One outlet for these has been through the PPLS Writing Centre - the dates and booking information are available [here](http://writingcentre.ppls.ed.ac.uk/workshops/). During the semester it's a 1-hour workshop, extended to 2 hours for the extracurricular summer edition.
 - [I am available for booking](http://writingcentre.ppls.ed.ac.uk/appointments/) year around as a written communication consultant via the Edinburgh University School of Psychology, Philosophy and Language Sciences Writing Centre - specializing in writing about and presenting (graphs and figures of) data and data analysis results. This service is available to students of the School only. To book, go to the [appointments](http://writingcentre.ppls.ed.ac.uk/appointments/) page -> Book an appointment -> look for my name in the list of tutors in the 'Select staff' dropdown menu.
-
-- I am also occasionally holding workshops on using R for visualizing data for the Writing Centre - the dates and booking information are available [here](http://writingcentre.ppls.ed.ac.uk/workshops/). Feel free to have a look at the workshop materials [here](https://andreskarjus.github.io/artofthefigure/).
-- I am also currently engaged in teaching stats and R to [Edinburgh Uni psychology](https://www.ed.ac.uk/ppls/psychology) masters students.
+- I am also engaged in teaching stats and R to [Edinburgh Uni psychology](https://www.ed.ac.uk/ppls/psychology) masters students (since 2017).
 
 **Past**
 
-- aRt of the Figure data visualization workshop for the annual Edinburgh Linguistics Firbush retreat, spring 2018.
+- The aRt of the Figure workshop as a full day session at the [Scottish Graduate School of Social Science Summer School 2018](http://www.socsciscotland.ac.uk/skills_and_training/summer_school).
+- aRt of the Figure as an afternoon workshop for the annual Edinburgh Linguistics Firbush retreat, spring 2018.
 - Developed and co-taught a course on data analysis for digital humanities at the University of Tartu in the spring of 2016.
 - Corpus linguistics using R course for the [Academia Salensis](http://academiasalensis.org) summer school of 2015.
 - Assistant for courses on language technology and artificial intelligence, Department of Computer Science, University of Tartu, 2014-2016.
 <br><br>
 
-Feel free to get in touch if you are interested in inviting me to teach a workshop on anything related to data science and statistics for the humanties, data visualization, R, corpus linguistics, natural language processing, digital humanities, etc.
+Feel free to get in touch if you are interested in talking about organizing a workshop on anything related to data science and statistics for the humanties, data visualization, R, corpus linguistics, natural language processing applications, digital humanities, etc.
 </div>
 <br>
 
