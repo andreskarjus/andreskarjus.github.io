@@ -60,7 +60,7 @@ I am a PhD student in linguistics based at the [Centre for Language Evolution at
 
 #### Publications
 
-* Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith, 2018. Quantifying the dynamics of topical fluctuations in language. | [arXiv preprint](https://arxiv.org/abs/1806.00699) | [code](https://github.com/andreskarjus/topical_cultural_advection_model)
+* Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith, 2018. Quantifying the dynamics of topical fluctuations in language. | [arXiv preprint](https://arxiv.org/abs/1806.00699) | <a href="karjus_quantifying_2018.bib" target="_blank">bib</a> | [code](https://github.com/andreskarjus/topical_cultural_advection_model)
 * Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith, 2018. Topical advection as a baseline model for diachronic lexical dynamics. Proceedings of The Society for Computation in Linguistics. Volume 1. [extended abstract] | [open access](http://scholarworks.umass.edu/scil/) | <a href="karjus_topical_2018.bib" target="_blank">bib</a>
 * Andres Karjus, Martin Ehala, [accepted]. Testing an agent based model of language choice on sociolinguistic survey data. Language Dynamics and Change.
 *	Martin Haspelmath, Andres Karjus, 2017. Explaining asymmetries in number marking: Singulatives, pluratives and usage frequency. Linguistics, volume 55, issue 6. | [online version](https://www.degruyter.com/view/j/ling.2017.55.issue-6/ling-2017-0026/ling-2017-0026.xml)  | [preprint](https://www.academia.edu/25032500/Explaining_asymmetries_in_number_marking_Singulatives_pluratives_and_usage_frequency) | <a href="haspelmath_explaining_2017.bib" target="_blank">bib</a>
