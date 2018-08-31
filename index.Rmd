@@ -47,7 +47,7 @@ h2 { /* Header 2 */
 
 ### New things
 
-- "Two problems and solutions in evolutionary corpus-based language dynamics research" to be presented @ SLE 2018: [slides](https://andreskarjus.github.io/sle_tallinn_languagedynamics) with interactive plots and [code](https://github.com/andreskarjus/sle_tallinn_languagedynamics) now available.
+- "Two problems and solutions in evolutionary corpus-based language dynamics research" presented @ SLE 2018: [slides](https://andreskarjus.github.io/sle_tallinn_languagedynamics) with interactive plots and [code](https://github.com/andreskarjus/sle_tallinn_languagedynamics) now available. Full paper on topical advection (the 2nd half of the talk) available [here](https://arxiv.org/abs/1806.00699).
 
 
 ### What I do
