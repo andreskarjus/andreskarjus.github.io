@@ -79,7 +79,7 @@ I am presenting my research at the following venues in 2018:
 - [Edinburgh Language Lunch](http://groups.inf.ed.ac.uk/langlunch/)
 - [Evolang 2018](http://evolang.cles.umk.pl) | [slides](https://drive.google.com/open?id=10az7BOV_tT-mAwMZXDoguKmZeTErnfzB) | [open-access proceedings](http://evolang.org/torun/proceedings/papertemplate.html?p=117) 
 - [Applications in Cultural Evolution: Arts, Languages, Technologies](https://cultevol.ut.ee/) | _Selection above the baseline: quantifying the advection effect in four domains of cumulative culture_ [slides](https://andreskarjus.github.io/cultevol_tartu_slides) with interactive data&plots | [code](https://github.com/andreskarjus/cultural_advection_Tartuce)
-- New directions in language evolution research workshop, at the [51st Annual Meeting of the Societas Linguistica Europaea](http://sle2018.eu/)
+- New directions in language evolution research workshop, at the [SLE 2018](http://sle2018.eu/) | [slides](https://andreskarjus.github.io/sle_tallinn_languagedynamics) with interactive plots | [code](https://github.com/andreskarjus/sle_tallinn_languagedynamics)
 
 <br>
 <br>
