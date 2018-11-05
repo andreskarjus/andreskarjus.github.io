@@ -1,7 +1,7 @@
 ---
 title: "Challenges in<br>detecting evolutionary forces<br>in language change <br>using diachronic corpora"
 
-author: "Andres Karjus<br><font size=5>(supervised by Kenny Smith, Simon Kirby, Richard A. Blythe)<br>Centre for Language Evolution, University of Edinburgh</font>"
+author: "Andres Karjus<br><font size=5>(supervised by Kenny Smith, Richard A. Blythe, Simon Kirby)<br>Centre for Language Evolution, University of Edinburgh</font>"
 date: "CLE seminar, 6.11.2018"
 output:
   xaringan::moon_reader:
