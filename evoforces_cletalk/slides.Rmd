@@ -68,7 +68,6 @@ library(RColorBrewer)
 library(dplyr)
 library(plotly)
 load("/Users/pplsuser/Dropbox/phd/selection_replypaper/cletalk/binresults.RData")
-library(plotly)
 load("/Users/pplsuser/Dropbox/phd/selection_replypaper/cletalk/plotlys.RData")
 load(file="~/Desktop/korpused/wright-fisher_simulations4.RData")
 source("/Users/pplsuser/Dropbox/phd/selection_replypaper/fitmap_plotters.R")
@@ -377,7 +376,7 @@ class: inverse
 - What a time to be alive! .small[(data, methods, tools)]
 --
 
-- We evaluated the proposal of Newberry et al. 2017<br>Found that the results are dependent corpus binning, small sample effects, and the specifics of the FIT. 
+- We evaluated the proposal of Newberry et al. 2017<br>Found that the results are dependent on corpus binning, small sample effects, and the specifics of the FIT. 
 - Testing vs generating hypotheses; degrees of freedom
 --
 
