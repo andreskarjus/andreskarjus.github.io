@@ -47,6 +47,7 @@ h2 { /* Header 2 */
 
 ### New things
 
+* [Slides](https://andreskarjus.github.io/lexical_clistalk/clis_slides.html) of the talk _Topical Fluctuations and Lexical Interactions in Diachronic Corpora_ presented at the Corpus Linguistics in Scotland Network Meeting, 30.11.2018.
 * [Slides](https://andreskarjus.github.io/evoforces_cletalk/slides.html) of the talk _Challenges in detecting evolutionary forces in language change using diachronic corpora_ presented at the [CLE](http://www.lel.ed.ac.uk/cle/) seminar series, 06.11.2018 | paper preprint now also on [arXiv](http://arxiv.org/abs/1811.01275) | [code](https://github.com/andreskarjus/wfsim_fit)
 
 

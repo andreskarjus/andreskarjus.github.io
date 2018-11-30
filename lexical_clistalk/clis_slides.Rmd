@@ -1,0 +1,506 @@
+---
+title: "Topical Fluctuations and Lexical Interactions<br> in Diachronic Corpora"
+author: "Andres Karjus<br>Kenny Smith, Richard A. Blythe, Simon Kirby<br><font size=5>Centre for Language Evolution, University of Edinburgh</font>"
+date: "Corpus Linguistics in Scotland Network Meeting, 30.11.2018"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: false
+      countIncrementalSlides: true
+      ratio: "16:9"
+      navigation:
+        scroll: false
+---
+
+<style>
+.remark-slide-content {
+  padding-top: 7px;
+  padding-left: 25px;
+  padding-right: 20px;
+  padding-bottom: 30px;
+}
+body { 
+  line-height: 2.8em;
+} 
+.mjx-chtml{ font-size: 100% !important; } 
+.small { font-size: 50%; margin-top:0em; margin-bottom:0em;}
+
+p {margin-bottom:0em}
+
+.plotslide {
+  background-color: black;
+}
+
+iframe {
+  border: 0;
+}
+.iframe {
+  border: none;
+}
+
+</style>
+
+
+# Modelling changes in the lexicon
+
+```{r setup, echo=F}
+options(htmltools.dir.version = FALSE)
+options(servr.daemon = TRUE)
+knitr::opts_chunk$set(echo = FALSE, message=F,warning=F,dev="png",dpi=100)
+```
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+mono_light(
+  base_color = rgb(0,0,0.2),
+  black_color = "black",
+  background_color = "white",
+  header_font_google = google_font("Nanum Gothic"),
+  text_font_google   = google_font("Nanum Gothic", "300", "300i"),
+  text_slide_number_font_size = "0.4em",
+  header_h1_font_size = "50px",
+  text_font_size = "35px",
+  text_font_family_fallback = "Helvetica",
+  code_font_google   = google_font("Droid Mono"),
+  title_slide_background_image = "cle.png",
+  title_slide_background_size = "8%",
+  title_slide_background_position = "top right",
+  link_color = "blue"
+)
+```
+
+```{r loadplots, echo=F, eval=T}
+suppressMessages({library(plotly);library(crosstalk);library(widgetframe);library(kableExtra)})
+
+#knitr::opts_chunk$set(echo = FALSE, fig.align="center", out.width = "98%",out.height="600px", message = F, warning = F)
+
+load("/Users/pplsuser/Dropbox/phd/igasugukatsetused/cultevo_tartu/cultevo_tartu.RData")
+load("/Users/pplsuser/Dropbox/phd/sle_tallinn/car_plotly.RData")
+load("/Users/pplsuser/Dropbox/phd/lexical_competition/clistalk/dat.RData")
+
+
+
+tartuplots  = function(a, f, isnew, isgone, titl, ann, s=5, rs=F, alph=0.3, rsline=T){
+  if(is.null(isnew)){
+    cols=rgb(0,0,0,alph)
+  } else {
+    cols=ifelse(isnew, rgb(0.7,0,0,0.7), ifelse(isgone, rgb(0,0,0.7,0.7), rgb(0,0,0,alph)))
+  }
+  ok = !is.na(a)
+  a=a[ok]
+  f=f[ok]
+  fit=fitted(lm(a~f))
+  sx = SharedData$new(data.frame(a,f), group=titl)
+  p =plot_ly(type="scatter", mode="markers", hoverinfo = 'text', text=~gsub("S:","",sx$key()), 
+             hoverlabel = list(bgcolor="white",  font=list(size=20, color=cols)) ) %>% 
+    add_trace(x = ~f, y = ~a, data=sx, marker=list(color= cols, size=s )) %>% 
+    add_lines(x = ~f, y = ~fit, line = list(color = rgb(0,0,0)) ,hoverinfo="none", visible=rsline) %>% 
+    layout(showlegend = FALSE,autosize=T,
+           #title = titl, 
+           #titlefont=list(size=13),
+           paper_bgcolor=rgb(0,0,0,0.04), plot_bgcolor=rgb(0,0,0,0),
+           annotations = list(text = ann,  x = max(f,na.rm=T)*0.7, y = min(a, na.rm=T)*0.95,showarrow=FALSE ),
+           margin = list(b = 100), #, hovermode = 'compare'
+           updatemenus = updatemenus
+           )
+  
+  if(rs){
+   p = add_segments(p, x = f, y = 0, xend = f, yend = a, line = list(color = rgb(0,0,0,0.2),width = 0.5), hoverlabel = list(bgcolor="white",  font=list(size=20, color="black")))
+   p = layout(p, xaxis = list(title="fitted (frequency change ~ advection)", color="gray", gridcolor="white",
+                        zerolinecolor="white",zerolinewidth=4), 
+           yaxis = list(title="residuals", color="gray", gridcolor="white",
+                        zerolinecolor="black",zerolinewidth=2))
+  } else {
+    p = layout(p, 
+           xaxis = list(title="log frequency change", color="gray", gridcolor="white", 
+                        zerolinecolor="white",zerolinewidth=4), 
+           yaxis = list(title="advection (log context change)", color="gray", gridcolor="white",
+                        zerolinecolor="white",zerolinewidth=4) )
+  }
+  
+  
+  p = highlight(p, on = "plotly_click", off="plotly_doubleclick", persistent = F, selectize = TRUE)
+  #htmltools::div(p, align="center", style="{height: 10%; width: 10%}") 
+  p$sizingPolicy$defaultHeight = 1000
+  p$sizingPolicy$browser$defaultHeight = 1000
+  p$sizingPolicy$knitr$defaultHeight = 1000
+  #p$sizingPolicy$browser$defaultHeight = "20%"
+  p
+
+}
+
+```
+
+
+--
+
+- The big picture: human languages evolve on a cultural timescale: 
+
+--
+
+- utterance selection -> language change -> language evolution
+
+--
+
+- a language -> another language(s)
+    
+--
+
+- Massive corpora compiled in the recent years open up an unprecedented avenue of possible investigations into language dynamics, spanning centuries of written language as well as years of social media data .small[(cf. Cuskley 2014; Feltgen 2017; Frermann 2016; Gulordava 2011; Hamilton 2016; Newberry 2017; Petersen 2012; Bocharev 2014; Sagi 2011; Schlechtweg 2017; Wijaya 2011, Stewart 2018; + et al.'s) ]
+
+---
+
+# What I'm interested in
+
+- When and how do words compete?
+- As new words - e.g. neologisms & borrowings - are selected for, what happens to their older synonyms?
+- How well can we predict frequency changes of words over time by measuring lexical dynamics? .small[ (such as inter-word interactions) ]
+--
+
+- We use large corpora and tools from NLP/machine learning to try to answer these questions.
+
+---
+class:inverse
+background-image: url(yoda.gif) 
+background-size: cover
+---
+
+
+# Baseline: fluctuations on topic frequencies
+
+--
+
+- Observation: the ebb and flow of discourse topics in a diachronic corpus reflects real-world events (wars -> war-related news -> frequency of military words increases)
+--
+
+- Token frequency ~ probability of usage ~ fitness ~ being selected for
+- However: corpus frequencies may be misleading .small[(Chelsey & Baayen, 2010; Lijffijt et al., 2012; Calude, et al., 2017; Szmrecsanyi 2016)]
+--
+
+- Observation: sometimes similar words both increase in frequency, instead of competing; or emergence of new words often coincides with the frequency increase of similar words, not decrease. 
+- Frequency change might not necessarily imply selection.
+
+---
+
+```{r, out.height="70%"}
+#frameWidget( carbase %>% config(displayModeBar = F), width = "90%", height = "90%"  )
+carbase %>% config(displayModeBar = F)
+
+```
+
+
+---
+
+## The topical-cultural advection model
+
+- Control for diachronic topical fluctuations by quantifying the frequency change of a word's topic.
+- _advection_: 'the transport of substance, particularly fluids, by bulk motion'
+- Formalized as the _weighted mean of the log frequency changes of the relevant topic (context) words of the target word_
+
+
+---
+
+## How does this work?
+
+- Generate a “topic” for each target word, consisting of _m_ context words, based on co-occurrence, calculate their weighted mean change
+
+<img src="tcm_anim.mov.gif" width="80%" />
+
+- Topical advection: a measure of how much topic/context words like _cafe_, _cappuchino_ have changed on average (weighted by some association score) between two periods.
+- _latte_: calculate its log frequency change (e.g. +1.19 between 1990s->2000s)
+- calculate its topical advection: +0.07 (weighted mean log frequency change in context words) (see Appendix for math)
+
+
+---
+
+## How well does it work?
+
+- Correlate the log frequency changes of nouns between two time periods ~ topical advection values
+- What should we expect?
+
+```{r, out.width="60%", out.height="60%", fig.align="center"}
+#knitr::knit_exit() #  debug handbrake
+
+s=4;df=data.frame(d=
+c( {set.seed(s);rnorm(100, 0,0.28)},
+  (sort( {set.seed(s);rnorm(100,0,0.2)} )+ {set.seed(s);rnorm(100,0,0.2)})/1.1,
+  sort( {set.seed(s);rnorm(100,0,0.3)} )+runif(100, -0.1,0.1)
+), 
+R2=as.factor(c(rep("0",100), rep("0.3",100), rep("0.95",100) )))#;cor( df[101:200,1], c(1:100))
+
+p <- plot_ly(df, y=~d, x=rep(seq(-3,3,length.out = 100),3), color=~R2, colors=c("dimgray", "darkgreen", "darkred"), hoverinfo="none", frame = ~R2,type = 'scatter', mode = 'markers',showlegend = F) %>%layout(yaxis=list(title="advection (log context change)",range=c(-0.6,0.6)), xaxis=list(title="log frequency change"))  %>% animation_button(visible=FALSE) %>% layout(autosize=T)
+p %>% config(displayModeBar = F) 
+
+
+```
+
+---
+class: plotslide
+
+```{r}
+# COHA
+titl= "English noun frequency changes\n1930s vs 1940s in COHA\nR<sup>2</sup>=0.2 (no smooth)\nR<sup>2</sup>=0.3 (smoothing)"
+#tartuplots(a=s3_a, f=s3_f, isnew=s3_isnew, isgone=s3_isgone, titl=titl, ann=ann, s=4, alph=0.2)
+
+cols= colorRampPalette(rev(RColorBrewer::brewer.pal(11,"RdBu")),alpha=F)(50)[cut(s3_a, seq(-max(abs(s3_a)), max(abs(s3_a)), length.out = 50 )  , include.lowest = T)]
+
+p=plot_ly(x=~s3_a, y=~s3_f, type="scatter", mode="markers", marker=list(size=3, opacity=0.5), color=~I(cols),hoverinfo="text", text=~gsub("^S:","", names(s3_a)), hoverlabel=list(bgcolor="black", font=list(color=cols, size=16)) ) %>% 
+  layout(
+    xaxis=list(title="advection (weighted mean log topic change)",color="white",range=c(-0.45,0.45)),
+    yaxis=list(title="log frequency change",color="white", range=c(-2.5,2.5)),
+   paper_bgcolor="black", plot_bgcolor="black"
+  ) %>% 
+  add_annotations(
+    x= 0.2,
+    y= -1.2,
+    xref = "x",
+    yref = "y",
+    text = titl,
+    font=list(color="white"),
+    showarrow = F
+  ) %>% config(displayModeBar = F)
+p$height="88%"
+frameWidget(p, height=660, width="100%")
+
+```
+
+---
+class: plotslide
+
+```{r}
+# imdb
+titl= "US drama genre movies keywords,\n1960-1979 vs 2010-2018\nR<sup>2</sup>=0.18 (no smooth)\nR<sup>2</sup>=0.7 (smoothing)"
+cols= colorRampPalette(rev(RColorBrewer::brewer.pal(11,"RdBu")),alpha=F)(50)[cut(i_a, seq(-max(abs(i_a)), max(abs(i_a)), length.out = 50 )  , include.lowest = T)]
+
+p=plot_ly(x=~i_a, y=~i_f, type="scatter", mode="markers", marker=list(size=5, opacity=0.5), color=~I(cols),hoverinfo="text", text=~names(i_a), hoverlabel=list(bgcolor="black", font=list(color=cols, size=16)) ) %>% 
+  layout(
+    xaxis=list(title="advection (weighted mean log topic change)",color="white"),
+    yaxis=list(title="log frequency change",color="white"),
+   paper_bgcolor="black", plot_bgcolor="black"
+  ) %>% 
+  add_annotations(
+    x= 0.2,
+    y= -1.2,
+    xref = "x",
+    yref = "y",
+    text = titl,
+    font=list(color="white"),
+    showarrow = F
+  ) %>% config(displayModeBar = F)
+p$height="90%"
+frameWidget(p, height=660, width="100%")
+```
+
+
+---
+
+# Interim conclusions
+
+- The topical-cultural advection model describes ~20-40% variance in word frequency changes between the 20 decades in COHA
+--
+
+- See the full paper for more details ([Karjus et al. 2018](https://arxiv.org/abs/1806.00699))
+- The topical advection effect also predicts lexical innovation
+- A reasonable proxy for changes in communicative need in a lexical subspace .small[ (cf. Regier et al., 2016; Gibson et al., 2017) ] 
+- Works similarly in other diachronic databases of cumulative culture .small[(e.g. [click here: movies, boardgames, cookbooks](https://andreskarjus.github.io/cultevol_tartu_slides))]
+--
+
+- A useful baseline to include in any model of diachronic frequency change of linguistic (or other cultural) elements.
+
+
+---
+
+# Modelling lexical competition
+
+- Data: still COHA, but 1870-1899 vs 1990-2009, and all (content) words
+- Advection is a stronger baseline here ( $R^2=0.73$ )
+--
+
+- We use distributional semantics (LSA) to determine a nearest semantic neighbor for every word .small[(ask me for details)]
+- An estimate of competition: calculate the change in relative frequencies of the words .small[(adjusted for advection)]
+
+---
+
+- An estimate of competition: calculate the change in relative frequencies of the target-competitor word pairs .small[(adjusted for advection)]
+
+.pull-left[
+```{r, fig.height=4, out.width="100%"}
+par(mfrow=c(1,2), mar=c(2,3.8,1,1), col.main="darkgreen")
+plot(c(1870, 2009), c(1,1000), xlab="", ylab="absolute frequency", main="+999 (+6.9 log)", type="n")
+lines(c(1880, 2000), c(1000,0), col="darkred", type="b", lwd=2, pch=c(1,1) )
+lines(c(1880, 2000), c(0,1000), col="darkgreen", type="b", lwd=2, pch=c(1,1) )
+plot(c(1870, 2009), c(0,1), xlab="", ylab="relative frequency", main="+0.999", type="n")
+lines(c(1880, 2000), c(0,1), col="darkgreen", type="b", lwd=2 , pch=c(1,2))
+lines(c(1880, 2000), c(1,0), col="darkred", type="b", lwd=2, pch=c(1,6) )
+```
+]
+
+--
+
+.pull-right[
+```{r, fig.height=4, out.width="100%"}
+par(mfrow=c(1,2), mar=c(2,3.8,1,1), col.main="darkgreen")
+plot(c(1870, 2009), c(0,1000), xlab="", ylab="absolute frequency", main="+254 (+5.54 log)", type="n")
+lines(c(1880, 2000), c(1000,1000), col="darkred", type="b", lwd=2, pch=c(1,1) )
+lines(c(1880, 2000), c(1,255), col="darkgreen", type="b", lwd=2, pch=c(1,1) )
+plot(c(1870, 2009), c(0,1), xlab="", ylab="relative frequency", main="+0.2", type="n")
+lines(c(1880, 2000), c(0,0.2), col="darkgreen", type="b", lwd=2 , pch=c(1,2))
+lines(c(1880, 2000), c(1,0.8), col="darkred", type="b", lwd=2, pch=c(1,6) )
+```
+]
+
+---
+
+# The model
+
+- **Log frequency change** .small[of a lemma between two period subcorpora] ~
+- advection .small[ (weighted mean log topic frequency change) ] +
+- change in relative frequency compared to closest semantic neighbor .small[(advection-adjusted)] 
+
+---
+class: plotslide
+
+```{r}
+# out.height="100%", out.width="100%"
+dat = dat[which(!is.na(dat$reltoneib)),]
+
+cols= colorRampPalette(rev(RColorBrewer::brewer.pal(11,"RdBu")),alpha=F)(50)[cut(
+  dat$adv, seq(-max(abs(dat$adv)), max(abs(dat$adv)), length.out = 50 )  , include.lowest = T)]
+
+all_lon <- list(); inc=seq(0,1,0.02); eye= c(x = 0.05, y =  -1, z = 0.05)
+for (i in 1:length(inc)) {  
+  all_lon[[i]] <- list(method = "relayout", 
+      args = list(list(scene.camera.eye=as.list(
+        c(eye + c(inc[i], inc[i], 0 ) )*(2 + ( 1- 4*(inc[i]-0.5)^2) ) 
+        )
+        #,scene.yaxis.color=ifelse(inc[i] > 0.8, "white", "black")
+        #,scene.yaxis.title=ifelse(inc[i] > 0.5, "change rel to neighbor", "")
+        ) ) , label = "") 
+} 
+
+p=plot_ly(dat, x=~adv, y=~reltoneib, z=~freqchange, type="scatter3d", mode="markers", marker=list(size=2.5, opacity=0.2), color=~I(cols),hoverinfo="text", text=~lab, hoverlabel=list(bgcolor="black", font=list(color=cols)) ) %>% 
+  layout(scene = list(
+    zaxis=list(title="freq.change", color="lightgray"),
+    xaxis=list(title="advection",color="lightgray"),
+    yaxis=list(title="change rel to neighbor",color="white"),
+  camera = list(eye = as.list(c(x = 0.05, y =  -1, z = 0.05)*2))
+  ),
+   paper_bgcolor="black",
+    plot_bgcolor="black",
+    sliders = list(
+           list(
+             active = 0, 
+             pad = list(t = 0), 
+             steps = all_lon,
+             style=list(color="blue"))
+           )
+  )
+p$height="100%"
+frameWidget(p, height=680, width="100%")
+
+#knitr::knit_exit() #  debug handbrake
+```
+
+```{r gif_only, eval=F}
+all_lon <- list(); inc=seq(0,0.9,length.out = 50); eye= c(x = 0.05, y =  -1, z = 0.05)
+for (i in 1:length(inc)) {  
+  all_lon[[i]] <- list(method = "relayout", 
+      args = list(list(scene.camera.eye=as.list(
+        c(eye + c(inc[i], inc[i], 0 ) )*seq(0.01,2,length.out = 50)[i] 
+        )
+        #,scene.yaxis.color=ifelse(inc[i] > 0.8, "white", "black")
+        #,scene.yaxis.title=ifelse(inc[i] > 0.5, "change rel to neighbor", "")
+        ) ) , label = "") 
+} 
+
+#gif: 
+plot_ly(dat, x=~adv, y=~reltoneib, z=~freqchange, type="scatter3d", mode="markers", marker=list(size=2.5, opacity=0.2), color=~I(cols),hoverinfo="text", text=~lab, hoverlabel=list(bgcolor="black", font=list(color=cols)) ) %>% 
+  layout(scene = list(
+    zaxis=list(title="", color="darkgray"),
+    xaxis=list(title="",color="darkgray"),
+    yaxis=list(title="",color="darkgray"),
+  camera = list(eye = as.list(c(x = 0.05, y =  -1, z = 0.05)*2))
+  ),
+   paper_bgcolor="black",
+    plot_bgcolor="black",
+    sliders = list(
+           list(
+             active = 0, 
+             pad = list(t = 0), 
+             steps = all_lon)
+           )
+  ) %>% config(displayModeBar = F)
+
+```
+
+---
+
+
+```{r}
+m=summary(lm(freqchange~adv+reltoneib, data=dat))
+mt = round(m$coefficients,2)
+mt[,4] = "<0.001"
+rownames(mt) = c("(Intercept)", "advection", "change relative to neighbor")
+colnames(mt)[3:4] = c("t", "p")
+knitr::kable(mt, format = "html") %>% 
+  kable_styling(bootstrap_options = c("condensed"),  font_size=25) %>%
+  column_spec(3, color="gray")  %>%
+  column_spec(4, color="gray") %>%
+  row_spec(1:3, background = "white")
+```
+- Adjusted $R^2 = 0.81$  .small[residual standard error: 0.88 on 17191 dof]
+- Baseline model with advection only: $R^2 = 0.73$
+- Change relative to neighbor as the sole predictor: $R^2 = 0.3$
+
+---
+
+# The model (2)
+
+- **Log frequency change** .small[of a lemma between two period subcorpora]
+- advection .small[ (weighted mean log topic frequency change) ]
+- change in relative frequency compared to closest semantic neighbor .small[(advection-adjusted)] <br><br>
+- (change in) lexical dissemination .small[(co-occurrence dispersion; Stewart et al 2018)]
+- (change in) document-level dispersion  .small[(both adjusted for frequency to avoid bias)]
+- lexical novelty  .small[(max normalized edit distance to common words in previous era)] <br><br>
+- .small[the dispersion metrics require word to be present in both periods (model with these excludes new words)]
+
+---
+```{r}
+m=summary(lm(freqchange~adv+reltoneib + ldchange + dispdif + wnov, data=dat))
+mt = round(m$coefficients,2)
+mt[,4] = "<0.001"
+rownames(mt) = c("(Intercept)", "advection", "change relative to neighbor", "lex dissemination change", "doc dispersion change", "formal novelty")
+colnames(mt)[3:4] = c("t", "p")
+knitr::kable(mt, format = "html") %>% 
+  kable_styling(bootstrap_options = c("condensed"),  font_size=25) %>%
+  column_spec(3, color="gray")  %>%
+  column_spec(4, color="gray") %>%
+  row_spec(1:6, background = "white")
+```
+
+- Adjusted $R^2 = 0.87$  .small[residual standard error: 0.55 on 15913 dof]
+- (new words excluded here; previous model without them: $R^2 = 0.82$) 
+
+---
+class: inverse
+
+# Conclusions
+
+- These metrics describe up to 87% in variance in the evolution of lexical frequencies over time (between these 2 corpus periods, a century apart)
+--
+
+- Considerable amount of variance in frequency change explainable just by topical fluctuations (particularly over longer time spans), <br>but competition clearly plays a role, as does (to some extent) lexical dispersion .small[ (cf. Altmann et al., 2011; Stewart et al., 2018) ]
+--
+
+- Limitations & future work: the current method relies on pairs of sem neighbors; closest neighbors are sometimes derivations etc.; test this on more corpus periods, different corpora/languages/domains
+--
+
+- The interactive slides, paper, info on dataviz workshops etc.: http://andreskarjus.github.io
+
+
+
+
+
