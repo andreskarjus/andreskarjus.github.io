@@ -44,6 +44,7 @@ details summary::-webkit-details-marker {
   display:none;
 }
 
+
 </style>
 
 
@@ -64,7 +65,7 @@ I am a PhD student in linguistics based at the [Centre for Language Evolution at
 
 ### Research
 
-#### Recent publications 
+#### Publications 
 
 * Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith 2018. Challenges in detecting evolutionary forces in language change using diachronic corpora | [arXiv preprint](http://arxiv.org/abs/1811.01275) | [code](https://github.com/andreskarjus/wfsim_fit) 
 * Andres Karjus, Martin Ehala, 2018. Testing an agent based model of language choice on sociolinguistic survey data. Language Dynamics and Change, 8, pp. 219-252 | [Online at Brill](https://doi.org/10.1163/22105832-00802004) | [postprint](Karjus_Ehala_2018_Testing_an_agent-based_model_of_language_choice_LDCpostprint.pdf) | <a href="karjus_testing_2018.bib" target="_blank">bib</a> | sociolinguistic [dataset](http://doi.org/10.15155/1-00-0000-0000-0000-00162L): 1000 respondents, 200 questions
@@ -72,7 +73,7 @@ I am a PhD student in linguistics based at the [Centre for Language Evolution at
 * Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith, 2018. Topical advection as a baseline model for diachronic lexical dynamics. Proceedings of The Society for Computation in Linguistics. Volume 1. [extended abstract, full paper above] | [open access](http://scholarworks.umass.edu/scil/) | <a href="karjus_topical_2018.bib" target="_blank">bib</a>
 *	Martin Haspelmath, Andres Karjus, 2017. Explaining asymmetries in number marking: Singulatives, pluratives and usage frequency. Linguistics, volume 55, issue 6. | [online version](https://www.degruyter.com/view/j/ling.2017.55.issue-6/ling-2017-0026/ling-2017-0026.xml)  | [preprint](https://www.academia.edu/25032500/Explaining_asymmetries_in_number_marking_Singulatives_pluratives_and_usage_frequency) | <a href="haspelmath_explaining_2017.bib" target="_blank">bib</a>
 
-<details><summary> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Show all...</summary>
+<details><summary> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Show older...</summary>
 
 *	Andres Karjus, 2015. Through the Spyglass of Synchrony: Grammaticalization of the Exterior Space in the Eastern Circum-Baltic. In: Hilpert, Martin, Östman, Jan-Ola, Mertzlufft, Christine, Rießler, Michael, Duke, Janet (eds.), Advances in Nordic Linguistics. De Gruyter Mouton.
 | [google books](https://books.google.ee/books?id=BPheCAAAQBAJ)
@@ -84,7 +85,7 @@ I am a PhD student in linguistics based at the [Centre for Language Evolution at
 </details>
 <br>
 
-#### Recent conferences & seminars
+#### Conferences & seminars
 
 
 - University of Edinburgh [Centre for Language Evolution](http://www.lel.ed.ac.uk/cle/) seminar series | _Challenges in detecting evolutionary forces in language change using diachronic corpora_ | [slides](https://andreskarjus.github.io/evoforces_cletalk/slides.html) | [code](https://github.com/andreskarjus/wfsim_fit)
@@ -92,7 +93,7 @@ I am a PhD student in linguistics based at the [Centre for Language Evolution at
 - New directions in language evolution research workshop, at the [SLE 2018](http://sle2018.eu/) | _Two problems and solutions in evolutionary corpus-based language dynamics research_ [slides](https://andreskarjus.github.io/sle_tallinn_languagedynamics) with interactive plots | [code](https://github.com/andreskarjus/sle_tallinn_languagedynamics)
 - [Applications in Cultural Evolution: Arts, Languages, Technologies](https://cultevol.ut.ee/) | _Selection above the baseline: quantifying the advection effect in four domains of cumulative culture_ | [slides](https://andreskarjus.github.io/cultevol_tartu_slides) with interactive data&plots | [code](https://github.com/andreskarjus/cultural_advection_Tartuce)
 
-<details><summary> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Show all...</summary>
+<details><summary> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Show older...</summary>
 
 - [Evolang 2018](http://evolang.cles.umk.pl) | [slides](https://drive.google.com/open?id=10az7BOV_tT-mAwMZXDoguKmZeTErnfzB) | open-access [proceedings](http://evolang.org/torun/proceedings/papertemplate.html?p=117) 
 - [Edinburgh Language Lunch](http://groups.inf.ed.ac.uk/langlunch/)
@@ -101,10 +102,24 @@ I am a PhD student in linguistics based at the [Centre for Language Evolution at
 </details>
 
 ---
+<br>
 
-<a class="twitter-timeline" data-width="400" data-height="300" href="https://twitter.com/AndresKarjus?ref_src=twsrc%5Etfw">Tweets by AndresKarjus</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+#### Recent tweets
+
+
+<a class="twitter-timeline" 
+  data-show-screen-name="false" data-lang="en" 
+  data-width="400" 
+  data-height="250" 
+  href="https://twitter.com/AndresKarjus?ref_src=twsrc%5Etfw"
+  data-chrome="noheader nofooter noborders">
+  " "
+</a> 
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <br>
+
+
 
 ## Teaching, consulting & R workshops
 
