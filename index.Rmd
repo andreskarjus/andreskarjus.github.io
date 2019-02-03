@@ -53,15 +53,34 @@ details summary::-webkit-details-marker {
 
 ## Research 
 
-### New things
+### New things  
+
+<div style="float: left; width: 60%; height: 200px; padding-right:10%; overflow: hidden">
 
 - Entered [a video](https://www.youtube.com/watch?v=t8InfFEIINc) to Science Magazine's 11th [Dance Your Ph.D contest](https://www.sciencemag.org/projects/dance-your-phd). The idea is to explain your research topic to the general public though interpretive dance.
 
+</div>
+<div style="float: right; width: 40%; height: 200px;">
+
+<a class="twitter-timeline" 
+  data-show-screen-name="false" data-lang="en" 
+  data-width="100%" 
+  data-height="200px" 
+  href="https://twitter.com/AndresKarjus?ref_src=twsrc%5Etfw"
+  data-chrome="noheader nofooter">
+  " "
+</a> 
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+
+
 ### What I do
 
+<div style="display: inline-block; position: relative;">
 <IMG SRC="IMG_2657.jpg" ALIGN="right" BR CLEAR="left" style="margin-left:10px; width: 49%; height: auto;"; /> 
-<div style="text-align: justify"> 
-I am a PhD student in linguistics based at the [Centre for Language Evolution at the University of Edinburgh](http://www.lel.ed.ac.uk/cle/), working on lexical dynamics and evolutionary variant selection in language with [Kenny Smith](http://www.lel.ed.ac.uk/~kenny), [Simon Kirby](http://www.lel.ed.ac.uk/~simon) and [Richard A. Blythe](http://www2.ph.ed.ac.uk/~rblythe3/), utilizing massive corpora and natural language processing to hunt traces of selection and competition in language. This research is supported by a Kristjan Jaak scholarship from the Archimedes Foundation of Estonia. I am also affiliated as a (part-time) junior researcher with the University of Tartu [EKKAM](http://ekkam.ut.ee/en/) sociolinguistics group, working on data visualization and agent-based models. I am also engaged in teaching and consulting (see the tab above) data sciency things for the humanities and social sciences. On the right is the picture obligatory for all academic home pages to subtly suggest that in fact I do not spend _all_ my time in the office at all.
+<div style="text-align: justify;"> 
+I am a PhD student in linguistics at the [Centre for Language Evolution at the University of Edinburgh](http://www.lel.ed.ac.uk/cle/), working on lexical dynamics and evolutionary variant selection in language with [Kenny Smith](http://www.lel.ed.ac.uk/~kenny), [Simon Kirby](http://www.lel.ed.ac.uk/~simon) and [Richard A. Blythe](http://www2.ph.ed.ac.uk/~rblythe3/), utilizing massive corpora and natural language processing to hunt traces of selection and competition in language. This research is supported by a Kristjan Jaak scholarship from the Archimedes Foundation of Estonia. I am also affiliated as a (part-time) junior researcher with the University of Tartu [EKKAM](http://ekkam.ut.ee/en/) sociolinguistics group, doing data analysis and agent-based models. I am also engaged in teaching and consulting (see the tab above) stats and data visualization for the humanities and social sciences. On the right is the picture obligatory for all academic home pages to subtly suggest that in fact I do not spend _all_ my time in the office at all.
 
 ### Research
 
@@ -104,20 +123,7 @@ I am a PhD student in linguistics based at the [Centre for Language Evolution at
 ---
 <br>
 
-#### Recent tweets
-
-
-<a class="twitter-timeline" 
-  data-show-screen-name="false" data-lang="en" 
-  data-width="400" 
-  data-height="250" 
-  href="https://twitter.com/AndresKarjus?ref_src=twsrc%5Etfw"
-  data-chrome="noheader nofooter noborders">
-  " "
-</a> 
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<br>
+</div>
 
 
 
