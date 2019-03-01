@@ -57,7 +57,7 @@ details summary::-webkit-details-marker {
 
 <div style="float: left; width: 60%; height: 200px; padding-right:10%; overflow: hidden">
 
-- Entered [a video](https://www.youtube.com/watch?v=t8InfFEIINc) to Science Magazine's 11th [Dance Your Ph.D contest](https://www.sciencemag.org/projects/dance-your-phd). The idea is to explain your research topic to the general public though interpretive dance.
+- Poster to be presented at the [Inaugural ISLE workshop](https://www.comparativelinguistics.uzh.ch/en/events/ISLE-inaugural-workshop.html), here is an online [version with interactive plots](https://andreskarjus.github.io/isle_poster).
 
 </div>
 <div style="float: right; width: 40%; height: 200px;">
@@ -160,7 +160,8 @@ Feel free to get in touch if you are interested in talking about organizing a wo
 ### Semi-academic
 <div style="text-align: justify"> 
 
-- In 2018-2019 I'm helping my supervisor Prof. Kenny Smith carry out occasional language evolution workshops in primary schools around Edinburgh and neighbouring areas.
+- In 2018-2019 I'm helping my supervisor Prof. Kenny Smith carry out occasional language evolution workshops in primary schools around Edinburgh and Lothian.
+- Entered [a video](https://www.youtube.com/watch?v=t8InfFEIINc) to Science Magazine's 11th [Dance Your Ph.D contest](https://www.sciencemag.org/projects/dance-your-phd). The idea is to explain your research topic to the general public though interpretive dance. We didn't win but it was a fun one to do!
 - Co-organized the bimonthly [Edinburgh Language Lunch](http://groups.inf.ed.ac.uk/langlunch/) during 2016-2018. 
 - Co-organized the [Linguistics and English Language Postgraduate Conference](http://www.lel.ed.ac.uk/~pgc/) of 2017 in Edinburgh, the [Why Linguistics Conference](http://whylinguistics.ut.ee) (2015) and the [Graduate Conference on Areal Linguistics, Grammar and Contacts](http://arealling.ut.ee) (2012) in Tartu, Estonia. 
 
