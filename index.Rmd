@@ -58,7 +58,7 @@ details summary::-webkit-details-marker {
 <div style="float: left; width: 60%; height: 200px; padding-right:10%; overflow: hidden">
 <a href="https://andreskarjus.github.io/isle_poster"><IMG SRC="poster_thumbnail.png" ALIGN="left" BR CLEAR="left" style="margin-left:10px; float: right;" /></a>
 
-- "Modelling lexical interactions in diachronic corpora": a poster to be presented at the [Inaugural ISLE workshop](https://www.comparativelinguistics.uzh.ch/en/events/ISLE-inaugural-workshop.html), here is an online [version with interactive plots](https://andreskarjus.github.io/isle_poster).
+- "Modelling lexical interactions in diachronic corpora": a poster to be presented at the [Inaugural ISLE workshop](https://www.comparativelinguistics.uzh.ch/en/events/ISLE-inaugural-workshop.html), here is an [online version with interactive plots](https://andreskarjus.github.io/isle_poster) and an extended appendix.
 
 
 
