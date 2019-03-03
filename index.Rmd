@@ -11,12 +11,13 @@ output:
 
 <style>
 
-/* 
-body .main-container {
-max-width: 1500px;
+/*  */ 
+.main-container {
+max-width:  940px;
+min-width: 320px !important;
 padding-left: 0px;
 }
- */ 
+
  
 h1 { /* Header 1 */
   font-size: 20px;
@@ -55,16 +56,14 @@ details summary::-webkit-details-marker {
 
 ### New things  
 
-<div style="float: left; width: 60%; height: 200px; padding-right:10%; overflow: hidden">
-<a href="https://andreskarjus.github.io/isle_poster"><IMG SRC="poster_thumbnail.png" ALIGN="left" BR CLEAR="left" style="margin-left:10px; float: right;" /></a>
+<div style="float: left; width: 60%; height: auto; padding-right:10%; overflow: hidden">
+<a href="https://andreskarjus.github.io/isle_poster"><IMG SRC="poster_thumbnail.png" ALIGN="left" BR CLEAR="left" style="margin-left:10px; float: right; max-width:20%;" /></a>
 
 - "Modelling lexical interactions in diachronic corpora": a poster to be presented at the [Inaugural ISLE workshop](https://www.comparativelinguistics.uzh.ch/en/events/ISLE-inaugural-workshop.html), here is an [online version with interactive plots](https://andreskarjus.github.io/isle_poster) and an extended appendix.
 
-
-
 </div>
-<div style="float: right; width: 40%; height: 200px;">
 
+<div style="float: right; width: 40%; height: 200px;">
 <a class="twitter-timeline" 
   data-show-screen-name="false" data-lang="en" 
   data-width="100%" 
@@ -74,15 +73,16 @@ details summary::-webkit-details-marker {
   " "
 </a> 
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
 </div>
+
+<div style="display: inline-block; position: relative;width:100%; height:1px"></div>
+
 
 
 ### What I do
 
-<div style="display: inline-block; position: relative;">
 <IMG SRC="IMG_2657.jpg" ALIGN="right" BR CLEAR="left" style="margin-left:10px; width: 49%; height: auto;"; /> 
-<div style="text-align: justify;"> 
+<div style="text-align: justify; padding-left:1px"> 
 I am a PhD student in linguistics at the [Centre for Language Evolution at the University of Edinburgh](http://www.lel.ed.ac.uk/cle/), working on lexical dynamics and evolutionary variant selection in language with [Kenny Smith](http://www.lel.ed.ac.uk/~kenny), [Simon Kirby](http://www.lel.ed.ac.uk/~simon) and [Richard A. Blythe](http://www2.ph.ed.ac.uk/~rblythe3/), utilizing massive corpora and natural language processing to hunt traces of selection and competition in language. This research is supported by a Kristjan Jaak scholarship from the Archimedes Foundation of Estonia. I am also affiliated as a (part-time) junior researcher with the University of Tartu [EKKAM](http://ekkam.ut.ee/en/) sociolinguistics group, doing data analysis and agent-based models. I am also engaged in teaching and consulting (see the tab above) stats and data visualization for the humanities and social sciences. On the right is the picture obligatory for all academic home pages to subtly suggest that in fact I do not spend _all_ my time in the office at all.
 
 ### Research
@@ -126,7 +126,7 @@ I am a PhD student in linguistics at the [Centre for Language Evolution at the U
 ---
 <br>
 
-</div>
+
 
 
 
