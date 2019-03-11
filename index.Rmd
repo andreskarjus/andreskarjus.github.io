@@ -59,7 +59,7 @@ details summary::-webkit-details-marker {
 <div style="float: left; width: 60%; height: auto; padding-right:10%; overflow: hidden">
 <a href="https://andreskarjus.github.io/isle_poster"><IMG SRC="poster_thumbnail.png" ALIGN="left" BR CLEAR="left" style="margin-left:10px; float: right; max-width:20%;" /></a>
 
-- "Modelling lexical interactions in diachronic corpora": a poster to be presented at the [Inaugural ISLE workshop](https://www.comparativelinguistics.uzh.ch/en/events/ISLE-inaugural-workshop.html), here is an [online version with interactive plots](https://andreskarjus.github.io/isle_poster) and an extended appendix.
+- "Modelling lexical interactions in diachronic corpora": poster presented at the [Inaugural ISLE workshop](https://www.comparativelinguistics.uzh.ch/en/events/ISLE-inaugural-workshop.html), here is an [online version with interactive plots](https://andreskarjus.github.io/isle_poster) and an extended appendix.
 
 </div>
 
@@ -109,10 +109,10 @@ I am a PhD student in linguistics at the [Centre for Language Evolution at the U
 
 #### Conferences & seminars
 
-
+- [Inaugural ISLE workshop](https://www.comparativelinguistics.uzh.ch/en/events/ISLE-inaugural-workshop.html) | _Modelling lexical interactions in diachronic corpora_ |  [poster](https://andreskarjus.github.io/isle_poster)
 - University of Edinburgh [Centre for Language Evolution](http://www.lel.ed.ac.uk/cle/) seminar series | _Challenges in detecting evolutionary forces in language change using diachronic corpora_ | [slides](https://andreskarjus.github.io/evoforces_cletalk/slides.html) | [code](https://github.com/andreskarjus/wfsim_fit)
 - Corpus Linguistics in Scotland Network Meeting, _Topical Fluctuations and Lexical Interactions in Diachronic Corpora_
-- New directions in language evolution research workshop, at the [SLE 2018](http://sle2018.eu/) | _Two problems and solutions in evolutionary corpus-based language dynamics research_ [slides](https://andreskarjus.github.io/sle_tallinn_languagedynamics) with interactive plots | [code](https://github.com/andreskarjus/sle_tallinn_languagedynamics)
+- New directions in language evolution research workshop, at the [SLE 2018](http://sle2018.eu/) | _Two problems and solutions in evolutionary corpus-based language dynamics research_ | [slides](https://andreskarjus.github.io/sle_tallinn_languagedynamics) with interactive plots | [code](https://github.com/andreskarjus/sle_tallinn_languagedynamics)
 - [Applications in Cultural Evolution: Arts, Languages, Technologies](https://cultevol.ut.ee/) | _Selection above the baseline: quantifying the advection effect in four domains of cumulative culture_ | [slides](https://andreskarjus.github.io/cultevol_tartu_slides) with interactive data&plots | [code](https://github.com/andreskarjus/cultural_advection_Tartuce)
 
 <details><summary> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Show older...</summary>
