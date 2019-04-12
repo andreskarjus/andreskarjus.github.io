@@ -58,9 +58,9 @@ details summary::-webkit-details-marker {
 
 <div style="float: left; width: 60%; height: auto; padding-right:10%; overflow: hidden">
 
-- Will be teaching an aRt of the Figure series workshop for the Corpus Linguistics in Scotland network this Friday (12.04), titled [Data visualization with R for corpus linguists](https://andreskarjus.github.io/artofthefigure) (if you registred but haven't received the email for some reason, please get in touch!).
+- Taught an aRt of the Figure series workshop for the Corpus Linguistics in Scotland network (12.04), titled [Data visualization with R for corpus linguists](https://andreskarjus.github.io/artofthefigure)
 
-- Edinburgh Language Lunch 11.04: will be re-presenting the "Modelling lexical interactions in diachronic corpora" poster, originally presented at the [Inaugural ISLE workshop](https://www.comparativelinguistics.uzh.ch/en/events/ISLE-inaugural-workshop.html), here is an [online version with interactive plots](https://andreskarjus.github.io/isle_poster) and an (updated!) appendix.
+- Edinburgh Language Lunch 11.04: (re-)presented the "Modelling lexical interactions in diachronic corpora" poster, originally presented at the [Inaugural ISLE workshop](https://www.comparativelinguistics.uzh.ch/en/events/ISLE-inaugural-workshop.html), here is an [online version with interactive plots](https://andreskarjus.github.io/isle_poster) and an (updated!) appendix.
 
 - The Language Evolves school workshops are [finished for this year](https://twitter.com/kennysmithed/status/1113456451815661568), with Hermitage Park Primary being the last one. Happy to have been part of it.
 
