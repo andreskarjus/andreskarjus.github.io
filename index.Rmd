@@ -135,25 +135,27 @@ I am a PhD student in linguistics at the [Centre for Language Evolution at the U
 
 
 
-## Teaching, consulting & R workshops
+## Teaching, consulting & R workshops {#workshops}
 
 If you're here about materials for an upcoming workshop: [click here](https://andreskarjus.github.io/artofthefigure/).
 
 <div style="text-align: justify"> 
 
-**Ongoing**
+**Ongoing/upcoming**
 
-- I have been developing materials on data visualization using R; these have been used during 2017-2019 in a number of different workshops for humanities and social science audiences, collectively under the name of [_aRt of the Figure_](https://andreskarjus.github.io/artofthefigure/). All the materials are [open source](https://github.com/andreskarjus/artofthefigure).
-- One outlet for these has been through the PPLS Writing Centre - the dates and booking information are available [here](http://writingcentre.ppls.ed.ac.uk/workshops/). During the semester it's a 1-hour workshop, extended to 2 hours for the extracurricular summer edition.
-- [I am available for booking](http://writingcentre.ppls.ed.ac.uk/appointments/) year around as a written communication consultant via the Edinburgh University School of Psychology, Philosophy and Language Sciences Writing Centre - specializing in writing about and presenting (graphs and figures of) data and data analysis results. This service is available to students of the School only. To book, go to the [appointments](http://writingcentre.ppls.ed.ac.uk/appointments/) page -> Book an appointment -> look for my name in the list of tutors in the 'Select staff' dropdown menu.
+- A number of workshops in summer 2019 in various venues
+- I have been developing materials on data visualization using R; these have been used during 2017-2019 in a number of different workshops for humanities and social science audiences, collectively under the name of [_aRt of the Figure_](https://andreskarjus.github.io/artofthefigure/). All the materials are [open source](https://andreskarjus.github.io/artofthefigure/).
+- [I am available for booking](http://writingcentre.ppls.ed.ac.uk/appointments/) year around as a written communication consultant via the Edinburgh University School of Psychology, Philosophy and Language Sciences Writing Centre - specializing in writing about and presenting (graphs and figures of) data and data analysis results. This service is available to students of the School only. To book, go to the [appointments](http://writingcentre.ppls.ed.ac.uk/appointments/) page > Book an appointment > look for my name in the list of tutors in the 'Select staff' dropdown menu.
 - I am also engaged in teaching stats and R to [Edinburgh Uni psychology](https://www.ed.ac.uk/ppls/psychology) masters students (since 2017).
 
 
 **Past**
 
+- Data visualization with R for corpus linguists, an aRt of the Figure workshop for Corpus Linguistics in Scotland network (12.04.2019)
 - The aRt of the Figure, interactive plots edition, at the CLE PhD retreat 2019
 - The aRt of the Figure workshop as a full day session at the [Scottish Graduate School of Social Science Summer School 2018](http://www.socsciscotland.ac.uk/skills_and_training/summer_school).
 - I was working with the PPLS Writing Centre in the summer of 2018 to provide a drop-in quantitative research help service for PPLS MSc students working on their theses.
+- PPLS Writing Centre short 1h/2h workshops on data visualization using R.
 - aRt of the Figure as an afternoon workshop for the annual Edinburgh Linguistics Firbush retreat, spring 2018.
 - Developed and co-taught a course on data analysis for digital humanities at the University of Tartu in the spring of 2016.
 - Corpus linguistics using R course for the [Academia Salensis](http://academiasalensis.org) summer school of 2015.
@@ -194,6 +196,4 @@ Before coming to Edinburgh, I worked as a teaching assistant in informatics at t
 <a href="mailto:a.karjus--at--sms.ed.ac.uk">email</a>  |  <a href="https://twitter.com/AndresKarjus">twitter</a>
 <br>
 </div>
-
-
 
