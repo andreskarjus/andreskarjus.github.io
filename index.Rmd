@@ -14,8 +14,8 @@ output:
 /*  */ 
 .main-container {
 max-width:  940px;
-min-width: 320px !important;
-padding-left: 0px;
+min-width: 300px !important;
+padding-left: 1px;
 }
 
  
@@ -40,7 +40,7 @@ h2 { /* Header 2 */
   top: 0;
   width: 100%;
 }
-
+/* the expander thing*/
 details summary::-webkit-details-marker {
   display:none;
 }
@@ -56,37 +56,32 @@ details summary::-webkit-details-marker {
 
 ### New things  
 
-<div style="float: left; width: 60%; height: auto; padding-right:10%; overflow: hidden">
-
-- Taught an aRt of the Figure series workshop for the Corpus Linguistics in Scotland network (12.04), titled [Data visualization with R for corpus linguists](https://andreskarjus.github.io/artofthefigure)
-
-- Edinburgh Language Lunch 11.04: (re-)presented the "Modelling lexical interactions in diachronic corpora" poster, originally presented at the [Inaugural ISLE workshop](https://www.comparativelinguistics.uzh.ch/en/events/ISLE-inaugural-workshop.html), here is an [online version with interactive plots](https://andreskarjus.github.io/isle_poster) and an (updated!) appendix.
-
-- The Language Evolves school workshops are [finished for this year](https://twitter.com/kennysmithed/status/1113456451815661568), with Hermitage Park Primary being the last one. Happy to have been part of it.
-
-
-
-</div>
-
-<div style="float: right; width: 40%; height: 200px;">
-<a class="twitter-timeline" 
+<div class="container-fluid">
+<div class="row">
+  <div class="col-sm-7">
+  <iframe src="news.html" width="100%" height="200" style="border: none;"></iframe>
+  </div>
+  <div class="col-sm-5">
+  <a class="twitter-timeline" 
   data-show-screen-name="false" data-lang="en" 
-  data-width="100%" 
+  data-width="385px" 
   data-height="200px" 
   href="https://twitter.com/AndresKarjus?ref_src=twsrc%5Etfw"
   data-chrome="noheader nofooter">
   " "
-</a> 
+  </a> 
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </div>
 </div>
 
-<div style="display: inline-block; position: relative;width:100%; height:1px"></div>
-
+<div class="row">
+<div class="col-sm-12">
 
 
 ### What I do
 
-<IMG SRC="IMG_2657.jpg" ALIGN="right" BR CLEAR="left" style="margin-left:10px; width: 49%; height: auto;"; /> 
+<IMG SRC="IMG_2657.jpg" ALIGN="right" BR CLEAR="left" style="margin-left:10px; width: 49%; height: auto;"> 
+
 <div style="text-align: justify; padding-left:1px"> 
 I am a PhD student in linguistics at the [Centre for Language Evolution at the University of Edinburgh](http://www.lel.ed.ac.uk/cle/), working on lexical dynamics and evolutionary variant selection in language with [Kenny Smith](http://www.lel.ed.ac.uk/~kenny), [Simon Kirby](http://www.lel.ed.ac.uk/~simon) and [Richard A. Blythe](http://www2.ph.ed.ac.uk/~rblythe3/), utilizing massive corpora and natural language processing to hunt traces of selection and competition in language. This research is supported by a Kristjan Jaak scholarship from the Archimedes Foundation of Estonia. I am also affiliated as a (part-time) junior researcher with the University of Tartu [EKKAM](http://ekkam.ut.ee/en/) sociolinguistics group, doing data analysis and agent-based models. I am also engaged in teaching and consulting (see the tab above) stats and data visualization for the humanities and social sciences. On the right is the picture obligatory for all academic home pages to subtly suggest that in fact I do not spend _all_ my time in the office at all.
 
@@ -131,8 +126,9 @@ I am a PhD student in linguistics at the [Centre for Language Evolution at the U
 ---
 <br>
 
-
-
+</div>
+</div>
+</div>
 
 
 ## Teaching, consulting & R workshops {#workshops}
@@ -188,12 +184,13 @@ Before coming to Edinburgh, I worked as a teaching assistant in informatics at t
 ## Contact
 <br>
 <br>
-<center>
-<IMG SRC="round.png" ALIGN="center"; /> 
-</center>
-<div style="text-align: center"> 
+
+<div style="text-align: center; align:center"> 
+<IMG SRC="round.png"> 
 <br>
-<a href="mailto:a.karjus--at--sms.ed.ac.uk">email</a>  |  <a href="https://twitter.com/AndresKarjus">twitter</a>
+<br>
+<br>
+<a href="mailto:a.karjus--at--sms.ed.ac.uk">&nbsp; email</a>  |  <a href="https://twitter.com/AndresKarjus">twitter</a>
 <br>
 </div>
 

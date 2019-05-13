@@ -1,0 +1,44 @@
+---
+title: ''
+output: html_document
+theme: spacelab
+---
+
+<style>
+.main-container {
+  padding: 0px;
+}
+ul{
+  padding-left: 16px;
+}
+</style>
+
+<div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
+
+- I'll be teaching workshops at the following venues this summer: [SCOSYA Data Hack](https://scotssyntaxatlas.ac.uk/workshops/data-hack/), [SGSSS Summer School](https://www.sgsss.ac.uk/summer-school-2019/), [SGSAH Summer School](https://www.sgsah.ac.uk/news/summerschool/), [Digital Humanities Conference 2019](https://dh2019.adho.org/), [International Corpus Linguistics Conference 2019](http://www.cl2019.org/). All materials are/will be available [here](https://andreskarjus.github.io/artofthefigure/).
+
+- Taught an aRt of the Figure series workshop for the Corpus Linguistics in Scotland network (12.04), titled [Data visualization with R for corpus linguists](https://andreskarjus.github.io/artofthefigure)
+
+- Edinburgh Language Lunch 11.04: (re-)presented the "Modelling lexical interactions in diachronic corpora" poster, originally presented at the [Inaugural ISLE workshop](https://www.comparativelinguistics.uzh.ch/en/events/ISLE-inaugural-workshop.html), here is an [online version with interactive plots](https://andreskarjus.github.io/isle_poster) and an (updated!) appendix.
+
+- The Language Evolves school workshops are [finished for 2018/2019](https://twitter.com/kennysmithed/status/1113456451815661568), with Hermitage Park Primary being the last one. Happy to have been part of it.
+
+- Poster to be presented at the [Inaugural ISLE workshop](https://www.comparativelinguistics.uzh.ch/en/events/ISLE-inaugural-workshop.html) in April, here is an online [version with interactive plots](https://andreskarjus.github.io/isle_poster).
+
+- Entered [a video](https://www.youtube.com/watch?v=t8InfFEIINc) to Science Magazine's 11th [Dance Your Ph.D contest](https://www.sciencemag.org/projects/dance-your-phd). The idea is to explain your research topic to the general public though interpretive dance.
+
+---
+
+- [Slides](https://andreskarjus.github.io/evoforces_cletalk/slides.html) of the talk _Challenges in detecting evolutionary forces in language change using diachronic corpora_ presented at the [CLE](http://www.lel.ed.ac.uk/cle/) seminar series, 06.11.2018 | paper preprint now also on [arXiv](http://arxiv.org/abs/1811.01275) | [code](https://github.com/andreskarjus/wfsim_fit)
+
+- Out now in Language Dynamics and Change: Karjus & Ehala 2018, Testing an agent based model of language choice on sociolinguistic survey data | [Online at Brill](https://doi.org/10.1163/22105832-00802004) | [PDF](Karjus_Ehala_2018_Testing_an_agent-based model_of_language_choice_LDCpostprint.pdf) | [dataset](http://doi.org/10.15155/1-00-0000-0000-0000-00162L): representative sample of 1000 respondents from Estonia, 200 questions on language attitudes and use
+
+- "Two problems and solutions in evolutionary corpus-based language dynamics research" to be presented @ SLE 2018: [slides](https://andreskarjus.github.io/sle_tallinn_languagedynamics) with interactive plots and [code](https://github.com/andreskarjus/sle_tallinn_languagedynamics) now available.
+
+- July 2018: the [Quantifying the dynamics of topical fluctuations in language](https://arxiv.org/abs/1806.00699) paper got awarded the University of Edinburgh PPLS [Gray postgraduate publication prize](https://www.ed.ac.uk/ppls/philosophy/current/postgraduate/fees-and-funding/ppls-gray-postgraduate-publication-prize).
+ 
+- Code to run the topical-cultural advection model on COHA (or other corpora; as described in the recent [arXiv preprint](https://arxiv.org/abs/1806.00699)) is now available [on Github](https://github.com/andreskarjus/topical_cultural_advection_model).
+
+- _Selection above the baseline: quantifying the advection effect in four domains of cumulative culture_ @ the [Applications in Cultural Evolution](https://cultevol.ut.ee/) conference: slides with a bunch of interactive plots that allow playing with the massive datasets [now available here](https://andreskarjus.github.io/cultevol_tartu_slides), and all the code [here](https://github.com/andreskarjus/cultural_advection_Tartuce).
+
+</div>
