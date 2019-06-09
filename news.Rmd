@@ -3,7 +3,9 @@ title: ''
 output: html_document
 theme: spacelab
 ---
-
+<head>
+<base target="_blank">
+</head>
 <style>
 .main-container {
   padding: 0px;
