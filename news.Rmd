@@ -17,6 +17,8 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
+- Presenting a talk on lexical competition at the [CL2019](http://www.cl2019.org/). Slides with interactive plots [here](https://andreskarjus.github.io/cl2019talk.html). Also teaching a dataviz [workshop](https://andreskarjus.github.io/artofthefigure/cl2019).
+
 - Presenting an updated version of the communivative need & lexical competition poster at the [Culture Conference 2019](https://culture-conference.com/programme-2019/) in Stirling, 1-2 July 2019. Online version with interactive plots [here](https://andreskarjus.github.io/lexcom_poster). More languages this time!
 
 - I'll be teaching workshops at the following venues this summer: [SCOSYA Data Hack](https://scotssyntaxatlas.ac.uk/workshops/data-hack/), [SGSSS Summer School](https://www.sgsss.ac.uk/summer-school-2019/), [SGSAH Summer School](https://www.sgsah.ac.uk/news/summerschool/), [Digital Humanities Conference 2019](https://dh2019.adho.org/), [International Corpus Linguistics Conference 2019](http://www.cl2019.org/). All materials are/will be available [here](https://andreskarjus.github.io/artofthefigure/).
