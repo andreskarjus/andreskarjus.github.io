@@ -129,7 +129,7 @@ library(plotly, quietly = T)
 trendplot %>% layout(legend = list(orientation = 'h', font = list(size = 12)))
 #plot(1)
 ```
-<img src="img/trends.png" width="80%" />
+<img src="img/trends.PNG" width="80%" />
 
 ---
 class:inverse
@@ -272,7 +272,7 @@ resultsplot %>%
 
 ```
 
-<img src="img/resultsplot.png" width="90%"/>
+<img src="img/resultsplot.PNG" width="90%"/>
 
 
 ---
@@ -446,7 +446,7 @@ plot_grid(ncol = 3,
 ```{r, fig.height=5, out.width="50%", eval=F}
 displot
 ```
-<img src="img/polysemy.png" width="40%"/>
+<img src="img/polysemy.PNG" width="40%"/>
 
 ---
 # References
