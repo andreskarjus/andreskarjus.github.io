@@ -140,18 +140,17 @@ If you're here about materials for an upcoming dataviz workshop: [click here](ht
 
 <div style="text-align: justify"> 
 
-**Ongoing/upcoming**
+**Workshops**
 
-- I have been developing materials on data visualization using R; these have been used since 2017 in a number of different workshops for humanities and social science audiences, collectively under the name of [_aRt of the Figure_](https://andreskarjus.github.io/artofthefigure/). All the materials are [open source](https://andreskarjus.github.io/artofthefigure/).
-- [I am available for booking](http://writingcentre.ppls.ed.ac.uk/appointments/) year around as a written communication consultant via the Edinburgh University School of Psychology, Philosophy and Language Sciences Writing Centre - specializing in writing about and presenting (graphs and figures of) data and data analysis results. This service is available to students of the School only. To book, go to the [appointments](http://writingcentre.ppls.ed.ac.uk/appointments/) page > Book an appointment > look for my name in the list of tutors in the 'Select staff' dropdown menu.
-- I am also engaged in teaching stats and R to [Edinburgh Uni psychology](https://www.ed.ac.uk/ppls/psychology) masters students (since 2017).
+- I have been developing teaching materials on data visualization using R, which I have used in over a dozen workshops for humanities and social science audiences since 2017, collectively under the name of [_aRt of the Figure_ (click here for more info)](https://andreskarjus.github.io/artofthefigure/). Some of these have been standalone events, some have been part of conferences, summer schools or academic retreats. All my materials are [open source](https://andreskarjus.github.io/artofthefigure/).
+
+**Teaching**
+
+- I am engaged in teaching stats and R to [Edinburgh Uni psychology](https://www.ed.ac.uk/ppls/psychology) masters students (since 2017).
+- [I am available for booking](http://writingcentre.ppls.ed.ac.uk/appointments/) year around as a written communication consultant via the Edinburgh University School of Psychology, Philosophy and Language Sciences Writing Centre - specializing in writing about and presenting (graphs and figures of) data and data analysis results. This service is available to students of the School only. To book, go to the [appointments](http://writingcentre.ppls.ed.ac.uk/appointments/) page > Book an appointment > look for my name in the list of Linguistics tutors.
 
 
-**Past workshops**
-
-- Since 2017, I've taught over a dozen workshops on R and data visualization. Some of these have been standalone events, some have been part of conferences, summer schools or academic retreats. The length is usually half a day or an entire day. See [here](https://andreskarjus.github.io/artofthefigure/) for the full list of past (and upcoming) workshops.
-
-**Past teaching positions**
+**Past teaching**
 
 - Developed and co-taught a course on data analysis for digital humanities at the University of Tartu in the spring of 2016.
 - Invited lecturer, corpus linguistics using R course for the [Academia Salensis](http://academiasalensis.org) summer school of 2015.
