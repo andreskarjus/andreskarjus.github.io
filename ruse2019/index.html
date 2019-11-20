@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Changing communicative need predicts lexical competition and contributes to language change</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith Centre for Language Evolution, University of Edinburgh" />
+    <link rel="stylesheet" href="img\xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# <span style="line-height:60px; font-size:60px">Changing communicative need<br>predicts lexical competition<br>and contributes<br>to language change</span></font>
+### <font size=6>Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith<br></font><font size=5>Centre for Language Evolution, University of Edinburgh</font>
+### <font size=5>RUSE Symposium, Manchester, August 2019</font>
+
+---
+
+class: inverse
+# All languages change
+
+&lt;style&gt;
+.remark-slide-content {
+  padding-top: 7px;
+  padding-left: 25px;
+  padding-right: 20px;
+  padding-bottom: 30px;
+}
+body { 
+  line-height: 3em;
+} 
+.mjx-chtml{ font-size: 100% !important; } 
+.small { font-size: 50%; margin-top:0em; margin-bottom:0em; line-height:0px;}
+.mono {font-family: monospace, monospace; font-size: 80%;}
+
+p {margin-bottom:0em}
+
+&lt;/style&gt;
+
+
+
+
+
+
+
+
+
+
+
+---
+# All languages change
+
+- The big picture: human languages evolve on a cultural timescale: 
+    - individual utterance selection &gt; language change &gt; language evolution
+    - a language -&gt; another language(s)
+--
+
+- Massive centuries-spanning corpora compiled in the recent years open up an unprecedented avenue of possible investigations into language dynamics.
+- Variant usage frequencies but also meaning (and change) using distributional semantics methods
+
+---
+# All languages change
+
+ - What I'm interested in: as new words - e.g. neologisms &amp; borrowings - are selected for, what happens to their older synonyms? Does direct competition always follow local frequency changes?
+--
+
+- Hypothesis: 
+    - frequency increase in a word will lead to direct competition with (and possibly replacement of) near-synonym(s)
+    - unless the lexical subspace experiences high communicative need. 
+--
+
+- Communicative need and communicative utility 
+.small[(Givon 1982, McMahon 1994:194, Tomasello 1999:37, Regier et al. 2016, Gibson et al. 2017, Smith et al. 2017)]
+- How much does communicative need drive language change?
+
+---
+# Some technical challenges
+
+- what data to test this on
+- how to model changes in communicative need
+- how to capture competition dynamics
+
+---
+# Data 
+
+- Sample unique words from a corpus, with frequency increase `\(\ln\geq 2\)` between any 2 spans of 10y, occur in `\(\geq 2\)` years, `\(\geq\)` 100x; e.g.:
+
+
+&lt;img src="img/trends.PNG" width="80%" /&gt;
+
+---
+class:inverse
+# Quantifying competition 
+
+(the thing I want to predict)
+
+---
+# Quantifying competition 
+
+- Distributional semantics, meaning from data
+&lt;img src="img/tcm_anim.mov.gif" width="80%" /&gt;
+- Embed targets into vector space (LSA) of preceding decade, compute semantic neighbors
+
+---
+# Quantifying competition
+
+- Important: word occurrence probabilities sum up to 1; increase in x means decrease in y.
+--
+
+- The measure: *where* the probability mass gets equalized, i.e., target increase `\(\geq \sum_{}^{}\)` (neighbors' decreases). Either cosine distance, or n increasing neighbors.
+- Indicates if the increasing target replaced semantically close word(s) (direct competition, obvious likely source of probability mass).
+
+---
+# An example semantic space
+
+&lt;img src="index_files/figure-html/examplespace-1.png" width="95%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+- Example: _relativism_, increasing +13.2pmw &lt;br&gt;between 1965-1974, 1975-1984:
+--
+
+- word | freq.change | cumsum(decr) | normd. dist
+- _**relativism**_ &amp;nbsp; &lt;font color='darkred'&gt;+13.2&lt;/font&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; . &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .
+--
+
+- *marxism*   &amp;nbsp;&amp;nbsp; &amp;nbsp; -5.68 &amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;  5.68 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp; 0
+--
+
+- *thesis*   &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;font color='gray'&gt;+9.00&lt;/font&gt;  &amp;nbsp;&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp; &lt;font color='gray'&gt;5.68&lt;/font&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 0.01
+--
+
+- *jacksonian* -11.64 &amp;nbsp; &amp;nbsp; 17.32&gt;&lt;font color='darkred'&gt;13.2&lt;/font&gt; &amp;nbsp; &amp;nbsp; 0.03
+- -
+- *validity*
+- *interpretation*
+
+---
+class: inverse
+# Communicative need 
+
+(the predictor)
+
+---
+# Communicative need 
+
+- Model diachronic topical fluctuations by quantifying the frequency change of a word's topic.
+- The topical-cultural advection model; proxy to communicative need
+- _advection_: 'the transport of substance, particularly fluids, by bulk motion'
+- Formalized as the _weighted mean of the log frequency changes of the relevant topic (context) words of the target word_
+
+
+---
+# How does this work?
+
+- Generate a "topic" for each target word, consisting of _m_ associated context words
+&lt;img src="img/tcm_anim.mov.gif" width="80%" height="50%"/&gt;
+ -  weighted mean frequency change of topic/context words e.g. _cafe_, _cappuchino_ .small[(these are removed from the list of neighbours)]
+
+---
+
+# How well does it work?
+
+- Correlate the log frequency changes of all (sufficiently frequent) nouns between two time periods to their respective topical advection values
+- describes ~20-40% variance in word frequency changes between the 20 decades in COHA
+- Comparable results from LDA
+- cf. Karjus et al., *Quantifying the dynamics of topical fluctuations in language* (to appear in Language Dynamics and Change) &lt;br&gt; .small[preprint https://arxiv.org/abs/1806.00699 ]
+
+---
+class:inverse
+# Results
+
+---
+# Results (COHA)
+
+- R&lt;sup&gt;2&lt;/sup&gt;=0.2
+
+
+
+&lt;img src="img/resultsplot.PNG" width="90%"/&gt;
+
+
+---
+# Results (COHA)
+
+- R&lt;sup&gt;2&lt;/sup&gt;=0.2. Clearer competition signal if: 
+    - lower communicative need (advection; `\(\beta = 0.09\)`, `\(p&lt;0.001\)`)
+    - bursty series
+    - smaller changes
+    - a clear loser present
+- Also controlled for, but all `\(p&gt;0.05\)`: std of yearly frequencies &amp;#8226; semantic subspace instability &amp;#8226; uniqueness of the form &amp;#8226; smallest edit distance among closest sem neighbors &amp;#8226; polsemy &amp;#8226; leftover prob. mass &amp;#8226; age of word in corpus &amp;#8226; target decade.
+
+
+---
+# Results (Estonian, German)
+
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse
+# Discussion
+
+---
+# Discussion
+
+- Controlling for a range of factors, communicative need (operationalized by advection), describes a small amount of variance in competitive interactions between words
+    - low advection words are more likely to replace a word with a similar meaning
+--
+    - high advection words: less likely (prob.mass from elsewhere)
+--
+    - tested against a random baseline
+--
+
+- Real effect could be bigger?
+    - Just words; messy population aggregates; messy ML
+    - But also, this approach relies on a *lot* of parameters
+--
+- How does this relate to individual utterance selection processes?
+
+---
+background-image: url(img/tweets.png) 
+background-size: cover
+
+# Work in progress: Scottish Twitter
+
+- ~50k daily users; 74 days&lt;br&gt; ~2.7m words/day (incl. retweets)
+
+---
+background-image: url(img/tweets.png) 
+background-size: cover
+
+# Work in progress: Scottish Twitter
+
+- ~50k daily users; 74 days&lt;br&gt; ~2.7m words/day (incl. retweets)
+
+&lt;img src="img/twplot.png" width="62%" /&gt;
+
+---
+# Results (Scottish Twitter)
+
+- R&lt;sup&gt;2&lt;/sup&gt;=0.29
+
+
+&lt;img src="img/twt_results.png" width="85%" /&gt;
+---
+# Results (Scottish Twitter)
+
+- R&lt;sup&gt;2&lt;/sup&gt;=0.29. Clearer competition signal if: 
+    - lower communicative need (advection; `\(\beta = 0.06\)`, `\(p&lt;0.001\)`)
+    - lower frequency change
+    - bursty series
+    - a clear loser present
+    - frequency change supported by retweets*
+- (plus controlled again for all the other lexicostatistical variables)
+---
+class:inverse
+background-image: url(img/dany.png) 
+background-size: cover
+
+---
+# Discussion (Scottish Twitter hashtags)
+
+- *No advection effect when: no lemmatization &amp; no retweets
+- How to treat retweets &amp; likes (here: multiplied by rt, targets filtered to be &gt;10% from original)
+- Timespans need more thought (here: 5 days)
+- Pre-processing questions (#, @)
+- Probably different from "normal" communication:
+- &amp;nbsp;&amp;nbsp;&amp;nbsp; *I watched Game of Thrones last night.*
+--
+    
+- ?? *I watched Game of Thrones, GoT, the GoT finale last night.*
+--
+    
+- &amp;nbsp;&amp;nbsp;&amp;nbsp; *I watched #gameofthrones last night.&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; #got #gotfinale #gameofthronesfinale*
+    
+---
+class: inverse
+# Conclusions 
+
+- Communicative need describes a small amount of variance in competitive interactions between words in diachronic corpora
+- Presumably high communicative need facilitates the co-existence of similar words.
+--
+
+- Future directions: explore parameters; test with phrases; more corpora; implement with non-discrete spans, modern semantics models .small[ (e.g. temporal referencing, Dubossarsky et al 2019) ]; test this experimentally.
+--
+
+- Slides: andreskarjus.github.io/ruse2019 &lt;br&gt;Twitter: @AndresKarjus &lt;br&gt;Also: _Drift, selection, change, and shift_, workshop at Evolang2020!
+
+---
+class: inverse
+
+
+---
+class: inverse
+# Appendix
+
+---
+# All the parameters
+
+&lt;div style="font-size:16pt; line-height:25px"&gt;
+
+- preprocessing choices (lemmatized; removed stopwords, numbers; homogenized compounds, spelling) &lt;br&gt;
+- timespan (10y), min change (log()&gt;2), min frequency in t2 (100), min occurrence years (2); Twitter: 5d spans &lt;br&gt;
+- LSA k (100 dim), min freq (100), context window size (5), weighted &lt;br&gt;
+- cosine distance: normalized by 1st neighbour &lt;br&gt;
+- density: LSA-based, as mean of cos.sim of 2nd..10th neighbours &lt;br&gt;
+- form similarity (restricted Damerau-Levenshtein, length-normalized) &lt;br&gt;
+- filter out: leftover&gt;100%, polysemy residuals&gt;2 &lt;br&gt;
+- advection topic model k (75 words), min freq (100), context window size (10), weighted &lt;br&gt;
+- polysemy model, context window size (2), weighted &lt;br&gt;
+- Twitter further constraints: 500 min freq in t2, min 50 on first day of t2, min 10% freq must be from original (not re)tweets
+
+&lt;/div&gt;
+
+---
+# The competition measure
+
+(COHA)
+&lt;img src="index_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+# Notes on the competition measure 
+
+&lt;div style="font-size:14pt; line-height:25px"&gt;
+
+- We made sure to avoid auto-correlation between the advection measure and the dependent variable by filtering the neighbour lists of each target so that no topic word of the target (i.e. those with a PPMI&gt;0 with the target, which are used to calculate the advection value) would be accounted for as a neighbor. This also makes sense from a semantic point of view: if two words, even if very similar occur near each other (e.g., "salt and pepper"), then it's less palusible that they would be competing against one another. Exceptions are certainly possible, such as meta-linguistic descriptions (e.g., "vapor, previously spelled as vapour"), but we assume these would be rare.&lt;br&gt;
+- We also filtered out a small subset of target words with considerably higher-than-expected lexical dissemination (a proxy to polysemy, cf. Stewart &amp; Eisenstein 2018), and those with a leftover probability mass &gt;100% of its frequency. &lt;br&gt;
+- We did not make use of the entire Corpus of Historical American English, as most of the 19th century decades are less balanced and smaller in size, the imbalance extends to the occurrence of non-standard dialects or registers in occasional year subcorpora. Similarly, we only used years after 1800 in the German corpus. The Estonian corpus only spans two decades, 1990s and 2000s, so all comparisons were done between these two, without accounting for exact starting years of each word's increase.&lt;br&gt;
+- This approach certainly has limitations stemming from the imperfect nature of corpus tagging, composition balance, and vector semantics (LSA). We also disregard issues such as homonymy (although we control for polysemy in the targets) and multi-word units.&lt;br&gt;
+- We ran randomized baselines to make sure the observed correlation with advection is not some (unknown) artefact of the machine learning models used here. This was done by randomizing similarity matrices, i.e. each target was assigned a random list of neighbors, with random similarity values (drawn from the concatenation of all similarity vectors). After hundreds of iterations, the advection variable would come out with a p-value below 0.05 in only about 5% of the runs (i.e., as expected with an `\(\alpha=0.05\)`).&lt;br&gt;
+- Some outliers are removed on the bottom left plot on the distributions of distances and neighbors until probability mass equalized.
+
+&lt;/div&gt;
+
+---
+# The polysemy measure
+
+
+&lt;img src="img/polysemy.PNG" width="40%"/&gt;
+
+---
+# References
+
+&lt;div style="font-size:10pt; line-height:20px"&gt;
+Karjus, A., Blythe, R.A., Kirby, S., Smith, K., [to appear in Language Dynamics and Change]. Quantifying the dynamics of topical fluctuations in language.&lt;br&gt;
+Regier, T., Carstensen, A., Kemp, C., 2016. Languages Support Efficient Communication about the Environment: Words for Snow Revisited. PLOS ONE 11, 1–17.&lt;br&gt;
+Gibson, E., Futrell, R., Jara-Ettinger, J., Mahowald, K., Bergen, L., Ratnasingam, S., Gibson, M., Piantadosi, S.T., Conway, B.R., 2017. Color naming across languages reflects color use. Proceedings of the National Academy of Sciences. &lt;br&gt;
+Hamilton, W.L., Leskovec, J., Jurafsky, D., 2016. Diachronic Word Embeddings Reveal Statistical Laws of Semantic Change, in: Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics, ACL 2016, August 7-12, 2016, Berlin, Germany, Volume 1: Long Papers.&lt;br&gt;
+Xu, Y., Kemp, C., 2015. A Computational Evaluation of Two Laws of Semantic Change., in: CogSci.&lt;br&gt;
+Schlechtweg, Dominik, Stefanie Eckmann, Enrico Santus, Sabine Schulte im Walde, and Daniel Hole, 2017. German in Flux: Detecting Metaphoric Change via Word Entropy. arXiv preprint.&lt;br&gt;
+Petersen, A.M., Tenenbaum, J., Havlin, S., Stanley, H.E., 2012. Statistical Laws Governing Fluctuations in Word Use from Word Birth to Word Death. Scientific Reports 2.&lt;br&gt;
+Stewart, I., Eisenstein, J., 2018. Making “fetch” happen: The influence of social and linguistic context on nonstandard word growth and decline, in: Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing. Association for Computational Linguistics, Brussels, Belgium, pp. 4360–4370.&lt;br&gt;
+Turney P.D., Mohammad S.M., 2019 The natural selection of words: Finding the features of fitness. PLOS ONE 14(1): e0211512.
+&lt;/div&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": false,
+"countIncrementalSlides": false,
+"ratio": "16:9",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

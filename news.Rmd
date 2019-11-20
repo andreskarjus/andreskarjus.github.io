@@ -17,7 +17,11 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
-- Presenting a talk on lexical competition at the [CL2019](http://www.cl2019.org/). Slides with interactive plots [here](https://andreskarjus.github.io/cl2019talk.html). Also teaching a dataviz [workshop](https://andreskarjus.github.io/artofthefigure/cl2019).
+- Delivered another dataviz workshop, this time for the University of Edinburgh Centre for Data, Culture and Society (01.11.2019)
+
+- Presenting a talk at the [RUSE 2019](http://rusesymposium.org.uk/), the Symposium on Representations, Usage and Social Embedding in Language Change (a slightly updated version of the CL2019 talk). Slides [here](https://andreskarjus.github.io/ruse2019).
+
+- Presented a talk on lexical competition at the [CL2019](http://www.cl2019.org/). Slides with interactive plots [here](https://andreskarjus.github.io/cl2019talk.html). Also teaching a dataviz [workshop](https://andreskarjus.github.io/artofthefigure/cl2019).
 
 - Presenting an updated version of the communivative need & lexical competition poster at the [Culture Conference 2019](https://culture-conference.com/programme-2019/) in Stirling, 1-2 July 2019. Online version with interactive plots [here](https://andreskarjus.github.io/lexcom_poster). More languages this time!
 
