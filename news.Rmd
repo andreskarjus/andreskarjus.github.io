@@ -17,6 +17,8 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
+- My first PhD paper (that's been out as a preprint since summer 2018) is now published in Language Dynamics and Change: Karjus, A., Blythe, R. A., Kirby, S., & Smith, K. (2020). Quantifying the dynamics of topical fluctuations in language. Language Dynamics and Change. https://doi.org/10.1163/22105832-01001200
+
 - Delivered another dataviz workshop, this time for the University of Edinburgh Centre for Data, Culture and Society (01.11.2019)
 
 - Presenting a talk at the [RUSE 2019](http://rusesymposium.org.uk/), the Symposium on Representations, Usage and Social Embedding in Language Change (a slightly updated version of the CL2019 talk). Slides [here](https://andreskarjus.github.io/ruse2019).
