@@ -17,7 +17,11 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
-- My first PhD paper (that's been out as a preprint since summer 2018) is now published in Language Dynamics and Change: Karjus, A., Blythe, R. A., Kirby, S., & Smith, K. (2020). Quantifying the dynamics of topical fluctuations in language. Language Dynamics and Change. https://doi.org/10.1163/22105832-01001200
+- I was co-organizing a workshop titled *Drift, selection, change, and shift* that was supposed to take place at Evolang2020 in April. Unfortunately the conference got (understandably) cancelled due to the world being on fire. We had a great lineup of speakers planned though [(workshop homepage here)](https://driftselection-evolang2020.github.io/) and hope to reconvene next year.
+
+- My first PhD paper (that's been out as a preprint since summer 2018) is now published in Language Dynamics and Change: [Karjus, A., Blythe, R. A., Kirby, S., & Smith, K. (2020). Quantifying the dynamics of topical fluctuations in language](https://doi.org/10.1163/22105832-01001200)
+
+---
 
 - Delivered another dataviz workshop, this time for the University of Edinburgh Centre for Data, Culture and Society (01.11.2019)
 
