@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Changing communicative needs  and the structure of the lexicon: corpus-based and experimental approaches</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Andres Karjus PhD student, Centre for Language Evolution, University of Edinburgh Supervised by Kenny Smith, Richard A. Blythe, Simon Kirby" />
+    <link rel="stylesheet" href="img\xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# <span style="line-height:60px; font-size:60px">Changing communicative needs <br>and the structure of the lexicon:<br>corpus-based and experimental approaches</span></font>
+### <font size=6>Andres Karjus<br></font><font size=5>PhD student, Centre for Language Evolution, University of Edinburgh<br>Supervised by Kenny Smith, Richard A. Blythe, Simon Kirby</font>
+### <font size=5>CLE research group talk, 31.03.2020 • Slides online: andreskarjus.github.io/cletalk2020</font>
+
+---
+
+class: inverse
+# Communicative need and language change
+
+&lt;style&gt;
+.remark-slide-content {
+  padding-top: 7px;
+  padding-left: 25px;
+  padding-right: 20px;
+  padding-bottom: 30px;
+}
+body { 
+  line-height: 3em;
+} 
+.mjx-chtml{ font-size: 100% !important; } 
+.small { font-size: 50%; margin-top:0em; margin-bottom:0em; line-height:0px;}
+.mono {font-family: monospace, monospace; font-size: 80%;}
+
+p {margin-bottom:0em; margin-top:0em}
+li {margin-bottom:0.5em }
+
+.noborder {
+  padding-top: 7px;
+  padding-left: px;
+  padding-right: 3px;
+  padding-bottom: 5px;
+}
+
+&lt;/style&gt;
+
+
+
+
+
+
+
+
+
+
+
+---
+# Communicative need and language change
+
+- Language change driven my a multitude of factors
+--
+
+- Also: communicative need, utility and adaption
+.small[(Givon 1982, McMahon 1994:194, Tomasello 1999:37, Winters et al. 2015, Regier et al. 2016, Gibson et al. 2017, Smith et al. 2017)]
+--
+
+- Languages change because the speakers need them to change
+--
+
+- I will focus on words and the lexicosemantic space
+- Two processes: lexical competition, colexification (or lack thereof)
+- Corpus data + machine learning; experimental data
+
+
+
+---
+# Changing communicative need 
+
+- Inferred using the topical advection model .small[(Karjus et al. 2020, Quantifying the dynamics of topical fluctuations in language)]
+- Assumption: changes in topic frequencies approximately correspond to changes in communicative needs (what people want/need to talk about)
+--
+
+- For each target word:
+ - generate a "topic" consisting of _m_ associated context words
+ - take the (association-weighted) mean of the log frequency change in the context words
+
+
+---
+class:inverse
+
+# Competition dynamics
+
+---
+class: noborder
+
+&lt;br&gt;
+
+&lt;img src="index_files/figure-html/unnamed-chunk-2-1.png" width="1200" height="500" style="display: block; margin: auto auto auto 0;" /&gt;
+
+---
+# Competition dynamics
+
+- As some words experience higher selection, what happens to their synonyms? (e.g. to the old word when a synonymous new word is coined or borrowed)
+--
+
+- Hypothesis 1: frequency increase in a word will lead to direct competition with (and possibly replacement of) near-synonym(s) **- unless** the lexical subspace experiences high communicative need. 
+
+---
+
+# Quantifying competition
+
+- Data: sample unique words from a corpus (COHA), with frequency increase `\(\ln\geq 2\)` between any 2 spans of 10y, occur in `\(\geq 2\)` years, `\(\geq\)` 100x
+--
+
+- Diachronic word embeddings, based on co-occurrence .small[(cf. Dubossarsky et al. 2019)]
+&lt;img src="img/tcm_anim.mov.gif" width="80%" /&gt;
+
+---
+# Quantifying competition
+
+- Important: word occurrence probabilities sum up to 1; increase in x means decrease in y
+- The measure: *how far* (in terms of cosine distance) the probability mass gets equalized, i.e., target increase `\(\geq \sum_{}^{}\)` (neighbors' decreases).
+- Indicates if the increasing target replaced semantically close word(s) (direct competition, obvious likely source of probability mass).
+
+---
+class: noborder
+
+- Relies on these two (non-overlapping) word lists for each target:
+
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" width="1200" height="500" style="display: block; margin: auto auto auto 0;" /&gt;
+
+
+
+
+
+
+---
+class: noborder
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto auto auto 0;" /&gt;
+
+
+---
+# Results (COHA)
+
+- `\(R^2=0.16, p&lt;0.001\)`, if communicative need is lower, then competition signal is clearer
+- Also controlled for, but all `\(p&gt;0.05\)`: distance to nearest word &amp;#8226; change magnitude &amp;#8226; series burstiness &amp;#8226; semantic subspace instability &amp;#8226; uniqueness of the form &amp;#8226; smallest edit distance among closest sem neighbors &amp;#8226; polsemy &amp;#8226; leftover prob. mass &amp;#8226; age of word in corpus &amp;#8226; target decade.
+- Similar results on corpora of German, Estonian and Scottish Twitter
+
+---
+background-image: url(img/tweets.png) 
+background-size: cover
+
+# Work in progress: Scottish Twitter
+
+- 316 days; per day: ~50k users, &lt;br&gt; ~170k unique tweets,&lt;br&gt;~1.6m words/day (after cleaning)
+
+
+---
+class: inverse
+
+# Colexification
+
+---
+
+# Colexification: corpus evidence
+
+- Semantic space density is not uniform. Some meanings are lexified by individual words while others are colexified (e.g. 'hand', 'arm' as single word) .small[(François 2008)]
+- Similar meanings more likely but "...communicative needs may intervene such that strongly related ideas such as "sister" and "brother" ... may benefit from being distinguished with separate lexemes" .small[(Xu et al. to appear; Kemp &amp; Regier, 2012)]
+--
+
+- Hypothesis 2.1: changes in lexical density are not random; some variance is explained by changes in communicative need.
+
+
+---
+
+# Colexification: corpus evidence
+
+- Approach: train word embeddings on period subcorpora (sliding window), scan for denser-than-expected subspaces - word clusters at a proximity where in 95% cases there would be no more than 1 word
+--
+
+- Mostly reasonable results, but the distributional semantics approach at times conflates similarity relations other than synonymy.
+- (*instalment, installment*), (*birth control, contraception*), (*amazement,    astonishment*), (*bourbon, gin, scotch*)
+--
+
+- But also (*east, west*), (*tennis, golf*), (*constitution, constitutional*)
+
+
+---
+
+# Colexification: corpus evidence
+
+- 20y spans; two ways of analysing change in local semantic subspace density
+- "lookback": upon finding cluster, look into the past of that subspace
+--
+
+- "lookahead": upon finding cluster, see what happens to it in the future.
+--
+
+- Correlate with the mean advection value of the target words (excluding cluster members from topic list)
+- Requires complex parametrization; see Appendix.
+
+
+
+
+---
+class: noborder
+&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" width="1200" height="600" style="display: block; margin: auto auto auto 0;" /&gt;
+
+---
+class: noborder
+
+&lt;img src="index_files/figure-html/unnamed-chunk-6-1.png" width="1200" height="600" style="display: block; margin: auto auto auto 0;" /&gt;
+
+---
+class: noborder
+
+&lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" width="1200" height="600" style="display: block; margin: auto auto auto 0;" /&gt;
+.small[Ordinal regression; McFadden's pseudo-R2; kappa = baseline-adjusted classification accuracy, cross-validated mean]
+
+---
+class: noborder
+&lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" width="1200" height="600" style="display: block; margin: auto auto auto 0;" /&gt;
+.small[Ordinal regression; McFadden's pseudo-R2; kappa = baseline-adjusted classification accuracy, cross-validated mean]
+
+---
+class: inverse
+
+# Colexification: experimental approach 
+
+(work in progress)
+
+---
+
+# Colexification: experimental approach 
+
+- Hypothesis 2.2: given limited lexical resources, speakers are more likely to colexify similar meanings **- unless** blocked by increased need to distinguish the similar meanings
+--
+
+- Artificial language coordination game, in dyads .small[(cf. Winters et al. 2015)]
+- Signal space: 7, meaning space: 10 - so something has to be colexified!
+--
+
+- Meanings: English nouns from Simlex999 similarity judgements .small[(Hill et al. 2015)], controlling for formal similarity, free association score
+- Artificial language: CVCV words; control for dissimilarity within the set and to any English words
+
+---
+class:inverse
+
+- 135 rounds (only communication; first 1/3 considered "burn-in"), take turns sending a message/signal and guessing the meaning.
+
+&lt;img src="img/expm_screenshot.png" width="50%" style="align: center;"/&gt;
+
+---
+
+# Colexification: experimental approach 
+
+- Each meaning set has 3 near-synonymous target pairs (e.g. *rain, drizzle*)
+- Baseline condition: uniform distribution of pairs shown; expectation: similar meanings will be colexified
+--
+
+- Target condition: similar-meaning pairs more frequent (but frequency of shown meanings is uniform); expectation: the opposite
+--
+
+- Work in progress! So far only pilot results.
+
+---
+class: noborder
+
+&lt;br&gt;
+.small[Values in cells = n times a meaning was lexified by the artificial word]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-9-1.png" width="1200" height="500" style="display: block; margin: auto auto auto 0;" /&gt;
+---
+class: noborder
+
+&lt;br&gt;
+.small[Values in cells = n times a meaning was lexified by the artificial word]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-10-1.png" width="1200" height="500" style="display: block; margin: auto auto auto 0;" /&gt;
+
+---
+class: noborder
+
+&lt;br&gt;
+.small[Values in cells = n times a meaning was lexified by the artificial word]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-11-1.png" width="1200" height="500" style="display: block; margin: auto auto auto 0;" /&gt;
+
+---
+class: inverse
+
+# Conclusions
+
+---
+class: inverse
+
+# Conclusions
+
+- Communicative need describes a small amount of variance in competitive interactions between words in diachronic corpora
+--
+
+- And, a small amount of variance in colexification dynamics (particularly in increase of lexical density)
+--
+
+- Real effect could be bigger? (messy population aggregates; messy ML; *lots* of parameters)
+
+- Next/ongoing step: colexification on the level of the individual.
+
+--
+- Slides: andreskarjus.github.io/cletalk2020 &amp;#8226; more details on experiment &amp; stimuli generator: akarjus.shinyapps.io/colexdemo
+
+---
+class: inverse
+
+
+---
+class: inverse
+# Appendix
+
+---
+# All the parameters
+
+&lt;div style="font-size:16pt; line-height:25px"&gt;
+
+- Preprocessing choices (lemmatized; removed stopwords, numbers; homogenized compounds, spelling) &lt;br&gt;
+- COHA-based models now also incorporate a light multiword unit homogenization procedure, as English is often inconsistent in its spelling of these, and treating them as separate words is often misleading. As a first pass, multiword units over time are detected using PPMI scores, and then concatenated (essentially treated as compounds) before parsing&amp;cleaning the corpus the second time. This appears to (as expected) slightly improve the descriptive power of the model.
+- Competition model:
+- LSA word embeddings: timespan (10y), min change (log()&gt;2), min frequency in t2 (100), min occurrence years (8/10); &lt;br&gt;
+- LSA k (100 dim), min freq (100), context window size (5), weighted &lt;br&gt;
+- cosine distance: normalized by 1st neighbour &lt;br&gt;
+- form similarity (restricted Damerau-Levenshtein, length-normalized) &lt;br&gt;
+- Advection topic model: ppmi-based, m=75 words, min freq (100), context window size (10), weighted &lt;br&gt;
+- Polysemy model: context window size (2), weighted &lt;br&gt;
+- Colexification model: 
+- colexification threshold = cosine distance at 95% quantile, mean of two subcorpora under comparison; 
+- timespan (20y), sliding window of 5y for models; min occurrence in years (15/20); but also filtered out clusters where change comes from being just under the minimal frequency threshold; series peak detection min sd (20); filtered out clusters where change stems from semantic space movements within the threshold distance (presumably noise). 
+- in case of overlap of words in clusters in the sliding window, kept the cluster with the most members, breaking ties by intra-cluster similarity; also why on the plots lookback has no negative changes and lookahead only has negative changes.
+
+&lt;/div&gt;
+
+
+---
+# Notes on the competition measure 
+
+&lt;div style="font-size:14pt; line-height:25px"&gt;
+
+- We made sure to avoid auto-correlation between the advection measure and the dependent variable by filtering the neighbour lists of each target so that no topic word of the target (i.e. those with a PPMI&gt;0 with the target, which are used to calculate the advection value) would be accounted for as a neighbor. This also makes sense from a semantic point of view: if two words, even if very similar occur near each other (e.g., "salt and pepper"), then it's less palusible that they would be competing against one another. Exceptions are certainly possible, such as meta-linguistic descriptions (e.g., "vapor, previously spelled as vapour"), but we assume these would be rare.&lt;br&gt;
+- We also filtered out a small subset of target words with a leftover probability mass &gt;100% of its frequency. We previously filtered out words with considerably higher-than-expected lexical dissemination (a proxy to polysemy, cf. Stewart &amp; Eisenstein 2018), but that seems to make little difference, so not it's just a control variable in the model.&lt;br&gt;
+- We did not make use of the entire Corpus of Historical American English, as most of the 19th century decades are less balanced and smaller in size, the imbalance extends to the occurrence of non-standard dialects or registers in occasional year subcorpora. Similarly, we only used years after 1800 in the German corpus. The Estonian corpus only spans two decades, 1990s and 2000s, so all comparisons were done between these two, without accounting for exact starting years of each word's increase.&lt;br&gt;
+- This approach certainly has limitations stemming from the imperfect nature of corpus tagging, composition balance, and word-based vector semantics (here LSA). We also disregard issues such as homonymy (although we control for polysemy in the targets). The word-vector-based approach however allows for straighforwad comparison between time periods/temporal subcorpora.&lt;br&gt;
+- We ran randomized baselines to make sure the observed correlation with advection is not some (unknown) artefact of the machine learning models used here. This was done by randomizing similarity matrices, i.e. each target was assigned a random list of neighbors, with random similarity values (drawn from the concatenation of all similarity vectors). After hundreds of iterations, the advection variable would come out with a p-value below 0.05 in only about 5% of the runs (i.e., as expected with an `\(\alpha=0.05\)`).&lt;br&gt;
+
+&lt;/div&gt;
+
+---
+# The polysemy measure
+
+
+&lt;img src="img/polysemy.PNG" width="40%"/&gt;
+
+---
+# References
+
+&lt;div style="font-size:10pt; line-height:20px"&gt;
+Karjus, A., Blythe, R.A., Kirby, S., Smith, K., 2020. Quantifying the dynamics of topical fluctuations in language. Language Dynamics and Change&lt;br&gt;
+François, A., 2008. Semantic maps and the typology of colexification: Intertwining polysemous networks across languages, in: Vanhove, M. (Ed.), Studies in Language Companion Series. John Benjamins Publishing Company, Amsterdam, pp. 163–215. &lt;br&gt;
+Gibson, E., Futrell, R., Jara-Ettinger, J., Mahowald, K., Bergen, L., Ratnasingam, S., Gibson, M., Piantadosi, S.T., Conway, B.R., 2017. Color naming across languages reflects color use. Proceedings of the National Academy of Sciences. &lt;br&gt;
+Hamilton, W.L., Leskovec, J., Jurafsky, D., 2016. Diachronic Word Embeddings Reveal Statistical Laws of Semantic Change, in: Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics, ACL 2016, August 7-12, 2016, Berlin, Germany, Volume 1: Long Papers.&lt;br&gt;
+Xu, Y., Kemp, C., 2015. A Computational Evaluation of Two Laws of Semantic Change., in: CogSci.&lt;br&gt;
+Xu, Y., Duong, K., Malt, B.C., Jiang, S., and Srinivasan, M. (to appear) Conceptual relations predict colexification across languages. Cognition.&lt;br&gt;
+Petersen, A.M., Tenenbaum, J., Havlin, S., Stanley, H.E., 2012. Statistical Laws Governing Fluctuations in Word Use from Word Birth to Word Death. Scientific Reports 2.&lt;br&gt;
+Regier, T., Carstensen, A., Kemp, C., 2016. Languages Support Efficient Communication about the Environment: Words for Snow Revisited. PLOS ONE 11, 1–17.&lt;br&gt;
+Stewart, I., Eisenstein, J., 2018. Making “fetch” happen: The influence of social and linguistic context on nonstandard word growth and decline, in: Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing. Association for Computational Linguistics, Brussels, Belgium, pp. 4360–4370.&lt;br&gt;
+Turney P.D., Mohammad S.M., 2019 The natural selection of words: Finding the features of fitness. PLOS ONE 14(1): e0211512.
+&lt;/div&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": false,
+"countIncrementalSlides": false,
+"ratio": "16:9",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
