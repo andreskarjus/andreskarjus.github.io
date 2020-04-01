@@ -122,6 +122,16 @@ library(plotly)
  - generate a "topic" consisting of _m_ associated context words
  - take the (association-weighted) mean of the log frequency change in the context words
 
+---
+
+<br>
+
+<img src="img/tcm_anim.mov.gif" width="80%" />
+
+- For each target word:
+ - generate a "topic" consisting of _m_ associated context words
+ - take the (association-weighted) mean of the log frequency change in the context words
+
 
 ---
 class:inverse
@@ -168,11 +178,10 @@ slides_airplane + theme(plot.margin=grid::unit(c(0,0,0,0), "mm"))
 ```{r examplespace, out.width="95%", fig.height=3, eval=T}
 #expl
 
-library(ggplot2)
 ex = data.frame(x={set.seed(1);rnorm(1000)}, y={set.seed(2);rnorm(1000)},change=rnorm(1000,sd=2.4) );ex$change[1]=10;ex$change[2]=-10; ex$change[200:1000] = rnorm(801, sd=0.2)
 rownames(ex)=1:1000
-cowplot::plot_grid(
-ggplot(ex, aes(x,y, color=change)) + 
+
+e1 = ggplot(ex, aes(x,y, color=change)) + 
   annotate("line", x=ex[c(446, 656, 963),"x"], y=ex[c(446, 656, 963),"y"], color="gray") +
   geom_point(size=1.4, alpha=0.7) +
   geom_point(aes(x=ex[446,"x"], y=ex[446,"y"]), color=rgb(1,0,0), size=2.2) +
@@ -182,9 +191,9 @@ ggplot(ex, aes(x,y, color=change)) +
     theme(legend.position = "right") +
     scale_color_gradient2(low="blue", mid="lightgray", high="red") +
   labs(x="", y="") + theme(legend.position = "none")
-,
 
-ggplot(ex, aes(x,y, color=change)) + 
+
+e2 = ggplot(ex, aes(x,y, color=change)) + 
   annotate("line", x=ex[c(446, 656, 963),"x"], y=ex[c(446, 656, 963),"y"], color="black", size=1)+
   geom_point(size=4.4, alpha=0.7) +
   geom_point(aes(x=ex[446,"x"], y=ex[446,"y"]), color=rgb(1,0,0), size=9) +
@@ -195,10 +204,16 @@ ggplot(ex, aes(x,y, color=change)) +
     theme(legend.position = "right") +
     scale_color_gradient2(low="blue", mid="lightgray", high="red", name= "change\npmw") +
   labs(x="", y="") + lims(x=c(-3.2,-2.2), y=c(-0.5,0.4))
-)
+
+e1 + plot_spacer()
 
 ```
 
+---
+
+```{r examplespace2, out.width="95%", fig.height=3, eval=T}
+e1 + e2
+```
 
 ---
 class: noborder
@@ -262,8 +277,52 @@ class: inverse
 
 # Colexification: corpus evidence
 
-- Approach: train word embeddings on period subcorpora (sliding window), scan for denser-than-expected subspaces - word clusters at a proximity where in 95% cases there would be no more than 1 word
---
+- Approach: train word embeddings on period subcorpora (sliding window), scan for denser-than-expected subspaces 
+- word clusters at a proximity where in 95% cases there would be no more than 1 word
+
+```{r, out.width="95%", fig.height=2, eval=T}
+x={rnorm(10000,0.72,0.08) %>% subset(.<1)}
+q = sort(x)[0.95*length(x)]
+
+ggplot(data.frame(x),aes(y=x, x=1)) + 
+  geom_violin(color="lightgray", fill="lightgray") +
+  geom_boxplot(fill="lightgray", color="darkgray", outlier.color = "darkgray", width=0.6,outlier.size = 0.2) +
+  geom_hline(yintercept = q, size=2)+
+  ylim(0.25,1) + ylab("Cosine similarity of nearest neighbour") + 
+ # labs(subtitle = "Nearest neighbor in the semantic space; entire lexicon") +
+  annotate("text", x=1.5, y=0.83, label="95% of the words", hjust=1) +
+  annotate("text", x=1.5, y=q+0.01, label="5% of the words", hjust=0) +
+  annotate("text", x=0.5, y=0.83, label=paste0("Colexification threshold = ", round(q,2),"  ->"), hjust=1, fontface="bold") +
+  theme_minimal() +
+  theme(legend.position = "none", 
+               panel.border = element_rect(color="darkgray",fill=NA), 
+               axis.ticks = element_line(color="darkgray"), 
+               strip.background = element_blank(),
+               axis.text.x = element_text()
+               #strip.text = element_blank(),
+         )  +
+         theme(#panel.grid.major.x = element_blank(),
+               panel.grid.minor.y = element_blank(),
+                panel.grid.minor.x = element_blank(),
+               panel.grid.major.y = element_blank(),
+               axis.text.y=element_blank(),
+               axis.title.y=element_blank(),
+               axis.ticks.y =element_blank()
+         )  +
+         theme(
+            panel.border = element_rect(color="darkgray",fill=NA), 
+            axis.ticks = element_line(color="darkgray"), 
+            strip.background = element_blank(),
+            strip.text = element_text(hjust=0, size = 13)
+            #strip.text = element_blank(),
+         ) +coord_flip() 
+
+```
+
+
+---
+
+# Colexification: corpus evidence
 
 - Mostly reasonable results, but the distributional semantics approach at times conflates similarity relations other than synonymy.
 - (*instalment, installment*), (*birth control, contraception*), (*amazement,    astonishment*), (*bourbon, gin, scotch*)
@@ -320,14 +379,14 @@ class: noborder
 ```{r, fig.width=12,fig.height=6 , out.height=600, out.width=1200,eval=T}
 slides_beedemo
 ```
-.small[Ordinal regression; McFadden's pseudo-R2; kappa = baseline-adjusted classification accuracy, cross-validated mean]
+.small[Ordinal regression; McFadden's R^2; kappa = baseline-adjusted accuracy (10-fold CV). Improvement over reduced model in brackets.]
 
 ---
 class: noborder
 ```{r, fig.width=12,fig.height=6 , out.height=600, out.width=1200,eval=T}
 slides_beesplot
 ```
-.small[Ordinal regression; McFadden's pseudo-R2; kappa = baseline-adjusted classification accuracy, cross-validated mean]
+.small[Ordinal regression; McFadden's R^2; kappa = baseline-adjusted accuracy (10-fold CV). Improvement over reduced model in brackets.]
 
 ---
 class: inverse

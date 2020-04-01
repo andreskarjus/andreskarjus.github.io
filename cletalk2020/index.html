@@ -85,6 +85,16 @@ li {margin-bottom:0.5em }
  - generate a "topic" consisting of _m_ associated context words
  - take the (association-weighted) mean of the log frequency change in the context words
 
+---
+
+&lt;br&gt;
+
+&lt;img src="img/tcm_anim.mov.gif" width="80%" /&gt;
+
+- For each target word:
+ - generate a "topic" consisting of _m_ associated context words
+ - take the (association-weighted) mean of the log frequency change in the context words
+
 
 ---
 class:inverse
@@ -128,6 +138,9 @@ class: noborder
 
 &lt;img src="index_files/figure-html/examplespace-1.png" width="95%" style="display: block; margin: auto auto auto 0;" /&gt;
 
+---
+
+&lt;img src="index_files/figure-html/examplespace2-1.png" width="95%" style="display: block; margin: auto auto auto 0;" /&gt;
 
 ---
 class: noborder
@@ -179,8 +192,15 @@ class: inverse
 
 # Colexification: corpus evidence
 
-- Approach: train word embeddings on period subcorpora (sliding window), scan for denser-than-expected subspaces - word clusters at a proximity where in 95% cases there would be no more than 1 word
---
+- Approach: train word embeddings on period subcorpora (sliding window), scan for denser-than-expected subspaces 
+- word clusters at a proximity where in 95% cases there would be no more than 1 word
+
+&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" width="95%" style="display: block; margin: auto auto auto 0;" /&gt;
+
+
+---
+
+# Colexification: corpus evidence
 
 - Mostly reasonable results, but the distributional semantics approach at times conflates similarity relations other than synonymy.
 - (*instalment, installment*), (*birth control, contraception*), (*amazement,    astonishment*), (*bourbon, gin, scotch*)
@@ -208,23 +228,23 @@ class: inverse
 
 ---
 class: noborder
-&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" width="1200" height="600" style="display: block; margin: auto auto auto 0;" /&gt;
-
----
-class: noborder
-
 &lt;img src="index_files/figure-html/unnamed-chunk-6-1.png" width="1200" height="600" style="display: block; margin: auto auto auto 0;" /&gt;
 
 ---
 class: noborder
 
 &lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" width="1200" height="600" style="display: block; margin: auto auto auto 0;" /&gt;
-.small[Ordinal regression; McFadden's pseudo-R2; kappa = baseline-adjusted classification accuracy, cross-validated mean]
 
 ---
 class: noborder
+
 &lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" width="1200" height="600" style="display: block; margin: auto auto auto 0;" /&gt;
-.small[Ordinal regression; McFadden's pseudo-R2; kappa = baseline-adjusted classification accuracy, cross-validated mean]
+.small[Ordinal regression; McFadden's R^2; kappa = baseline-adjusted accuracy (10-fold CV). Improvement over reduced model in brackets.]
+
+---
+class: noborder
+&lt;img src="index_files/figure-html/unnamed-chunk-9-1.png" width="1200" height="600" style="display: block; margin: auto auto auto 0;" /&gt;
+.small[Ordinal regression; McFadden's R^2; kappa = baseline-adjusted accuracy (10-fold CV). Improvement over reduced model in brackets.]
 
 ---
 class: inverse
@@ -273,15 +293,7 @@ class: noborder
 &lt;br&gt;
 .small[Values in cells = n times a meaning was lexified by the artificial word]
 
-&lt;img src="index_files/figure-html/unnamed-chunk-9-1.png" width="1200" height="500" style="display: block; margin: auto auto auto 0;" /&gt;
----
-class: noborder
-
-&lt;br&gt;
-.small[Values in cells = n times a meaning was lexified by the artificial word]
-
 &lt;img src="index_files/figure-html/unnamed-chunk-10-1.png" width="1200" height="500" style="display: block; margin: auto auto auto 0;" /&gt;
-
 ---
 class: noborder
 
@@ -289,6 +301,14 @@ class: noborder
 .small[Values in cells = n times a meaning was lexified by the artificial word]
 
 &lt;img src="index_files/figure-html/unnamed-chunk-11-1.png" width="1200" height="500" style="display: block; margin: auto auto auto 0;" /&gt;
+
+---
+class: noborder
+
+&lt;br&gt;
+.small[Values in cells = n times a meaning was lexified by the artificial word]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-12-1.png" width="1200" height="500" style="display: block; margin: auto auto auto 0;" /&gt;
 
 ---
 class: inverse
