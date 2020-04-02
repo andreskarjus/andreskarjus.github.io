@@ -1,7 +1,7 @@
 ---
 title: "<span style='line-height:60px; font-size:60px'>Changing communicative needs <br>and the structure of the lexicon:<br>corpus-based and experimental approaches</span></font>"
 author: "<font size=6>Andres Karjus<br></font><font size=5>PhD student, Centre for Language Evolution, University of Edinburgh<br>Supervised by Kenny Smith, Richard A. Blythe, Simon Kirby</font>"
-date: "<font size=5>CLE research group talk, 31.03.2020 &#8226; Slides online: andreskarjus.github.io/cletalk2020</font>"
+date: "<font size=5>CLE talk, 31.03.2020 &#8226; Slides: andreskarjus.github.io/cletalk2020 &#8226; Twitter: @andreskarjus</font>"
 output:
   xaringan::moon_reader:
     css: img/xaringan-themer.css
@@ -139,9 +139,10 @@ class:inverse
 # Competition dynamics
 
 ---
-class: noborder
 
-<br>
+# Competition dynamics
+
+
 
 ```{r, fig.width=12,fig.height=5 , out.height=500,out.width=1200,eval=T}
 slides_airplane + theme(plot.margin=grid::unit(c(0,0,0,0), "mm"))
