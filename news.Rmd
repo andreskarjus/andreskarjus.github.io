@@ -17,6 +17,8 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
+- Our "Challenges in detecting evolutionary forces in language change using diachronic corpora" now [published in Glossa](http://doi.org/10.5334/gjgl.909) (07.05.2020)
+
 - Gave an online CLE talk about my recent PhD research on lexical competition and colexification (31.03.2020) | [slides](https://andreskarjus.github.io/cletalk2020) | [recording](https://youtu.be/-utY5ERe6OY)
 
 - I was co-organizing a workshop titled *Drift, selection, change, and shift* that was supposed to take place at Evolang2020 in April. Unfortunately the conference got (understandably) cancelled due to the world being on fire. We had a great lineup of speakers planned though [(workshop homepage here)](https://driftselection-evolang2020.github.io/) and hope to reconvene next year.
