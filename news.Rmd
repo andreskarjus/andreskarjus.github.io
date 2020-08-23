@@ -17,6 +17,10 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
+- Happy to have been invited to teach [data visualization](https://andreskarjus.github.io/artofthefigure/) and R at the [Digital Methods in Humanities and Social Sciences](https://digitalmethods.ut.ee/) Summer School (26.08.2020)
+
+- New [preprint](https://arxiv.org/abs/2006.09277) out, Communicative need modulates competition in language change
+
 - Our "Challenges in detecting evolutionary forces in language change using diachronic corpora" now [published in Glossa](http://doi.org/10.5334/gjgl.909) (07.05.2020)
 
 - Gave an online CLE talk about my recent PhD research on lexical competition and colexification (31.03.2020) | [slides](https://andreskarjus.github.io/cletalk2020) | [recording](https://youtu.be/-utY5ERe6OY)
@@ -35,7 +39,7 @@ ul{
 
 - Presenting an updated version of the communivative need & lexical competition poster at the [Culture Conference 2019](https://culture-conference.com/programme-2019/) in Stirling, 1-2 July 2019. Online version with interactive plots [here](https://andreskarjus.github.io/lexcom_poster). More languages this time!
 
-- I'll be teaching workshops at the following venues this summer: [SCOSYA Data Hack](https://scotssyntaxatlas.ac.uk/workshops/data-hack/), [SGSSS Summer School](https://www.sgsss.ac.uk/summer-school-2019/), [SGSAH Summer School](https://www.sgsah.ac.uk/news/summerschool/), [Digital Humanities Conference 2019](https://dh2019.adho.org/), [International Corpus Linguistics Conference 2019](http://www.cl2019.org/). All materials are/will be available [here](https://andreskarjus.github.io/artofthefigure/).
+- I'll be teaching workshops at the following venues this summer: [SCOSYA Data Hack](https://scotssyntaxatlas.ac.uk/workshops/data-hack/), [SGSSS Summer School](https://www.sgsss.ac.uk/summer-school-2019/), [SGSAH Summer School](https://www.sgsah.ac.uk/news/summerschool/), [Digital Humanities Conference 2019](https://dh2019.adho.org/), [International Corpus Linguistics Conference 2019](http://www.cl2019.org/). All materials available [here](https://andreskarjus.github.io/artofthefigure/).
 
 - Taught an aRt of the Figure series workshop for the Corpus Linguistics in Scotland network (12.04), titled [Data visualization with R for corpus linguists](https://andreskarjus.github.io/artofthefigure)
 
