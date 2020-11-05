@@ -17,7 +17,13 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
+- Defended my PhD [thesis](https://andreskarjus.github.io/thesis/Andres_Karjus_phd_thesis.pdf), "Competition, selection and communicative need in language change" and passed with minor corrections (29.10.2020)
+
+- Started a postdoc at [CUDAN](http://cudan.tlu.ee/) lab at Tallinn University, provisionally as a visiting fellow until my defense (01.10.2020)
+
 - Happy to have been invited to teach [data visualization](https://andreskarjus.github.io/artofthefigure/) and R at the [Digital Methods in Humanities and Social Sciences](https://digitalmethods.ut.ee/) Summer School (26.08.2020)
+
+- Delivered another dataviz workshop for the University of Edinburgh Centre for Data, Culture and Society (27.07.2020)
 
 - New [preprint](https://arxiv.org/abs/2006.09277) out, Communicative need modulates competition in language change
 
