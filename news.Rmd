@@ -17,6 +17,8 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
+- With the corrections approved and paperwork competed, seems I now have a PhD (26.11.2020)
+
 - Defended my PhD [thesis](https://andreskarjus.github.io/thesis/Andres_Karjus_phd_thesis.pdf), "Competition, selection and communicative need in language change" and passed with minor corrections (29.10.2020)
 
 - Started a postdoc at [CUDAN](http://cudan.tlu.ee/) lab at Tallinn University, provisionally as a visiting fellow until my defense (01.10.2020)
