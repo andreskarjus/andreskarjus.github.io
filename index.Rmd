@@ -9,9 +9,21 @@ output:
       collapsed: no
 ---
 
-<style>
+<head>
+<base target="_blank">
+</head>
 
-/*  */ 
+
+
+
+
+
+# {.tabset .tabset-fade}
+
+## Research 
+
+<!-- /*  <style>     </style> */ -->
+```{css, echo=FALSE}
 .main-container {
 max-width:  940px;
 min-width: 300px !important;
@@ -45,14 +57,7 @@ details summary::-webkit-details-marker {
   display:none;
 }
 
-
-</style>
-
-
-
-# {.tabset .tabset-fade}
-
-## Research 
+```
 
 ### New things  
 
@@ -90,7 +95,7 @@ I am also engaged in teaching **stats and data visualization** for the humanitie
 
 #### Publications 
 
-* Andres Karjus, 2020. Competition, selection and communicative need in language change. PhD thesis, University of Edinburgh | [pdf](https://andreskarjus.github.io/thesis/Andres_Karjus_phd_thesis.pdf)
+* Andres Karjus, 2020. Competition, selection and communicative need in language change. PhD thesis, University of Edinburgh | [pdf](https://andreskarjus.github.io/thesis/Andres_Karjus_phd_thesis.pdf) | [1-page non-technical summary](https://andreskarjus.github.io/thesis/english_summary.pdf) | [eestikeelne lühikokkuvõte](https://andreskarjus.github.io/thesis/doktoritoo_ylevaade_AK.pdf)
 *  Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith 2020. Communicative need modulates competition in language change | in review | [preprint](https://arxiv.org/abs/2006.09277)
 * Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith 2020. Challenges in detecting evolutionary forces in language change using diachronic corpora. Glossa: a journal of general linguistics, 5(1), p.45. | [open access](http://doi.org/10.5334/gjgl.909) | [code](https://github.com/andreskarjus/wfsim_fit)
 * Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith, 2020. Quantifying the dynamics of topical fluctuations in language. Language Dynamics and Change 10(1), 86-125 | [open access](https://doi.org/10.1163/22105832-01001200) | [code](https://github.com/andreskarjus/topical_cultural_advection_model)
@@ -194,7 +199,8 @@ During my pre-PhD studies I also went on exchanges to the University of Iceland 
 <br>
 <br>
 <br>
-&nbsp;&nbsp;&nbsp;<a href="mailto:andres.karjus--at--tlu.ee">email</a>  |  <a href="https://twitter.com/AndresKarjus">twitter</a>
+Andres Karjus, senior research fellow, CUDAN lab, Tallinn University<br>
+&nbsp;&nbsp;&nbsp;<a href="mailto:andres.karjus --at-- tlu.ee">email</a>  |  <a href="https://twitter.com/AndresKarjus">twitter</a>
 <br>
 </div>
 
