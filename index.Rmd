@@ -117,6 +117,7 @@ I am also engaged in teaching **stats and data visualization** for the humanitie
 
 #### Conferences & seminars
 
+-  [Colloquium for Computational Linguistics and Linguistics in Stuttgart](https://www.ims.uni-stuttgart.de/en/research/colloquium/) | [Slides](https://andreskarjus.github.io/talks/stuttgart2021/andres_karjus_lexical_dynamics_slides_stuttgart2021.pdf) | [Recording](https://www.ims.uni-stuttgart.de/documents/aktuelles/veranstaltungen/210111-Karjus-Talk-Colloq-Recording.mp4)
 - [RUSE 2019](http://rusesymposium.org.uk/). Slides [here](https://andreskarjus.github.io/ruse2019).
 - [CL2019](http://www.cl2019.org/). Slides [here](https://andreskarjus.github.io/cl2019talk.html).
 - [Culture Conference 2019](https://culture-conference.com/programme-2019/), Poster [here](https://andreskarjus.github.io/lexcom_poster).
