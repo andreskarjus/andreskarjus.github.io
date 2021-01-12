@@ -17,7 +17,7 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
-- Gave an invited talk about my PhD research on lexical dynamics at the [Colloquium for Computational Linguistics and Linguistics in Stuttgart](https://www.ims.uni-stuttgart.de/en/research/colloquium/). The [Slides](https://andreskarjus.github.io/talks/stuttgart2021/andres_karjus_lexical_dynamics_slides_stuttgart2021.pdf) | [Recording](https://www.ims.uni-stuttgart.de/documents/aktuelles/veranstaltungen/210111-Karjus-Talk-Colloq-Recording.mp4)
+- Gave an invited talk about my PhD research on lexical dynamics at the [Colloquium for Computational Linguistics and Linguistics in Stuttgart](https://www.ims.uni-stuttgart.de/en/research/colloquium/). (11.01.2021) [Slides](https://andreskarjus.github.io/talks/stuttgart2021/andres_karjus_lexical_dynamics_slides_stuttgart2021.pdf) | [Recording](https://www.ims.uni-stuttgart.de/documents/aktuelles/veranstaltungen/210111-Karjus-Talk-Colloq-Recording.mp4)
 
 - With the corrections approved and paperwork competed, seems I now have a PhD (26.11.2020)
 
