@@ -95,13 +95,14 @@ details summary::-webkit-details-marker {
 <IMG SRC="IMG_2657.jpg" ALIGN="right" BR CLEAR="left" style="margin-left:10px; width: 49%; height: auto;"> 
 
 <div style="text-align: justify; padding-left:1px"> 
-I am a senior research fellow at the [CUDAN](http://cudan.tlu.ee/) lab at Tallinn University, working on **language and culture dynamics** using large corpora, machine learning, but also human experiments. I recently defended my PhD student in linguistics at the [Centre for Language Evolution at the University of Edinburgh](http://www.lel.ed.ac.uk/cle/) on lexical competition and communicative needs in language, supervised by [Kenny Smith](http://www.lel.ed.ac.uk/~kenny), [Simon Kirby](http://www.lel.ed.ac.uk/~simon) and [Richard A. Blythe](http://www2.ph.ed.ac.uk/~rblythe3/).
+I am a research fellow at the [CUDAN](http://cudan.tlu.ee/) lab at Tallinn University, working on **language and culture dynamics** using large corpora, machine learning, but also human experiments. I recently defended my PhD student in linguistics at the [Centre for Language Evolution at the University of Edinburgh](http://www.lel.ed.ac.uk/cle/) on lexical competition and communicative needs in language, supervised by [Kenny Smith](http://www.lel.ed.ac.uk/~kenny), [Simon Kirby](http://www.lel.ed.ac.uk/~simon) and [Richard A. Blythe](http://www2.ph.ed.ac.uk/~rblythe3/).
 I am also engaged in teaching **stats and data visualization** for the humanities and social sciences (see the tab above). On the right is the (of course slightly outdated) photo obligatory for all academic home pages to subtly suggest that in fact I do not spend _all_ my time in the office at all.
 
 ### Research
 
 #### Publications 
 
+* Andres Karjus, Richard A. Blythe, Simon Kirby, Tianyu Wang, Kenny Smith. 2021. Conceptual similarity and communicative need shape colexification" | [preprint](arxiv.org/abs/2103.11024) | [code and data](https://github.com/andreskarjus/colexification_experiment)
 * Andres Karjus, 2020. Competition, selection and communicative need in language change. PhD thesis, University of Edinburgh | [pdf](https://andreskarjus.github.io/thesis/Andres_Karjus_phd_thesis.pdf) | [1-page non-technical summary](https://andreskarjus.github.io/thesis/english_summary.pdf) | [eestikeelne lühikokkuvõte](https://andreskarjus.github.io/thesis/doktoritoo_ylevaade_AK.pdf)
 *  Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith 2020. Communicative need modulates competition in language change | in review | [preprint](https://arxiv.org/abs/2006.09277)
 * Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith 2020. Challenges in detecting evolutionary forces in language change using diachronic corpora. Glossa: a journal of general linguistics, 5(1), p.45. | [open access](http://doi.org/10.5334/gjgl.909) | [code](https://github.com/andreskarjus/wfsim_fit)
@@ -150,19 +151,19 @@ I am also engaged in teaching **stats and data visualization** for the humanitie
 </div>
 
 
-## Teaching, consulting & R workshops {#workshops}
+## R workshops {#workshops}
 
-If you're here about materials for an upcoming dataviz workshop: [click here](https://andreskarjus.github.io/artofthefigure/) to go to the dedicated workshops page.
+If you're here about materials for an upcoming R or dataviz workshop: [click here](https://andreskarjus.github.io/artofthefigure/) to go to the dedicated workshops page.
 
 <div style="text-align: justify"> 
 
 **Workshops**
 
-- I have been developing teaching materials on data visualization using R, which I have used in over a dozen workshops for humanities and social science audiences since 2017, collectively under the name of [_aRt of the Figure_ (click here for more info)](https://andreskarjus.github.io/artofthefigure/). Some of these have been standalone events, some have been part of conferences, summer schools or academic retreats. All my materials are [open source](https://andreskarjus.github.io/artofthefigure/).
+- I have been developing teaching materials on data visualization using R, which I have used in over a dozen workshops for humanities and social science audiences since 2017, collectively under the title of [_aRt of the Figure_ (click here for more info)](https://andreskarjus.github.io/artofthefigure/). Some of these have been standalone events, some have been part of conferences, summer schools or academic retreats. All my materials are [open source](https://andreskarjus.github.io/artofthefigure/).
 
 **Teaching**
 
-- My postdoc does not include teaching activities, but I do occasional guest lectures; most recently for the Data Science and Digital Humanities programme at the University of Tartu.
+- My postdoc does not include teaching activities, but I do occasional guest lectures; most recently for the Data Science and Digital Humanities programme at the University of Tartu and for the Cultural Data Analytics I course at Tallinn University.
 
 **Past teaching**
 
@@ -207,7 +208,7 @@ During my pre-PhD studies I also went on exchanges to the University of Iceland 
 <br>
 <br>
 <br>
-Andres Karjus, senior research fellow, CUDAN lab, Tallinn University<br>
+Andres Karjus, research fellow, CUDAN lab, Tallinn University<br>
 &nbsp;&nbsp;&nbsp;<a href="mailto:andres.karjus --at-- tlu.ee">email</a>  |  <a href="https://twitter.com/AndresKarjus">twitter</a>
 <br>
 </div>
