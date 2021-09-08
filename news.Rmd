@@ -17,6 +17,10 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
+- Now out in [Cognitive Science](https://doi.org/10.1111/cogs.13035) and also presented at Protolang 7 - "Conceptual similarity and communicative need shape colexification: an experimental study" (08.09.2021) | [pdf](https://andreskarjus.github.io/papers/Karjus_2021__Conceptual_Similarity_and_Communicative_Need_Shape_Colexification_An_Experimental_Study__Cognitive_Science.pdf) | [tweet-summary](https://twitter.com/AndresKarjus/status/1435536919459418113)
+
+- Gave a workshop on using R for data exploration and visualization, and a research methods troubleshooter workshop, at the [Baltic Summer School of Digital Humanities 2021](https://www.nlib.ee/et/digital-humanities-tallinn-2021) (august 2021)
+
 - New preprint: "Conceptual similarity and communicative need shape colexification" | [preprint](arxiv.org/abs/2103.11024) |  [tweet-summary](https://twitter.com/AndresKarjus/status/1374332704662167557)
 
 - Gave an invited talk about my PhD research on lexical dynamics at the [Colloquium for Computational Linguistics and Linguistics in Stuttgart](https://www.ims.uni-stuttgart.de/en/research/colloquium/). (11.01.2021) [Slides](https://andreskarjus.github.io/talks/stuttgart2021/andres_karjus_lexical_dynamics_slides_stuttgart2021.pdf) | [Recording](https://www.ims.uni-stuttgart.de/documents/aktuelles/veranstaltungen/210111-Karjus-Talk-Colloq-Recording.mp4)
