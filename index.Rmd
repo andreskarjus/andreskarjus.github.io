@@ -166,7 +166,7 @@ If you're here about materials for an upcoming R or dataviz workshop: [click her
 
 **Teaching**
 
-- My postdoc does not include teaching activities, but I do occasional guest lectures; most recently for the Data Science and Digital Humanities programme at the University of Tartu and for the Cultural Data Analytics I course at Tallinn University.
+- My postdoc includes some teaching activities, and I do occasional guest lectures; most recently for the Data Science and Digital Humanities programme at the University of Tartu and for the Cultural Data Analytics I and II courses at Tallinn University.
 
 **Past teaching**
 
