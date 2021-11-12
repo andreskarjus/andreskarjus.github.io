@@ -126,7 +126,7 @@ I am also engaged in teaching **stats and data visualization** for the humanitie
 #### Conferences & seminars
 
 - [Conference on Complex Systems 2021](https://ccs2021.univ-lyon1.fr/) (October 2021) | [slides](https://andreskarjus.github.io/talks/ccs2021/Karjus_CCS2021_Capturing_aesthetic_complexity.pdf)
-- [Protolang 7](https://blogs.phil.hhu.de/protolang7/programme/) (September 2021) | [slides](https://andreskarjus.github.io/slides/andres_karjus_protolang7.pdf)
+- [Protolang 7](https://blogs.phil.hhu.de/protolang7/programme/) (September 2021) | [slides](https://andreskarjus.github.io/talks/andres_karjus_protolang7.pdf)
 - [TÜling](https://www.keel.ut.ee/et/tuling) (April 2021)
 - [Colloquium for Computational Linguistics and Linguistics in Stuttgart](https://www.ims.uni-stuttgart.de/en/research/colloquium/) | [Slides](https://andreskarjus.github.io/talks/stuttgart2021/andres_karjus_lexical_dynamics_slides_stuttgart2021.pdf) | [Recording](https://www.ims.uni-stuttgart.de/documents/aktuelles/veranstaltungen/210111-Karjus-Talk-Colloq-Recording.mp4)
 - [RUSE 2019](http://rusesymposium.org.uk/). Slides [here](https://andreskarjus.github.io/ruse2019).
