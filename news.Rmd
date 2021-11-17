@@ -17,6 +17,8 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
+- Gave a talk on linguistic corpora and experiments (and media&culture data) at the seminar of the Poncelet laboratory in Moscow (17.11.2021)
+
 - Talk at the [Conference on Complex Systems 2021](https://ccs2021.univ-lyon1.fr/) in Lyon: "Capturing aesthetic complexity in art using compression ensembles" (29.10.2021) | [slides here](https://andreskarjus.github.io/talks/ccs2021/Karjus_CCS2021_Capturing_aesthetic_complexity.pdf)
 
 - Now out in [Cognitive Science](https://doi.org/10.1111/cogs.13035) and also presented at Protolang 7 - "Conceptual similarity and communicative need shape colexification: an experimental study" (08.09.2021) | [pdf](https://andreskarjus.github.io/papers/Karjus_2021__Conceptual_Similarity_and_Communicative_Need_Shape_Colexification_An_Experimental_Study__Cognitive_Science.pdf) | [Protolang slides](https://andreskarjus.github.io/talks/andres_karjus_protolang7.pdf) | [tweet-summary](https://twitter.com/AndresKarjus/status/1435536919459418113)
