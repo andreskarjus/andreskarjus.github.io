@@ -23,6 +23,9 @@ ul{
 
 - Taught a workshop on using R for data exploration and visualization, and moderated a research methods troubleshooter workshop, at the [Baltic Summer School of Digital Humanities 2021](https://www.nlib.ee/et/digital-humanities-tallinn-2021) (august 2021)
 
+- Presented a [poster "Capturing aesthetic complexity in art
+using compression ensembles"](https://andreskarjus.github.io/talks/cultureconference2021/) (click for pdf) at [Culture Conference 2021](https://culture-conference.com/)
+
 - Gave a talk on my recent PhD and ongoing postdoc research in the [TÜling](https://www.keel.ut.ee/et/tuling) lecture series (27.04.2021)
 
 - New preprint: "Conceptual similarity and communicative need shape colexification" | [preprint](arxiv.org/abs/2103.11024) |  [tweet-summary](https://twitter.com/AndresKarjus/status/1374332704662167557)
