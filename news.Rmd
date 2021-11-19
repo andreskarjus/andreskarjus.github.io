@@ -1,0 +1,95 @@
+---
+title: ''
+output: html_document
+theme: spacelab
+---
+<head>
+<base target="_blank">
+</head>
+<style>
+.main-container {
+  padding: 0px;
+}
+ul{
+  padding-left: 16px;
+}
+</style>
+
+<div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
+
+- Gave a talk on linguistic corpora and experiments (and media&culture data) at the seminar of the Poncelet laboratory in Moscow (17.11.2021)
+
+- Talk at the [Conference on Complex Systems 2021](https://ccs2021.univ-lyon1.fr/) in Lyon: "Capturing aesthetic complexity in art using compression ensembles" (29.10.2021) | [slides here](https://andreskarjus.github.io/talks/ccs2021/Karjus_CCS2021_Capturing_aesthetic_complexity.pdf)
+
+- Now out in [Cognitive Science](https://doi.org/10.1111/cogs.13035) and also presented at Protolang 7 - "Conceptual similarity and communicative need shape colexification: an experimental study" (08.09.2021) | [pdf](https://andreskarjus.github.io/papers/Karjus_2021__Conceptual_Similarity_and_Communicative_Need_Shape_Colexification_An_Experimental_Study__Cognitive_Science.pdf) | [Protolang slides](https://andreskarjus.github.io/talks/andres_karjus_protolang7.pdf) | [tweet-summary](https://twitter.com/AndresKarjus/status/1435536919459418113)
+
+- Taught a workshop on using R for data exploration and visualization, and moderated a research methods troubleshooter workshop, at the [Baltic Summer School of Digital Humanities 2021](https://www.nlib.ee/et/digital-humanities-tallinn-2021) (august 2021)
+
+- Presented a [poster "Capturing aesthetic complexity in art
+using compression ensembles"](https://andreskarjus.github.io/talks/cultureconference2021/) (click for pdf) at [Culture Conference 2021](https://culture-conference.com/)
+
+- Gave a talk on my recent PhD and ongoing postdoc research in the [TÜling](https://www.keel.ut.ee/et/tuling) lecture series (27.04.2021)
+
+- New preprint: "Conceptual similarity and communicative need shape colexification" | [preprint](arxiv.org/abs/2103.11024) |  [tweet-summary](https://twitter.com/AndresKarjus/status/1374332704662167557)
+
+- Gave an invited talk about my PhD research on lexical dynamics at the [Colloquium for Computational Linguistics and Linguistics in Stuttgart](https://www.ims.uni-stuttgart.de/en/research/colloquium/). (11.01.2021) [Slides](https://andreskarjus.github.io/talks/stuttgart2021/andres_karjus_lexical_dynamics_slides_stuttgart2021.pdf) | [Recording](https://www.ims.uni-stuttgart.de/documents/aktuelles/veranstaltungen/210111-Karjus-Talk-Colloq-Recording.mp4)
+
+- With the corrections approved and paperwork competed, seems I now have a PhD (26.11.2020)
+
+- Was happy to host a job shadow (töövari) student at the CUDAN lab, via the Tagasi Kooli programme (16.11.2020)
+
+- Defended my PhD [thesis](https://andreskarjus.github.io/thesis/Andres_Karjus_phd_thesis.pdf), "Competition, selection and communicative need in language change" and passed with minor corrections (29.10.2020)
+
+- Started a postdoc at [CUDAN](http://cudan.tlu.ee/) lab at Tallinn University, provisionally as a visiting fellow until my defense (01.10.2020)
+
+- Happy to have been invited to teach [data visualization](https://andreskarjus.github.io/artofthefigure/) and R at the [Digital Methods in Humanities and Social Sciences](https://digitalmethods.ut.ee/) Summer School (26.08.2020)
+
+- Delivered another dataviz workshop for the University of Edinburgh Centre for Data, Culture and Society (27.07.2020)
+
+- New [preprint](https://arxiv.org/abs/2006.09277) out, Communicative need modulates competition in language change
+
+- Our "Challenges in detecting evolutionary forces in language change using diachronic corpora" now [published in Glossa](http://doi.org/10.5334/gjgl.909) (07.05.2020)
+
+- Gave an online CLE talk about my recent PhD research on lexical competition and colexification (31.03.2020) | [slides](https://andreskarjus.github.io/cletalk2020) | [recording](https://youtu.be/-utY5ERe6OY)
+
+- I was co-organizing a workshop titled *Drift, selection, change, and shift* that was supposed to take place at Evolang2020 in April. Unfortunately the conference got (understandably) cancelled due to the world being on fire. We had a great lineup of speakers planned though [(workshop homepage here)](https://driftselection-evolang2020.github.io/) and hope to reconvene next year.
+
+- My first PhD paper (that's been out as a preprint since summer 2018) is now published in Language Dynamics and Change: [Karjus, A., Blythe, R. A., Kirby, S., & Smith, K. (2020). Quantifying the dynamics of topical fluctuations in language](https://doi.org/10.1163/22105832-01001200)
+
+---
+
+- Delivered another dataviz workshop, this time for the University of Edinburgh Centre for Data, Culture and Society (01.11.2019)
+
+- Presenting a talk at the [RUSE 2019](http://rusesymposium.org.uk/), the Symposium on Representations, Usage and Social Embedding in Language Change (a slightly updated version of the CL2019 talk). Slides [here](https://andreskarjus.github.io/ruse2019).
+
+- Presented a talk on lexical competition at the [CL2019](http://www.cl2019.org/). Slides with interactive plots [here](https://andreskarjus.github.io/cl2019talk.html). Also teaching a dataviz [workshop](https://andreskarjus.github.io/artofthefigure/cl2019).
+
+- Presenting an updated version of the communivative need & lexical competition poster at the [Culture Conference 2019](https://culture-conference.com/programme-2019/) in Stirling, 1-2 July 2019. Online version with interactive plots [here](https://andreskarjus.github.io/lexcom_poster). More languages this time!
+
+- I'll be teaching workshops at the following venues this summer: [SCOSYA Data Hack](https://scotssyntaxatlas.ac.uk/workshops/data-hack/), [SGSSS Summer School](https://www.sgsss.ac.uk/summer-school-2019/), [SGSAH Summer School](https://www.sgsah.ac.uk/news/summerschool/), [Digital Humanities Conference 2019](https://dh2019.adho.org/), [International Corpus Linguistics Conference 2019](http://www.cl2019.org/). All materials available [here](https://andreskarjus.github.io/artofthefigure/).
+
+- Taught an aRt of the Figure series workshop for the Corpus Linguistics in Scotland network (12.04), titled [Data visualization with R for corpus linguists](https://andreskarjus.github.io/artofthefigure)
+
+- Edinburgh Language Lunch 11.04: (re-)presented the "Modelling lexical interactions in diachronic corpora" poster, originally presented at the [Inaugural ISLE workshop](https://www.comparativelinguistics.uzh.ch/en/events/ISLE-inaugural-workshop.html), here is an [online version with interactive plots](https://andreskarjus.github.io/isle_poster) and an (updated!) appendix.
+
+- The Language Evolves school workshops are [finished for 2018/2019](https://twitter.com/kennysmithed/status/1113456451815661568), with Hermitage Park Primary being the last one. Happy to have been part of it.
+
+- Poster to be presented at the [Inaugural ISLE workshop](https://www.comparativelinguistics.uzh.ch/en/events/ISLE-inaugural-workshop.html) in April, here is an online [version with interactive plots](https://andreskarjus.github.io/isle_poster).
+
+- Entered [a video](https://www.youtube.com/watch?v=t8InfFEIINc) to Science Magazine's 11th [Dance Your Ph.D contest](https://www.sciencemag.org/projects/dance-your-phd). The idea is to explain your research topic to the general public though interpretive dance.
+
+---
+
+- [Slides](https://andreskarjus.github.io/evoforces_cletalk/slides.html) of the talk _Challenges in detecting evolutionary forces in language change using diachronic corpora_ presented at the [CLE](http://www.lel.ed.ac.uk/cle/) seminar series, 06.11.2018 | paper preprint now also on [arXiv](http://arxiv.org/abs/1811.01275) | [code](https://github.com/andreskarjus/wfsim_fit)
+
+- Out now in Language Dynamics and Change: Karjus & Ehala 2018, Testing an agent based model of language choice on sociolinguistic survey data | [Online at Brill](https://doi.org/10.1163/22105832-00802004) | [PDF](Karjus_Ehala_2018_Testing_an_agent-based model_of_language_choice_LDCpostprint.pdf) | [dataset](http://doi.org/10.15155/1-00-0000-0000-0000-00162L): representative sample of 1000 respondents from Estonia, 200 questions on language attitudes and use
+
+- "Two problems and solutions in evolutionary corpus-based language dynamics research" to be presented @ SLE 2018: [slides](https://andreskarjus.github.io/sle_tallinn_languagedynamics) with interactive plots and [code](https://github.com/andreskarjus/sle_tallinn_languagedynamics) now available.
+
+- July 2018: the [Quantifying the dynamics of topical fluctuations in language](https://arxiv.org/abs/1806.00699) paper got awarded the University of Edinburgh PPLS [Gray postgraduate publication prize](https://www.ed.ac.uk/ppls/philosophy/current/postgraduate/fees-and-funding/ppls-gray-postgraduate-publication-prize).
+ 
+- Code to run the topical-cultural advection model on COHA (or other corpora; as described in the recent [arXiv preprint](https://arxiv.org/abs/1806.00699)) is now available [on Github](https://github.com/andreskarjus/topical_cultural_advection_model).
+
+- _Selection above the baseline: quantifying the advection effect in four domains of cumulative culture_ @ the [Applications in Cultural Evolution](https://cultevol.ut.ee/) conference: slides with a bunch of interactive plots that allow playing with the massive datasets [now available here](https://andreskarjus.github.io/cultevol_tartu_slides), and all the code [here](https://github.com/andreskarjus/cultural_advection_Tartuce).
+
+</div>
