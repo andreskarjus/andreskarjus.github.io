@@ -95,14 +95,15 @@ details summary::-webkit-details-marker {
 <IMG SRC="IMG_2657.jpg" ALIGN="right" BR CLEAR="left" style="margin-left:10px; width: 49%; height: auto;"> 
 
 <div style="text-align: justify; padding-left:1px"> 
-I am a research fellow at the [CUDAN](http://cudan.tlu.ee/) lab at Tallinn University, working on **language and culture dynamics** using large corpora, machine learning, but also human experiments. I recently defended my PhD student in linguistics at the [Centre for Language Evolution at the University of Edinburgh](http://www.lel.ed.ac.uk/cle/) on lexical competition and communicative needs in language, supervised by [Kenny Smith](http://www.lel.ed.ac.uk/~kenny), [Simon Kirby](http://www.lel.ed.ac.uk/~simon) and [Richard A. Blythe](http://www2.ph.ed.ac.uk/~rblythe3/).
-I am also engaged in teaching **stats and data visualization** for the humanities and social sciences (see the tab above). On the right is the (of course slightly outdated) photo obligatory for all academic home pages to subtly suggest that in fact I do not spend _all_ my time in the office at all.
+I am a research fellow at the [CUDAN](http://cudan.tlu.ee/) Cultural Data Analytics lab at Tallinn University, working on **language and culture dynamics**, using large corpora, machine learning, and human experiments. Recently I have been also working on, through various collaborations, onart history and media industries (stay tuned).
+I defended my PhD in 2020, in linguistics at the [Centre for Language Evolution](http://www.lel.ed.ac.uk/cle/) of University of Edinburgh, on lexical dynamics and communicative needs in language.
+I also occasionally teach **stats and data visualization** for the humanities and social sciences (see [more here](https://andreskarjus.github.io/artofthefigure)). On the right is the (of course slightly outdated) photo obligatory for all academic home pages to subtly suggest that in fact I do not spend _all_ my time in the office at all.
 
 ### Research
 
 #### Publications 
 
-* Andres Karjus, Richard A. Blythe, Simon Kirby, Tianyu Wang, Kenny Smith. 2021. Conceptual similarity and communicative need shape colexification". [Cognitive Science](https://doi.org/10.1111/cogs.13035) | [pdf](https://andreskarjus.github.io/papers/Karjus_2021__Conceptual_Similarity_and_Communicative_Need_Shape_Colexification_An_Experimental_Study__Cognitive_Science.pdf) |  [bib](https://andreskarjus.github.io/bib/karjus_2021_cogsci.bib) | [code and data](https://github.com/andreskarjus/colexification_experiment)
+* Andres Karjus, Richard A. Blythe, Simon Kirby, Tianyu Wang, Kenny Smith. 2021. Conceptual similarity and communicative need shape colexification". [Cognitive Science](https://doi.org/10.1111/cogs.13035) (open access) | [pdf](https://andreskarjus.github.io/papers/Karjus_2021__Conceptual_Similarity_and_Communicative_Need_Shape_Colexification_An_Experimental_Study__Cognitive_Science.pdf) |  [bib](https://andreskarjus.github.io/bib/karjus_2021_cogsci.bib) | [code and data](https://github.com/andreskarjus/colexification_experiment)
 * Andres Karjus, 2020. Competition, selection and communicative need in language change. PhD thesis, University of Edinburgh | [pdf](https://andreskarjus.github.io/thesis/Andres_Karjus_phd_thesis.pdf) | [1-page non-technical summary](https://andreskarjus.github.io/thesis/english_summary.pdf) | [eestikeelne lühikokkuvõte](https://andreskarjus.github.io/thesis/doktoritoo_ylevaade_AK.pdf)
 *  Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith 2020. Communicative need modulates competition in language change | [preprint](https://arxiv.org/abs/2006.09277)
 * Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith 2020. Challenges in detecting evolutionary forces in language change using diachronic corpora. Glossa: a journal of general linguistics, 5(1), p.45. | [open access](http://doi.org/10.5334/gjgl.909) | [code](https://github.com/andreskarjus/wfsim_fit)
@@ -125,6 +126,7 @@ I am also engaged in teaching **stats and data visualization** for the humanitie
 
 #### Conferences & seminars
 
+- Seminar talk at the Poncelet laboratory in Moscow (November 2021)
 - [Conference on Complex Systems 2021](https://ccs2021.univ-lyon1.fr/) (October 2021) | [slides](https://andreskarjus.github.io/talks/ccs2021/Karjus_CCS2021_Capturing_aesthetic_complexity.pdf)
 - [Protolang 7](https://blogs.phil.hhu.de/protolang7/programme/) (September 2021) | [slides](https://andreskarjus.github.io/talks/andres_karjus_protolang7.pdf)
 - [Culture Conference 2021](https://culture-conference.com/) | [Poster on aesthetic complexity](https://andreskarjus.github.io/talks/cultureconference2021/)
