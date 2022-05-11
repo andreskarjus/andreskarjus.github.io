@@ -17,7 +17,9 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
-- Gave a talk on linguistic corpora and experiments (and media&culture data) at the seminar of the Poncelet laboratory in Moscow (17.11.2021)
+- Invited talk on language change and big social media data, in the research seminar series of the School of Humanities of Tallinn University (23.02.2022)
+
+- Invited talk on linguistic corpora and experiments (and media&culture data) at the seminar of the Poncelet laboratory in Moscow (17.11.2021)
 
 - Talk at the [Conference on Complex Systems 2021](https://ccs2021.univ-lyon1.fr/) in Lyon: "Capturing aesthetic complexity in art using compression ensembles" (29.10.2021) | [slides here](https://andreskarjus.github.io/talks/ccs2021/Karjus_CCS2021_Capturing_aesthetic_complexity.pdf)
 

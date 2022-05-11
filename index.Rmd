@@ -95,9 +95,9 @@ details summary::-webkit-details-marker {
 <IMG SRC="IMG_2657.jpg" ALIGN="right" BR CLEAR="left" style="margin-left:10px; width: 49%; height: auto;"> 
 
 <div style="text-align: justify; padding-left:1px"> 
-I am a research fellow at the [CUDAN](http://cudan.tlu.ee/) Cultural Data Analytics lab at Tallinn University, working on **language and culture dynamics**, using large corpora, machine learning, and human experiments. Recently I have been also working on, through various collaborations, onart history and media industries (stay tuned).
+I am a research fellow at the [CUDAN](http://cudan.tlu.ee/) Cultural Data Analytics lab at Tallinn University, working on **language and culture dynamics**, using large corpora, machine learning, and human experiments. Recently I have been also working on, through various collaborations, on art history and creative industries (papers in progress) and advising collaborative projects between involving academic and media industry partners.<br>
 I defended my PhD in 2020, in linguistics at the [Centre for Language Evolution](http://www.lel.ed.ac.uk/cle/) of University of Edinburgh, on lexical dynamics and communicative needs in language.
-I also occasionally teach **stats and data visualization** for the humanities and social sciences (see [more here](https://andreskarjus.github.io/artofthefigure)). On the right is the (of course slightly outdated) photo obligatory for all academic home pages to subtly suggest that in fact I do not spend _all_ my time in the office at all.
+I also occasionally teach **stats and data visualization** for the humanities and social sciences (see [more here](https://andreskarjus.github.io/artofthefigure)). On the right is the (of course slightly outdated) photo, obligatory for all academic home pages, to subtly suggest that in fact I do not spend _all_ my time in the office at all.
 
 ### Research
 
@@ -196,7 +196,7 @@ Feel free to get in touch if you are interested in talking about organizing a wo
 
 ### Non-academic stuff
 
-Besides research and teaching and consulting and whatnot, I (fortunately) also do other things, which mostly consist of dance (lindy hop, salsa, bachata), boardgames, and outdoorsy stuff (running, hillwalking).
+Besides research and teaching and consulting and whatnot, I (fortunately) also do some other things, which mostly consist of dance (lindy hop, salsa, bachata), boardgames, and outdoorsy stuff (running, hillwalking).
 
 ### Before Edinburgh
 
