@@ -17,6 +17,8 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
+- New preprint: "Compression ensembles quantify aesthetic complexity and the evolution of visual art" https://arxiv.org/abs/2205.10271  
+
 - Invited talk on language change and big social media data, in the research seminar series of the School of Humanities of Tallinn University (23.02.2022)
 
 - Invited talk on linguistic corpora and experiments (and media&culture data) at the seminar of the Poncelet laboratory in Moscow (17.11.2021)

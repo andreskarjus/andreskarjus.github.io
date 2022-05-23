@@ -95,14 +95,15 @@ details summary::-webkit-details-marker {
 <IMG SRC="IMG_2657.jpg" ALIGN="right" BR CLEAR="left" style="margin-left:10px; width: 49%; height: auto;"> 
 
 <div style="text-align: justify; padding-left:1px"> 
-I am a research fellow at the [CUDAN](http://cudan.tlu.ee/) Cultural Data Analytics lab at Tallinn University, working on **language and culture dynamics**, using large corpora, machine learning, and human experiments. Recently I have been also working on, through various collaborations, on art history and creative industries (papers in progress) and advising collaborative projects between involving academic and media industry partners.<br>
-I defended my PhD in 2020, in linguistics at the [Centre for Language Evolution](http://www.lel.ed.ac.uk/cle/) of University of Edinburgh, on lexical dynamics and communicative needs in language.
+I am a research fellow at the [CUDAN](http://cudan.tlu.ee/) Cultural Data Analytics lab at Tallinn University, working on **language and culture dynamics**, using large corpora, machine learning, and human experiments. Recently I have been also working on, through various collaborations, on art history and creative industries and advising collaborative projects between involving academic and media industry partners.<br>
+I defended my PhD in 2020, in linguistics at the [Centre for Language Evolution](http://www.lel.ed.ac.uk/cle/) of University of Edinburgh, on lexical dynamics and communicative need in language.
 I also occasionally teach **stats and data visualization** for the humanities and social sciences (see [more here](https://andreskarjus.github.io/artofthefigure)). On the right is the (of course slightly outdated) photo, obligatory for all academic home pages, to subtly suggest that in fact I do not spend _all_ my time in the office at all.
 
 ### Research
 
 #### Publications 
 
+* Andres Karjus, Mar Canet Solà, Tillmann Ohm, Sebastian Ahnert, Maximilian Schich. 2022. Compression ensembles quantify aesthetic complexity and the evolution of visual art | [arxiv preprint](https://arxiv.org/abs/2205.10271) 
 * Andres Karjus, Richard A. Blythe, Simon Kirby, Tianyu Wang, Kenny Smith. 2021. Conceptual similarity and communicative need shape colexification". [Cognitive Science](https://doi.org/10.1111/cogs.13035) (open access) | [pdf](https://andreskarjus.github.io/papers/Karjus_2021__Conceptual_Similarity_and_Communicative_Need_Shape_Colexification_An_Experimental_Study__Cognitive_Science.pdf) |  [bib](https://andreskarjus.github.io/bib/karjus_2021_cogsci.bib) | [code and data](https://github.com/andreskarjus/colexification_experiment)
 * Andres Karjus, 2020. Competition, selection and communicative need in language change. PhD thesis, University of Edinburgh | [pdf](https://andreskarjus.github.io/thesis/Andres_Karjus_phd_thesis.pdf) | [1-page non-technical summary](https://andreskarjus.github.io/thesis/english_summary.pdf) | [eestikeelne lühikokkuvõte](https://andreskarjus.github.io/thesis/doktoritoo_ylevaade_AK.pdf)
 *  Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith 2020. Communicative need modulates competition in language change | [preprint](https://arxiv.org/abs/2006.09277)
