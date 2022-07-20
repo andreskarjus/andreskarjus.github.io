@@ -17,6 +17,8 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
+- Poster "Linguistic divergence in American English along socio-political polarities", at the [IC2S2](https://www.ic2s2.org/) Computational Social Science Conference in Chicago (20.07.2022) | [pdf](https://andreskarjus.github.io/talks/ic2s2/IC2S2_poster_Linguistic_divergence_in_American_English_along_socio-political_polarities.pdf)
+
 - New preprint: "Compression ensembles quantify aesthetic complexity and the evolution of visual art" https://arxiv.org/abs/2205.10271  
 
 - Invited talk on language change and big social media data, in the research seminar series of the School of Humanities of Tallinn University (23.02.2022)
