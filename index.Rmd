@@ -64,6 +64,10 @@ details summary::-webkit-details-marker {
   display:none;
 }
 
+.twitter-timeline {
+    height: 200px !important;
+}
+
 ```
 
 ### New things  
