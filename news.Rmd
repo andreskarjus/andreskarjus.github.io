@@ -17,6 +17,10 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
+- Talk "Exploring Estonian Public Television Production 2004-2020 Using Big Programming Data" at the 8th Estonian Digital Humanities [Conference](https://dh.org.ee/events/dhe2022) (05.10.2022)
+
+- Poster "Evolving Linguistic Divergence in Socio-Political Polarities", at the [JCoLe](https://sites.google.com/view/joint-conf-language-evolution) Joint Conference on Language Evolution in Kanazawa, Japan (August 2022)
+
 - Poster "Linguistic divergence in American English along socio-political polarities", at the [IC2S2](https://www.ic2s2.org/) Computational Social Science Conference in Chicago (20.07.2022) | [pdf](https://andreskarjus.github.io/talks/ic2s2/IC2S2_poster_Linguistic_divergence_in_American_English_along_socio-political_polarities.pdf)
 
 - New preprint: "Compression ensembles quantify aesthetic complexity and the evolution of visual art" https://arxiv.org/abs/2205.10271  

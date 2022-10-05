@@ -1,5 +1,5 @@
 ---
-title: "Andres Karjus"
+title: "Andres Karjus &nbsp;<font size='3'> evolutionary linguist | cultural data analytics scholar | digital humanities educator </font>"
 output: 
   html_document: 
     theme: spacelab
@@ -102,7 +102,7 @@ details summary::-webkit-details-marker {
 <div style="text-align: justify; padding-left:1px"> 
 I am a research fellow at the [CUDAN](http://cudan.tlu.ee/) Cultural Data Analytics lab at Tallinn University, working on **language and culture dynamics**, using large corpora, machine learning, and human experiments. Recently I have been also working on, through various collaborations, on art history and creative industries and advising collaborative projects between involving academic and media industry partners.<br>
 I defended my PhD in 2020, in linguistics at the [Centre for Language Evolution](http://www.lel.ed.ac.uk/cle/) of University of Edinburgh, on lexical dynamics and communicative need in language.
-I also occasionally teach **stats and data visualization** for the humanities and social sciences (see [more here](https://andreskarjus.github.io/artofthefigure)). The photo on the right naturally slightly outdated, as is customary on academic home pages.
+I also occasionally teach **stats and data visualization** for the humanities and social sciences (see [more here](https://andreskarjus.github.io/artofthefigure)). The photo on the right is naturally slightly outdated, as is customary for academic home pages.
 
 ### Research
 
@@ -132,6 +132,8 @@ I also occasionally teach **stats and data visualization** for the humanities an
 
 #### Conferences & seminars
 
+- Talk "Exploring Estonian Public Television Production 2004-2020 Using Big Programming Data" at the 8th Estonian Digital Humanities [Conference](https://dh.org.ee/events/dhe2022) (05.10.2022)
+- Poster "Evolving Linguistic Divergence in Socio-Political Polarities", at the [JCoLe](https://sites.google.com/view/joint-conf-language-evolution) Joint Conference on Language Evolution in Kanazawa, Japan (August 2022)
 - Poster "Linguistic divergence in American English along socio-political polarities", the [IC2S2](https://www.ic2s2.org/) Computational Social Science Conference (20.07.2022) | [pdf](https://andreskarjus.github.io/talks/ic2s2/IC2S2_poster_Linguistic_divergence_in_American_English_along_socio-political_polarities.pdf)
 - Seminar talk at the Poncelet laboratory in Moscow (November 2021)
 - [Conference on Complex Systems 2021](https://ccs2021.univ-lyon1.fr/) (October 2021) | [slides](https://andreskarjus.github.io/talks/ccs2021/Karjus_CCS2021_Capturing_aesthetic_complexity.pdf)
