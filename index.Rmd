@@ -81,8 +81,8 @@ details summary::-webkit-details-marker {
   <div class="col-sm-5">
   <a class="twitter-timeline" 
   data-show-screen-name="false" data-lang="en" 
-  data-width="385px" 
-  data-height="200px" 
+  data-width="380px" 
+  data-height="198px" 
   href="https://twitter.com/AndresKarjus?ref_src=twsrc%5Etfw"
   data-chrome="noheader nofooter">
   " "
