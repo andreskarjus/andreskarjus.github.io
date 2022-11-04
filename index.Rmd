@@ -108,6 +108,7 @@ I also occasionally teach **stats and data visualization** for the humanities an
 
 #### Publications 
 
+* Indrek Ibrus, Andres Karjus, Vejune Zemaityte, Ulrike Rohn, Maximilian Schich. 2022. Quantifying public value creation by public service media using big programming data | [socarxiv preprint](https://osf.io/preprints/socarxiv/hysma/)
 * Andres Karjus, Mar Canet Solà, Tillmann Ohm, Sebastian Ahnert, Maximilian Schich. 2022. Compression ensembles quantify aesthetic complexity and the evolution of visual art | [arxiv preprint](https://arxiv.org/abs/2205.10271) 
 * Andres Karjus, Richard A. Blythe, Simon Kirby, Tianyu Wang, Kenny Smith. 2021. Conceptual similarity and communicative need shape colexification". [Cognitive Science](https://doi.org/10.1111/cogs.13035) (open access) | [pdf](https://andreskarjus.github.io/papers/Karjus_2021__Conceptual_Similarity_and_Communicative_Need_Shape_Colexification_An_Experimental_Study__Cognitive_Science.pdf) |  [bib](https://andreskarjus.github.io/bib/karjus_2021_cogsci.bib) | [code and data](https://github.com/andreskarjus/colexification_experiment)
 * Andres Karjus, 2020. Competition, selection and communicative need in language change. PhD thesis, University of Edinburgh | [pdf](https://andreskarjus.github.io/thesis/Andres_Karjus_phd_thesis.pdf) | [1-page non-technical summary](https://andreskarjus.github.io/thesis/english_summary.pdf) | [eestikeelne lühikokkuvõte](https://andreskarjus.github.io/thesis/doktoritoo_ylevaade_AK.pdf)
