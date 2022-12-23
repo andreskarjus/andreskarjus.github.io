@@ -207,9 +207,9 @@ Feel free to get in touch if you are interested in talking about organizing a wo
 
 ### Non-academic stuff
 
-Besides research and teaching and consulting and whatnot, I (fortunately) also do some other things, which mostly consist of dance (lindy hop, salsa, bachata), boardgames, and outdoorsy stuff (running, hillwalking).
+Besides research and teaching and consulting and whatnot, I (fortunately) also do some other things, which mostly consist of dance (lindy hop, salsa, bachata), boardgames, and outdoorsy stuff (running, hiking).
 
-### Before Edinburgh
+### Before the PhD in Edinburgh
 
 In the more distant past, I worked as a teaching assistant in informatics at the University of Tartu (2015-2016), before that studied artificial intelligence and natural language processing at KU Leuven (MSc) and linguistics at the University of Tartu (BA, MA). I was also affiliated 2016-2019 as a (part-time) junior researcher with the University of Tartu [EKKAM](http://ekkam.ut.ee/en/) sociolinguistics group, doing data analysis and agent-based models. 
 During my pre-PhD studies I also went on exchanges to the University of Iceland and the University Vienna, attended a dozen-odd academic summer schools, taught Icelandic to art students and Estonian to Norwegian teachers, worked as an assistant at the Estonian Wordnet project, and did internships at CrossLang NV in Belgium and at (the old) Linguistics Departent of the Max Planck Institute for Evolutionary Anthropology in Leipzig. In earlier years, I worked various studenty sort of jobs to support my studies (for a seller of swords, for a seller of cars, for a minder of horses and tourists).
@@ -225,8 +225,12 @@ During my pre-PhD studies I also went on exchanges to the University of Iceland 
 <br>
 <br>
 <br>
-Andres Karjus, research fellow, CUDAN lab, Tallinn University<br>
-&nbsp;&nbsp;&nbsp;<a href="mailto:andres.karjus --at-- tlu.ee">email</a>  |  <a href="https://twitter.com/AndresKarjus">twitter</a> | <a href=https://mastodon.social/@andreskarjus">mastodon</a>
+**Andres Karjus** <br> 
+Research fellow, CUDAN Open Lab, Tallinn University <br>
+
+Email: andres.karjus --at-- tlu.ee <br>
+Twitter: <a href="https://twitter.com/AndresKarjus">https://twitter.com/AndresKarjus</a> <br>
+Mastodon: <a href=https://mastodon.social/@andreskarjus>https://mastodon.social/@AndresKarjus</a>
 <br>
 </div>
 
