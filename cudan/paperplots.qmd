@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Quantifying the global film festival circuit: networks, diversity and value creation"
 knitr:
   opts_chunk: 
     echo: false
@@ -23,6 +23,10 @@ format:
       margin-width: 0px
 editor: source
 ---
+
+
+
+**Abstract** Film festivals are a key component in the global film industry in terms of trendsetting, publicity, trade and collaboration. We present an unprecedented quantitative analysis of the international film festival circuit, which has so far remained relatively understudied, partly due to the limited availability of suitable databases. Here we use large-scale data from the Cinando platform of Marché du Film, widely used by industry professionals. We explicitly model festival events as a global network connected by shared films, and quantify festivals as the sum of the metadata of their constituent parts, in this case, the showcased films. Importantly, we argue against using simple count distributions for discrete labels such as genre or production country, as such categories are typically not equidistant. Rather, we propose embedding them in continuous latent vector spaces. We demonstrate how these “festival embeddings” provide insight into changes in programmed content over time, predict festival connections, and can be used to measure diversity in film festival programming across various cultural and geographical variables - and by proxy, estimate public value creation. Our results provide a novel mapping of the film festival circuit between 2009-2021 (618 festivals, 32700 unique films), highlighting festival types that occupy specific niches, diverse series, and those that evolve over time. With festivals occupying a central position in the film industry, investigations into the data they generate hold opportunities for researchers to better understand industry dynamics and cultural impact, and for organizers, as well as industry and market actors, to make more informed, data-driven decisions. We hope that our proposed methodological approach to festival data, content and diversity paves way for a more comprehensive film festival science, as well as quantitative event science more broadly.
 
 
 ```{r}
@@ -261,7 +265,7 @@ gg=function(g){
 
 # Networks
 
-A listers are circles, B are crosses. 618 festivals, 132 series with 2+ events 32700 unique films, 42365 festival-film pairs
+A listers are circles, B listers are crosses. 618 festivals, incl 132 series with 2+ events, 32700 unique films, 42365 festival-film pairs
 
 ```{r test, eval=F}
 divyearplot(nodelist  %>% mutate(target=degree),ex=NULL, yl="Raw degree", convert=convertplots)
