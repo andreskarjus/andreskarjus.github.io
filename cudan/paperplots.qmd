@@ -268,7 +268,12 @@ gg=function(g){
 
 # Networks
 
-A listers are circles, B listers are crosses. 618 festivals, incl 132 series with 2+ events, 32700 unique films, 42365 festival-film pairs
+A listers are circles, B listers are crosses. 
+
+```{r}
+attr(nodelist, "info") %>% cat
+```
+
 
 ```{r test, eval=F}
 divyearplot(nodelist  %>% mutate(target=degree),ex=NULL, yl="Raw degree", convert=convertplots)
@@ -484,6 +489,16 @@ ggplot(nodelist %>% filter(YearEvent%in% 2015:2019) %>%
 # ggplotly(g, tooltip="text")
 ```
 
+
+Without any links, degree=0:
+```{r}
+nodelist %>% filter(degree==0)
+```
+
+
+
+
+
 ##  Degree vs strength
 
 ```{r}
@@ -522,7 +537,10 @@ divyearplot(nodelist  %>% mutate(target=lndegree, lower=NA, upper=NA),
 
 # Content types ("genres" in the database)
 
-25674 unique films, 572 unique fests, 34858 filmfest pairs, after final filter.
+```{r}
+cat(attr(festgenrevecs, "info"))
+```
+
 
 Latent space of content/genre tag similarities is inferred directly from the data, based on content type co-occurrence statistics.
 
@@ -679,7 +697,9 @@ div2plot(yeardiffvals %>% select(EventID_VZ,yeardif, tool) %>% left_join(festgen
 
 # Languages
 
-24580 unique films, 543 unique fests, 42902 filmfest pairs, after final filter
+```{r}
+cat(attr(festlangvecs, "info"))
+```
 
 ## Big UMAP
 
@@ -733,7 +753,9 @@ divyearplot(festlangvecs  %>% mutate(target=exdiv, lower=elower, upper=eupper),
 
 # Geography
 
-26906 unique films, 580 unique fests, 52811 filmfest pairs, after final filter
+```{r}
+cat(attr(festcountryvecs, "info"))
+```
 
 Note: since production location is at the precision of country, I'm using the coordinates of capital cities for all calculations here, with the exception of the US, where Los Angeles coordinates are used.
 
@@ -890,51 +912,23 @@ Simple binomial logistic regression model predicting linkage (at least 1 film sh
 
 Given suitable hypotheses, could also test interactions. Importantly, this modelling is all based on festival means, and individual films are not taken into account - but it could also be done this way, to model the likelyhood that a pair of films share a festival (instead of a pair of festivals sharing a film), which might make more sense.
 
-    Deviance Residuals: 
-        Min       1Q   Median       3Q      Max  
-    -1.5794  -0.2952  -0.0879  -0.0144   5.6632  
+```{r}
+glm(linked~timedist+class+genre+lang+geomean+eventloc+eventfilmdist,family = "binomial", 
+        data=linkdat %>% select(-weight) %>% {.[complete.cases(.),]} ) %>% summary %>% print
 
-    Coefficients:
-                  Estimate Std. Error  z value Pr(>|z|)    
-    (Intercept)    1.03888    0.03848   26.995  < 2e-16 ***
-    timedist      -1.63251    0.01564 -104.401  < 2e-16 ***
-    class_bothAA   0.13604    0.03845    3.538 0.000403 ***
-    class_bothBB  -0.15953    0.02515   -6.342 2.26e-10 ***
-    genre         -5.90956    0.18649  -31.689  < 2e-16 ***
-    lang          -4.94911    0.22468  -22.027  < 2e-16 ***
-    geomean       -1.16421    0.23381   -4.979 6.38e-07 ***
-    eventloc       1.17418    0.14601    8.042 8.84e-16 ***
-    eventfilmdist -2.88983    0.30467   -9.485  < 2e-16 ***
-    ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
 
-    (Dispersion parameter for binomial family taken to be 1)
-
-        Null deviance: 77718  on 146610  degrees of freedom
-    Residual deviance: 48931  on 146602  degrees of freedom
-    AIC: 48949
+ 
 
 ##  What predicts number of shared films
 
 Or strength of edges, for festivals that share at least 2 films. Dependent variable is logged - but it's a strong power law kind of thing, so linear model assumptions are not exactly met i.e. this is a bit wonky. Interpretation similar to above, here negative coefficient estimate means negative, positive means positive correlation to number of shared films.
 
-    Coefficients:
-                  Estimate Std. Error t value             Pr(>|t|)    
-    (Intercept)    1.51365    0.02393  63.252 < 0.0000000000000002 ***
-    timedist      -0.02539    0.01281  -1.983               0.0475 *  
-    class_bothAA   0.16847    0.02430   6.933     0.00000000000466 ***
-    class_bothBB  -0.08251    0.01741  -4.739     0.00000220276470 ***
-    genre         -1.46203    0.14899  -9.813 < 0.0000000000000002 ***
-    lang          -1.35904    0.16252  -8.362 < 0.0000000000000002 ***
-    geomean       -0.17614    0.17612  -1.000               0.3173    
-    eventloc      -0.18121    0.10436  -1.736               0.0825 .  
-    eventfilmdist -0.52085    0.22052  -2.362               0.0182 *  
-    ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-    Residual standard error: 0.5569 on 4944 degrees of freedom
-    Multiple R-squared:  0.07302,   Adjusted R-squared:  0.07152 
-    F-statistic: 48.68 on 8 and 4944 DF,  p-value: < 0.00000000000000022
+```{r}
+lm(log(weight)~timedist+class+genre+lang+geomean+eventloc+eventfilmdist, 
+        data=linkdat %>% filter(!is.na(weight), weight>1, weight<40) %>% {.[complete.cases(.),]} ) %>% summary %>% print
+```
+   
 
 ## Compare all festival metrics + Is sundance more like A or B?
 
