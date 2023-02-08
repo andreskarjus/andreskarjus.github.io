@@ -62,7 +62,8 @@ convertplots=T
 # Busan_IFF - Geo - Asian example (A)
 # BAFICI - Geo - Latin American example (B)
 
-examplefests = c("Festival de Cannes", "Sundance", "Hot Docs Festival", "Sitges FF", "Busan IFF", "BAFICI")
+examplefests = c("Festival de Cannes", "Sundance", "Tokyo IFF", "Zurich FF")
+                 #"Hot Docs Festival", "Sitges FF", "Busan IFF", "BAFICI")
 
 allfests = nodelist %>% group_by(libelleFestival_NEW_VZ) %>% filter(n()>3) %>% pull(libelleFestival_NEW_VZ) %>% unique
 
