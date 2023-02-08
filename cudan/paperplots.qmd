@@ -62,8 +62,10 @@ convertplots=T
 # Busan_IFF - Geo - Asian example (A)
 # BAFICI - Geo - Latin American example (B)
 
-examplefests = c("Festival de Cannes", "Sundance", "Tokyo IFF", "Zurich FF")
-                 #"Hot Docs Festival", "Sitges FF", "Busan IFF", "BAFICI")
+exgenfests = c("Festival de Cannes", "Sundance", "Hot Docs Festival", "Sitges FF")
+exgeofests = c("Festival de Cannes", "Sundance", "Tokyo IFF", "Zurich FF")
+exlangfests=c("Festival de Cannes", "Sundance", "Busan IFF", "BAFICI")
+
 
 allfests = nodelist %>% group_by(libelleFestival_NEW_VZ) %>% filter(n()>3) %>% pull(libelleFestival_NEW_VZ) %>% unique
 
@@ -271,7 +273,7 @@ A listers are circles, B listers are crosses. 618 festivals, incl 132 series wit
 ```{r test, eval=F}
 divyearplot(nodelist  %>% mutate(target=degree),ex=NULL, yl="Raw degree", convert=convertplots)
 divyearplot(nodelist  %>% mutate(target=degree, lower=NA, upper=NA), 
-            ex=examplefests, yl="Raw degree", convert=convertplots, splitab=F, 
+            ex=exgenfests, yl="Raw degree", convert=convertplots, splitab=F, 
             networkstats = T)
 
 knitr::knit_exit()
@@ -455,7 +457,7 @@ Keep in mind that degree stats should *only* be interpreted for the "middle" of 
 ```{r}
 divyearplot(nodelist  %>% mutate(target=degree),ex=NULL, yl="Raw degree", convert=convertplots)
 divyearplot(nodelist  %>% mutate(target=degree, lower=NA, upper=NA), 
-            ex=examplefests, yl="Raw degree", convert=convertplots, splitab=F, 
+            ex=exgenfests, yl="Raw degree", convert=convertplots, splitab=F, 
             networkstats = T)
 
 
@@ -512,7 +514,7 @@ Degree normalized by dividing with the log10 number of unique films in a festiva
 ```{r}
 divyearplot(nodelist  %>% mutate(target=lndegree),ex=NULL, yl="Degree normalized by entry size", convert=convertplots)
 divyearplot(nodelist  %>% mutate(target=lndegree, lower=NA, upper=NA), 
-            ex=examplefests, yl="Degree normalized", convert=F, splitab=F, 
+            ex=exgenfests, yl="Degree normalized", convert=F, splitab=F, 
             networkstats = T)
 
 
@@ -609,12 +611,12 @@ div2plot(festgenrevecs, ex=NULL, convert=convertplots, genrecols = sixgcols)
 divyearplot(festgenrevecs  %>% mutate(target=indiv),
             ex=NULL, yl="Internal genre diversity", convert=convertplots, networkstats = F)
 divyearplot(festgenrevecs  %>% mutate(target=indiv, lower=ilower, upper=iupper), 
-            ex=examplefests, yl="Internal genre diversity", convert=T, splitab=F, networkstats = F)
+            ex=exgenfests, yl="Internal genre diversity", convert=T, splitab=F, networkstats = F)
 
 
 divyearplot(festgenrevecs  %>% mutate(target=exdiv),ex=NULL, yl="External genre diversity", convert=convertplots, networkstats = F)
 divyearplot(festgenrevecs  %>% mutate(target=exdiv, lower=elower, upper=eupper), 
-            ex=examplefests, yl="External genre diversity", convert=convertplots, splitab=F, networkstats = F)
+            ex=exgenfests, yl="External genre diversity", convert=convertplots, splitab=F, networkstats = F)
 
 ```
 
@@ -657,7 +659,7 @@ Shows mean difference between event year and production years of shown films. Un
 divyearplot(yeardiffvals  %>% mutate(target=yearmean),ex=NULL, yl="Time distance", convert=F, networkstats = F)
 
 divyearplot(yeardiffvals  %>% mutate(target=yearmean, lower=yearmean-yearsd, upper=yearmean+yearsd), 
-            ex=examplefests, yl="Time distance", convert=F, splitab=F, networkstats = F)
+            ex=exgenfests, yl="Time distance", convert=convertplots, splitab=F, networkstats = F)
 
 
 ```
@@ -714,13 +716,13 @@ div2plot(festlangvecs, ex=NULL, convert=convertplots,  genrecols = langcols)
 
 divyearplot(festlangvecs  %>% mutate(target=indiv),ex=NULL, yl="Internal language diversity", convert=convertplots, networkstats = F)
 divyearplot(festlangvecs  %>% mutate(target=indiv, lower=ilower, upper=iupper), 
-            ex=examplefests, yl="Language diversity", convert=convertplots, splitab=F, networkstats = F)
+            ex=exlangfests, yl="Language diversity", convert=convertplots, splitab=F, networkstats = F)
 
 
 divyearplot(festlangvecs  %>% mutate(target=exdiv),
             ex=NULL, yl="External language diversity", convert=convertplots, networkstats = F)
 divyearplot(festlangvecs  %>% mutate(target=exdiv, lower=elower, upper=eupper), 
-            ex=examplefests, yl="External language diversity", convert=convertplots, splitab=F, networkstats = F)
+            ex=exlangfests, yl="External language diversity", convert=convertplots, splitab=F, networkstats = F)
 
 
 ```
@@ -746,13 +748,13 @@ div2plot(festcountryvecs, ex=NULL, convert=convertplots,  genrecols = sixcols)
 ```{r}
 divyearplot(festcountryvecs  %>% mutate(target=indiv),ex=NULL, yl="Internal geo diversity", convert=convertplots, networkstats = F)
 divyearplot(festcountryvecs  %>% mutate(target=indiv, lower=ilower, upper=iupper), 
-            ex=examplefests, yl="Internal geo diversity", convert=convertplots, splitab=F, networkstats = F)
+            ex=exgeofests, yl="Internal geo diversity", convert=convertplots, splitab=F, networkstats = F)
 
 
 divyearplot(festcountryvecs  %>% mutate(target=exdiv),
             ex=NULL, yl="External geo diversity", convert=convertplots, networkstats = F)
 divyearplot(festcountryvecs  %>% mutate(target=exdiv, lower=elower, upper=eupper), 
-            ex=examplefests, yl="External geo diversity", convert=convertplots, splitab=F, networkstats = F)
+            ex=exgeofests, yl="External geo diversity", convert=convertplots, splitab=F, networkstats = F)
 
 ```
 
@@ -845,7 +847,7 @@ In kilometers; "eventdist" on the tooltip.
 
 divyearplot(festcountryvecs  %>% mutate(target=eventdist),ex=NULL, yl="distance between latent centre and host country", convert=convertplots, networkstats = F)
 divyearplot(festcountryvecs  %>% mutate(target=eventdist, lower=edlower, upper=edupper), 
-            ex=examplefests, yl="distance", convert=convertplots, splitab=F, networkstats = F)
+            ex=exgeofests, yl="distance", convert=convertplots, splitab=F, networkstats = F)
 
 ```
 
