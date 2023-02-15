@@ -370,6 +370,25 @@ gm = ggraph(gr, layout="manual", x=n2$xx, y=n2$yy  ) +
 
 ggsave("networkmap.png", gm, width=5000, height=2200, scale=0.6, units="px")
 
+
+# big force directed
+gr = as_tbl_graph(graph_from_data_frame(e2, directed = F, vertices = nodelist %>% filter(EventID_VZ %in% c(e2$from,e2$to))))
+g = ggraph(gr  ) +
+  geom_node_point(aes(color=YearEvent, size=nf)) +
+  #geom_node_text(aes(label=name)) +
+  geom_edge_arc(aes(color=coloryear, alpha=dist),  width=0.1, strength=0.04) +
+  scale_color_viridis(end=0.9)+
+  scale_edge_color_viridis(end=0.9)+
+  scale_edge_alpha(range=c(0.15, 0.5))+
+  scale_size(0.5, 1.5)+
+  theme_void()+
+  theme(legend.position = 'none',
+        plot.background = element_rect(color="white", fill="white")
+  )
+
+ggsave("yearnetwork2.png", g, width=5000, height=5000, scale=0.6, units="px")
+# write_csv(e2, "edgelist_nov22.csv")
+
 ```
 
 ## Big force-directed network
@@ -404,13 +423,13 @@ cls = sixcols[c(1,1,2,3)] %>% {.[1]=darken(.[1],0.6);.} %>%
   rev 
 
 {ggplot(hm , 
-       aes(fromlibelle, tolibelle, fill=fillweight, text=tool))+
+       aes(fromlibelle, tolibelle, fill=weight, text=tool))+
   coord_cartesian(expand=F)+
   geom_tile(size=0)+
   geom_text(aes(label=toyear, x=0), data=hmy, size=2, hjust=0,vjust=1, angle=90)+
   geom_text(aes(label=toyear,x=fromlibelle, y=0), data=hmy, size=2, vjust=0)+
   #scale_fill_viridis_c(end=0.9, na.value = "white")+
-    scale_fill_gradientn(colors = cls, na.value = "white")+
+    scale_fill_gradientn(colors = cls, na.value = "white", trans="log10", name="log\nstrength")+
   theme_bw()+
     theme(legend.position = 'none', 
       panel.border = element_blank(),
@@ -421,6 +440,28 @@ cls = sixcols[c(1,1,2,3)] %>% {.[1]=darken(.[1],0.6);.} %>%
       axis.ticks = element_blank()
      # axis.text.x = element_text(angle=90, hjust=1, vjust=1)
     )} %>% ggplotly(tooltip = "text")
+
+# static
+ggplot(hm , 
+       aes(fromlibelle, tolibelle, fill=weight, text=tool))+
+  coord_cartesian(expand=F)+
+  geom_tile(size=0)+
+  geom_text(aes(label=toyear, x=0), data=hmy, hjust=0,vjust=1, angle=90,size=3, 
+            color=viridis_pal(end = 0.9)(13))+
+  geom_text(aes(label=toyear,x=fromlibelle, y=0), data=hmy,vjust=0, size=3, 
+            color=viridis_pal(end = 0.9)(13))+
+  #scale_fill_viridis_c(end=0.9, na.value = "white")+
+  #scale_fill_gradientn(colors = cls, na.value = "white", trans="log10", name="log\nstrength")+
+  scale_fill_viridis_c(direction=-1,na.value = "white", option="magma", trans="log10", name="log\nstrength")+
+  theme_bw()+
+    theme(legend.position = c(0.9,0.3), 
+      panel.border = element_blank(),
+      panel.grid.minor.x = element_blank(),
+      plot.background = element_rect(color="white", fill="white"),
+      axis.title = element_blank(),
+      axis.text = element_blank(), # element_text(size=3),
+      axis.ticks = element_blank()
+    )
 
 ```
 
@@ -593,21 +634,71 @@ Possible alternative: if drama is main, add blue ring around point, but show sec
 
 ```{r, eval=F}
 
-# 110
-fesfilm2 %>% 
-  filter(LibelleEvent_NEW_VZ %in% "Tallinn_Black_Nights_IFF_2012") %>% 
-  left_join(filmgen, by="refFilm") %>% 
-  count(txtKind) %>% 
-  ggplot(aes(y=txtKind, x=n))+
-  geom_bar(stat="identity")+
-  theme_bw()+
-  theme(axis.title = element_blank())+
-  coord_cartesian(expand=0)+
-  labs(subtitle="Tallinn_Black_Nights_IFF_2012")
+
+tops = attr(festgenrevecs, "tops") %>% 
+  left_join(festgenrevecs %>% filter(!duplicated(EventID_VZ)), by="EventID_VZ") %>% 
+  select(txtKind, s, EventID_VZ, libelleFestival_NEW_VZ, YearEvent, LibelleEvent_NEW_VZ) %>% 
+  filter(libelleFestival_NEW_VZ %in% exgenfests) %>% 
+  filter(YearEvent==2019) %>% 
+  ungroup() %>% 
+  mutate(colorgenre=case_when(txtKind%in% levels(festgenrevecs$colorgenre)~txtKind, T~"...")) %>% 
+  mutate(colorgenre2=fct_relevel(as.factor(colorgenre), 
+                                levels(festgenrevecs$colorgenre) %>% gsub("other","...",.)))
+  
+
+ggplot(tops, aes(x=colorgenre2, y=s, fill=colorgenre2))+
+  geom_bar(stat="identity", width=1, color=NA)+
+  scale_fill_manual(values=sixgcols)+
+  #coord_cartesian(expand = 0, ylim=c(0,100))+
+  theme_void()+
+  theme(axis.title = element_blank(),
+        legend.position = "none",
+        panel.border  = element_rect(size=0.5, color="gray10", fill=NA)
+        )+
+  facet_wrap(~libelleFestival_NEW_VZ, strip.position="bottom", scales = "free", nrow=2)
   
   #filter(grepl("Tallinn", LibelleEvent_NEW_VZ, ignore.case = T)) %>% count(LibelleEvent_NEW_VZ)
 
 #festvecs %>% filter(LibelleEvent_NEW_VZ %in% "Tallinn_Black_Nights_IFF_2012") %>% select(starts_with("V"))
+
+ggplot(attr(genlat, "latmap"), aes(V1,V2,label=txtKind,size=n))+geom_text()+
+  scale_size(range=c(1.5,5))+
+  theme_void()+
+  theme(legend.position = "none",
+        panel.border = element_rect(fill=NA)
+        )
+
+
+ggplot( mapping=aes(V1, V2, color=colorgenre))+
+  geom_point(aes(shape=ab, text=tool), data=ugenre %>% filter(type=="festival"), size=1, fill=NA, alpha=0.3, shape=16)+
+  geom_point(aes(fill=colorgenre, text=tool), data=ugenre %>% 
+               filter(type=="festival", event %in% tops$LibelleEvent_NEW_VZ), 
+             size=4,  alpha=1, shape=21, color="black")+
+  geom_text_repel(aes(label=event %>% gsub("_", "",.)), data=ugenre %>% filter(type=="festival", event %in% tops$LibelleEvent_NEW_VZ), 
+            size=4,  alpha=1, hjust=1.1, bg.color="white")+
+  #geom_point( data=ugenre %>% filter(type=="film") %>% slice_sample(n = 3), size=0.1, fill=NA,show.legend = FALSE)+
+  geom_text_repel(aes(label=event, size=log(sizegen+100)), 
+                  data=rbind(
+                    ugenre %>% filter(type %in% c("genre")) %>% arrange(-sizegen) %>% head(6),
+                    ugenre %>% filter(type %in% c("film")) %>% group_by(colorgenre) %>% 
+                      slice(1) %>% head(4)
+                  )
+                    , 
+            lineheight=0.6,
+            alpha=1, hjust=0, 
+            bg.color="white",  
+            show.legend = FALSE, max.overlaps=100, box.padding = 0, point.padding = 0, min.segment.length = 999, force_pull=0.5, max.time = 2)+
+    
+  scale_size(range=c(2.5,6), guide="none")+
+  scale_color_manual(values=sixgcols, name="")+
+  scale_fill_manual(values=sixgcols, name="")+
+  theme_void()+
+  theme(#legend.position = 'none',
+        plot.background = element_rect( fill="white"),
+        legend.position = "none"
+  )+
+  NULL
+
 
 ```
 

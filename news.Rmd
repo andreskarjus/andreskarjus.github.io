@@ -17,6 +17,8 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
+- Been doing a series of [workshops](https://twitter.com/AndresKarjus/status/1625844088023969792) at Tallinn University on the topic of ChatGPT, generative AI, what's coming and how it will be/is already affecting teaching and learning in the university and beyond. (15.02.2023)
+
 - New preprint "Quantifying public value creation by public service media using big programming data" [socarxiv](https://osf.io/preprints/socarxiv/hysma/)
 
 - Talk "Exploring Estonian Public Television Production 2004-2020 Using Big Programming Data" at the 8th Estonian Digital Humanities [Conference](https://dh.org.ee/events/dhe2022) (05.10.2022)
