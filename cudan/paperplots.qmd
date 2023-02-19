@@ -643,13 +643,14 @@ tops = attr(festgenrevecs, "tops") %>%
   ungroup() %>% 
   mutate(colorgenre=case_when(txtKind%in% levels(festgenrevecs$colorgenre)~txtKind, T~"...")) %>% 
   mutate(colorgenre2=fct_relevel(as.factor(colorgenre), 
-                                levels(festgenrevecs$colorgenre) %>% gsub("other","...",.)))
+                                levels(festgenrevecs$colorgenre) %>% gsub("other","...",.) %>% rev))
   
 
-ggplot(tops, aes(x=colorgenre2, y=s, fill=colorgenre2))+
-  geom_bar(stat="identity", width=1, color=NA)+
-  scale_fill_manual(values=sixgcols)+
-  #coord_cartesian(expand = 0, ylim=c(0,100))+
+# festival illustration squares.
+ggplot(tops, aes( x=s,y=libelleFestival_NEW_VZ, fill=colorgenre2))+
+  geom_bar(stat="identity", color=NA,position="stack")+
+  scale_fill_manual(values=sixgcols %>% rev)+
+  coord_cartesian(expand = 0, xlim=c(0,100))+
   theme_void()+
   theme(axis.title = element_blank(),
         legend.position = "none",

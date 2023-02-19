@@ -1,5 +1,5 @@
 ---
-title: "Andres Karjus &nbsp;<font size='3'> evolutionary&nbsp;linguist | cultural&nbsp;data&nbsp;analytics&nbsp;scholar | digital&nbsp;humanities&nbsp;educator </font>"
+title: "Andres Karjus &nbsp;<font size='3'> evolutionary&nbsp;linguist | cultural&nbsp;data&nbsp;analytics&nbsp;scholar | digital&nbsp;humanities&nbsp;instructor </font>"
 output: 
   html_document: 
     theme: spacelab
@@ -64,10 +64,11 @@ details summary::-webkit-details-marker {
   display:none;
 }
 
-.twitter-timeline {
-    height: 200px !important;
-    overflow: scroll !important;
-}
+<!-- .twitter-timeline { -->
+<!--     height: 200px !important; -->
+<!--     overflow: scroll !important; -->
+<!-- } -->
+
 
 ```
 
@@ -80,9 +81,10 @@ details summary::-webkit-details-marker {
   </div>
   <div class="col-sm-5">
   <a class="twitter-timeline" 
-  data-show-screen-name="false" data-lang="en" 
-  data-width="380px" 
-  data-height="198px" 
+  data-show-screen-name="false" 
+  data-lang="en" 
+  data-width="399px" 
+  data-height="200px" 
   href="https://twitter.com/AndresKarjus?ref_src=twsrc%5Etfw"
   data-chrome="noheader nofooter">
   " "
@@ -95,14 +97,12 @@ details summary::-webkit-details-marker {
 <div class="col-sm-12">
 
 
-### What I do
 
-<IMG SRC="IMG_2657.jpg" ALIGN="right" BR CLEAR="left" style="margin-left:10px; width: 49%; height: auto;"> 
-
+### What I do  <IMG SRC="round.jpg" ALIGN="right" BR CLEAR="left" style="margin-left:10px; width: 20%; height: auto;">
 <div style="text-align: justify; padding-left:1px"> 
 I am a research fellow at the [CUDAN](http://cudan.tlu.ee/) Cultural Data Analytics lab at Tallinn University, working on **language and culture dynamics**, using large corpora, machine learning, and human experiments. Recently I have been also working on, through various collaborations, on art history and creative industries and advising collaborative projects between involving academic and media industry partners.<br>
-I defended my PhD in 2020, in linguistics at the [Centre for Language Evolution](http://www.lel.ed.ac.uk/cle/) of University of Edinburgh, on lexical dynamics and communicative need in language.
-I also occasionally teach **stats and data visualization** for the humanities and social sciences (see [more here](https://andreskarjus.github.io/artofthefigure)). The photo on the right is naturally slightly outdated, as is customary for academic home pages.
+I defended my PhD in 2020, in linguistics at the [Centre for Language Evolution](http://www.lel.ed.ac.uk/cle/) of University of Edinburgh, on lexical dynamics and communicative need in language. <br>
+I also occasionally do workshops on **R, stats & data visualization** and **AI**-related things (see [more here](https://datafigure.eu)). 
 
 ### Research
 
@@ -168,19 +168,19 @@ I also occasionally teach **stats and data visualization** for the humanities an
 </div>
 
 
-## R workshops {#workshops}
+## R & AI workshops {#workshops}
 
-If you're here about materials for an upcoming R or dataviz workshop: [click here](https://andreskarjus.github.io/artofthefigure/) to go to the dedicated workshops page.
+I also teach workshops as an instructor in the private sector. 
+Some of these have been standalone events, some have been part of conferences, summer schools or academic retreats. 
+Feel free to get in touch if you are interested in talking about organizing a workshop on anything related to data science and statistics, artificial intelligence, data visualization, R, corpus linguistics, digital humanities, etc. <br>
+For more details, head over to [datafigure.eu](https://datafigure.eu)
 
 <div style="text-align: justify"> 
 
-**Workshops**
 
-- I have been developing teaching materials on data visualization using R, which I have used in over a dozen workshops for humanities and social science audiences since 2017, collectively under the title of [_aRt of the Figure_ (click here for more info)](https://andreskarjus.github.io/artofthefigure/). Some of these have been standalone events, some have been part of conferences, summer schools or academic retreats. All my materials are [open source](https://andreskarjus.github.io/artofthefigure/).
+**Academic teaching**
 
-**Teaching**
-
-- My postdoc includes some teaching activities, and I do occasional guest lectures; most recently for the Data Science and Digital Humanities programme at the University of Tartu and for the Cultural Data Analytics I and II courses at Tallinn University.
+- My postdoc includes some teaching activities, and I do occasional guest lectures; recently for the Data Science and Digital Humanities programme at the University of Tartu and for the Cultural Data Analytics I and II courses at Tallinn University.
 
 **Past teaching**
 
@@ -191,7 +191,7 @@ If you're here about materials for an upcoming R or dataviz workshop: [click her
 - Worked as a teaching assistant for courses on language technology and artificial intelligence, Department of Computer Science, University of Tartu, 2014-2016.
 <br><br>
 
-Feel free to get in touch if you are interested in talking about organizing a workshop on anything related to data science and statistics, data visualization, R, corpus linguistics, natural language processing applications, digital humanities, etc.
+
 </div>
 <br>
 
@@ -221,12 +221,14 @@ During my pre-PhD studies I also went on exchanges to the University of Iceland 
 <br>
 
 <div style="text-align: center; align:center"> 
-<IMG SRC="round.jpg"> 
 <br>
 <br>
 <br>
 **Andres Karjus** <br> 
+PhD, MA (linguistics), MSc (artificial intelligence)
+
 Research fellow, CUDAN Open Lab, Tallinn University <br>
+Instructor at Datafigure OÜ
 
 Email: andres.karjus --at-- tlu.ee <br>
 Twitter: <a href="https://twitter.com/AndresKarjus">https://twitter.com/AndresKarjus</a> <br>
