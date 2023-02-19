@@ -48,9 +48,12 @@ load("C:/Users/Andres/korpused/publicvalue/cinando/cinandonetworks.RData")
 abcols=divergingx_hcl(6, palette="Zissou 1")[c(1,5)]
 abshapes=c(16,4)
 
-sixgcols = c(divergingx_hcl(6, palette="Zissou 1") %>% {.[6]=darken(.[6],0.3);.},  "gray50") 
-sixcols = c(divergingx_hcl(6, palette="Zissou 1") %>% {.[6]=darken(.[6],0.3);.}, "gray10",  "gray50") 
-langcols= c(divergingx_hcl(6, palette="Zissou 1")%>% {.[6]=darken(.[6],0.3);.}, "gray10",  "gray50")[c(1,3,5,6,7,8)] 
+sixgcols = c(divergingx_hcl(6, palette="Zissou 1") %>% {.[6]=darken(.[6],0.3);.},  "gray50") %>%
+  {.[1]=lighten(.[1],0.4);.} %>% 
+  desaturate(0.07) %>% {.[c(2)]=darken(.[c(2)],0.1);.} 
+sixcols = c(divergingx_hcl(6, palette="Zissou 1") %>% {.[c(1)]=darken(.[c(1)],0.3);.}, "gray10",  "gray50") 
+langcols= c(divergingx_hcl(6, palette="Zissou 1")%>% {.[c(1)]=darken(.[c(1)],0.3);.}, "gray10",  "gray50")[c(1,3,5,6,7,8)] 
+rolecols=divergingx_hcl(31, palette="Zissou 1")  %>% {c(.[1:2], "gray75", .[30:31])}
 
 convertplots=T
 
@@ -122,7 +125,7 @@ div2plot = function(vecs, ex=NULL, convert=T,  colorlab="Main", xlab="External d
   }
 }
 
-divyearplot = function(vecs, ex, shape=16, yl="", splitab=T, convert=T, networkstats=T){
+divyearplot = function(vecs, ex, shape=16, yl="", splitab=T, convert=T, networkstats=T, ylims=NULL){
   if(splitab){
     vecs = vecs %>% mutate(YearEvent=case_when(ab=="A"~YearEvent-0.15,
                                                ab=="B"~YearEvent+0.15 )) %>% 
@@ -223,16 +226,25 @@ divyearplot = function(vecs, ex, shape=16, yl="", splitab=T, convert=T, networks
        legend.position = 'none'
        )
   }
+  
+  if(!is.null(ylims)){
+    g=g+scale_y_continuous(limits = ylims)
+  }
+  
+  
   if(convert){
 
-    ggplotly(g,tooltip="text") %>% config(doubleClickDelay=500)
-  } else {g}
+    return( ggplotly(g,tooltip="text") %>% plotly::config(doubleClickDelay=500) 
+            )
+  } else {
+    return(g+theme(legend.position = "none"))
+           }
   
 }
 
 
 gg=function(g){
-  ggplotly(g, tooltip="text") %>%  config(doubleClickDelay=500)
+  ggplotly(g, tooltip="text") %>%  plotly::config(doubleClickDelay=500)
 }
 
 ```
@@ -986,6 +998,56 @@ lg = left_join(festlangvecs %>% select(-exdiv),
   mutate(tool=paste("Lang:",tool,"\nGeo:",tool2)) 
 div2plot(lg, ex=NULL, convert=convertplots, xlab="Geo internal diversity", ylab="Language internal diversity",  genrecols = langcols)
 ```
+
+
+<br>
+
+# * Gender diversity
+
+Using producer and director first name gender, where identifiable, to calculate ratio in a film; festivals are means of film ratios.
+
+```{r}
+cat(attr(festrolevecs, "info"))
+```
+
+
+```{r}
+
+g=ggplot(festrolevecs, mapping=aes(ratiopf, ratiodf, color=ratiof, shape=ab, size=ab, text=tool))+
+  geom_vline(xintercept = 0.5)+
+  geom_hline(yintercept = 0.5)+
+  geom_point()+
+  scale_size_manual(values =c(1.4,0.8)*1.2, guide="none")+
+  scale_shape_manual(values=abshapes, name="Festival\ntype")+
+  scale_color_gradientn(colours =rolecols, name="Female\nto male\nratio\namong\nproducers\n&directors", limits=c(0,1))+
+  theme_bw()+
+  theme(#legend.position = 'none',
+        plot.background = element_rect( fill="white")
+  )+
+  labs(x="Producers", y="Directors")
+  NULL
+
+if(convertplots){
+  gg(g)
+} else {g}
+
+
+
+
+```
+(the cross is 50-50 lines)
+
+```{r}
+divyearplot(festrolevecs  %>% mutate(target=ratiof),ex=NULL, yl="Average % of female producers & directors", convert=T, networkstats = F, ylims=c(0,1)) 
+
+
+divyearplot(festrolevecs  %>% mutate(target=ratiof, lower=ratiofmin, upper=ratiofmax),
+            ex=exgenfests, yl="Female to male ratio", convert=convertplots, splitab=F, networkstats = F, ylims=c(0,1))
+
+```
+
+Note the intervals are different here, being the min-max calculated based on the number of unknown/unidentifiable/unisex first names among directors and producers in a given festival. They are not the same as the 95% bootstrapped confidence intervals, and therefore less conservative.
+
 
 ------------------------------------------------------------------------
 
