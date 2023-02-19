@@ -646,6 +646,10 @@ Possible alternative: if drama is main, add blue ring around point, but show sec
 
 ```{r, eval=F}
 
+mains=levels(festgenrevecs$colorgenre) %>% head(-1)
+others = setdiff(
+  table( attr(festgenrevecs, "filmfestvecs")$firstfilmkind) %>% sort(decreasing = T) %>% names(),
+  mains)
 
 tops = attr(festgenrevecs, "tops") %>% 
   left_join(festgenrevecs %>% filter(!duplicated(EventID_VZ)), by="EventID_VZ") %>% 
@@ -653,15 +657,20 @@ tops = attr(festgenrevecs, "tops") %>%
   filter(libelleFestival_NEW_VZ %in% exgenfests) %>% 
   filter(YearEvent==2019) %>% 
   ungroup() %>% 
-  mutate(colorgenre=case_when(txtKind%in% levels(festgenrevecs$colorgenre)~txtKind, T~"...")) %>% 
-  mutate(colorgenre2=fct_relevel(as.factor(colorgenre), 
-                                levels(festgenrevecs$colorgenre) %>% gsub("other","...",.) %>% rev))
+  mutate(colorgenre2=fct_relevel(txtKind, 
+                                c(mains, others) %>% rev))
   
 
 # festival illustration squares.
 ggplot(tops, aes( x=s,y=libelleFestival_NEW_VZ, fill=colorgenre2))+
   geom_bar(stat="identity", color=NA,position="stack")+
-  scale_fill_manual(values=sixgcols %>% rev)+
+  scale_fill_manual(values=
+                      c(sixgcols %>% head(-1),
+                        gray.colors(
+                          length(unique(tops$colorgenre2))-
+                            length(mains),
+                          start=0.5, end=0.7
+                          )) %>% rev)+
   coord_cartesian(expand = 0, xlim=c(0,100))+
   theme_void()+
   theme(axis.title = element_blank(),
