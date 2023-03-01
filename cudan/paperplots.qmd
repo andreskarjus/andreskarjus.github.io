@@ -45,7 +45,7 @@ load("C:/Users/Andres/korpused/publicvalue/cinando/cinandonetworks.RData")
 
 
 
-abcols=divergingx_hcl(6, palette="Zissou 1")[c(1,5)]
+abcols= divergingx_hcl(6, palette="Zissou 1")[c(1,5)] %>% c("gray70")
 abshapes=c(16,4)
 
 sixgcols = c(divergingx_hcl(6, palette="Zissou 1") %>% {.[6]=darken(.[6],0.3);.},  "gray50") %>%
@@ -209,7 +209,7 @@ divyearplot = function(vecs, ex, shape=16, yl="", splitab=T, convert=T, networks
       g=g+geom_errorbar(aes(ymin=lower, ymax=upper), color="gray40", width=0.1, size=0.45)
     }
     g=
-      g+facet_wrap(~libelleFestival_NEW_VZ, nrow = length(ex)/6)+
+      g+facet_wrap(~libelleFestival_NEW_VZ, nrow = ceiling(length(ex)/6))+
       # geom_point( aes(YearEvent, target),data=vecs %>% select(-libelleFestival_NEW_VZ), inherit.aes = F,
       #             color="gray90", size=0.9)+
       geom_line(data=vex %>% filter(YearEvent>fromy, YearEvent<toy) %>% 
@@ -240,6 +240,25 @@ divyearplot = function(vecs, ex, shape=16, yl="", splitab=T, convert=T, networks
     return(g+theme(legend.position = "none"))
            }
   
+}
+
+
+sysplots = function(sysdiv, yl){
+  g=  ggplot(sysdiv,aes(YearEvent, sysdiv, color=ab))+
+    geom_line(position=position_dodge(width = 0.2))+
+    geom_errorbar(aes(ymin=slower, ymax=supper),width=0.1, linewidth=0.45,position=position_dodge(width = 0.2) )+
+    scale_x_continuous(breaks=2012:2021)+
+    scale_color_manual(values=c(abcols))+
+    theme_bw()+
+    theme(legend.position = 'none')+
+    theme(
+      panel.grid.minor.x  = element_blank(),
+       panel.grid.minor.y  = element_blank(),
+      plot.background = element_rect(color="white", fill="white"),
+      axis.title.x = element_blank()
+    )+
+    labs(y=yl)
+ return(g)
 }
 
 
@@ -383,7 +402,7 @@ gm = ggraph(gr, layout="manual", x=n2$xx, y=n2$yy  ) +
 ggsave("networkmap.png", gm, width=5000, height=2200, scale=0.6, units="px")
 
 
-# big force directed
+# big force directed, use that.
 gr = as_tbl_graph(graph_from_data_frame(e2, directed = F, vertices = nodelist %>% filter(EventID_VZ %in% c(e2$from,e2$to))))
 g = ggraph(gr  ) +
   geom_node_point(aes(color=YearEvent, size=nf)) +
@@ -640,11 +659,11 @@ gg(g)
 
 Possible alternative: if drama is main, add blue ring around point, but show secondary as main color.
 
-## Example count plots for explanation
 
-(will be something nicer soon)
 
 ```{r, eval=F}
+
+# Pipeline plots
 
 mains=levels(festgenrevecs$colorgenre) %>% head(-1)
 others = setdiff(
@@ -724,7 +743,7 @@ ggplot( mapping=aes(V1, V2, color=colorgenre))+
 
 ```
 
-## Diversity
+## * Diversity
 
 The diversity values are scaled into a range of \[0,1\], using the largest possible distance in the latent genre space as the scaling value (and multiplied by 2 in the case of internal diversity, as it's comparison to internal mean), and are thus interpretable.
 
@@ -745,9 +764,14 @@ divyearplot(festgenrevecs  %>% mutate(target=indiv, lower=ilower, upper=iupper),
             ex=exgenfests, yl="Internal genre diversity", convert=T, splitab=F, networkstats = F)
 
 
+sysplots(attr(festgenrevecs,"sysdivs"), yl="System internal genre diversity")
+
 divyearplot(festgenrevecs  %>% mutate(target=exdiv),ex=NULL, yl="External genre diversity", convert=convertplots, networkstats = F)
+
 divyearplot(festgenrevecs  %>% mutate(target=exdiv, lower=elower, upper=eupper), 
             ex=exgenfests, yl="External genre diversity", convert=convertplots, splitab=F, networkstats = F)
+
+
 
 ```
 
@@ -834,7 +858,7 @@ cat(attr(festlangvecs, "info"))
   NULL}  %>% gg()
 ```
 
-## Diversity
+## * Diversity
 
 Again, the diversity values are scaled into a range of \[0,1\], using the largest possible distance in the latent space (the interlanguage distances) as the scaling value, and are thus interpretable:
 
@@ -850,6 +874,8 @@ div2plot(festlangvecs, ex=NULL, convert=convertplots,  genrecols = langcols)
 divyearplot(festlangvecs  %>% mutate(target=indiv),ex=NULL, yl="Internal language diversity", convert=convertplots, networkstats = F)
 divyearplot(festlangvecs  %>% mutate(target=indiv, lower=ilower, upper=iupper), 
             ex=exlangfests, yl="Language diversity", convert=convertplots, splitab=F, networkstats = F)
+
+sysplots(attr(festlangvecs,"sysdivs"), yl="System internal language diversity")
 
 
 divyearplot(festlangvecs  %>% mutate(target=exdiv),
@@ -872,7 +898,7 @@ cat(attr(festcountryvecs, "info"))
 
 Note: since production location is at the precision of country, I'm using the coordinates of capital cities for all calculations here, with the exception of the US, where Los Angeles coordinates are used.
 
-## Diversity
+## * Diversity
 
 All in kilometers - these could in principle also be scaled (by the circumference of the globe divided by 2), but are probably more informative as real-valued statistics.
 
@@ -884,6 +910,8 @@ div2plot(festcountryvecs, ex=NULL, convert=convertplots,  genrecols = sixcols)
 divyearplot(festcountryvecs  %>% mutate(target=indiv),ex=NULL, yl="Internal geo diversity", convert=convertplots, networkstats = F)
 divyearplot(festcountryvecs  %>% mutate(target=indiv, lower=ilower, upper=iupper), 
             ex=exgeofests, yl="Internal geo diversity", convert=convertplots, splitab=F, networkstats = F)
+
+sysplots(attr(festcountryvecs,"sysdivs"), yl="System internal geo diversity")
 
 
 divyearplot(festcountryvecs  %>% mutate(target=exdiv),
@@ -1033,7 +1061,7 @@ g=ggplot(festrolevecs, mapping=aes(ratiopf, ratiodf, color=ratiof, shape=ab, siz
   theme(#legend.position = 'none',
         plot.background = element_rect( fill="white")
   )+
-  labs(x="Producers", y="Directors")
+  labs(x="Producers", y="Directors")+
   NULL
 
 if(convertplots){
@@ -1049,13 +1077,16 @@ if(convertplots){
 ```{r}
 divyearplot(festrolevecs  %>% mutate(target=ratiof),ex=NULL, yl="Average % of female producers & directors", convert=T, networkstats = F, ylims=c(0,1)) 
 
+sysplots(attr(festrolevecs,"sysdivs"), yl="System-wide weighted F2M ratios")+lims(y=c(0,1))
 
 divyearplot(festrolevecs  %>% mutate(target=ratiof, lower=ratiofmin, upper=ratiofmax),
             ex=exgenfests, yl="Female to male ratio", convert=convertplots, splitab=F, networkstats = F, ylims=c(0,1))
 
 ```
 
-Note the intervals are different here, being the min-max calculated based on the number of unknown/unidentifiable/unisex first names among directors and producers in a given festival. They are not the same as the 95% bootstrapped confidence intervals, and therefore less conservative.
+Note the intervals are different here, being the min-max calculated based on the number of unknown/unidentifiable/unisex first names among directors and producers in a given festival. They are not the same as the 95% bootstrapped confidence intervals, and therefore less conservative, but give an idea of the range the true ratio may lie in if we could identify all names. 
+
+Maybe should still also do the bootstrapped intervals here, and somehow take into account the min/max unidentified - some entries like the last Hot Docs are very small, so the ratio is not super reliable.
 
 
 ------------------------------------------------------------------------
