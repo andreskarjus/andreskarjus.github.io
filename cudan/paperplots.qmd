@@ -39,13 +39,14 @@ library(patchwork)
 library(visNetwork)
 library(rworldmap)
 library(scales)
+# library(lemon)
 
 load("C:/Users/Andres/korpused/publicvalue/cinando/cinandospaces.RData")
 load("C:/Users/Andres/korpused/publicvalue/cinando/cinandonetworks.RData")
 
 
 
-abcols= divergingx_hcl(6, palette="Zissou 1")[c(1,5)] %>% c("gray70")
+abcols= divergingx_hcl(6, palette="Zissou 1")[c(1,5)] %>% c("gray2")
 abshapes=c(16,4)
 
 sixgcols = c(divergingx_hcl(6, palette="Zissou 1") %>% {.[6]=darken(.[6],0.3);.},  "gray50") %>%
@@ -244,11 +245,14 @@ divyearplot = function(vecs, ex, shape=16, yl="", splitab=T, convert=T, networks
 
 
 sysplots = function(sysdiv, yl){
+  
   g=  ggplot(sysdiv,aes(YearEvent, sysdiv, color=ab))+
-    geom_line(position=position_dodge(width = 0.2))+
-    geom_errorbar(aes(ymin=slower, ymax=supper),width=0.1, linewidth=0.45,position=position_dodge(width = 0.2) )+
+    #geom_pointline(position=position_dodge(width = 0.25), distance=unit(10, "pt") )+
+    geom_line(data=sysdiv %>% filter(ab=="Both"), position=position_nudge(x = 0.25/3))+
+    geom_point(position=position_dodge(width = 0.25), size=0.5)+
+    geom_errorbar(aes(ymin=slower, ymax=supper),width=0.1, linewidth=0.45,position=position_dodge(width = 0.25) )+
     scale_x_continuous(breaks=2012:2021)+
-    scale_color_manual(values=c(abcols))+
+    scale_color_manual(values=c(abcols) %>% {.[1:2]=lighten(.[1:2],0.2);. })+
     theme_bw()+
     theme(legend.position = 'none')+
     theme(
@@ -419,6 +423,24 @@ g = ggraph(gr  ) +
 
 ggsave("yearnetwork2.png", g, width=5000, height=5000, scale=0.6, units="px")
 # write_csv(e2, "edgelist_nov22.csv")
+
+
+# grid
+gr = as_tbl_graph(graph_from_data_frame(e2, directed = F, vertices = nodelist))
+g = ggraph(gr ,layout = "grid"  ) +
+  geom_node_point(aes(color=YearEvent, size=nf)) +
+  #geom_node_text(aes(label=name)) +
+  geom_edge_arc(aes(color=coloryear, alpha=dist),  width=0.1, strength=0.04) +
+  scale_color_viridis(end=0.9)+
+  scale_edge_color_viridis(end=0.9)+
+  scale_edge_alpha(range=c(0.15, 0.5))+
+  scale_size(0.5, 1.5)+
+  theme_void()+
+  theme(legend.position = 'none',
+        plot.background = element_rect(color="white", fill="white")
+  )
+
+ggsave("g.png", g, width=5000, height=5000, scale=0.6, units="px")
 
 ```
 
@@ -1077,16 +1099,16 @@ if(convertplots){
 ```{r}
 divyearplot(festrolevecs  %>% mutate(target=ratiof),ex=NULL, yl="Average % of female producers & directors", convert=T, networkstats = F, ylims=c(0,1)) 
 
-sysplots(attr(festrolevecs,"sysdivs"), yl="System-wide weighted F2M ratios")+lims(y=c(0,1))
+sysplots(attr(festrolevecs,"sysdivs"), yl="System-wide weighted F2M ratios")+lims(y=c(0.2,0.45))
 
-divyearplot(festrolevecs  %>% mutate(target=ratiof, lower=ratiofmin, upper=ratiofmax),
+divyearplot(festrolevecs  %>% mutate(target=ratiof, lower=rfminboot, upper=rfmaxboot),
             ex=exgenfests, yl="Female to male ratio", convert=convertplots, splitab=F, networkstats = F, ylims=c(0,1))
 
 ```
 
-Note the intervals are different here, being the min-max calculated based on the number of unknown/unidentifiable/unisex first names among directors and producers in a given festival. They are not the same as the 95% bootstrapped confidence intervals, and therefore less conservative, but give an idea of the range the true ratio may lie in if we could identify all names. 
+These are now also bootstrapped 95% confidence intervals - the upper and lower take into account the uncertainty of the name-to-gender algorithm when bootstrapping the intervals. This of course makes for much larger intervals/more uncertainty, but that's the point, the samples are small *and* the ratios inside the samples are uncertain because some names cannot be desiced as M or F.
 
-Maybe should still also do the bootstrapped intervals here, and somehow take into account the min/max unidentified - some entries like the last Hot Docs are very small, so the ratio is not super reliable.
+In contract to previous result, for example the wide interval around the last Hot Docs reflects its small entry size: it looks like it has dropped at face value, but it's hard to be certain, as the sample is much smaller (and of course we don't know if it's because smaller festival or smaller entry). To further illustrate, it would be difficult to claim change in any of the 4 examples here, as all intervals overlap by a large margin.
 
 
 ------------------------------------------------------------------------
