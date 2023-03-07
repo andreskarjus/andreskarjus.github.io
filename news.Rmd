@@ -17,6 +17,8 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
+- Gave a talk about experiences of teaching digital skills, programming in R and data visualization, at the "Cross-university collaboration in Digital Humanities & Social Science (DHSS) and Digital Humanities & Cultural Heritage (DHCH) Education" workshop of the DHNB2023 conference | [slides](https://datafigure.eu/reports/AndresKarjusDatafigure_CrossUniversityDHworkshop.pdf)
+
 - Been doing a series of [workshops](https://twitter.com/AndresKarjus/status/1625844088023969792) at Tallinn University on the topic of ChatGPT, generative AI, what's coming and how it will be/is already affecting teaching and learning in the university and beyond. (15.02.2023)
 
 - New preprint "Quantifying public value creation by public service media using big programming data" [socarxiv](https://osf.io/preprints/socarxiv/hysma/)

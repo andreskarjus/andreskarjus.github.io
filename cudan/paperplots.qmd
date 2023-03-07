@@ -1223,5 +1223,11 @@ ggplot( aes(V1,V2,label=txtKind2, size=log(n)))+
 # Plots for paper
 
 ```{r}
+ggplot(data, aes(x=event))+
+  geom_hist()+
+  theme_bw()
+
+
+
 
 ```
