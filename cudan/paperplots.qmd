@@ -39,6 +39,7 @@ library(patchwork)
 library(visNetwork)
 library(rworldmap)
 library(scales)
+library(igraph)
 # library(lemon)
 
 load("C:/Users/Andres/korpused/publicvalue/cinando/cinandospaces.RData")
@@ -307,6 +308,11 @@ A listers are circles, B listers are crosses.
 
 ```{r}
 attr(nodelist, "info") %>% cat
+
+```
+
+```{r}
+graph_from_data_frame(e2, directed = F, vertices = nodelist) %>% ecount() %>% paste( "edges") %>% cat
 ```
 
 
@@ -1222,12 +1228,4 @@ ggplot( aes(V1,V2,label=txtKind2, size=log(n)))+
 
 # Plots for paper
 
-```{r}
-ggplot(data, aes(x=event))+
-  geom_hist()+
-  theme_bw()
 
-
-
-
-```
