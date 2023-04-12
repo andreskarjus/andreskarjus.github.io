@@ -40,24 +40,35 @@ library(visNetwork)
 library(rworldmap)
 library(scales)
 library(igraph)
+library(ggraph)
+library(tidygraph)
+library(PieGlyph)
 # library(lemon)
 
 load("C:/Users/Andres/korpused/publicvalue/cinando/cinandospaces.RData")
 load("C:/Users/Andres/korpused/publicvalue/cinando/cinandonetworks.RData")
 
+convertplots=T
 
 
-abcols= divergingx_hcl(6, palette="Zissou 1")[c(1,5)] %>% c("gray2")
+abcols= divergingx_hcl(6, palette="Zissou 1")[c(1,4)] %>% c("gray2") %>% desaturate(0.6) #%>% show_col
 abshapes=c(16,4)
 
-sixgcols = c(divergingx_hcl(6, palette="Zissou 1") %>% {.[6]=darken(.[6],0.3);.},  "gray50") %>%
-  {.[1]=lighten(.[1],0.4);.} %>% 
-  desaturate(0.07) %>% {.[c(2)]=darken(.[c(2)],0.1);.} 
-sixcols = c(divergingx_hcl(6, palette="Zissou 1") %>% {.[c(1)]=darken(.[c(1)],0.3);.}, "gray10",  "gray50") 
-langcols= c(divergingx_hcl(6, palette="Zissou 1")%>% {.[c(1)]=darken(.[c(1)],0.3);.}, "gray10",  "gray50")[c(1,3,5,6,7,8)] 
+sixgcols = c(divergingx_hcl(6, palette="Zissou 1") %>% {.[6]=darken(.[6],0.3);.},  "gray80") %>%
+  {.[1]=lighten(.[1],0.2);.} %>% {.[3] = "#03408f";.} %>% 
+  {.[c(2)]=darken(.[c(2)],0.1);.} %>% 
+  {.[c(1,4,2,5,3,6,7)]} # %>%  show_col
+sixcols = c(divergingx_hcl(6, palette="Zissou 1"), "gray10",  "gray80") %>% {.[c(1)]=lighten(.[c(1)],0.5);.} %>% {.[c(2)]=darken(.[c(1)],0.5);.} %>% {.[c(4)]=lighten(.[c(4)],0.2);.} %>% {.[7]=darken(.[1],0.75);.} # %>% show_col
+langcols= c(divergingx_hcl(6, palette="Zissou 1") %>% 
+              {.[c(1)]=darken(.[c(1)],0);.} %>% 
+              {.[7]=darken(.[1],0.6);.} ,  "gray80")[c(1,3,5,6,7,8)] #%>% show_col
 rolecols=divergingx_hcl(31, palette="Zissou 1")  %>% {c(.[1:2], "gray75", .[30:31])}
+matcols = (divergingx_hcl(8, palette="Zissou 1")[c(3,5,7)] %>% {.[1]=lighten(.[1],0.4);.} %>%  {.[3]=darken(.[3],0.95);.}) # %>% show_col
+netcols =(divergingx_hcl(5, palette="Zissou 1")[c(1,1,2,3)] %>% {.[1]=darken(.[1],0.5);.} %>%  {.[4]=lighten(.[4],0.45);.} ) %>% {c("#01033a", .)} #  %>% show_col
 
-convertplots=T
+
+
+
 
 
 # Festival_de_Cannes - Big 5 example (A)
@@ -70,12 +81,50 @@ convertplots=T
 exgenfests = c("Festival de Cannes", "Sundance", "Hot Docs Festival", "Sitges FF")
 exgeofests = c("Festival de Cannes", "Sundance", "Tokyo IFF", "Zurich FF")
 exlangfests=c("Festival de Cannes", "Sundance", "Busan IFF", "BAFICI")
+exrolefests = c("Festival de Cannes", "Sundance","SXSW",  "Berlinale - Berlin IFF")
+
+# gender examples TODO------- aside from Cannes and Sundance (and instead of Hot Docs and Sitges), could we please have SXSW for B and Berlinale for A
 
 
 allfests = nodelist %>% group_by(libelleFestival_NEW_VZ) %>% filter(n()>3) %>% pull(libelleFestival_NEW_VZ) %>% unique
 
 
-div2plot = function(vecs, ex=NULL, convert=T,  colorlab="Main", xlab="External diversity", ylab="Internal diversity", genrecols=sixcols){
+
+### functions ####
+
+
+
+
+dopies = function(vecs, tops=NULL){
+  mains=levels(vecs$colorgenre) 
+  if( !attr(vecs, "tops") %>% is.null){
+    tops = attr(vecs, "tops") 
+  }
+  pies = tops %>% 
+   left_join(vecs %>% filter(!duplicated(EventID_VZ)), by="EventID_VZ") %>% 
+   select(txtKind, s, EventID_VZ, libelleFestival_NEW_VZ, YearEvent, LibelleEvent_NEW_VZ)   %>% 
+  mutate(txtKind=case_when(txtKind%in%mains~txtKind, T~"other")) %>% 
+  group_by(EventID_VZ, txtKind) %>% 
+  summarise(s=sum(s), 
+            across(c(LibelleEvent_NEW_VZ, libelleFestival_NEW_VZ, YearEvent), first), )    %>% 
+  ungroup() %>% 
+  mutate(colorgenre2=fct_relevel(txtKind, mains)) %>% select(-txtKind) %>% 
+  arrange(colorgenre2)
+ 
+  pies2 = pivot_wider(pies , names_from = colorgenre2, values_from=s, values_fill=0 ) %>%
+  mutate(event=LibelleEvent_NEW_VZ) %>% 
+  group_by(libelleFestival_NEW_VZ) %>% 
+  arrange(YearEvent, .by_group = T) %>% 
+  ungroup
+  attr(pies2, "mains")=mains
+return(pies2)
+}
+
+
+
+
+
+div2plot = function(vecs, ex=NULL, convert=T,  colorlab="Main", xlab="Contributing diversity", ylab="Internal diversity", genrecols=sixcols, pies){
   # if(isgenre){
   #     vecs = vecs %>% arrange(YearEvent) %>% 
   #   mutate(colorgenre = 
@@ -111,12 +160,12 @@ div2plot = function(vecs, ex=NULL, convert=T,  colorlab="Main", xlab="External d
     #           size=0.2)+
     #scale_color_manual(values=abcols)+
     scale_color_manual(values=genrecols, name=colorlab)+
-    scale_shape_manual(values=abshapes, name="Festival\ntype")+
+    scale_shape_manual(values=abshapes, name="Festival")+
     scale_size_manual(values=c(2, 1.2), guide = "none")+
     labs(x=xlab, y=ylab)+
     theme_bw()+
     theme(#legend.position = 'left', 
-      panel.border = element_blank(),
+      #panel.border = element_blank(),
       panel.grid.minor.x = element_blank(),
       plot.background = element_rect(color="white", fill="white")
     )} 
@@ -127,7 +176,7 @@ div2plot = function(vecs, ex=NULL, convert=T,  colorlab="Main", xlab="External d
   }
 }
 
-divyearplot = function(vecs, ex, shape=16, yl="", splitab=T, convert=T, networkstats=T, ylims=NULL){
+divyearplot = function(vecs, ex, shape=16, yl="", splitab=T, convert=T, networkstats=T, ylims=NULL, genrecols=sixgcols, pies=NULL, nrowmod=6){
   if(splitab){
     vecs = vecs %>% mutate(YearEvent=case_when(ab=="A"~YearEvent-0.15,
                                                ab=="B"~YearEvent+0.15 )) %>% 
@@ -135,11 +184,12 @@ divyearplot = function(vecs, ex, shape=16, yl="", splitab=T, convert=T, networks
       mutate(series = substr(libelleFestival_NEW_VZ, 1,15))
     if(length(unique(vecs$libelleFestival_NEW_VZ)) != 
        length(unique(vecs$series))){ stop("shortening mismatch")}
+    vex=vecs
     g=ggplot(vecs , 
         aes(YearEvent, target, color=ab, shape=ab,  text=tool))
   } else {
      vex = vecs %>% 
-       filter(libelleFestival_NEW_VZ %in% ex) %>% 
+       filter(libelleFestival_NEW_VZ %in% ex, !is.na(target)) %>% 
        mutate(libelleFestival_NEW_VZ=fct_relevel(libelleFestival_NEW_VZ, ex))
      g=ggplot(vex , 
         aes(YearEvent, target, color=ab, shape=ab,  text=tool))
@@ -193,7 +243,8 @@ divyearplot = function(vecs, ex, shape=16, yl="", splitab=T, convert=T, networks
       panel.grid.major.x  = element_blank(),
        panel.grid.minor.x  = element_line(color="gray80"),
       plot.background = element_rect(color="white", fill="white"),
-      axis.title.x = element_blank()
+      axis.title.x = element_blank(),
+      axis.ticks.length = unit(0, "inch")
     )+
     labs(y=yl)
   # if(nrow( vecs %>% filter(libelleFestival_NEW_VZ%in%ex))>0){
@@ -211,7 +262,7 @@ divyearplot = function(vecs, ex, shape=16, yl="", splitab=T, convert=T, networks
       g=g+geom_errorbar(aes(ymin=lower, ymax=upper), color="gray40", width=0.1, size=0.45)
     }
     g=
-      g+facet_wrap(~libelleFestival_NEW_VZ, nrow = ceiling(length(ex)/6))+
+      g+facet_wrap(~libelleFestival_NEW_VZ, nrow = ceiling(length(ex)/nrowmod))+
       # geom_point( aes(YearEvent, target),data=vecs %>% select(-libelleFestival_NEW_VZ), inherit.aes = F,
       #             color="gray90", size=0.9)+
       geom_line(data=vex %>% filter(YearEvent>fromy, YearEvent<toy) %>% 
@@ -220,17 +271,35 @@ divyearplot = function(vecs, ex, shape=16, yl="", splitab=T, convert=T, networks
                 color="gray60", size=0.3
                 )+
       geom_point(data=vex, alpha=1, size=1.5, shape=16)+
-      scale_x_continuous(breaks=seq(2009,2021,3) )+
-      scale_y_continuous(limits=c( min(vecs$target), max(vecs$target) ))+
       theme(
        panel.grid.major.x  = element_line(color="gray95"),
        panel.grid.minor.x  = element_blank(),
-       legend.position = 'none'
+       panel.grid.minor.y  = element_blank(),
+       legend.position = 'none',
+       strip.text = element_text(hjust=0, margin=margin(0.5,0,0.5,1))
        )
+    
+    if(!is.null(pies)){
+      p = dopies(vex, pies)
+      m = attr(p, "mains")
+      vp = vex %>%  select(EventID_VZ, target,YearEvent,libelleFestival_NEW_VZ) %>% 
+        left_join(p %>% select(EventID_VZ, {{m}}),by="EventID_VZ")
+      g = g+ geom_pie_glyph(aes(YearEvent, target), data = vp, slices=m, radius=0.2, inherit.aes = F)+
+        scale_fill_manual(values=genrecols, breaks=m)
+      
+    }
   }
   
+  minx = min(vex$YearEvent, na.rm=T)
   if(!is.null(ylims)){
-    g=g+scale_y_continuous(limits = ylims)
+    g=g+
+      coord_cartesian(ylim = ylims, expand=F)+
+      scale_x_continuous(breaks=seq(minx+1,2020,3), limits=c(minx-0.4,2021+0.4 ) )
+  } else {
+    g=g+ scale_x_continuous(breaks=seq(minx+1,2020,3), expand = expansion(0.1,0) )+
+      scale_y_continuous(expand=c(0.05,0)
+        #limits=c( min(c(vecs$target, vecs$lower), na.rm=T), max(c(vecs$target, vecs$upper), na.rm=T )*1.001 )
+        )
   }
   
   
@@ -250,10 +319,12 @@ sysplots = function(sysdiv, yl){
   g=  ggplot(sysdiv,aes(YearEvent, sysdiv, color=ab))+
     #geom_pointline(position=position_dodge(width = 0.25), distance=unit(10, "pt") )+
     geom_line(data=sysdiv %>% filter(ab=="Both"), position=position_nudge(x = 0.25/3))+
-    geom_point(position=position_dodge(width = 0.25), size=0.5)+
+    geom_point(aes(shape=ab, size=ab), position=position_dodge(width = 0.25))+
     geom_errorbar(aes(ymin=slower, ymax=supper),width=0.1, linewidth=0.45,position=position_dodge(width = 0.25) )+
     scale_x_continuous(breaks=2012:2021)+
-    scale_color_manual(values=c(abcols) %>% {.[1:2]=lighten(.[1:2],0.2);. })+
+    scale_color_manual(values=abcols)+
+    scale_shape_manual(values=abshapes %>% c(1))+
+    scale_size_manual(values=c(0.6, 0.3, 0.7))+
     theme_bw()+
     theme(legend.position = 'none')+
     theme(
@@ -267,9 +338,15 @@ sysplots = function(sysdiv, yl){
 }
 
 
-gg=function(g){
-  ggplotly(g, tooltip="text") %>%  plotly::config(doubleClickDelay=500)
+gg=function(g, do=T){
+  if(do){
+    ggplotly(g, tooltip="text") %>%  plotly::config(doubleClickDelay=500)
+  } else{
+    g
+  }
 }
+
+pspacer=ggplot()+theme_void()+theme(plot.margin = margin(0,0,0,0))
 
 ```
 
@@ -412,23 +489,7 @@ gm = ggraph(gr, layout="manual", x=n2$xx, y=n2$yy  ) +
 ggsave("networkmap.png", gm, width=5000, height=2200, scale=0.6, units="px")
 
 
-# big force directed, use that.
-gr = as_tbl_graph(graph_from_data_frame(e2, directed = F, vertices = nodelist %>% filter(EventID_VZ %in% c(e2$from,e2$to))))
-g = ggraph(gr  ) +
-  geom_node_point(aes(color=YearEvent, size=nf)) +
-  #geom_node_text(aes(label=name)) +
-  geom_edge_arc(aes(color=coloryear, alpha=dist),  width=0.1, strength=0.04) +
-  scale_color_viridis(end=0.9)+
-  scale_edge_color_viridis(end=0.9)+
-  scale_edge_alpha(range=c(0.15, 0.5))+
-  scale_size(0.5, 1.5)+
-  theme_void()+
-  theme(legend.position = 'none',
-        plot.background = element_rect(color="white", fill="white")
-  )
 
-ggsave("yearnetwork2.png", g, width=5000, height=5000, scale=0.6, units="px")
-# write_csv(e2, "edgelist_nov22.csv")
 
 
 # grid
@@ -460,77 +521,86 @@ Leaving out the few unconnected festivals from this one for better layout. Zooma
 
 ## As a matrix
 
-Color is n shared films (edge strength). This is actually more informative than a network plot, as it easily shows both degree and strength for all pairs of festivals/nodes, while a network plot
-
--   hides information due to overlaps, such as long-distance links
--   can only effectively show degree (strength as edge weight is lost is the mess)
--   can create incidental visual artefacts that can mislead interpretation due to the semi-random layout.
-
-So tbh we should probably use a matrix instead, but I'm aware networks look aesthetically cooler, and that some of us have interest in having a network-person profile. So maybe a network and a matrix side by side, would that be useful...? Interactive networks are of course a bit better, as you can zoom into the mess (try above).
+Color is overlap between festival programmes, each row is a festival, cells show how much it (relative to itself) overlaps with past and future festivals.
 
 ```{r, fig.width=7, fig.width=7}
 hm=heatmaplist %>% 
+  #group_by(fromyear) %>%  arrange(-overlap, .by_group = T) %>%  mutate(y = as.factor((100*fromyear)+(1:n())) ) %>% 
   mutate(fillweight=log10(weight)) %>% 
-         mutate(tool=paste0(tolibelle, "\n", fromlibelle, "\nn=",weight, " dist=",dist ))
-hmy = hm %>% 
+  mutate(overlap2 = case_when(overlap==0 ~ NA, T~overlap)) %>% 
+         mutate(tool=paste0(fromlibelle,"\n",  
+                            tolibelle, 
+                            "\nn shared=",weight,
+                            "\n% overlap=",overlap, "\ntime dist=",dist ))
+  
+hmy = hm %>% # year labels
         arrange(tolibelle) %>% 
-          group_by(toyear) %>% 
+          filter(toyear>2011, fromyear>2011) %>% 
+          group_by(toyear ) %>% 
           filter(1:n()==round(n()/2)) %>% 
   mutate(fromlibelle=tolibelle)
-cls = sixcols[c(1,1,2,3)] %>% {.[1]=darken(.[1],0.6);.} %>% 
-                         {.[4]=lighten(.[4],0.5);.} %>% 
-  rev 
 
-{ggplot(hm , 
-       aes(fromlibelle, tolibelle, fill=weight, text=tool))+
-  coord_cartesian(expand=F)+
-  geom_tile(size=0)+
-  geom_text(aes(label=toyear, x=0), data=hmy, size=2, hjust=0,vjust=1, angle=90)+
-  geom_text(aes(label=toyear,x=fromlibelle, y=0), data=hmy, size=2, vjust=0)+
-  #scale_fill_viridis_c(end=0.9, na.value = "white")+
-    scale_fill_gradientn(colors = cls, na.value = "white", trans="log10", name="log\nstrength")+
-  theme_bw()+
-    theme(legend.position = 'none', 
-      panel.border = element_blank(),
-      panel.grid.minor.x = element_blank(),
-      plot.background = element_rect(color="white", fill="white"),
-      axis.title = element_blank(),
-      axis.text = element_blank(), # element_text(size=3),
-      axis.ticks = element_blank()
-     # axis.text.x = element_text(angle=90, hjust=1, vjust=1)
-    )} %>% ggplotly(tooltip = "text")
 
-# static
-ggplot(hm , 
-       aes(fromlibelle, tolibelle, fill=weight, text=tool))+
+# {ggplot(hm , 
+#        aes(tolibelle, fromlibelle, fill=overlap, text=tool))+
+#   coord_cartesian(expand=F)+
+#   geom_tile(size=0)+
+#   geom_text(aes(label=toyear, x=0), data=hmy, size=2, hjust=0,vjust=1, angle=90)+
+#   geom_text(aes(label=toyear,x=fromlibelle, y=0), data=hmy, size=2, vjust=0)+
+#   #scale_fill_viridis_c(end=0.9, na.value = "white")+
+#   #scale_fill_gradientn(colors = cls, na.value = "white", trans="log10", name="log\nstrength")+
+#   scale_fill_gradientn(colors = c("white",cls), na.value = "white",  name="overlap")+
+#   theme_bw()+
+#     theme(legend.position = 'none', 
+#       panel.border = element_blank(),
+#       panel.grid.minor.x = element_blank(),
+#       plot.background = element_rect(color="white", fill="white"),
+#       axis.title = element_blank(),
+#       axis.text = element_blank(), # element_text(size=3),
+#       axis.ticks = element_blank()
+#      # axis.text.x = element_text(angle=90, hjust=1, vjust=1)
+#     )} %>% ggplotly(tooltip = "text")
+
+fig_heatmap =  ggplot(hm %>% mutate(w=rescale(overlap2,to=c(1,1.3))) , 
+       aes(tolibelle, fromlibelle, 
+         fill=overlap2, text=tool))+
   coord_cartesian(expand=F)+
-  geom_tile(size=0)+
-  geom_text(aes(label=toyear, x=0), data=hmy, hjust=0,vjust=1, angle=90,size=3, 
-            color=viridis_pal(end = 0.9)(13))+
-  geom_text(aes(label=toyear,x=fromlibelle, y=0), data=hmy,vjust=0, size=3, 
-            color=viridis_pal(end = 0.9)(13))+
+  geom_tile(aes(height=w, width=w), size=0)+
+  geom_text(aes(label=toyear, x=0), data=hmy, hjust=0,vjust=1, angle=90,size=2.5)+ 
+            #color=viridis_pal(end = 0.9)(13))+
+  geom_text(aes(label=toyear,x=fromlibelle, y=0), data=hmy,vjust=0, size=2.5)+
+  
   #scale_fill_viridis_c(end=0.9, na.value = "white")+
   #scale_fill_gradientn(colors = cls, na.value = "white", trans="log10", name="log\nstrength")+
-  scale_fill_viridis_c(direction=-1,na.value = "white", option="magma", trans="log10", name="log\nstrength")+
+  # scale_fill_viridis_c(direction=-1,na.value = "white", option="magma", trans="log10", name="log\nstrength")+
+  scale_fill_gradientn(colors = matcols, na.value = "transparent",  name="Overlap %")+
+  annotate("text", -Inf, Inf, hjust=-2, vjust=1, label="C", fontface='bold')+
   theme_bw()+
-    theme(legend.position = c(0.9,0.3), 
+    theme(legend.position = c(0.94,0.22), 
       panel.border = element_blank(),
-      panel.grid.minor.x = element_blank(),
+      panel.grid = element_blank(),
       plot.background = element_rect(color="white", fill="white"),
       axis.title = element_blank(),
       axis.text = element_blank(), # element_text(size=3),
       axis.ticks = element_blank()
     )
 
+gg(fig_heatmap, convertplots)
+
+
 ```
+
+
+
 
 ## Temporally arranged network
 
 ![](C:/Users/Andres/Documents/yearnetworkab.png)
 
-Interactive nodes yearwise, with hover labels:
 
-```{r}
+
+```{r, eval=F}
+# Interactive nodes yearwise, with hover labels:
 gmp=ggplot(nodelist, aes(x, y,color=YearEvent,text=tool, shape=ab, size=ab))+
   geom_point( alpha=0.8) + 
   scale_x_continuous(breaks=2009:2021)+
@@ -545,11 +615,11 @@ plotly::ggplotly(gmp, tooltip="text")
 
 ```
 
-Probably not that useful:
+Network laid on on the world map according to event locations:
 
 ![](C:/Users/Andres/Documents/networkmap.png)
 
-# Network stats
+# Network statistics
 
 ## Degree
 
@@ -590,8 +660,9 @@ ggplot(nodelist %>% filter(YearEvent%in% 2015:2019) %>%
 ```
 
 
-Without any links, degree=0:
-```{r}
+
+```{r, eval=F}
+# Without any links, degree=0:
 nodelist %>% filter(degree==0)
 ```
 
@@ -635,7 +706,13 @@ divyearplot(nodelist  %>% mutate(target=lndegree, lower=NA, upper=NA),
 
 ```
 
-# Content types ("genres" in the database)
+
+
+
+
+
+
+# Thematic or content types
 
 ```{r}
 cat(attr(festgenrevecs, "info"))
@@ -654,7 +731,7 @@ Latent space of content/genre tag similarities is inferred directly from the dat
 
 #ux=prcomp(allvecs %>% select(starts_with("V")), center  = T, scale. = T)$x[,1:2] %>% as.data.frame() %>%cbind(allvecs %>% select(-starts_with("V"))) # %>% filter(PC1< 1, PC2 < 1, PC2 > -1) 
 
-g=ggplot( mapping=aes(V1, V2, color=colorgenre))+
+ggplot( mapping=aes(V1, V2, color=colorgenre))+
   geom_point(aes(shape=ab, text=tool), data=ugenre %>% filter(type=="festival"), size=2, fill=NA, alpha=0.6)+
   # geom_shadowtext(aes(label=firstkind, size=sizegen), 
   #                 data=ugenre %>% filter(type %in% c("genre")), 
@@ -679,14 +756,31 @@ g=ggplot( mapping=aes(V1, V2, color=colorgenre))+
     labs(title="Content type common latent space, UMAP projection")+
   NULL
 
-g
 
-gg(g)
+gg(g, convertplots)
 
 ```
 
-Possible alternative: if drama is main, add blue ring around point, but show secondary as main color.
 
+
+## Change over time
+
+As difference between consequtive years, in festivals with at least 11 iterations. Confidence interval interpretation same as above.
+
+```{r}
+ggplot(genrechangevals %>% group_by(libelleFestival_NEW_VZ) %>%
+         filter(n_distinct(EventID_VZ)>=10),
+       aes(YearEvent, dif, ymin=diflower, ymax=difupper))+
+  geom_point()+
+  geom_line()+
+  geom_errorbar(width=0)+
+  facet_wrap(~libelleFestival_NEW_VZ)+
+  theme_bw()
+
+#ggplot(genrechangevals, aes(indiv, dif))+geom_point()
+```
+
+------------------------------------------------------------------------
 
 
 ```{r, eval=F}
@@ -722,7 +816,7 @@ ggplot(tops, aes( x=s,y=libelleFestival_NEW_VZ, fill=colorgenre2))+
   theme_void()+
   theme(axis.title = element_blank(),
         legend.position = "none",
-        panel.border  = element_rect(size=0.5, color="gray10", fill=NA)
+        panel.border  = element_rect(linewidth=0.5, color="gray10", fill=NA)
         )+
   facet_wrap(~libelleFestival_NEW_VZ, strip.position="bottom", scales = "free", nrow=2)
   
@@ -771,7 +865,7 @@ ggplot( mapping=aes(V1, V2, color=colorgenre))+
 
 ```
 
-## * Diversity
+## Diversity
 
 The diversity values are scaled into a range of \[0,1\], using the largest possible distance in the latent genre space as the scaling value (and multiplied by 2 in the case of internal diversity, as it's comparison to internal mean), and are thus interpretable.
 
@@ -789,7 +883,7 @@ div2plot(festgenrevecs, ex=NULL, convert=convertplots, genrecols = sixgcols)
 divyearplot(festgenrevecs  %>% mutate(target=indiv),
             ex=NULL, yl="Internal genre diversity", convert=convertplots, networkstats = F)
 divyearplot(festgenrevecs  %>% mutate(target=indiv, lower=ilower, upper=iupper), 
-            ex=exgenfests, yl="Internal genre diversity", convert=T, splitab=F, networkstats = F)
+            ex=exgenfests, yl="Internal genre diversity", convert=convertplots, splitab=F, networkstats = F)
 
 
 sysplots(attr(festgenrevecs,"sysdivs"), yl="System internal genre diversity")
@@ -803,24 +897,7 @@ divyearplot(festgenrevecs  %>% mutate(target=exdiv, lower=elower, upper=eupper),
 
 ```
 
-## Change over time
 
-As difference between consequtive years, in festivals with at least 11 iterations. Confidence interval interpretation same as above.
-
-```{r}
-ggplot(genrechangevals %>% group_by(libelleFestival_NEW_VZ) %>%
-         filter(n_distinct(EventID_VZ)>=10),
-       aes(YearEvent, dif, ymin=diflower, ymax=difupper))+
-  geom_point()+
-  geom_line()+
-  geom_errorbar(width=0)+
-  facet_wrap(~libelleFestival_NEW_VZ)+
-  theme_bw()
-
-#ggplot(genrechangevals, aes(indiv, dif))+geom_point()
-```
-
-------------------------------------------------------------------------
 
 <br>
 
@@ -883,8 +960,9 @@ cat(attr(festlangvecs, "info"))
   theme(#legend.position = 'none',
     plot.background = element_rect( fill="white")
   )+
-  NULL}  %>% gg()
+  NULL}  %>% gg(convertplots)
 ```
+
 
 ## * Diversity
 
@@ -917,6 +995,9 @@ divyearplot(festlangvecs  %>% mutate(target=exdiv, lower=elower, upper=eupper),
 ------------------------------------------------------------------------
 
 <br> <br>
+
+
+
 
 # Geography
 
@@ -1053,6 +1134,61 @@ divyearplot(festcountryvecs  %>% mutate(target=eventdist, lower=edlower, upper=e
 
 ```
 
+
+
+## Distance between event and film production 
+
+Events in Europe, colored by average distance between event location and the production location of the programmed events
+
+```{r}
+# fc = festcountryvecs %>% filter(eventlong > -10, eventlong < 30, eventlat > 35, eventlat < 60)
+# 
+# fcvals = fc %>% mutate(txtCountryEvent_VZ=case_when(txtCountryEvent_VZ=="uk"~"united kingdom", T~txtCountryEvent_VZ)) %>% group_by(txtCountryEvent_VZ) %>% summarise(val=mean(eventdist,na.rm=T)) %>% ungroup %>% rename(id=txtCountryEvent_VZ) %>% select(id, val)
+# mp2 = mp %>% mutate(id=tolower(id)) %>% left_join(fcvals, by="id")
+  
+# attempt to scatter, but still all on capitals, not great.
+  # mutate(gr = paste(eventlong, eventlat)) %>% group_by(gr) %>%
+  # mutate(ng = log2(n())) %>% 
+  # mutate(eventlong2=case_when(
+  #   n()<= 3 ~eventlong, 
+  #   T~eventlong+
+  #     (rep( seq(-floor(ng[1])/2, ceiling(ng[1])/2, length.out=ceiling(ng[1])), each=round(ng[1]) )[1:n()]/3 )
+  #   ) ) %>% 
+  # mutate(eventlong2=case_when(is.na(eventlong2)~eventlong, T~eventlong2))
+
+# ggplot()+
+#   coord_fixed(xlim=c(min(fc$eventlong+1), max(fc$eventlong)+1),
+#               ylim=c(min(fc$eventlat-1), max(fc$eventlat)+1)
+#     )+
+#   geom_polygon(aes(long, lat, fill=val, group = group), data=mp2, inherit.aes = F, color="gray50",  size=0.1)+
+#   #geom_beeswarm(aes(eventlong, eventlat, shape=ab, color=ab, text=tool), fc,alpha=0.8, groupOnX = F, cex = 0.1) + #,position=position_jitter(1,1))
+#     theme_void()+
+#   theme(legend.position = 'none',
+#         plot.background = element_rect(fill="white"),
+#         panel.border = element_rect(color="black", fill=NA)
+#   )
+
+
+
+{ggplot()+
+  coord_fixed(#xlim=c(min(filmcountryvecs$long+1), max(filmcountryvecs$long)+1),
+               #   ylim=c(min(filmcountryvecs$lat-1), max(filmcountryvecs$lat)+1)
+    )+
+  geom_polygon(aes(long, lat, group = group), data=mp, inherit.aes = F, color="gray50", fill=NA, size=0.1)+
+  geom_point(aes(eventlong, eventlat, shape=ab, color=ab, text=tool), festcountryvecs,alpha=0.8, position=position_jitter(5,5))+
+  scale_size_manual(values=c(0.8,0.4))+
+    scale_shape_manual(values=abshapes)+
+    scale_color_manual(values = abcols)+
+  #scale_fill_gradientn(colors=c("gray99", sequential_hcl(palette="Lajolla", 50)) %>% darken(0.2) )+
+  theme_void()+
+  theme(legend.position = 'none',
+        plot.background = element_rect(fill="white"),
+        panel.border = element_rect(color="black", fill=NA)
+  )} %>%  ggplotly() %>% {.$x$data[[1]]$hoverinfo="none";.} 
+
+```
+
+
 ##  Comparison of language and production country (internal) diversity
 
 Interestingly correlates only weakly (R2=0.096, p\<0.0001).
@@ -1130,13 +1266,28 @@ Simple binomial logistic regression model predicting linkage (at least 1 film sh
 -   Event time distance is more of a control, as we know films circulate for a few years usually (the negative $\beta$ coefficient estimate means that the more the two festivals are apart in time, the less likely they are to share films - makes sense).
 -   The class categorical variable baseline is that the pair is of different type, so if both are A and A, they are more likely to share a film; if both are B, then they are less likely to share (note the imbalance though, theres more all sorts of B fests)
 -   All the other distances are also negative: e.g. the more the mean content/genre vectors differ (higher content distance), the less likely they are to share films (again makes sense).
--   The only one is event location distance - here, festivals are more likely to share films if they are *further* away from each other - I suppose filmmakers wnat to travel the world with their films, and not stick to the same region? But this effect may also vary between regions themselves, or content types, or who knows what else (which could be further modelled and measured of course).
+-   The only one is event location distance - here, festivals are more likely to share films if they are *further* away from each other - I suppose filmmakers want to travel the world with their films, and not stick to the same region? But this effect may also vary between regions themselves, or content types, or who knows what else (which could be further modelled and measured of course).
 
 Given suitable hypotheses, could also test interactions. Importantly, this modelling is all based on festival means, and individual films are not taken into account - but it could also be done this way, to model the likelyhood that a pair of films share a festival (instead of a pair of festivals sharing a film), which might make more sense.
 
 ```{r}
-glm(linked~timedist+class+genre+lang+geomean+eventloc+eventfilmdist,family = "binomial", 
-        data=linkdat %>% select(-weight) %>% {.[complete.cases(.),]} ) %>% summary %>% print
+library(rms)
+options(scipen=999)
+# linkdat = linkdat %>% mutate(class2 = case_match(class, ))
+table(linkdat$linked)
+glm(linked~timedist+ eventdist+ class ,family = "binomial", 
+        data=linkdat %>% select(-weight) %>% {.[complete.cases(.),]} %>% 
+      mutate(class2=relevel(as.factor(class), "_bothBB"))
+    ) %>% summary %>% print
+lrm(linked~timedist+ eventdist+ class , data=linkdat)
+# glm(linked~timedist+ eventdist* class ,family = "binomial", 
+#         data=linkdat %>% select(-weight) %>% {.[complete.cases(.),]} %>% 
+#       mutate(class2=relevel(as.factor(class), "_bothBB"))
+#     ) %>% summary %>% print
+
+# 151526 + 11780 
+
+
 
 ```
 
@@ -1144,13 +1295,40 @@ glm(linked~timedist+class+genre+lang+geomean+eventloc+eventfilmdist,family = "bi
 
 ##  What predicts number of shared films
 
-Or strength of edges, for festivals that share at least 2 films. Dependent variable is logged - but it's a strong power law kind of thing, so linear model assumptions are not exactly met i.e. this is a bit wonky. Interpretation similar to above, here negative coefficient estimate means negative, positive means positive correlation to number of shared films.
+Or strength of edges, for festivals that share at least 2 films. Poisson regression, since it's counts, and loglinear. Interpretation similar to above, here negative coefficient estimate means negative, positive means positive correlation to number of shared films.
 
 ```{r}
-lm(log(weight)~timedist+class+genre+lang+geomean+eventloc+eventfilmdist, 
-        data=linkdat %>% filter(!is.na(weight), weight>1, weight<40) %>% {.[complete.cases(.),]} ) %>% summary %>% print
+m = glm(weight~timedist+eventdist+class, 
+        data=linkdat %>% filter(weight>0) %>% {.[complete.cases(.),]},
+    family = poisson(link = "log")
+    ) 
+m %>% summary %>% print
+
+# Mcfadden's:
+1 - ( 
+      as.numeric(logLik(glm(weight~timedist+eventdist+class, 
+        data=linkdat %>% filter(weight>0) %>% {.[complete.cases(.),]},
+    family = poisson(link = "log")))) /
+      
+      as.numeric(logLik(glm(weight~1, 
+        data=linkdat %>% filter(weight>0) %>% {.[complete.cases(.),]},
+    family = poisson(link = "log")))) 
+      )
+
 ```
    
+   
+This can also be thought of as a directed network, and we can model how much the prorgamme of one festivals duplicated the other; this is just a linear regression model. Temporal distance is relative here too. Here links both ways are included, hence more degrees of freedom. 
+
+```{r}
+lm(overlap~timedist+eventdist+class, 
+        data=linkdat2
+    ) %>% summary %>% print
+```
+
+
+
+
 
 ## Compare all festival metrics + Is sundance more like A or B?
 
@@ -1226,6 +1404,507 @@ ggplot( aes(V1,V2,label=txtKind2, size=log(n)))+
         )
 ```
 
+
 # Plots for paper
+
+## Networks
+
+```{r paper1, eval=F}
+# for paper
+
+hm=heatmaplist %>% 
+  #group_by(fromyear) %>%  arrange(-overlap, .by_group = T) %>%  mutate(y = as.factor((100*fromyear)+(1:n())) ) %>% 
+  mutate(fillweight=log10(weight)) %>% 
+  mutate(overlap2 = case_when(overlap==0 ~ NA, T~overlap)) %>% 
+         mutate(tool=paste0(fromlibelle,"\n",  
+                            tolibelle, 
+                            "\nn shared=",weight,
+                            "\n% overlap=",overlap, "\ntime dist=",dist ))
+  
+hmy = hm %>% # year labels
+        arrange(tolibelle) %>% 
+          filter(toyear>2011, fromyear>2011) %>% 
+          group_by(toyear ) %>% 
+          filter(1:n()==round(n()/2)) %>% 
+  mutate(fromlibelle=tolibelle)
+
+fig_heatmap =  ggplot(hm %>% mutate(w=rescale(overlap2,to=c(1,1.3))) , 
+       aes(tolibelle, fromlibelle, 
+         fill=overlap2, text=tool))+
+  coord_cartesian(expand=F)+
+  geom_tile(aes(height=w, width=w), size=0)+
+  geom_text(aes(label=toyear, x=0), data=hmy, hjust=0,vjust=1, angle=90,size=2.5)+ 
+            #color=viridis_pal(end = 0.9)(13))+
+  geom_text(aes(label=toyear,x=fromlibelle, y=0), data=hmy,vjust=0, size=2.5)+
+  
+  #scale_fill_viridis_c(end=0.9, na.value = "white")+
+  #scale_fill_gradientn(colors = cls, na.value = "white", trans="log10", name="log\nstrength")+
+  # scale_fill_viridis_c(direction=-1,na.value = "white", option="magma", trans="log10", name="log\nstrength")+
+  scale_fill_gradientn(colors = matcols, na.value = "transparent",  name="Overlap %")+
+  annotate("text", -Inf, Inf, hjust=-2, vjust=1, label="C", fontface='bold')+
+  theme_bw()+
+    theme(legend.position = c(0.94,0.22), 
+      panel.border = element_blank(),
+      panel.grid = element_blank(),
+      plot.background = element_rect(color="white", fill="white"),
+      axis.title = element_blank(),
+      axis.text = element_blank(), # element_text(size=3),
+      axis.ticks = element_blank()
+    )
+
+
+
+# big force directed, use that.
+gr = as_tbl_graph(graph_from_data_frame(e2, directed = F, vertices = nodelist %>% filter(EventID_VZ %in% c(e2$from,e2$to)) %>% mutate(nsize=case_when(ab=="A"~lndegree*1.3, T~lndegree)) )) # adjust for glyph difference
+fig_network = ggraph(gr  ) +
+  geom_node_point(aes(color=YearEvent, size=nsize, shape=ab)) +
+  #geom_node_text(aes(label=name)) +
+  geom_edge_arc(aes(color=coloryear, alpha=dist),  width=0.1, strength=0.04) +
+  #scale_color_viridis(end=0.9)+
+  #scale_edge_color_viridis(end=0.9)+
+  scale_color_gradientn(colors=netcols, name="Year", 
+                        breaks=seq(2009,2021,4), 
+                        labels=seq(2009,2021,4) %>% substr(3,4) %>% paste0("'",.)
+                          )+
+  scale_edge_color_gradientn(colors=netcols, guide="none")+
+  scale_edge_alpha(range=c(0.15, 0.5), guide="none")+
+  scale_shape_manual(values=abshapes, guide="none")+
+  scale_size(range=c(0.2,1.2),  guide="none")+
+  scale_x_continuous(expand=expansion(0.02,0))+
+  scale_y_continuous(expand=expansion(0.01,0))+
+  #coord_flip()+
+  #annotate("text", -Inf, Inf, hjust=0, vjust=1, label="A", fontface='bold')+
+  theme_void()+
+  labs(tag="A")+
+  theme(plot.tag=element_text(face = "bold",hjust=0,vjust=1, margin=margin(0,-9,-10,0)))+
+  theme(legend.position = c(0.94,0.22), 
+        plot.margin = margin(0,0,0,0),
+        plot.background = element_rect(color="white", fill="white")
+  )
+
+#ggsave("fig_heatmap.pdf", fig_network+fig_heatmap,width=10,height=5, scale=1)
+
+
+
+
+fig_netbee = ggplot(nodelist %>% filter(YearEvent%in%(2015:2019)), 
+                    aes(x=as.factor(ab) %>% as.numeric , group=as.factor(ab) %>% as.numeric, color=ab,shape=ab,size=ab, y=lndegree))+
+  #geom_boxplot(fill=NA, color="gray30", width=0.2)+
+  geom_violin(fill=NA, color="gray50", size=0.1,scale="count", width=1.7, bw=0.9)+
+  geom_beeswarm(cex = 3,priority = "random", color="gray50")+
+  stat_summary(na.rm=T, shape="-", color="black", fun = median, size=2)+
+  scale_shape_manual(values=abshapes)+
+  scale_color_manual(values=abcols)+
+  scale_size_manual(values=c(0.6,0.3))+
+  coord_cartesian(xlim=c(0.6,2.4), expand=T)+
+  scale_x_continuous(breaks=1:2,, labels=c("A", "B"))+
+  labs(title = expression(paste(bold("B"), " Norm. degree")))+
+  scale_y_continuous(expand=expansion(0.01,0))+
+  theme_bw()+
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        axis.title = element_blank(),
+        plot.margin = margin(1,0,1,1),
+        plot.title = element_text(size=8, margin=margin(0,0,0,0)),
+        legend.position = "none",
+        axis.text.x = element_text(size=6, margin=margin(-1,0,0,0), vjust=1),
+        axis.text.y = element_text(size=6, margin=margin(0,-1,0,0), hjust=1),
+        axis.ticks = element_blank()
+        )
+
+ggsave("fig_heatmap.pdf",
+       (fig_network+inset_element(fig_netbee, 0.79,0.69,1,1))+(pspacer)+fig_heatmap+plot_layout(nrow=1, widths=c(1,0.015,1))+plot_annotation( theme = theme(plot.margin = margin(0,1,0,0))),
+       width=10,height=4.2, scale=1)
+
+
+# ggsave("yearnetwork2.png", g, width=5000, height=5000, scale=0.6, units="px")
+# write_csv(e2, "edgelist_nov22.csv")
+
+```
+
+## Latent spaces
+
+```{r paper2, eval=F}
+# Big UMAP for thematic space + change plots, and the second, language & geo plot
+#
+pies2 = dopies(festgenrevecs) %>% left_join(ugenre %>% filter(type=="festival") %>% select(V1,V2,event,ab), by="event")
+
+exchange =  c("Berlinale - Berlin IFF", "Sundance", "Venice - Biennale", "Busan IFF", "Toronto - TIFF", "Tallinn Black Nights IFF")
+
+plot.new()# just makes the spline work
+fig_thematic = ggplot(pies2, aes(V1, V2))+
+  geom_pie_glyph(radius=0.16, slices=attr(pies2, "mains"))+
+  geom_point(aes(text=tool), data=ugenre %>% filter(type=="festival", ab=="A"), 
+             size=0.5, fill=NA, alpha=0.9, color="black", shape=16)+
+   geom_path(data=pies2 %>% ungroup %>%  filter(libelleFestival_NEW_VZ==exchange[1]) %>% select(V1, V2) %>% xspline(shape=-0.2, lwd=2, draw=F) %>% data.frame() %>% rename(V1=x,V2=y) , linewidth=0.5, arrow=arrow(angle=25, length=unit(0.06, "inch"), type="closed"), color="gray10", alpha=0.5)+
+  #geom_point(aes(color=colorgenre), data=ugenre %>% filter(type=="film"), size=0.2, fill=NA,show.legend = FALSE)+
+  geom_text_repel(aes(label=event,color=colorgenre, size=sizegen %>% log),
+                  data=ugenre %>%
+                    filter(type %in% c("genre", "film")) %>%
+                    group_by(type) %>%
+                    filter(type=="genre" | (type=="film" & ( (1:n()) %in% c(15,7, 8, 10, 23, 5)) ) )
+                    #mutate(event=case_when(type=="film"~as.character(1:n()), T~type))
+                    ,
+            lineheight=0.55,
+            alpha=0.9, hjust=1,
+            bg.color=alpha("white", 0.7),
+            show.legend = FALSE, max.overlaps=1000,
+            box.padding = 0.2, point.padding = 10, min.segment.length = 999,
+            force_pull=0.1,force=2,  max.time = 2)+
+  scale_size(range=c(2.8,3.6), guide="none")+
+  #scale_radius_manual(values=c(0.2, 0.14), guide="none")+
+  #scale_shape_manual(values=abshapes, name="Festival\ntype")+
+ 
+  #annotate("text", -Inf, Inf, hjust=0, vjust=1, label="A", fontface='bold')+
+  
+  scale_fill_manual(values=sixgcols, name="", breaks=attr(pies2, "mains") )+
+  scale_color_manual(values=sixgcols, guide="none", breaks=attr(pies2, "mains") )+
+  scale_x_continuous(expand=c(0.01,0))+
+  scale_y_continuous(expand=c(0.01,0))+
+  theme_void()+
+  labs(tag="A")+
+  theme(plot.tag=element_text(face = "bold",hjust=0,vjust=1, margin=margin(0,-9,-10,0)))+
+  theme(legend.position = c(0.75,0.2),
+        plot.background = element_rect( fill="white")
+  )
+
+
+fig_change = divyearplot(genrechangevals %>% 
+              mutate(target=dif, lower=diflower, upper=difupper), 
+            ex=exchange, 
+            yl="Yearly change", ylims = c(-0.005,0.09),
+            convert=convertplots, splitab=F, networkstats = F, 
+            genrecols = sixgcols, 
+            pies=attr(festgenrevecs, "tops"),
+            nrowmod=1
+            )+
+  scale_y_continuous(breaks=c(0,0.04,0.08))+
+  geom_path(aes(YearEvent, target), data=genrechangevals %>%
+              filter(libelleFestival_NEW_VZ==exchange[1]) %>%  
+              mutate(target=dif), inherit.aes=F)+
+  labs(tag="B")+
+  theme(plot.tag=element_text(face = "bold",hjust=1,vjust=1, margin=margin(-5,-9,-11,0)), 
+        plot.margin = margin(1,1,0,0))+theme(axis.title.y=element_blank())
+
+
+## save
+
+ggsave("fig_thematic_map.pdf", fig_thematic+pspacer+fig_change+plot_layout(widths  = c(0.8,0.01,0.2)), width=10,height=5)
+
+
+
+# other 2 maps
+
+piesg = dopies(festcountryvecs) %>% left_join(festcountryvecs %>%  select(long,lat,EventID_VZ,ab), by="EventID_VZ")
+
+fig_world = ggplot()+
+  #geom_text(aes(V1, V2, color=colorgenre,label=libelleFestival_NEW_VZ), data=ulang %>% sample_n(30), size=3, show.legend = F, inherit.aes = F, alpha=0.9)+
+  geom_polygon(mapping= aes(long, lat, group = group), data=mp, inherit.aes = F, color="gray80", fill=NA, size=0.1)+
+  geom_pie_glyph(aes(long, lat), radius=0.13, data=piesg, slices=attr(piesg, "mains"))+
+  geom_point(aes(long, lat), data=festcountryvecs %>% filter(ab=="A")
+             , size=0.4, color="black")+
+  #scale_size(range=c(0.3,0.1), guide="none")+
+  #scale_radius_manual(values=c(0.16, 0.12), guide="none")+
+  #scale_shape_manual(values=c(16,3), name="Festival\ntype")+
+  scale_fill_manual(values=sixcols, 
+    name="", breaks=levels(festcountryvecs$colorgenre)
+                     )+ # add breaks if multiple geoms
+  coord_cartesian(xlim=range(festcountryvecs$long)*1.01, ylim=range(festcountryvecs$lat)*1.03,expand=F)+
+  theme_void()+
+  labs(tag="A")+
+  theme(plot.tag=element_text(face = "bold",hjust=0,vjust=1, margin=margin(0,-9,-10,0)))+
+  theme(legend.position = c(0.08,0.27),
+        legend.background = element_rect(color="transparent", fill="transparent"),
+    plot.background = element_rect( fill="white"),
+    axis.text = element_text(size=3.8)
+  )+
+  NULL
+fig_eu = fig_world+coord_cartesian(xlim=c(-15, 25), ylim=c(30,51.5))+
+  theme(#axis.text = element_blank(), 
+        legend.position = "none")+labs(tag=NULL)
+
+fig_eventmap = ggplot(festcountryvecs %>%  # small event location inset
+                        group_by(paste(eventlong, eventlat)) %>% 
+                        mutate(eventlong=eventlong+runif(n(), -log(n()), log(n()) )) %>% 
+                        mutate(eventlat=eventlat+runif(n(), -log(n()), log(n()) ))
+                        )+
+   coord_cartesian(xlim=range(festcountryvecs$eventlong)*1.05, ylim=range(festcountryvecs$eventlat)*1.07,expand=F)+
+  geom_polygon(mapping= aes(long, lat, group = group), data=mp, inherit.aes = F, color="gray80", fill=NA, size=0.2)+
+  geom_point(aes(eventlong, eventlat), festcountryvecs,alpha=0.2, position=position_jitter(3,3), color="black", size=1)+
+  theme_void()+
+  labs(tag="B")+
+  theme(plot.tag=element_text(face = "bold",hjust=0,vjust=1, margin=margin(0,-9,-10,0)))+
+  theme(legend.position = 'none',
+        plot.background = element_rect(fill="white")
+        )
+        
+
+fig_geomap = fig_world+inset_element(fig_eu, 0.55,0,1,0.5, align_to = "full")+
+  inset_element(fig_eventmap, 0.8,0.8,1,1, align_to = "full")
+
+
+
+
+piesl = dopies(festlangvecs) %>% left_join(ulang %>%  select(V1,V2,EventID_VZ,ab), by="EventID_VZ")
+
+fig_langmap = ggplot(piesl, mapping=aes(V1, V2))+
+  #geom_text(aes(V1, V2, color=colorgenre,label=libelleFestival_NEW_VZ), data=ulang %>% sample_n(30), size=3, show.legend = F, inherit.aes = F, alpha=0.9)+
+  geom_pie_glyph(radius=0.16,data=piesl, slices=attr(piesl, "mains"))+
+  
+  geom_point(aes( text=tool), data=ulang %>% filter(ab=="A") , size=0.6, color="black")+
+  #scale_size(range=c(0.3,0.1), guide="none")+
+  #scale_radius_manual(values=c(0.16, 0.12), guide="none")+
+  #scale_shape_manual(values=c(16,3), name="Festival\ntype")+
+  scale_fill_manual(values=langcols, 
+    name="", breaks=levels(ulang$colorgenre)
+                     )+ # add breaks if multiple geoms
+  theme_void()+
+  labs(tag="C")+
+  theme(plot.tag=element_text(face = "bold",hjust=0,vjust=1, margin=margin(0,-9,-10,0)))+
+  scale_x_continuous(expand=c(0.005,0))+
+  theme(legend.position = c(0.07,0.28),
+        legend.background = element_rect(color="transparent", fill="transparent"),
+    plot.background = element_rect( fill="white")
+  )+
+  NULL
+
+ggsave("fig_geolang_map.pdf", 
+       fig_geomap+
+      (pspacer)+
+         fig_langmap+plot_layout(heights = c(0.55,0.005, 0.45)), width=10,height=7)
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+```{r, eval=F}
+# diversity plot now: all fests as a/b only as a small facet left of the 4 examples
+
+# content space with change plots
+
+lm(indiv~ab, festlangvecs, weights=nf) %>% summary()
+lm(indiv~ab, festlangvecs, weights=nf) %>% summary()
+ 
+lm(ratiofmin~ab, festrolevecs) %>% summary()
+lm(ratiofmax~ab, festrolevecs) %>% summary()
+lm(ratiof~ab, festrolevecs, weights=nf) %>% summary() # gender
+
+# prod vs dir gender
+ggplot(festrolevecs)+
+  geom_boxplot(aes(ratiopf,1))+
+  geom_boxplot(aes(ratiodf,2))
+
+festrolevecs %>% mutate(dif=ratiopf-ratiodf) %>% lm(dif~1, data=., weights=nf) %>% summary
+
+festrolevecs %>% filter(grepl("SXSW", libelleFestival_NEW_VZ) ) %>% as.data.frame() %>% arrange(YearEvent)
+
+festrolevecs %>% filter(grepl("Sundance", libelleFestival_NEW_VZ) ) %>% as.data.frame() %>% arrange(YearEvent)
+
+attr(festrolevecs, "sysdivs")
+
+library(lme4)
+
+dat = fesfilm2 %>% 
+    rename(nsort=nroles) %>%  # variable passing now works
+    mutate(tmp=paste0(TitleVA, "_", YearOfProduction )) %>% 
+    group_by(EventID_VZ) %>%   # for duplicate film removal
+    arrange(desc(nsort), is.na(YearOfProduction), .by_group = T) %>%  # prefer more complete entries
+    filter(!duplicated(tmp)) %>%  # remove duplicate films within event (works, w ungroup fewer rows)
+    group_by(EventID_VZ) %>% filter(n()>=15) %>% 
+    ungroup() %>% 
+    left_join(filmrole, by = "refFilm", multiple = "all") %>% 
+  filter(txtKind!="other") %>% 
+    group_by(EventID_VZ) %>% 
+      mutate(nf=n_distinct(refFilm)) %>% 
+       filter(nf>=15) %>% 
+  mutate(txtKind=as.factor(txtKind), txtType=as.factor(txtType))
+
+m = glmer(txtType ~ txtKind + (1+txtType|EventID_VZ), dat, family = "binomial")
+
+
+```
+
+
+
+
+
+## Diversity
+
+
+
+```{r, eval=F}
+tags=function(g, x="", m=margin(0,-9,-10,0)){
+  g+labs(tag=x)+
+  theme(plot.tag=element_text(face = "bold",hjust=0,vjust=1, margin=m))
+}
+
+
+plotbees = function(vecs, tag, tlab="", col=NULL, cex=3, vw=1.7){
+  g=ggplot(vecs, aes(x=as.factor(ab) %>% as.numeric , group=as.factor(ab) %>% as.numeric, color=ab,y=target))+
+  #geom_boxplot(fill=NA, color="gray30", width=0.2)+
+  geom_violin(fill=NA, color="gray50", size=0.1,scale="count", width=vw)
+  
+  if(is.null(col)){
+    g=g+geom_beeswarm(aes(color=ab), cex = cex,priority = "random",size=0.5)
+  } else {
+    g=g+geom_beeswarm(color=col, cex = cex,priority = "random",size=0.5)
+  }
+  
+  g=g+stat_summary(na.rm=T, shape="-", color="black", fun = median, size=2)+
+  #scale_shape_manual(values=abshapes)+
+  scale_color_manual(values=abcols)+
+  scale_size_manual(values=c(0.6,0.3))+
+  coord_cartesian(xlim=c(0.6,2.6), expand=T)+
+  labs(title = expr(paste(bold(!!tag), !!tlab)))+
+  scale_x_continuous(breaks=1:2, labels=c("A", "B"))+
+  scale_y_continuous(expand=expansion(0.01,0))+
+  theme_bw()+
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        axis.title = element_blank(),
+        plot.margin = margin(1,1,1,1),
+        plot.title = element_text(size=8, margin=margin(0,0,0,0)),
+        legend.position = "none",
+        axis.text.x = element_text(size=6, margin=margin(-1,0,0,0), vjust=1),
+        axis.text.y = element_text(size=6, margin=margin(0,-1,0,0), hjust=1),
+        axis.ticks = element_blank()
+        )
+}
+
+
+  
+
+
+fig_g1=ggplot(festrolevecs, mapping=aes(ratiopf, ratiodf, color=ratiof, shape=ab, size=ab, text=tool))+
+  geom_vline(xintercept = 0.5)+
+  geom_hline(yintercept = 0.5)+
+  geom_point()+
+  scale_size_manual(values =c(1.4,0.8)*1.2, guide="none")+
+  scale_shape_manual(values=abshapes, name="Festival\ntype")+
+  scale_color_gradientn(colours =rolecols, name="Fraction\nwomen", limits=c(0,1))+
+  theme_bw()+
+  theme(#legend.position = 'none',
+        plot.background = element_rect( fill="white"),
+        plot.margin = margin(1,2,-5,0)
+  )+
+  labs(x="Producers", y="Directors")
+
+fig_gendersys = sysplots(attr(festrolevecs,"sysdivs"), yl="Circuit-wide weighted fraction of women")+lims(y=c(0.2,0.45))+ theme(legend.position = c(0.75,0.1),legend.direction = "horizontal", legend.title = element_blank())
+
+fig_gex = divyearplot(festrolevecs  %>% mutate(target=ratiof, lower=rfminboot, upper=rfmaxboot),
+            ex=exrolefests, yl="% of women", convert=convertplots, splitab=F, networkstats = F, ylims=c(0,0.59), nrowmod = 2)+theme(axis.title = element_blank())
+
+fig_gender = tags(fig_g1, "A", margin(0,-11,-10,0)) + 
+  (tags(fig_gendersys,"B")+inset_element(
+           plotbees(festrolevecs %>% mutate(target=ratiof), "C", "") , 
+           0.02,0.6,0.4,0.98 ))+
+  tags(fig_gex, "D")+plot_annotation(theme=theme(plot.margin = margin(0,0,-5,0)))+
+  plot_layout(widths = c(0.8,1.1, 0.9))
+
+ggsave("fig_gender.pdf", fig_gender, width=10,height=4)
+
+
+```
+
+
+
+
+```{r, eval=F}
+# thematic
+
+tbees = 
+  plotbees(festgenrevecs %>% mutate(target=indiv), "C", tlab=" Internal", col="gray50", cex=2.8, vw=1.5) +
+  plotbees(festgenrevecs %>% mutate(target=exdiv), "D", tlab=" Contributing", col="gray50", cex=2)+plot_layout(nrow=2)
+
+tdiv2 = (div2plot(festgenrevecs, ex=NULL, convert=F, genrecols = sixgcols %>% darken(0.1))+
+           theme(legend.position = "right")+
+           guides(color = guide_legend(keyheight = unit(0.6, "lines"), override.aes = list(size = 4)),
+                  shape = guide_legend(keyheight = unit(0.6, "lines"))
+                  )
+           ) %>% tags("E")
+
+fig_thematic_div = 
+  (tags(sysplots(attr(festgenrevecs,"sysdivs"), yl="Circuit thematic diversity")+
+          theme(legend.position = c(0.85,0.22), legend.title = element_blank()),"A") +
+  tags(divyearplot(festgenrevecs  %>% mutate(target=indiv, lower=ilower, upper=iupper), 
+            ex=exgenfests, yl="Internal thematic diversity", convert=F, splitab=F, networkstats = F, nrowmod = 2, pies = pies2, genrecols = sixgcols), "B")
+) /
+((tbees | tdiv2 | pspacer)+plot_layout(widths = c(0.3,0.7,0), guides = "keep"))
+  
+
+ggsave("fig_thematic_div.pdf", fig_thematic_div, width=10,height=6)
+
+```
+
+
+```{r, eval=F}
+# geo
+
+tbees = 
+  plotbees(festcountryvecs %>% mutate(target=indiv), "C", tlab=" Internal", col="gray50", cex=3, vw = 1.5) +
+  plotbees(festcountryvecs %>% mutate(target=exdiv), "D", tlab=" Contributing", col="gray50", cex=2.9, vw=1.4)+plot_layout(nrow=2)
+
+tdiv2 = (div2plot(festcountryvecs, ex=NULL, convert=F, genrecols = sixcols %>% darken(0.05))+
+           theme(legend.position = "right")+
+           guides(color = guide_legend(keyheight = unit(0.6, "lines"), override.aes = list(size = 4)),
+                  shape = guide_legend(keyheight = unit(0.6, "lines"))
+                  )
+           ) %>% tags("E")
+
+fig_geo_div = 
+  (tags(sysplots(attr(festcountryvecs,"sysdivs"), yl="Circuit geographic diversity")+
+          theme(legend.position = c(0.6,0.22), legend.title = element_blank()),"A") +
+  tags(divyearplot(festcountryvecs  %>% mutate(target=indiv, lower=ilower, upper=iupper), 
+            ex=exgeofests, yl="Internal geographic diversity", convert=F, splitab=F, networkstats = F, nrowmod = 2, pies=piesg, genrecols = sixcols), "B")
+) /
+((tbees | tdiv2 | pspacer)+plot_layout(widths = c(0.3,0.7,0), guides = "keep"))+
+  plot_annotation(theme=theme(plot.margin=margin(0,0,0,0)))
+  
+
+ggsave("fig_geo_div.pdf", fig_geo_div, width=10,height=6)
+
+```
+
+
+```{r, eval=F}
+# language
+
+tbees = 
+  plotbees(festlangvecs %>% mutate(target=indiv), "C", tlab=" Internal", col="gray50", cex=3, vw = 1.7) +
+  plotbees(festlangvecs %>% mutate(target=exdiv), "D", tlab=" Contributing", col="gray50", cex=2.3, vw=1.5)+plot_layout(nrow=2)
+
+tdiv2 = (div2plot(festlangvecs, ex=NULL, convert=F, genrecols = langcols)+
+           theme(legend.position = "right")+
+           guides(color = guide_legend(keyheight = unit(0.6, "lines"), override.aes = list(size = 4)),
+                  shape = guide_legend(keyheight = unit(0.6, "lines"))
+                  )
+           ) %>% tags("E")
+
+fig_lang_div = 
+  (tags(sysplots(attr(festlangvecs,"sysdivs"), yl="Circuit language diversity")+
+          theme(legend.position = c(0.75,0.1),legend.direction = "horizontal", legend.title = element_blank()),"A") +
+  tags(divyearplot(festlangvecs  %>% mutate(target=indiv, lower=ilower, upper=iupper), 
+            ex=exlangfests, yl="Internal language diversity", convert=F, splitab=F, networkstats = F, nrowmod = 2, pies=piesl, genrecols = langcols), "B")
+) /
+((tbees | tdiv2 | pspacer)+plot_layout(widths = c(0.3,0.7,0), guides = "keep"))
+  
+
+ggsave("fig_lang_div.pdf", fig_lang_div, width=10,height=6)
+
+
+
+
+
+```
+
 
 
