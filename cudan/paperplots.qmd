@@ -67,26 +67,13 @@ matcols = (divergingx_hcl(8, palette="Zissou 1")[c(3,5,7)] %>% {.[1]=lighten(.[1
 netcols =(divergingx_hcl(5, palette="Zissou 1")[c(1,1,2,3)] %>% {.[1]=darken(.[1],0.5);.} %>%  {.[4]=lighten(.[4],0.45);.} ) %>% {c("#01033a", .)} #  %>% show_col
 
 
-
-
-
-
-# Festival_de_Cannes - Big 5 example (A)
-# Sundance - Big 5 example (B)
-# Hot_Docs_Festival - Genre - Doc example (B)
-# Sitges_FF - Genre - fantasy & horror example (A)
-# Busan_IFF - Geo - Asian example (A)
-# BAFICI - Geo - Latin American example (B)
-
 exgenfests = c("Festival de Cannes", "Sundance", "Hot Docs Festival", "Sitges FF")
 exgeofests = c("Festival de Cannes", "Sundance", "Tokyo IFF", "Zurich FF")
 exlangfests=c("Festival de Cannes", "Sundance", "Busan IFF", "BAFICI")
 exrolefests = c("Festival de Cannes", "Sundance","SXSW",  "Berlinale - Berlin IFF")
 
-# gender examples TODO------- aside from Cannes and Sundance (and instead of Hot Docs and Sitges), could we please have SXSW for B and Berlinale for A
 
-
-allfests = nodelist %>% group_by(libelleFestival_NEW_VZ) %>% filter(n()>3) %>% pull(libelleFestival_NEW_VZ) %>% unique
+# allfests = nodelist %>% group_by(libelleFestival_NEW_VZ) %>% filter(n()>3) %>% pull(libelleFestival_NEW_VZ) %>% unique
 
 
 
@@ -176,7 +163,7 @@ div2plot = function(vecs, ex=NULL, convert=T,  colorlab="Main", xlab="Contributi
   }
 }
 
-divyearplot = function(vecs, ex, shape=16, yl="", splitab=T, convert=T, networkstats=T, ylims=NULL, genrecols=sixgcols, pies=NULL, nrowmod=6){
+divyearplot = function(vecs, ex, shape=16, yl="", splitab=T, convert=T, networkstats=T, ylims=NULL, genrecols=sixgcols, pies=NULL, nrowmod=6, contrdiv=T){
   if(splitab){
     vecs = vecs %>% mutate(YearEvent=case_when(ab=="A"~YearEvent-0.15,
                                                ab=="B"~YearEvent+0.15 )) %>% 
@@ -259,7 +246,7 @@ divyearplot = function(vecs, ex, shape=16, yl="", splitab=T, convert=T, networks
       fromy=2014.5; toy=2019.5
     } else{
       fromy=2008; toy=2022
-      g=g+geom_errorbar(aes(ymin=lower, ymax=upper), color="gray40", width=0.1, size=0.45)
+      g=g+geom_errorbar(aes(ymin=lower, ymax=upper), color="gray30", width=0.1, size=0.45)
     }
     g=
       g+facet_wrap(~libelleFestival_NEW_VZ, nrow = ceiling(length(ex)/nrowmod))+
@@ -268,7 +255,7 @@ divyearplot = function(vecs, ex, shape=16, yl="", splitab=T, convert=T, networks
       geom_line(data=vex %>% filter(YearEvent>fromy, YearEvent<toy) %>% 
                   group_by(YearEvent, libelleFestival_NEW_VZ) %>% 
                   summarise(target=mean(target, na.rm=T), tool=NA, ab=ab[1]), 
-                color="gray60", size=0.3
+                color="gray70", size=0.3
                 )+
       geom_point(data=vex, alpha=1, size=1.5, shape=16)+
       theme(
@@ -288,6 +275,15 @@ divyearplot = function(vecs, ex, shape=16, yl="", splitab=T, convert=T, networks
         scale_fill_manual(values=genrecols, breaks=m)
       
     }
+    if(contrdiv){
+      g = g+geom_errorbar(aes(ymin=elower, ymax=eupper), color="gray60", width=0, size=0.45,
+                          position=position_nudge(0.45))+
+        geom_point(aes(y=exdiv), color="gray60", size=0.5, shape=15, 
+                   position=position_nudge(0.45))+
+        theme(axis.title.y.right = element_text(color="gray50"), 
+              axis.ticks.length.y.right = unit(0,"in"),
+              axis.text.y.right = element_blank())
+    }
   }
   
   minx = min(vex$YearEvent, na.rm=T)
@@ -300,6 +296,9 @@ divyearplot = function(vecs, ex, shape=16, yl="", splitab=T, convert=T, networks
       scale_y_continuous(expand=c(0.05,0)
         #limits=c( min(c(vecs$target, vecs$lower), na.rm=T), max(c(vecs$target, vecs$upper), na.rm=T )*1.001 )
         )
+        if(contrdiv){
+          g=g+scale_y_continuous(expand=c(0.05,0),sec.axis = sec_axis(~., name="Contributing diversity"))
+        }
   }
   
   
@@ -803,8 +802,8 @@ tops = attr(festgenrevecs, "tops") %>%
   
 
 # festival illustration squares.
-ggplot(tops, aes( x=s,y=libelleFestival_NEW_VZ, fill=colorgenre2))+
-  geom_bar(stat="identity", color=NA,position="stack")+
+ggplot(tops, aes( y=s,x=colorgenre2, fill=colorgenre2))+
+  geom_bar(stat="identity", color=NA)+
   scale_fill_manual(values=
                       c(sixgcols %>% head(-1),
                         gray.colors(
@@ -812,13 +811,16 @@ ggplot(tops, aes( x=s,y=libelleFestival_NEW_VZ, fill=colorgenre2))+
                             length(mains),
                           start=0.5, end=0.7
                           )) %>% rev)+
-  coord_cartesian(expand = 0, xlim=c(0,100))+
+  coord_cartesian(expand = 0)+
+  scale_x_discrete(breaks=mains)+
   theme_void()+
   theme(axis.title = element_blank(),
         legend.position = "none",
-        panel.border  = element_rect(linewidth=0.5, color="gray10", fill=NA)
+        panel.border  = element_rect(linewidth=0.5, color="gray10", fill=NA), 
+        strip.text = element_text(size=15),
+        plot.margin = margin(3,3,3,3)
         )+
-  facet_wrap(~libelleFestival_NEW_VZ, strip.position="bottom", scales = "free", nrow=2)
+  facet_wrap(~libelleFestival_NEW_VZ, strip.position="top",  nrow=2)
   
   #filter(grepl("Tallinn", LibelleEvent_NEW_VZ, ignore.case = T)) %>% count(LibelleEvent_NEW_VZ)
 
@@ -828,8 +830,12 @@ ggplot(attr(genlat, "latmap"), aes(V1,V2,label=txtKind,size=n))+geom_text()+
   scale_size(range=c(1.5,5))+
   theme_void()+
   theme(legend.position = "none",
-        panel.border = element_rect(fill=NA)
+        panel.border = element_rect(fill=NA),
+        plot.margin = margin(1,1,1,1)
         )
+ggsave("fig_sup_latentmap.pdf", width=9, height=5, scale=0.6)
+
+
 
 
 ggplot( mapping=aes(V1, V2, color=colorgenre))+
@@ -874,7 +880,7 @@ The diversity values are scaled into a range of \[0,1\], using the largest possi
 -   0 external: festival looks exactly like the ecosystem grand mean
 -   1 external: festival is as distant from the grand mean as possible in the given latent space.
 
-Also, note the error bars: they represent 95% confidence intervals from a nonparametric bootstrapping, i.e. the true mean value (the dots) are likely to be within the given range. Smaller festival samples and festivals with more variation around the mean for a given statistic therefore have larger bar ranges. While not quite equivalent to a pairwise significance test, as a rule of thumb, if the intervals of two points of interest overlap more (more than just a bit; intervals are more conservative than pairwise tests), then the difference is likely not statistically significant.
+Also, note the error bars: they represent 95% confidence intervals from a nonparametric bootstrapping, i.e. the true mean value (the dots) are likely to be within the given range. Smaller festival samples and festivals with more variation around the mean for a given statistic therefore have larger bar ranges.
 
 ```{r}
 div2plot(festgenrevecs, ex=NULL, convert=convertplots, genrecols = sixgcols)
@@ -1265,20 +1271,28 @@ Simple binomial logistic regression model predicting linkage (at least 1 film sh
 
 -   Event time distance is more of a control, as we know films circulate for a few years usually (the negative $\beta$ coefficient estimate means that the more the two festivals are apart in time, the less likely they are to share films - makes sense).
 -   The class categorical variable baseline is that the pair is of different type, so if both are A and A, they are more likely to share a film; if both are B, then they are less likely to share (note the imbalance though, theres more all sorts of B fests)
--   All the other distances are also negative: e.g. the more the mean content/genre vectors differ (higher content distance), the less likely they are to share films (again makes sense).
--   The only one is event location distance - here, festivals are more likely to share films if they are *further* away from each other - I suppose filmmakers want to travel the world with their films, and not stick to the same region? But this effect may also vary between regions themselves, or content types, or who knows what else (which could be further modelled and measured of course).
 
-Given suitable hypotheses, could also test interactions. Importantly, this modelling is all based on festival means, and individual films are not taken into account - but it could also be done this way, to model the likelyhood that a pair of films share a festival (instead of a pair of festivals sharing a film), which might make more sense.
 
 ```{r}
 library(rms)
 options(scipen=999)
 # linkdat = linkdat %>% mutate(class2 = case_match(class, ))
 table(linkdat$linked)
-glm(linked~timedist+ eventdist+ class ,family = "binomial", 
+m = glm(linked~timedist+ eventdist+ class ,family = "binomial", 
         data=linkdat %>% select(-weight) %>% {.[complete.cases(.),]} %>% 
       mutate(class2=relevel(as.factor(class), "_bothBB"))
-    ) %>% summary %>% print
+    ) 
+
+m %>% summary %>% print
+
+cbind(m$coefficients,
+      m$coefficients %>% exp,
+      round(summary(m)$coefficients[,"Pr(>|z|)"], 4))
+
+
+
+
+
 lrm(linked~timedist+ eventdist+ class , data=linkdat)
 # glm(linked~timedist+ eventdist* class ,family = "binomial", 
 #         data=linkdat %>% select(-weight) %>% {.[complete.cases(.),]} %>% 
@@ -1304,6 +1318,7 @@ m = glm(weight~timedist+eventdist+class,
     ) 
 m %>% summary %>% print
 
+linkdat %>% filter(weight>0) %>% nrow
 # Mcfadden's:
 1 - ( 
       as.numeric(logLik(glm(weight~timedist+eventdist+class, 
@@ -1314,6 +1329,11 @@ m %>% summary %>% print
         data=linkdat %>% filter(weight>0) %>% {.[complete.cases(.),]},
     family = poisson(link = "log")))) 
       )
+
+cbind(m$coefficients,
+      m$coefficients %>% exp, 
+      round(summary(m)$coefficients[,"Pr(>|z|)"], 4))
+
 
 ```
    
@@ -1381,27 +1401,6 @@ ggplot(attr(genlat, "latmap"), aes(V1,V2,label=txtKind,size=n))+geom_text()+
         )
 
  
-```
-
-## Language latent space, UMAP
-
-(this map is hard to project in 2D well, because many languages are very far from other languages due to no relation, having only incidental similarities or geographic proximity)
-
-```{r}
-
-
-attr(festlangvecs, "filmfestvecs") %>% 
-  group_by(txtKind2) %>% 
-  mutate(n=n()) %>% summarise(across(everything(), first)) %>%  select(n, txtKind2, txtKind3) %>% rename(txtKind=txtKind3) %>%
-  left_join(attr(langlat, "latmap")) %>% 
-
-ggplot( aes(V1,V2,label=txtKind2, size=log(n)))+
-  geom_text_repel( box.padding = 0, min.segment.length = 9999, max.time = 5, max.overlaps = 1000000)+
-  scale_size(range=c(1.6,3))+
-  theme_void()+
-  theme(legend.position = "none",
-        panel.border = element_rect(fill=NA)
-        )
 ```
 
 
@@ -1576,7 +1575,7 @@ fig_change = divyearplot(genrechangevals %>%
             convert=convertplots, splitab=F, networkstats = F, 
             genrecols = sixgcols, 
             pies=attr(festgenrevecs, "tops"),
-            nrowmod=1
+            nrowmod=1, contrdiv = F
             )+
   scale_y_continuous(breaks=c(0,0.04,0.08))+
   geom_path(aes(YearEvent, target), data=genrechangevals %>%
@@ -1684,19 +1683,13 @@ ggsave("fig_geolang_map.pdf",
 
 
 
-
+## Regressions
 
 ```{r, eval=F}
 # diversity plot now: all fests as a/b only as a small facet left of the 4 examples
 
-# content space with change plots
 
-lm(indiv~ab, festlangvecs, weights=nf) %>% summary()
-lm(indiv~ab, festlangvecs, weights=nf) %>% summary()
- 
-lm(ratiofmin~ab, festrolevecs) %>% summary()
-lm(ratiofmax~ab, festrolevecs) %>% summary()
-lm(ratiof~ab, festrolevecs, weights=nf) %>% summary() # gender
+# intercept only prod-dir
 
 # prod vs dir gender
 ggplot(festrolevecs)+
@@ -1705,16 +1698,39 @@ ggplot(festrolevecs)+
 
 festrolevecs %>% mutate(dif=ratiopf-ratiodf) %>% lm(dif~1, data=., weights=nf) %>% summary
 
-festrolevecs %>% filter(grepl("SXSW", libelleFestival_NEW_VZ) ) %>% as.data.frame() %>% arrange(YearEvent)
+attr(festrolevecs, "sysdivs") %>% filter(YearEvent %in% c(2012,2021))
 
-festrolevecs %>% filter(grepl("Sundance", libelleFestival_NEW_VZ) ) %>% as.data.frame() %>% arrange(YearEvent)
+lm(ratiof~ab, festrolevecs, weights=nf) %>% summary() # gender
 
-attr(festrolevecs, "sysdivs")
+festrolevecs %>% filter(grepl("Sundance", libelleFestival_NEW_VZ) ) %>% as.data.frame() %>% arrange(YearEvent) %>% select(rfminboot, rfmaxboot)
+festrolevecs %>% filter(grepl("SXSW", libelleFestival_NEW_VZ) ) %>% as.data.frame() %>% arrange(YearEvent) %>% select(rfminboot, rfmaxboot)
+
+# language, AB
+lm(indiv~ab, festlangvecs, weights=nf) %>% summary()
+
+
+# series
+nodelist %>% group_by(libelleFestival_NEW_VZ) %>% filter(n_distinct(EventID_VZ)>=2) %>% pull(libelleFestival_NEW_VZ) %>% unique %>% length
+nodelist %>% group_by(libelleFestival_NEW_VZ) %>% filter(n_distinct(EventID_VZ)<2) %>% pull(libelleFestival_NEW_VZ) %>% unique %>% length
+
+
+# gender, AB
+lm(ratiofmin~ab, festrolevecs) %>% summary()
+lm(ratiofmax~ab, festrolevecs) %>% summary()
+lm(ratiof~ab, festrolevecs, weights=nf) %>% summary() # gender
+
+
+ 
+
+
+
+
+
 
 library(lme4)
 
 dat = fesfilm2 %>% 
-    rename(nsort=nroles) %>%  # variable passing now works
+    rename(nsort=nroles) %>%  
     mutate(tmp=paste0(TitleVA, "_", YearOfProduction )) %>% 
     group_by(EventID_VZ) %>%   # for duplicate film removal
     arrange(desc(nsort), is.na(YearOfProduction), .by_group = T) %>%  # prefer more complete entries
@@ -1748,20 +1764,25 @@ tags=function(g, x="", m=margin(0,-9,-10,0)){
 }
 
 
-plotbees = function(vecs, tag, tlab="", col=NULL, cex=3, vw=1.7){
-  g=ggplot(vecs, aes(x=as.factor(ab) %>% as.numeric , group=as.factor(ab) %>% as.numeric, color=ab,y=target))+
+plotbees = function(vecs, tag, tlab="", col=NULL, cex=3, vw=1.7, comp=F, colvals=abcols){
+  g=ggplot(vecs %>% 
+             mutate(comp=case_when(
+               `PFIAF category`=="Competitive Feature Film Festivals"~"comp", T~"no"
+               )), 
+           aes(x=as.factor(ab) %>% as.numeric , group=as.factor(ab) %>% as.numeric, color=ab,y=target))+
   #geom_boxplot(fill=NA, color="gray30", width=0.2)+
   geom_violin(fill=NA, color="gray50", size=0.1,scale="count", width=vw)
   
   if(is.null(col)){
-    g=g+geom_beeswarm(aes(color=ab), cex = cex,priority = "random",size=0.5)
+    if(!comp) {g=g+geom_beeswarm(aes(color=ab), cex = cex,priority = "random",size=0.5)}
+    if(comp) {g=g+geom_beeswarm(aes(color=comp), cex = cex,priority = "random",size=0.5)}
   } else {
     g=g+geom_beeswarm(color=col, cex = cex,priority = "random",size=0.5)
   }
   
   g=g+stat_summary(na.rm=T, shape="-", color="black", fun = median, size=2)+
   #scale_shape_manual(values=abshapes)+
-  scale_color_manual(values=abcols)+
+  scale_color_manual(values=colvals)+
   scale_size_manual(values=c(0.6,0.3))+
   coord_cartesian(xlim=c(0.6,2.6), expand=T)+
   labs(title = expr(paste(bold(!!tag), !!tlab)))+
@@ -1801,7 +1822,7 @@ fig_g1=ggplot(festrolevecs, mapping=aes(ratiopf, ratiodf, color=ratiof, shape=ab
 fig_gendersys = sysplots(attr(festrolevecs,"sysdivs"), yl="Circuit-wide weighted fraction of women")+lims(y=c(0.2,0.45))+ theme(legend.position = c(0.75,0.1),legend.direction = "horizontal", legend.title = element_blank())
 
 fig_gex = divyearplot(festrolevecs  %>% mutate(target=ratiof, lower=rfminboot, upper=rfmaxboot),
-            ex=exrolefests, yl="% of women", convert=convertplots, splitab=F, networkstats = F, ylims=c(0,0.59), nrowmod = 2)+theme(axis.title = element_blank())
+            ex=exrolefests, yl="% of women", convert=convertplots, splitab=F, networkstats = F, ylims=c(0,0.59), nrowmod = 2,  contrdiv = F)+theme(axis.title = element_blank())
 
 fig_gender = tags(fig_g1, "A", margin(0,-11,-10,0)) + 
   (tags(fig_gendersys,"B")+inset_element(
@@ -1836,7 +1857,7 @@ fig_thematic_div =
   (tags(sysplots(attr(festgenrevecs,"sysdivs"), yl="Circuit thematic diversity")+
           theme(legend.position = c(0.85,0.22), legend.title = element_blank()),"A") +
   tags(divyearplot(festgenrevecs  %>% mutate(target=indiv, lower=ilower, upper=iupper), 
-            ex=exgenfests, yl="Internal thematic diversity", convert=F, splitab=F, networkstats = F, nrowmod = 2, pies = pies2, genrecols = sixgcols), "B")
+            ex=exgenfests, yl="Internal thematic diversity", convert=F, splitab=F, networkstats = F, nrowmod = 2, pies = pies2, genrecols = sixgcols), "B") + plot_layout(widths = c(0.4,0.65))
 ) /
 ((tbees | tdiv2 | pspacer)+plot_layout(widths = c(0.3,0.7,0), guides = "keep"))
   
@@ -1850,8 +1871,8 @@ ggsave("fig_thematic_div.pdf", fig_thematic_div, width=10,height=6)
 # geo
 
 tbees = 
-  plotbees(festcountryvecs %>% mutate(target=indiv), "C", tlab=" Internal", col="gray50", cex=3, vw = 1.5) +
-  plotbees(festcountryvecs %>% mutate(target=exdiv), "D", tlab=" Contributing", col="gray50", cex=2.9, vw=1.4)+plot_layout(nrow=2)
+  plotbees(festcountryvecs %>% mutate(target=indiv), "C", tlab=" Internal", col="gray50", cex=3, vw = 1.4) +
+  plotbees(festcountryvecs %>% mutate(target=exdiv), "D", tlab=" Contributing", col="gray50", cex=2.9, vw=1.35)+plot_layout(nrow=2)
 
 tdiv2 = (div2plot(festcountryvecs, ex=NULL, convert=F, genrecols = sixcols %>% darken(0.05))+
            theme(legend.position = "right")+
@@ -1864,7 +1885,7 @@ fig_geo_div =
   (tags(sysplots(attr(festcountryvecs,"sysdivs"), yl="Circuit geographic diversity")+
           theme(legend.position = c(0.6,0.22), legend.title = element_blank()),"A") +
   tags(divyearplot(festcountryvecs  %>% mutate(target=indiv, lower=ilower, upper=iupper), 
-            ex=exgeofests, yl="Internal geographic diversity", convert=F, splitab=F, networkstats = F, nrowmod = 2, pies=piesg, genrecols = sixcols), "B")
+            ex=exgeofests, yl="Internal geographic diversity", convert=F, splitab=F, networkstats = F, nrowmod = 2, pies=piesg, genrecols = sixcols), "B") + plot_layout(widths = c(0.35,0.65))
 ) /
 ((tbees | tdiv2 | pspacer)+plot_layout(widths = c(0.3,0.7,0), guides = "keep"))+
   plot_annotation(theme=theme(plot.margin=margin(0,0,0,0)))
@@ -1891,9 +1912,9 @@ tdiv2 = (div2plot(festlangvecs, ex=NULL, convert=F, genrecols = langcols)+
 
 fig_lang_div = 
   (tags(sysplots(attr(festlangvecs,"sysdivs"), yl="Circuit language diversity")+
-          theme(legend.position = c(0.75,0.1),legend.direction = "horizontal", legend.title = element_blank()),"A") +
+          theme(legend.position = c(0.6,0.1),legend.direction = "horizontal", legend.title = element_blank()),"A") +
   tags(divyearplot(festlangvecs  %>% mutate(target=indiv, lower=ilower, upper=iupper), 
-            ex=exlangfests, yl="Internal language diversity", convert=F, splitab=F, networkstats = F, nrowmod = 2, pies=piesl, genrecols = langcols), "B")
+            ex=exlangfests, yl="Internal language diversity", convert=F, splitab=F, networkstats = F, nrowmod = 2, pies=piesl, genrecols = langcols), "B")+ plot_layout(widths = c(0.4,0.65))
 ) /
 ((tbees | tdiv2 | pspacer)+plot_layout(widths = c(0.3,0.7,0), guides = "keep"))
   
@@ -1903,8 +1924,90 @@ ggsave("fig_lang_div.pdf", fig_lang_div, width=10,height=6)
 
 
 
+## lang centre
+
+x= dist2(langlat, attr(festlangvecs, "latentcentre"), method="euclidean", norm="none")[,1]
+names(x)=rownames(langlat)
+sort(x) %>% head
+
+# lang vs geo div?
+
+x = festlangvecs %>% select(EventID_VZ,LibelleEvent_NEW_VZ, ab, indiv, `PFIAF category`, YearEvent) %>% left_join(festcountryvecs %>% select(EventID_VZ, indiv) %>% rename(gindiv=indiv), by="EventID_VZ")
+
+ggplot(x, aes(indiv, gindiv, color=ab))+
+  geom_point()
+
+cor.test(x$indiv, x$gindiv)
+
+
+festlangvecs %>% group_by(`PFIAF category`, ab) %>% count
+xx = x %>% mutate(competitive = case_when(`PFIAF category` %in% c("Competitive Feature Film Festivals", "Competitive Specialised Feature Film Festivals") ~ "competitive", T~"noncomp"))
+
+ggplot(xx, aes(indiv, gindiv, shape=ab, color=competitive))+
+  geom_point()+
+  scale_shape_manual(values=abshapes)+
+  labs(x="Language internal div", y="Geo internal div")+
+  geom_text(aes(label=LibelleEvent_NEW_VZ), data=xx %>%  filter(YearEvent==2019, `PFIAF category` %in% c("Competitive Feature Film Festivals")), hjust=0, size=3)
 
 ```
 
 
+
+## Appendix
+
+```{r}
+
+mains=levels(festgenrevecs$colorgenre) %>% head(-1)
+others = setdiff(
+  table( attr(festgenrevecs, "filmfestvecs")$firstfilmkind) %>% sort(decreasing = T) %>% names(),
+  mains)
+  
+u = umap( attr(festgenrevecs, "filmfestvecs") %>% filter(!duplicated(tmp)) %>% 
+           select(starts_with("V")) # %>% ungroup() %>% mutate(V1=V1*runif(n(), 0.99,1.01 ))
+           ,
+           method = "umap-learn")$layout %>% 
+  as.data.frame() %>% 
+  cbind(attr(festgenrevecs, "filmfestvecs") %>% filter(!duplicated(tmp))  %>% select(-starts_with("V"))) 
+
+u2 = u %>% mutate(colorgenre=case_when(firstfilmkind %in% mains ~ firstfilmkind, T~"others")) %>% mutate(colorgenre=fct_relevel(colorgenre, c(mains, "others")))
+
+xcols = c(sixgcols %>% head(-1), "gray50")
+
+g = ggplot(u2, aes(V1, V2, color=colorgenre))+
+  geom_point(size=0.3)+
+  scale_color_manual(values=xcols, name="")+
+  theme_void()+
+  theme(axis.title = element_blank(),
+        legend.position = "right", legend.text = element_text(size=12),
+        plot.background = element_rect(fill="white", color="gray10")
+      #  panel.border  = element_rect(linewidth=0.5, color="gray10", fill=NA)
+        )+
+   guides(color = guide_legend(keyheight = unit(1, "lines"), override.aes = list(size = 4)))
+ggsave("fig_sup_latentmap.png",g, width=10, height=7)
+
+```
+
+## Language latent space, UMAP
+
+(this map is hard to project in 2D well, because many languages are very far from other languages due to no relation, having only incidental similarities or geographic proximity)
+
+```{r}
+
+
+attr(festlangvecs, "filmfestvecs") %>% 
+  group_by(txtKind2) %>% 
+  mutate(n=n()) %>% summarise(across(everything(), first)) %>%  select(n, txtKind2, txtKind3) %>% rename(txtKind=txtKind3) %>%
+  left_join(attr(langlat, "latmap")) %>% 
+
+ggplot( aes(V1,V2,label=txtKind2, size=log(n)))+
+  geom_text_repel( box.padding = 0, min.segment.length = 9999, max.time = 5, max.overlaps = 1000000)+
+  scale_size(range=c(1.6,3))+
+  theme_void()+
+  theme(legend.position = "none",
+        panel.border = element_rect(fill=NA),
+        plot.background = element_rect(fill="white")
+        )
+
+ggsave("fig_sup_langmap.png", width=10, height=8, scale=0.6)
+```
 

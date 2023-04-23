@@ -1,0 +1,738 @@
+---
+title: "Quantifying the global film festival circuit:<br>interactive online supplementary"
+knitr:
+  opts_chunk: 
+    echo: false
+    message: false
+    warning: false
+format: 
+  html:
+    background-color: white
+    fig-width: 9
+    fig-height: 6
+    out-width: "100%"
+    embed-resources: true
+    toc: true
+    toc-location: left
+    toc-depth: 6
+    search: false
+    grid:
+      sidebar-width: 200px
+      body-width: 1300px
+      margin-width: 0px
+editor: source
+---
+
+This is an interactive dashboard to accompany the paper "Quantifying the global film festival circuit: Networks, diversity, and public value creation" by Vejune Zemaityte, Andres Karjus, Ulrike Rohn, Maximilian Schich, Indrek Ibrus.
+
+The preprint is available [here](link-added-later). This research follows open science principles: the data and code to replicate the analyses is available via [this Github repository](https://github.com/andreskarjus/cinandofestivals). The provided data is a sample of the Cinando database used in this paper; all Cinando internal reference and technical ID values have been anonymized, and all personal and identifying data has been removed/anonymized. If you make use of these resources or the dashboard, please cite the paper linked above. Also, kindly drop us a line if you can, and let us know what they were used for - we would be very interested to hear about use cases! Also, feel free to get in touch if there's any questions. 
+
+This dashboard has been created by [Andres Karjus](https://andreskarjus.github.io). Please consult the paper for the background on the Cinando data, and the technical details of the latent space operationalizations and the calculation of the diversity metrics.
+
+**Paper abstract:** Film festivals are a key component in the global film industry in terms of trendsetting, publicity, trade, and collaboration. We present an unprecedented analysis of the international film festival circuit, which has so far remained relatively understudied quantitatively, partly due to the limited availability of suitable data sets. We use large-scale data from the Cinando platform of the Cannes Film Market, widely used by industry professionals. We explicitly model festival events as a global network connected by shared films, and quantify festivals as aggregates of the metadata of their showcased films. Importantly, we argue against using simple count distributions for discrete labels such as language or production country, as such categories are typically not equidistant. Rather, we propose embedding them in continuous latent vector spaces. We demonstrate how these “festival embeddings” provide insight into changes in programmed content over time, predict festival connections, and can be used to measure diversity in film festival programming across various cultural, social, and geographical variables---which all constitute an aspect of public value creation by film festivals. Our results provide a novel mapping of the film festival circuit between 2009--2021 (616 festivals, 31,989 unique films), highlighting festival types that occupy specific niches, diverse series, and those that evolve over time. We also discuss how these quantitative findings fit into media studies and research on public value creation by cultural industries. With festivals occupying a central position in the film industry, investigations into the data they generate hold opportunities for researchers to better understand industry dynamics and cultural impact, and for organizers, policymakers, and industry actors to make more informed, data-driven decisions. We hope our proposed methodological approach to festival data paves way for more comprehensive film festival studies and large-scale quantitative cultural event analytics in general.
+
+
+```{r}
+library(plotly)
+library(tidyverse)
+library(colorspace)
+library(ggbeeswarm)
+library(ggrepel)
+library(patchwork)
+library(visNetwork)
+library(rworldmap)
+library(scales)
+library(igraph)
+library(ggraph)
+library(tidygraph)
+# library(PieGlyph)
+# library(lemon)
+
+load("C:/Users/Andres/korpused/publicvalue/cinando/cinandospaces2.RData")
+load("C:/Users/Andres/korpused/publicvalue/cinando/cinandonetworks.RData")
+
+convertplots=T
+
+
+abcols= divergingx_hcl(6, palette="Zissou 1")[c(1,4)] %>% c("gray2") %>% desaturate(0.6) #%>% show_col
+abshapes=c(16,4)
+
+sixgcols = c(divergingx_hcl(6, palette="Zissou 1") %>% {.[6]=darken(.[6],0.3);.},  "gray80") %>%
+  {.[1]=lighten(.[1],0.2);.} %>% {.[3] = "#03408f";.} %>% 
+  {.[c(2)]=darken(.[c(2)],0.1);.} %>% 
+  {.[c(1,4,2,5,3,6,7)]} # %>%  show_col
+sixcols = c(divergingx_hcl(6, palette="Zissou 1"), "gray10",  "gray80") %>% {.[c(1)]=lighten(.[c(1)],0.5);.} %>% {.[c(2)]=darken(.[c(1)],0.5);.} %>% {.[c(4)]=lighten(.[c(4)],0.2);.} %>% {.[7]=darken(.[1],0.75);.} # %>% show_col
+langcols= c(divergingx_hcl(6, palette="Zissou 1") %>% 
+              {.[c(1)]=darken(.[c(1)],0);.} %>% 
+              {.[7]=darken(.[1],0.6);.} ,  "gray80")[c(1,3,5,6,7,8)] #%>% show_col
+rolecols=divergingx_hcl(31, palette="Zissou 1")  %>% {c(.[1:2], "gray75", .[30:31])}
+matcols = (divergingx_hcl(8, palette="Zissou 1")[c(3,5,7)] %>% {.[1]=lighten(.[1],0.4);.} %>%  {.[3]=darken(.[3],0.95);.}) # %>% show_col
+netcols =(divergingx_hcl(5, palette="Zissou 1")[c(1,1,2,3)] %>% {.[1]=darken(.[1],0.5);.} %>%  {.[4]=lighten(.[4],0.45);.} ) %>% {c("#01033a", .)} #  %>% show_col
+
+
+exgenfests = c("Festival de Cannes", "Sundance", "Hot Docs Festival", "Sitges FF")
+exgeofests = c("Festival de Cannes", "Sundance", "Tokyo IFF", "Zurich FF")
+exlangfests=c("Festival de Cannes", "Sundance", "Busan IFF", "BAFICI")
+exrolefests = c("Festival de Cannes", "Sundance","SXSW",  "Berlinale - Berlin IFF")
+
+
+# allfests = nodelist %>% group_by(libelleFestival_NEW_VZ) %>% filter(n()>3) %>% pull(libelleFestival_NEW_VZ) %>% unique
+
+
+
+### functions ####
+
+div2plot = function(vecs, ex=NULL, convert=T,  colorlab="Main", xlab="Contributing diversity", ylab="Internal diversity", genrecols=sixcols, pies){
+  # if(isgenre){
+  #     vecs = vecs %>% arrange(YearEvent) %>% 
+  #   mutate(colorgenre = 
+  #          case_when(firstkind %in% head(names(sort(table(.$firstkind),decreasing = T)),6)~firstkind, T~"other" ) %>% as.factor()) %>% 
+  #   mutate(colorgenre = fct_relevel(colorgenre, 
+  #                                 c(names(sort(table(colorgenre),decreasing = T)) %>% .[.!="other"], "other") ))
+  #     colorlab="Main\ngenre"
+  # } else {
+  #   vecs = vecs %>% arrange(YearEvent) %>% 
+  #   mutate(colorgenre = 
+  #          case_when(firstcountry %in% head(names(sort(table(.$firstcountry),decreasing = T)),6)~firstcountry, T~"other" ) %>% as.factor()) %>% 
+  #   mutate(colorgenre = fct_relevel(colorgenre, 
+  #                                 c(names(sort(table(colorgenre),decreasing = T)) %>% .[.!="other"], "other") ))
+    
+   # colorlab="Main\nprod.\ncountry"
+  #}
+
+  
+  g={ggplot(vecs , 
+        aes(exdiv, indiv, shape=ab, color=colorgenre, size=ab, text=tool))+
+      geom_vline(xintercept = median(vecs$exdiv, na.rm=T) # mean(c(min(vecs$exdiv,na.rm=T), max(vecs$exdiv,na.rm=T)))
+                 , color="gray25")+
+      geom_hline(yintercept = median(vecs$indiv, na.rm=T)
+                #   mean(c(min(vecs$indiv,na.rm=T), max(vecs$indiv,na.rm=T)))
+                 , color="gray25")+
+      geom_point(#data=vecs %>% filter(!(libelleFestival_NEW_VZ%in%ex)), 
+                 alpha=0.7) +
+      #geom_point(data=vecs %>% filter((libelleFestival_NEW_VZ%in%ex)), alpha=1)+
+    #geom_line(aes(YearEvent, indiv), data=festvecs %>% group_by(YearEvent) %>% summarise(indiv=mean(indiv,na.rm=T)), inherit.aes = F)+
+    # geom_path(aes(group=libelleFestival_NEW_VZ), 
+    #           vecs %>% filter(libelleFestival_NEW_VZ%in%ex) ,
+    #           color="black", 
+    #           size=0.2)+
+    #scale_color_manual(values=abcols)+
+    scale_color_manual(values=genrecols, name=colorlab)+
+    scale_shape_manual(values=abshapes, name="Festival")+
+    scale_size_manual(values=c(2, 1.2), guide = "none")+
+    labs(x=xlab, y=ylab)+
+    theme_bw()+
+    theme(#legend.position = 'left', 
+      #panel.border = element_blank(),
+      panel.grid.minor.x = element_blank(),
+      plot.background = element_rect(color="white", fill="white")
+    )} 
+  if(convert){
+    ggplotly(g,tooltip="text")
+  } else {
+    g
+  }
+}
+
+divyearplot = function(vecs, ex, shape=16, yl="", splitab=T, convert=T, networkstats=T, ylims=NULL, genrecols=sixgcols, pies=NULL, nrowmod=6, contrdiv=T){
+  if(splitab){
+    vecs = vecs %>% mutate(YearEvent=case_when(ab=="A"~YearEvent-0.15,
+                                               ab=="B"~YearEvent+0.15 )) %>% 
+      arrange(libelleFestival_NEW_VZ) %>% 
+      mutate(series = substr(libelleFestival_NEW_VZ, 1,15))
+    if(length(unique(vecs$libelleFestival_NEW_VZ)) != 
+       length(unique(vecs$series))){ stop("shortening mismatch")}
+    vex=vecs
+    g=ggplot(vecs , 
+        aes(YearEvent, target, color=ab, shape=ab,  text=tool))
+  } else {
+     vex = vecs %>% 
+       filter(libelleFestival_NEW_VZ %in% ex, !is.na(target)) %>% 
+       mutate(libelleFestival_NEW_VZ=fct_relevel(libelleFestival_NEW_VZ, ex))
+     g=ggplot(vex , 
+        aes(YearEvent, target, color=ab, shape=ab,  text=tool))
+  }
+ 
+  
+  if(splitab){
+    
+    col2 = vecs  %>% 
+      filter(!duplicated(libelleFestival_NEW_VZ)) %>% 
+      mutate(col=case_when(ab=="A"~ abcols[1], T~abcols[2])) %>% 
+      pull(col)
+    
+    if(networkstats){
+      fromy=2014.5; toy=2019.5
+    } else{
+      fromy=2013.5; toy=2021.5
+    }
+      g= g+
+       # stat_summary(aes(y = target, group=1), 
+       #           data=vecs %>% filter(YearEvent>fromy, YearEvent<toy, ab=="A"),
+       #           fun=mean, na.rm=T,  geom="line", size=2, color=abcols[1])+
+       #  stat_summary(aes(y = target, group=1), 
+       #           data=vecs %>% filter(YearEvent>fromy, YearEvent<toy, ab=="B",),
+       #           fun=mean, na.rm=T,  geom="line", size=1.5, color=abcols[2])+
+        scale_x_continuous(breaks=2009:2021)
+      
+      if(convertplots){
+        g=g+geom_beeswarm(aes(color=ab), # creates legend in ggplotly
+                      alpha=1, cex=0.8,size=1.5, priority = "random") +
+        scale_color_manual(values=abcols, name="")
+      } else {
+         g=g+geom_beeswarm(aes(color=ab),
+                      alpha=1, cex=0.8,size=1.5, priority = "random") +
+          scale_color_manual(values=abcols)
+      }
+        
+  } else {
+    g=g+scale_color_manual(values=abcols)+
+      theme(legend.position = 'none')
+  }
+  
+    g=g+  
+    scale_shape_manual(values=abshapes)+
+    #scale_size( range=c(0.5*2.2, 1.5*3.2), guide = "none")+
+    theme_bw()+
+    theme(
+      #legend.position = 'none', 
+      #panel.border = element_blank(),
+      
+      panel.grid.major.x  = element_blank(),
+       panel.grid.minor.x  = element_line(color="gray80"),
+      plot.background = element_rect(color="white", fill="white"),
+      axis.title.x = element_blank(),
+      axis.ticks.length = unit(0, "inch")
+    )+
+    labs(y=yl)
+  # if(nrow( vecs %>% filter(libelleFestival_NEW_VZ%in%ex))>0){
+  #   g=g+geom_line(aes(group=libelleFestival_NEW_VZ), 
+  #             vecs %>% filter(libelleFestival_NEW_VZ%in%ex) ,
+  #             color="gray40", 
+  #             size=0.2)
+  # }
+  
+  if(!splitab & !is.null(ex)){
+   if(networkstats){
+      fromy=2014.5; toy=2019.5
+    } else{
+      fromy=2008; toy=2022
+      g=g+geom_errorbar(aes(ymin=lower, ymax=upper), color="gray30", width=0.1, size=0.45)
+    }
+    g=
+      g+facet_wrap(~libelleFestival_NEW_VZ, nrow = ceiling(length(ex)/nrowmod))+
+      # geom_point( aes(YearEvent, target),data=vecs %>% select(-libelleFestival_NEW_VZ), inherit.aes = F,
+      #             color="gray90", size=0.9)+
+      geom_line(data=vex %>% filter(YearEvent>fromy, YearEvent<toy) %>% 
+                  group_by(YearEvent, libelleFestival_NEW_VZ) %>% 
+                  summarise(target=mean(target, na.rm=T), tool=NA, ab=ab[1]), 
+                color="gray70", size=0.3
+                )+
+      geom_point(data=vex, alpha=1, size=1.5, shape=16)+
+      theme(
+       panel.grid.major.x  = element_line(color="gray95"),
+       panel.grid.minor.x  = element_blank(),
+       panel.grid.minor.y  = element_blank(),
+       legend.position = 'none',
+       strip.text = element_text(hjust=0, margin=margin(0.5,0,0.5,1))
+       )
+    
+    if(!is.null(pies)){
+      p = dopies(vex, pies)
+      m = attr(p, "mains")
+      vp = vex %>%  select(EventID_VZ, target,YearEvent,libelleFestival_NEW_VZ) %>% 
+        left_join(p %>% select(EventID_VZ, {{m}}),by="EventID_VZ")
+      g = g+ geom_pie_glyph(aes(YearEvent, target), data = vp, slices=m, radius=0.2, inherit.aes = F)+
+        scale_fill_manual(values=genrecols, breaks=m)
+      
+    }
+    if(contrdiv){
+      g = g+geom_errorbar(aes(ymin=elower, ymax=eupper), color="gray60", width=0, size=0.45,
+                          position=position_nudge(0.45))+
+        geom_point(aes(y=exdiv), color="gray60", size=0.5, shape=15, 
+                   position=position_nudge(0.45))+
+        theme(axis.title.y.right = element_text(color="gray50"), 
+              axis.ticks.length.y.right = unit(0,"in"),
+              axis.text.y.right = element_blank())
+    }
+  }
+  
+  minx = min(vex$YearEvent, na.rm=T)
+  if(!is.null(ylims)){
+    g=g+
+      coord_cartesian(ylim = ylims, expand=F)+
+      scale_x_continuous(breaks=seq(minx+1,2020,3), limits=c(minx-0.4,2021+0.4 ) )
+  } else {
+    g=g+ scale_x_continuous(breaks=seq(minx+1,2020,3), expand = expansion(0.1,0) )+
+      scale_y_continuous(expand=c(0.05,0)
+        #limits=c( min(c(vecs$target, vecs$lower), na.rm=T), max(c(vecs$target, vecs$upper), na.rm=T )*1.001 )
+        )
+        if(contrdiv){
+          g=g+scale_y_continuous(expand=c(0.05,0),sec.axis = sec_axis(~., name="Contributing diversity"))
+        }
+  }
+  if(splitab){ # a bit hacky
+    g=g+scale_x_continuous(breaks=2009:2021, expand = expansion(0.1,0))
+  }
+  
+  
+  if(convert){
+
+    return( ggplotly(g,tooltip="text") %>% plotly::config(doubleClickDelay=500) 
+            )
+  } else {
+    return(g+theme(legend.position = "none"))
+           }
+  
+}
+
+
+sysplots = function(sysdiv, yl){
+  
+  g=  ggplot(sysdiv,aes(YearEvent, sysdiv, color=ab))+
+    #geom_pointline(position=position_dodge(width = 0.25), distance=unit(10, "pt") )+
+    geom_line(data=sysdiv %>% filter(ab=="Both"), position=position_nudge(x = 0.25/3))+
+    geom_point(aes(shape=ab, size=ab), position=position_dodge(width = 0.25))+
+    geom_errorbar(aes(ymin=slower, ymax=supper),width=0.1, linewidth=0.45,position=position_dodge(width = 0.25) )+
+    scale_x_continuous(breaks=2012:2021)+
+    scale_color_manual(values=abcols)+
+    scale_shape_manual(values=abshapes %>% c(1))+
+    scale_size_manual(values=c(0.6, 0.3, 0.7))+
+    theme_bw()+
+    theme(legend.position = 'none')+
+    theme(
+      panel.grid.minor.x  = element_blank(),
+       panel.grid.minor.y  = element_blank(),
+      plot.background = element_rect(color="white", fill="white"),
+      axis.title.x = element_blank()
+    )+
+    labs(y=yl)
+ return(g)
+}
+
+
+
+plotbees = function(vecs, tag, tlab="", col=NULL, cex=3, vw=1.7, comp=F, colvals=abcols){
+  g=ggplot(vecs %>% 
+             mutate(comp=case_when(
+               `PFIAF category`=="Competitive Feature Film Festivals"~"comp", T~"no"
+               )), 
+           aes(x=as.factor(ab) %>% as.numeric , group=as.factor(ab) %>% as.numeric, color=ab,y=target))+
+  #geom_boxplot(fill=NA, color="gray30", width=0.2)+
+  geom_violin(fill=NA, color="gray50", size=0.1,scale="count", width=vw)
+  
+  if(is.null(col)){
+    if(!comp) {g=g+geom_beeswarm(aes(color=ab), cex = cex,priority = "random",size=0.5)}
+    if(comp) {g=g+geom_beeswarm(aes(color=comp), cex = cex,priority = "random",size=0.5)}
+  } else {
+    g=g+geom_beeswarm(color=col, cex = cex,priority = "random",size=0.5)
+  }
+  
+  g=g+stat_summary(na.rm=T, shape="-", color="black", fun = median, size=2)+
+  #scale_shape_manual(values=abshapes)+
+  scale_color_manual(values=colvals)+
+  scale_size_manual(values=c(0.6,0.3))+
+  coord_cartesian(xlim=c(0.6,2.6), expand=T)+
+  labs(title = expr(paste(bold(!!tag), !!tlab)))+
+  scale_x_continuous(breaks=1:2, labels=c("A", "B"))+
+  scale_y_continuous(expand=expansion(0.01,0))+
+  theme_bw()+
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        axis.title = element_blank(),
+        plot.margin = margin(1,1,1,1),
+        plot.title = element_text(size=8, margin=margin(0,0,0,0)),
+        legend.position = "none",
+        axis.text.x = element_text(size=6, margin=margin(-1,0,0,0), vjust=1),
+        axis.text.y = element_text(size=6, margin=margin(0,-1,0,0), hjust=1),
+        axis.ticks = element_blank()
+        )
+}
+
+
+gg=function(g, do=T){
+  if(do){
+    ggplotly(g, tooltip="text") %>%  
+      plotly::config(doubleClickDelay=500, displaylogo = FALSE,
+                     modeBarButtonsToRemove=c("zoom2d", "pan2d", "select2d", "lasso2d", "autoScale2d", "hoverClosestCartesian", "hoverCompareCartesian", "toImage"  ))
+  } else{
+    g
+  }
+}
+
+pspacer=ggplot()+theme_void()+theme(plot.margin = margin(0,0,0,0))
+
+```
+
+```{r, eval=F}
+
+
+##### treemap for talk ###
+# x = read_excel("C:/Users/Andres/korpused/publicvalue/cinando/festivals_june2022/Festival-film list.xlsx") %>% 
+# mutate(type=case_when( (is.na(lstTypeEvent) | lstTypeEvent=="Festival") ~ "festival", T~"market")  ) %>% 
+#   mutate(tmp=paste0(TitleVA, "_", YearOfProduction )) %>% 
+#   mutate(eventtmp = paste0(EventID_VZ, type)) %>% 
+#   group_by(eventtmp) %>%   # for duplicate film removal
+#   filter(!duplicated(tmp)) %>% 
+#   group_by(eventtmp) %>% 
+#   mutate(eventtmp2=case_when( (n()>=15 | type=="market") ~ eventtmp, T~"rest")) %>% 
+#   group_by(eventtmp2) %>% 
+#   mutate(type2 = case_when(type=="market"~"markets", 
+#                            eventtmp2=="rest"~"excluded festivals", 
+#                            n()>=15~"included festivals",T~"excluded festivals" )) %>% 
+#   summarise(nf=n(), ni=n()>=15, LibelleEvent_NEW=LibelleEvent_NEW[1], type2=type2[1]) 
+# 
+# g=ggplot(x, #%>% mutate(lab=case_when(nf>300~LibelleEvent_NEW, T~"")) %>% arrange(-nf) %>% head(100), 
+#        aes(area = nf, fill = type2)) +
+#   geom_treemap()+
+#   #geom_treemap_text(color="white", place = "centre", size = 15) +
+#   scale_fill_manual(values=divergingx_hcl(6, palette="Zissou 1")[c(5,2,4)], name="")+
+#   theme(legend.position = c(1-0.91,0.9), 
+#         legend.title = element_blank())
+#   
+# ggsave("treemap.png", g, width=5000, height=1500, scale=0.6, units="px")
+```
+
+
+
+# Networks
+
+Film festivals as a network of events, connected if they share overlap in programming, below as a unipartite spring-embedded network diagram. 
+
+```{r}
+ visn %>% visOptions(nodesIdSelection = list(enabled=F))
+```
+
+
+The network as an ordered matrix. Color corresponds to program overlap: each row is a festival, colored by the percentage that its program consists of films from other festivals (columns). Clusters along the diagonal correspond to years. Festivals predominantly overlap via films shown in consecutive years, and retrospective festivals appear as network hubs.
+
+```{r paper1, eval=T}
+# for paper
+
+hm=heatmaplist %>% 
+  #group_by(fromyear) %>%  arrange(-overlap, .by_group = T) %>%  mutate(y = as.factor((100*fromyear)+(1:n())) ) %>% 
+  mutate(fillweight=log10(weight)) %>% 
+  mutate(overlap2 = case_when(overlap==0 ~ NA, T~overlap)) %>% 
+         mutate(tool=paste0(fromlibelle,"\n",  
+                            tolibelle, 
+                            "\nn shared=",weight,
+                            "\n% overlap=",overlap, "\ntime dist=",dist ))
+  
+hmy = hm %>% # year labels
+        arrange(tolibelle) %>% 
+          filter(toyear>2011, fromyear>2011) %>% 
+          group_by(toyear ) %>% 
+          filter(1:n()==round(n()/2)) %>% 
+  mutate(fromlibelle=tolibelle)
+
+fig_heatmap =  ggplot(hm %>% mutate(w=rescale(overlap2,to=c(1,1.3))) , 
+       aes(tolibelle, fromlibelle, 
+         fill=overlap2, text=tool))+
+  coord_cartesian(expand=F)+
+  geom_tile(aes(height=w, width=w), size=0)+
+  geom_text(aes(label=toyear, x=0), data=hmy, hjust=0,vjust=1, angle=90,size=2.5)+ 
+            #color=viridis_pal(end = 0.9)(13))+
+  geom_text(aes(label=toyear,x=fromlibelle, y=0), data=hmy,vjust=0, size=2.5)+
+  
+  #scale_fill_viridis_c(end=0.9, na.value = "white")+
+  #scale_fill_gradientn(colors = cls, na.value = "white", trans="log10", name="log\nstrength")+
+  # scale_fill_viridis_c(direction=-1,na.value = "white", option="magma", trans="log10", name="log\nstrength")+
+  scale_fill_gradientn(colors = matcols, na.value = "transparent",  name="Overlap %")+
+  annotate("text", -Inf, Inf, hjust=-2, vjust=1, label="C", fontface='bold')+
+  theme_bw()+
+    theme(legend.position = c(0.94,0.22), 
+      panel.border = element_blank(),
+      panel.grid = element_blank(),
+      plot.background = element_rect(color="white", fill="white"),
+      axis.title = element_blank(),
+      axis.text = element_blank(), # element_text(size=3),
+      axis.ticks = element_blank()
+    )
+gg(fig_heatmap)
+
+```
+
+
+# Latent spaces
+
+## Thematic space
+
+Continuous latent space containing thematic content categories (uppercase labels), festivals (circles), and films (a sample shown as lowercase labels) in a shared coordinate space, projected using a UMAP dimension reduction. Similar content tags are close to each other, and, therefore, also festivals which program films with similar tags. 
+Here and below: the graphs are interactive; drag a box with the cursor to zoom in, zoom out using the home button on the top toolbar. Hide and show groups by clicking on the legend entries; double click to isolate (hide all others).
+
+
+```{r paper2, eval=T}
+# Big UMAP for thematic space + change plots, and the second, language & geo plot
+#
+
+exchange =  c("Berlinale - Berlin IFF", "Sundance", "Venice - Biennale", "Busan IFF", "Toronto - TIFF", "Tallinn Black Nights IFF")
+
+fig_thematic = ggplot(mapping= aes(V1, V2))+
+  #geom_pie_glyph(radius=0.16, slices=attr(pies2, "mains"))+
+  geom_point(aes(text=tool, color=colorgenre, shape=ab), 
+             data=ugenre %>% filter(type=="festival"), 
+              alpha=0.9)+
+   # geom_path(data=pies2 %>% ungroup %>%  filter(libelleFestival_NEW_VZ==exchange[1]) %>% select(V1, V2) %>% xspline(shape=-0.2, lwd=2, draw=F) %>% data.frame() %>% rename(V1=x,V2=y) , linewidth=0.5, arrow=arrow(angle=25, length=unit(0.06, "inch"), type="closed"), color="gray10", alpha=0.5)+
+  #geom_point(aes(color=colorgenre), data=ugenre %>% filter(type=="film"), size=0.2, fill=NA,show.legend = FALSE)+
+  geom_text(aes(label=event,color=colorgenre, size=sizegen %>% log),
+                  data=ugenre %>%
+                    filter(type %in% c("genre", "film")) %>%
+                    group_by(type) %>%
+                    filter(type=="genre" | (type=="film" & ( (1:n()) %in% c(15,7, 8, 10, 23, 5)) ) )
+                    #mutate(event=case_when(type=="film"~as.character(1:n()), T~type))
+                    ,
+            lineheight=0.55,
+            alpha=0.9, hjust=1,
+            bg.color=alpha("white", 0.7),
+            show.legend = FALSE, max.overlaps=1000,
+            box.padding = 0.2, point.padding = 10, min.segment.length = 999,
+            force_pull=0.1,force=2,  max.time = 2, guide="none")+
+  #scale_size_continuous(c(2.8,3.6), guide="none")+
+  #scale_radius_manual(values=c(0.2, 0.14), guide="none")+
+  scale_shape_manual(values=abshapes, name="Festival\ntype")+
+ 
+  #annotate("text", -Inf, Inf, hjust=0, vjust=1, label="A", fontface='bold')+
+  
+  #scale_fill_manual(values=sixgcols, name="", breaks=attr(pies2, "mains") )+
+  scale_color_manual(values=sixgcols, breaks=ugenre$colorgenre %>% levels )+
+  scale_x_continuous(expand=c(0.01,0))+
+  scale_y_continuous(expand=c(0.01,0))+
+  theme_void()+
+  theme(plot.tag=element_text(face = "bold",hjust=0,vjust=1, margin=margin(0,-9,-10,0)))+
+  theme(legend.position = c(0.75,0.2),
+        plot.background = element_rect( fill="white")
+  )
+gg(fig_thematic)
+```
+
+
+Yearly thematic changes in event programming for longer-running festival series. Values near 0 indicate little change, a high value means the event differs from the previous year (bars indicate bootstrapped confidence intervals).
+
+```{r}
+divyearplot(genrechangevals %>% 
+              mutate(target=dif, lower=diflower, upper=difupper), 
+            ex=exchange, 
+            yl="Yearly change", ylims = c(-0.005,0.09),
+            convert=T, splitab=F, networkstats = F, 
+            genrecols = sixgcols, 
+            nrowmod=3, contrdiv = F
+            )
+```
+
+
+## Geographic space
+
+Latent spaces of production geography of festival programs, colored by the most frequent country in the program. The coordinates of this space are the longitude and latitude of country capitals. Each festival is positioned according to the average production country locations in its program (not festival event locations), illustrating the European cinema focus of the global festival circuit. Drag a box with the cursor to zoom in, reset zoom using the autoscale button on the top toolbar. 
+
+```{r}
+
+
+fig_world = ggplot()+
+  #geom_text(aes(V1, V2, color=colorgenre,label=libelleFestival_NEW_VZ), data=ulang %>% sample_n(30), size=3, show.legend = F, inherit.aes = F, alpha=0.9)+
+  geom_polygon(mapping= aes(long, lat, group = group), data=mp, inherit.aes = F, color="gray80", fill=NA, size=0.1)+
+  #geom_pie_glyph(aes(long, lat), radius=0.13, data=piesg, slices=attr(piesg, "mains"))+
+  geom_point(aes(long, lat, color=colorgenre, shape=ab, text=tool), data=festcountryvecs 
+             , size=1)+
+  #scale_size(range=c(0.3,0.1), guide="none")+
+  #scale_radius_manual(values=c(0.16, 0.12), guide="none")+
+  scale_shape_manual(values=abshapes, name="Festival\ntype")+
+  scale_color_manual(values=sixcols, 
+    name="Main", breaks=levels(festcountryvecs$colorgenre)
+                     )+ # add breaks if multiple geoms
+  coord_cartesian(xlim=range(festcountryvecs$long)*1.01, ylim=range(festcountryvecs$lat)*1.03,expand=F)+
+  theme_void()+
+  theme(plot.tag=element_text(face = "bold",hjust=0,vjust=1, margin=margin(0,-9,-10,0)))+
+  theme(legend.position = c(0.08,0.27),
+        legend.background = element_rect(color="transparent", fill="transparent"),
+    plot.background = element_rect( fill="white"),
+    axis.text = element_text(size=3.8)
+  )+
+  NULL
+gg(fig_world)
+```
+
+This next maps shows the approximate locations of the festivals in the sample, placed above the capital of the country they take place in (some jitter added due to point overlap).
+```{r}
+fig_eventmap = ggplot(festcountryvecs %>%  # small event location inset
+                        group_by(paste(eventlong, eventlat)) %>% 
+                        mutate(eventlong=eventlong+runif(n(), -log(n()), log(n()) )) %>% 
+                        mutate(eventlat=eventlat+runif(n(), -log(n()), log(n()) ))
+                        )+
+   coord_cartesian(xlim=range(festcountryvecs$eventlong)*1.05, ylim=range(festcountryvecs$eventlat)*1.07,expand=F)+
+  geom_polygon(mapping= aes(long, lat, group = group), data=mp, inherit.aes = F, color="gray80", fill=NA, size=0.2)+
+  geom_point(aes(eventlong, eventlat, text=tool, color=colorgenre, shape=ab), festcountryvecs,alpha=0.9, position=position_jitter(3,3), size=0.8)+
+  scale_shape_manual(values=abshapes, name="Festival\ntype")+
+  theme_void()+
+  scale_color_manual(values=sixcols, 
+    name="Main", breaks=levels(festcountryvecs$colorgenre)
+                     )+ # add breaks if multiple geoms
+  theme(plot.tag=element_text(face = "bold",hjust=0,vjust=1, margin=margin(0,-9,-10,0)))+
+  theme(legend.position = 'none',
+        plot.background = element_rect(fill="white")
+        )
+ gg(fig_eventmap)       
+
+```
+
+<br>
+
+## Languages
+
+Similarly, festivals by the languages represented in their programs; UMAP projection of the latent language similarity embedding. While many festivals are multilingual, there are also groups of Spanish-, English-, and French-focused programs. Coloring by main category.
+```{r}
+
+fig_langmap = ggplot(mapping=aes(V1, V2))+
+  #geom_text(aes(V1, V2, color=colorgenre,label=libelleFestival_NEW_VZ), data=ulang %>% sample_n(30), size=3, show.legend = F, inherit.aes = F, alpha=0.9)+
+  #geom_pie_glyph(radius=0.16,data=piesl, slices=attr(piesl, "mains"))+
+  
+  geom_point(aes( text=tool, color=colorgenre, shape=ab), data=ulang  , size=0.6)+
+  #scale_size(range=c(0.3,0.1), guide="none")+
+  #scale_radius_manual(values=c(0.16, 0.12), guide="none")+
+  scale_shape_manual(values=abshapes, name="Festival\ntype")+
+  scale_color_manual(values=langcols, 
+    name="Main", breaks=levels(ulang$colorgenre)
+                     )+ # add breaks if multiple geoms
+  theme_void()+
+  #labs(tag="C")+
+  theme(plot.tag=element_text(face = "bold",hjust=0,vjust=1, margin=margin(0,-9,-10,0)))+
+  scale_x_continuous(expand=c(0.005,0))+
+  theme(legend.position = c(0.07,0.28),
+        legend.background = element_rect(color="transparent", fill="transparent"),
+    plot.background = element_rect( fill="white")
+  )+
+  NULL
+gg(fig_langmap)
+
+
+
+```
+
+
+
+
+
+
+
+# Diversity
+
+These graphs depict diversity of festivals across four different metadata variables. Note the error bars: they represent 95% confidence intervals from a nonparametric bootstrapping, i.e. the true mean value (the dots) are likely to be within the given range. Smaller festival samples and festivals with more variation around the mean for a given statistic therefore have larger bar ranges.
+
+## Gender diversity
+
+These graphs display as a diversity measure the fraction of women in the key roles of director and producer. The error bars further take into account the uncertaintly of the name-to-gender classifier (see paper for details).
+
+```{r, eval=F}
+
+
+fig_g1=ggplot(festrolevecs, mapping=aes(ratiopf, ratiodf, color=ratiof, shape=ab, size=ab, text=tool))+
+  geom_vline(xintercept = 0.5)+
+  geom_hline(yintercept = 0.5)+
+  geom_point()+
+  scale_size_manual(values =c(1.4,0.8)*1.2, guide="none")+
+  scale_shape_manual(values=abshapes, name="Festival\ntype")+
+  scale_color_gradientn(colours =rolecols, name="Fraction\nwomen", limits=c(0,1))+
+  theme_bw()+
+  theme(#legend.position = 'none',
+        plot.background = element_rect( fill="white"),
+        plot.margin = margin(1,2,-5,0)
+  )+
+  labs(x="Producers", y="Directors")
+fig_g1 %>% gg
+
+{sysplots(attr(festrolevecs,"sysdivs"), yl="Circuit-wide weighted mean fraction of women")+lims(y=c(0.2,0.45))+ theme(legend.position = c(0.75,0.1),legend.direction = "horizontal", legend.title = element_blank())}+
+
+{divyearplot(festrolevecs  %>% mutate(target=ratiof, lower=rfminboot, upper=rfmaxboot),
+            ex=exrolefests, yl="% of women", convert=F, splitab=F, networkstats = F, ylims=c(0,0.59), nrowmod = 2,  contrdiv = F)+theme(axis.title = element_blank())
+} 
+
+
+
+```
+
+
+## Thematic diversity
+
+Thematic and language diversity values are scaled into a range of \[0,1\], using the largest possible distance in the respective latent space as the scaling value (and multiplied by 2 in the case of internal diversity, as it's comparison to internal mean), and are thus interpretable.
+
+-   0 internal diverity: all films are of the same metadata type
+-   1 internal: the films are as different as can be
+-   0 contributing diversity: festival looks exactly like the ecosystem grand mean
+-   1 contributing: festival is as distant from the grand mean as possible in the given latent space.
+
+```{r}
+div2plot(festgenrevecs, ex=NULL, convert=convertplots, genrecols = sixgcols)
+
+
+divyearplot(festgenrevecs  %>% mutate(target=indiv),
+            ex=NULL, yl="Internal thematic diversity", convert=convertplots, networkstats = F)
+
+
+divyearplot(festgenrevecs  %>% mutate(target=exdiv),
+            ex=NULL, yl="Contributing thematic diversity", convert=convertplots, networkstats = F)
+```
+
+
+For the festival series examples, contributing diversity is plotted as the lighter gray points and error bars.
+```{r, eval=T}
+divyearplot(festgenrevecs  %>% mutate(target=indiv, lower=ilower, upper=iupper), 
+            ex=exgenfests, yl="Internal thematic diversity", convert=T, splitab=F, networkstats = F, nrowmod = 3, genrecols = sixgcols)
+
+sysplots(attr(festgenrevecs,"sysdivs"), yl="Circuit thematic diversity")+
+          theme(legend.position = c(0.85,0.22), legend.title = element_blank())
+
+```
+
+
+## Geographic diversity
+
+```{r}
+div2plot(festcountryvecs, ex=NULL, convert=convertplots, genrecols = sixcols)
+
+
+divyearplot(festcountryvecs  %>% mutate(target=indiv),
+            ex=NULL, yl="Internal geo diversity", convert=convertplots, networkstats = F)
+
+
+divyearplot(festcountryvecs  %>% mutate(target=exdiv),
+            ex=NULL, yl="Contributing geo diversity", convert=convertplots, networkstats = F)
+```
+
+
+For the festival series examples, contributing diversity is plotted as the lighter gray points and error bars.
+```{r, eval=T}
+divyearplot(festcountryvecs  %>% mutate(target=indiv, lower=ilower, upper=iupper), 
+            ex=exgeofests, yl="Internal geo diversity", convert=T, splitab=F, networkstats = F, nrowmod = 3, genrecols = sixgcols)
+
+sysplots(attr(festcountryvecs,"sysdivs"), yl="Circuit geo diversity")+
+          theme(legend.position = c(0.85,0.22), legend.title = element_blank())
+
+```
+
+
+## Language diversity
+
+```{r}
+div2plot(festlangvecs, ex=NULL, convert=convertplots, genrecols = langcols)
+
+
+divyearplot(festlangvecs  %>% mutate(target=indiv),
+            ex=NULL, yl="Internal language diversity", convert=convertplots, networkstats = F)
+
+
+divyearplot(festlangvecs  %>% mutate(target=exdiv),
+            ex=NULL, yl="Contributing language diversity", convert=convertplots, networkstats = F)
+```
+
+
+For the festival series examples, contributing diversity is plotted as the lighter gray points and error bars.
+```{r, eval=T}
+divyearplot(festlangvecs  %>% mutate(target=indiv, lower=ilower, upper=iupper), 
+            ex=exlangfests, yl="Internal language diversity", convert=T, splitab=F, networkstats = F, nrowmod = 3, genrecols = sixgcols)
+
+sysplots(attr(festlangvecs,"sysdivs"), yl="Circuit language diversity")+
+          theme(legend.position = c(0.85,0.22), legend.title = element_blank())
+
+```
+
+
+
