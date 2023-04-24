@@ -14,7 +14,9 @@ format:
     embed-resources: true
     toc: true
     toc-location: left
+    toc-title: "Quantifying the global film festival circuit"
     toc-depth: 6
+    toc-expand: 10
     search: false
     grid:
       sidebar-width: 200px
@@ -117,9 +119,9 @@ div2plot = function(vecs, ex=NULL, convert=T,  colorlab="Main", xlab="Contributi
     #           color="black", 
     #           size=0.2)+
     #scale_color_manual(values=abcols)+
-    scale_color_manual(values=genrecols, name=colorlab)+
-    scale_shape_manual(values=abshapes, name="Festival")+
-    scale_size_manual(values=c(2, 1.2), guide = "none")+
+    scale_color_manual(values=genrecols, name="")+
+    scale_shape_manual(values=abshapes, name="")+
+    scale_size_manual(values=c(2, 1.2), guide = "none", name="")+
     labs(x=xlab, y=ylab)+
     theme_bw()+
     theme(#legend.position = 'left', 
@@ -397,7 +399,7 @@ pspacer=ggplot()+theme_void()+theme(plot.margin = margin(0,0,0,0))
 
 # Networks
 
-Film festivals as a network of events, connected if they share overlap in programming, below as a unipartite spring-embedded network diagram. 
+Film festivals as a network of events, connected if they share overlap in programming, below as a unipartite spring-embedded network diagram. A-list festivals are blue, B are yellow.
 
 ```{r}
  visn %>% visOptions(nodesIdSelection = list(enabled=F))
@@ -489,12 +491,12 @@ fig_thematic = ggplot(mapping= aes(V1, V2))+
             force_pull=0.1,force=2,  max.time = 2, guide="none")+
   #scale_size_continuous(c(2.8,3.6), guide="none")+
   #scale_radius_manual(values=c(0.2, 0.14), guide="none")+
-  scale_shape_manual(values=abshapes, name="Festival\ntype")+
+  scale_shape_manual(values=abshapes, name="Festival\ntype\nand\nmain\ngenre")+
  
   #annotate("text", -Inf, Inf, hjust=0, vjust=1, label="A", fontface='bold')+
   
   #scale_fill_manual(values=sixgcols, name="", breaks=attr(pies2, "mains") )+
-  scale_color_manual(values=sixgcols, breaks=ugenre$colorgenre %>% levels )+
+  scale_color_manual(values=sixgcols, breaks=ugenre$colorgenre %>% levels, name="" )+
   scale_x_continuous(expand=c(0.01,0))+
   scale_y_continuous(expand=c(0.01,0))+
   theme_void()+
@@ -535,7 +537,7 @@ fig_world = ggplot()+
              , size=1)+
   #scale_size(range=c(0.3,0.1), guide="none")+
   #scale_radius_manual(values=c(0.16, 0.12), guide="none")+
-  scale_shape_manual(values=abshapes, name="Festival\ntype")+
+  scale_shape_manual(values=abshapes, name="Festival\ntype\nand\nmain\ncountry")+
   scale_color_manual(values=sixcols, 
     name="Main", breaks=levels(festcountryvecs$colorgenre)
                      )+ # add breaks if multiple geoms
@@ -588,7 +590,7 @@ fig_langmap = ggplot(mapping=aes(V1, V2))+
   geom_point(aes( text=tool, color=colorgenre, shape=ab), data=ulang  , size=0.6)+
   #scale_size(range=c(0.3,0.1), guide="none")+
   #scale_radius_manual(values=c(0.16, 0.12), guide="none")+
-  scale_shape_manual(values=abshapes, name="Festival\ntype")+
+  scale_shape_manual(values=abshapes, name="Festival\ntype\nand\nmain\nlang.")+
   scale_color_manual(values=langcols, 
     name="Main", breaks=levels(ulang$colorgenre)
                      )+ # add breaks if multiple geoms
@@ -621,7 +623,7 @@ These graphs depict diversity of festivals across four different metadata variab
 
 These graphs display as a diversity measure the fraction of women in the key roles of director and producer. The error bars further take into account the uncertaintly of the name-to-gender classifier (see paper for details).
 
-```{r, eval=F}
+```{r, eval=T}
 
 
 fig_g1=ggplot(festrolevecs, mapping=aes(ratiopf, ratiodf, color=ratiof, shape=ab, size=ab, text=tool))+
