@@ -1,5 +1,5 @@
 ---
-title: "Andres Karjus &nbsp;<font size='3'> evolutionary&nbsp;linguist | cultural&nbsp;data&nbsp;analytics&nbsp;scholar | digital&nbsp;humanities&nbsp;instructor </font>"
+title: "Andres Karjus &nbsp;<font size='3'> evolutionary&nbsp;linguist | cultural&nbsp;data&nbsp;analytics&nbsp;scholar | AI & digital&nbsp;humanities&nbsp;instructor </font>"
 output: 
   html_document: 
     theme: spacelab
