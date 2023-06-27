@@ -1535,7 +1535,8 @@ fig_thematic = ggplot(pies2, aes(V1, V2))+
   geom_pie_glyph(radius=0.16, slices=attr(pies2, "mains"))+
   geom_point(aes(text=tool), data=ugenre %>% filter(type=="festival", ab=="A"), 
              size=0.5, fill=NA, alpha=0.9, color="black", shape=16)+
-   geom_path(data=pies2 %>% ungroup %>%  filter(libelleFestival_NEW_VZ==exchange[1]) %>% select(V1, V2) %>% xspline(shape=-0.2, lwd=2, draw=F) %>% data.frame() %>% rename(V1=x,V2=y) , linewidth=0.5, arrow=arrow(angle=25, length=unit(0.06, "inch"), type="closed"), color="gray10", alpha=0.5)+
+ geom_point(aes(text=tool), data=ugenre %>% filter(grepl("Goteborg", event)), size=3, stroke=1.1, fill=NA, alpha=0.9, color="black", shape=1)+
+   #geom_path(data=pies2 %>% ungroup %>%  filter(libelleFestival_NEW_VZ==exchange[1]) %>% select(V1, V2) %>% xspline(shape=-0.2, lwd=2, draw=F) %>% data.frame() %>% rename(V1=x,V2=y) , linewidth=0.5, arrow=arrow(angle=25, length=unit(0.06, "inch"), type="closed"), color="gray10", alpha=0.5)+
   #geom_point(aes(color=colorgenre), data=ugenre %>% filter(type=="film"), size=0.2, fill=NA,show.legend = FALSE)+
   geom_text_repel(aes(label=event,color=colorgenre, size=sizegen %>% log),
                   data=ugenre %>%
