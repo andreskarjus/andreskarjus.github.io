@@ -17,11 +17,13 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
+- Two new preprints this week: ["Evolving Linguistic Divergence on Polarizing Social Media"](https://arxiv.org/abs/2309.01659) and ["A Framework for the Analysis of Historical Newsreels"](https://doi.org/10.31235/osf.io/a4xsp)  (06.09.2023)
+
 - Out now in Frontiers Neuroscience: Yilmaz, Lotman, Karjus, Tikka, "An embodiment of the cinematographer: emotional and perceptual responses to different camera movement techniques" | [open access](https://doi.org/10.3389/fnins.2023.1160843) (03.07.2023)
 
 - Out now in EPJDS: Karjus et al., "Compression ensembles quantify aesthetic complexity and the evolution of visual art" | [open access](https://doi.org/10.1140/epjds/s13688-023-00397-3) | [code](https://github.com/andreskarjus/compression_ensembles) (14.06.2023)
 
-- Published an opinion piece in the popular science outlet [Novaator](https://novaator.err.ee/1609007981/andres-karjus-tehisintellekt-seab-juba-sel-sugisel-koolid-sundvaliku-ette) on how generative AI will affect education in the near future (16.06.2023)
+- Published an opinion piece in the popular science outlet [Novaator](https://novaator.err.ee/1609007981/andres-karjus-tehisintellekt-seab-juba-sel-sugisel-koolid-sundvaliku-ette) on how generative AI will affect education in the near future (in Estonian; 16.06.2023)
 
 - New preprints: Ohm et al. "Collection Space Navigator: An Interactive Visualization Interface for Multidimensional Datasets", and Zemaityte et al. "Quantifying the global film festival circuit: Networks, diversity, and public value creation"
 

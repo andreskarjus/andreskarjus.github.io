@@ -74,11 +74,13 @@ details summary::-webkit-details-marker {
 
 ### New things  
 
+
 <div class="container-fluid">
 <div class="row">
   <div class="col-sm-7">
   <iframe src="news.html" width="100%" height="200" style="border: none;"></iframe>
   </div>
+  <!---
   <div class="col-sm-5">
   <a class="twitter-timeline" 
   data-show-screen-name="false" 
@@ -91,13 +93,16 @@ details summary::-webkit-details-marker {
   </a> 
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   </div>
+  -->
+  <IMG SRC="round.jpg" ALIGN="right" BR CLEAR="left" style="margin-left:10px; width: 20%; height: auto;">
 </div>
 
 <div class="row">
 <div class="col-sm-12">
 
 
-### What I do  <IMG SRC="round.jpg" ALIGN="right" BR CLEAR="left" style="margin-left:10px; width: 20%; height: auto;">
+
+### What I do  
 <div style="text-align: justify; padding-left:1px"> 
 I am a research fellow at the [CUDAN](http://cudan.tlu.ee/) Cultural Data Analytics lab at Tallinn University, working on **language and culture dynamics**, using large corpora, machine learning, and human experiments. Recently I have been also working on, through various collaborations, on art history and creative industries and advising collaborative projects between involving academic and media industry partners.<br>
 I defended my PhD in 2020, in linguistics at the [Centre for Language Evolution](http://www.lel.ed.ac.uk/cle/) of University of Edinburgh, on lexical dynamics and communicative need in language. <br>
@@ -107,7 +112,9 @@ I also occasionally do workshops on **R, stats & data visualization** and **AI**
 
 #### Publications 
 
+* Andres Karjus and Christine Cuskley. 2023. Evolving Linguistic Divergence on Polarizing Social Media | arXiv [preprint](https://arxiv.org/abs/2309.01659)
 * Andres Karjus, Mar Canet Solà, Tillmann Ohm, Sebastian Ahnert, Maximilian Schich. 2023. Compression ensembles quantify aesthetic complexity and the evolution of visual art. EPJ Data Science. 12, 21. | [open access](https://doi.org/10.1140/epjds/s13688-023-00397-3) | [code](https://github.com/andreskarjus/compression_ensembles)
+* Oiva, Mila, Ksenia Mukhina, Vejune Zemaityte, Tillmann Ohm, Mikhail Tamm, Andres Karjus, Mark Mets, Daniel Chávez Heras Mar Canet Solà, Helena Hanna Juht, Maximilian Schich. 2023. A Framework for the Analysis of Historical Newsreels | [preprint](https://doi.org/10.31235/osf.io/a4xsp)
 * Tillmann Ohm, Mar Canet Solà, Andres Karjus, Maximilian Schich. 2023. Collection Space Navigator: An Interactive Visualization Interface for Multidimensional Datasets | [preprint](https://arxiv.org/abs/2305.06809) | [interactive demo](https://collection-space-navigator.github.io/) | [code](https://github.com/Collection-Space-Navigator/CSN)
 * Mehmet Burak Yilmaz, Elen Lotman, Andres Karjus, Pia Tikka. 2023. An embodiment of the cinematographer: emotional and perceptual responses to different camera movement techniques. Frontiers Neuroscience | [open access](https://doi.org/10.3389/fnins.2023.1160843) | [data](https://zenodo.org/record/7979713)
 * Juan Guerrero Montero, Andres Karjus, Kenny Smith, Richard A. Blythe. 2023. Reliable identification of selection mechanisms in language change | [preprint](https://arxiv.org/abs/2305.15914)
@@ -242,5 +249,10 @@ Email: andres.karjus --at-- tlu.ee <br>
 Twitter: <a href="https://twitter.com/AndresKarjus">https://twitter.com/AndresKarjus</a> <br>
 Mastodon: <a href=https://mastodon.social/@andreskarjus>https://mastodon.social/@AndresKarjus</a>
 <br>
+LinkedIn: <a href="https://www.linkedin.com/in/andreskarjus/">https://www.linkedin.com/in/andreskarjus/</a> <br> 
 </div>
+
+
+
+
 
