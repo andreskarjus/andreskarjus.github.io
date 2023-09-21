@@ -145,6 +145,9 @@ I also occasionally do workshops on **R, stats & data visualization** and **AI**
 
 #### Conferences & seminars
 
+- Talk on LLMs for studying texts and change at "Assessing and measuring systems change" workshop | [slides](https://andreskarjus.github.io/talks/Tartu_LLMtalk.pdf)
+- Poster on film festival research at Netsci 2023, Vienna
+- Presentation at the Bibliotheca Herziana workshop on computational approaches to art
 - Talk "Programming, data visualization & AI  for academic audiences across institutions and disciplines: lessons learned", at the Cross-university collaboration in Digital Humanities & Social Science (DHSS) and Digital Humanities & Cultural Heritage (DHCH) Education workshop of the DHNB2023 conference | [slides](https://datafigure.eu/reports/AndresKarjusDatafigure_CrossUniversityDHworkshop.pdf)
 - Talk "Exploring Estonian Public Television Production 2004-2020 Using Big Programming Data" at the 8th Estonian Digital Humanities [Conference](https://dh.org.ee/events/dhe2022) (05.10.2022)
 - Poster "Evolving Linguistic Divergence in Socio-Political Polarities", at the [JCoLe](https://sites.google.com/view/joint-conf-language-evolution) Joint Conference on Language Evolution in Kanazawa, Japan (August 2022)
