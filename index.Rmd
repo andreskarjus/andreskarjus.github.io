@@ -1,5 +1,5 @@
 ---
-title: "Andres Karjus &nbsp;<font size='3'> evolutionary&nbsp;linguist | cultural&nbsp;data&nbsp;analytics&nbsp;scholar | AI & digital&nbsp;humanities&nbsp;instructor </font>"
+title: "Andres Karjus &nbsp;<font size='3'> evolutionary&nbsp;linguist | cultural&nbsp;data&nbsp;analyst | AI&nbsp;&&nbsp;DH&nbsp;instructor </font>"
 output: 
   html_document: 
     theme: spacelab
@@ -104,18 +104,20 @@ details summary::-webkit-details-marker {
 
 ### What I do  
 <div style="text-align: justify; padding-left:1px"> 
-I am a research fellow at the [CUDAN](http://cudan.tlu.ee/) Cultural Data Analytics lab at Tallinn University, working on **language and culture dynamics**, using large corpora, machine learning, and human experiments. Recently I have been also working on, through various collaborations, on art history and creative industries and advising collaborative projects between involving academic and media industry partners.<br>
-I defended my PhD in 2020, in linguistics at the [Centre for Language Evolution](http://www.lel.ed.ac.uk/cle/) of University of Edinburgh, on lexical dynamics and communicative need in language. <br>
-I also occasionally do workshops on **R, stats & data visualization** and **AI**-related things (see [more here](https://datafigure.eu)). 
+I work on **language and culture dynamics**, using large corpora, machine learning & AI, and cognitive experiments. Recently I have been also working on, through various collaborations, on art history and creative industries, and advising collaborative projects between academia and the public and private sectors. I am affiliated as a research fellow at the [CUDAN](http://cudan.tlu.ee/) Cultural Data Analytics lab at Tallinn University, and at the [Estonian Business School](https://www.ebs.ee/en). <br>
+I did my PhD at the [Centre for Language Evolution](http://www.lel.ed.ac.uk/cle/) of the University of Edinburgh, on lexical dynamics and communicative need in language. <br>
+I also occasionally do workshops on **R**, stats & data visualization and **AI**-related things (see [more here](https://datafigure.eu)). 
+
 
 ### Research
 
-#### Publications 
+#### Publications (including in-review preprints)
 
+* Andres Karjus. 2023. Machine-assisted mixed methods: augmenting humanities and social sciences with artificial intelligence | [preprint](https://arxiv.org/abs/2309.14379) | [data&code](https://github.com/andreskarjus/MachineAssistedMixedMethods)
 * Andres Karjus and Christine Cuskley. 2023. Evolving Linguistic Divergence on Polarizing Social Media | arXiv [preprint](https://arxiv.org/abs/2309.01659)
 * Andres Karjus, Mar Canet Solà, Tillmann Ohm, Sebastian Ahnert, Maximilian Schich. 2023. Compression ensembles quantify aesthetic complexity and the evolution of visual art. EPJ Data Science. 12, 21. | [open access](https://doi.org/10.1140/epjds/s13688-023-00397-3) | [code](https://github.com/andreskarjus/compression_ensembles)
+* Tillmann Ohm, Mar Canet Solà, Andres Karjus, Maximilian Schich. 2023. Collection Space Navigator: An Interactive Visualization Interface for Multidimensional Datasets. Proceedings of VINCI2023. | [proceedings version](https://www.vinci-symp.org/vinci_paper/vinci2023-t24.pdf) | [extended preprint](https://arxiv.org/abs/2305.06809) | [interactive demo](https://collection-space-navigator.github.io/) | [code](https://github.com/Collection-Space-Navigator/CSN)
 * Oiva, Mila, Ksenia Mukhina, Vejune Zemaityte, Tillmann Ohm, Mikhail Tamm, Andres Karjus, Mark Mets, Daniel Chávez Heras Mar Canet Solà, Helena Hanna Juht, Maximilian Schich. 2023. A Framework for the Analysis of Historical Newsreels | [preprint](https://doi.org/10.31235/osf.io/a4xsp)
-* Tillmann Ohm, Mar Canet Solà, Andres Karjus, Maximilian Schich. 2023. Collection Space Navigator: An Interactive Visualization Interface for Multidimensional Datasets | [preprint](https://arxiv.org/abs/2305.06809) | [interactive demo](https://collection-space-navigator.github.io/) | [code](https://github.com/Collection-Space-Navigator/CSN)
 * Mehmet Burak Yilmaz, Elen Lotman, Andres Karjus, Pia Tikka. 2023. An embodiment of the cinematographer: emotional and perceptual responses to different camera movement techniques. Frontiers Neuroscience | [open access](https://doi.org/10.3389/fnins.2023.1160843) | [data](https://zenodo.org/record/7979713)
 * Juan Guerrero Montero, Andres Karjus, Kenny Smith, Richard A. Blythe. 2023. Reliable identification of selection mechanisms in language change | [preprint](https://arxiv.org/abs/2305.15914)
 * Vejune Zemaityte, Andres Karjus, Ulrike Rohn, Maximilian Schich, Indrek Ibrus. 2023. Quantifying the global film festival circuit: Networks, diversity, and public value creation | [preprint](https://doi.org/10.31235/osf.io/g9w4b) | [code & data](https://andreskarjus.github.io/cinandofestivals)
@@ -215,7 +217,10 @@ For more details, head over to [datafigure.eu](https://datafigure.eu)
 <div style="text-align: justify"> 
 
 - Wrote an opinion piece in ERR [Novaator](https://novaator.err.ee/1609007981/andres-karjus-tehisintellekt-seab-juba-sel-sugisel-koolid-sundvaliku-ette) on how generative AI will affect education in the near future (16.06.2023)
-- Gave a number of interviews on artificial intelligence topics in Spring 2023 (in Estonian): [Äripäev radio](https://www.aripaev.ee/saated/2023/03/30/tehisintellekt-muudab-taiskasvanute-oppimist-ja-opikogemust), [TÜHI Eeter podcast](https://www.levila.ee/raadio/tuhi-eeter/kumb-on-arukam-kas-inimaru-voi-tehisaru), [PostimeesTV](https://haridus.postimees.ee/7722633/ekspert-eetris-andres-karjus-kas-chatgpt-hakkab-mojutama-meie-vaartusi-ja-kaitumist), BFM [Luna TV](https://www.youtube.com/watch?v=cXpNkDgfP7Y),  [Postimees](https://www.postimees.ee/7717736/tehisintellekti-abil-kodutoo-kirjutajaid-on-pea-voimatu-vahele-votta)
+- Gave a number of interviews on artificial intelligence and education topics in 2023 (in Estonian):
+[Kanal2 Õhtu](https://duoplay.ee/5826/ohtu?ep=749),
+[Äripäev radio](https://www.aripaev.ee/saated/2023/03/30/tehisintellekt-muudab-taiskasvanute-oppimist-ja-opikogemust), 
+[TÜHI Eeter podcast](https://www.levila.ee/raadio/tuhi-eeter/kumb-on-arukam-kas-inimaru-voi-tehisaru), [PostimeesTV](https://haridus.postimees.ee/7722633/ekspert-eetris-andres-karjus-kas-chatgpt-hakkab-mojutama-meie-vaartusi-ja-kaitumist), BFM [Luna TV](https://www.youtube.com/watch?v=cXpNkDgfP7Y),  [Postimees](https://www.postimees.ee/7717736/tehisintellekti-abil-kodutoo-kirjutajaid-on-pea-voimatu-vahele-votta)
 - News piece in [Pealinn](https://pealinn.ee/2022/09/29/vaata-millised-ettevotjad-saavad-tanavu-tunnustamise-osaliseks-ja-voidavad-auhinna/) on Tallinn city enterpreneurship prizes 2022, including me & colleagues for our media monitoring AI prototype in collaboration with AS Ekspress Grupp.
 - Hosted students at the CUDAN lab via the job shadowing (töövari) programme of the Estonian Tagasi Kooli programme (online April 2021, live in November 2020).
 - I helped my supervisor Prof. Kenny Smith carry out a number of linguistics workshops in primary schools around Edinburgh and Lothian, in school years 2018/2019 and 2019/2020.
