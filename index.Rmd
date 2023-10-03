@@ -104,9 +104,9 @@ details summary::-webkit-details-marker {
 
 ### What I do  
 <div style="text-align: justify; padding-left:1px"> 
-I work on **language and culture dynamics**, using large corpora, machine learning & AI, and cognitive experiments. Recently I have been also working on, through various collaborations, on art history and creative industries, and advising collaborative projects between academia and the public and private sectors. I am affiliated as a research fellow at the [CUDAN](http://cudan.tlu.ee/) Cultural Data Analytics lab at Tallinn University, and at the [Estonian Business School](https://www.ebs.ee/en). <br>
+I work on **language and culture dynamics**, using large corpora, machine learning & AI, and cognitive experiments. Recently I have been also working on, through various collaborations, on art history and creative industries, and advising collaborative projects between academia and the public and private sectors. I am affiliated as a research fellow at the [CUDAN](http://cudan.tlu.ee/) Cultural Data Analytics lab at Tallinn University, and at the [Estonian Business School](https://www.ebs.ee/en).
 I did my PhD at the [Centre for Language Evolution](http://www.lel.ed.ac.uk/cle/) of the University of Edinburgh, on lexical dynamics and communicative need in language. <br>
-I also occasionally do workshops on **R**, stats & data visualization and **AI**-related things (see [more here](https://datafigure.eu)). 
+I also occasionally do workshops on **R**, stats & data visualization, and **AI**-related things (see [more here](https://datafigure.eu)). 
 
 
 ### Research
@@ -250,14 +250,19 @@ During my pre-PhD studies I also went on exchanges to the University of Iceland 
 **Andres Karjus** <br> 
 PhD, MA (linguistics), MSc (artificial intelligence)
 
-Research fellow, CUDAN Open Lab, Tallinn University <br>
-Instructor at Datafigure OÜ
+Research fellow at <a href=https://cudan.tlu.ee>CUDAN Open Lab, Tallinn University</a> <br>
+Senior research fellow at <a href=https://www.ebs.ee>Estonian Business School</a> <br>
+Instructor at <a href=https://datafigure.eu>Datafigure OÜ</a>
 
-Email: andres.karjus --at-- tlu.ee <br>
-Twitter: <a href="https://twitter.com/AndresKarjus">https://twitter.com/AndresKarjus</a> <br>
-Mastodon: <a href=https://mastodon.social/@andreskarjus>https://mastodon.social/@AndresKarjus</a>
+Academic email: andres.karjus --at-- tlu.ee <br>
+Business/workshop inquiries: please contact via the Datafigure page 
 <br>
-LinkedIn: <a href="https://www.linkedin.com/in/andreskarjus/">https://www.linkedin.com/in/andreskarjus/</a> <br> 
+<br>
+Twitter / X: <a href=https://twitter.com/AndresKarjus>twitter.com/AndresKarjus</a> <br>
+Bluesky: <a href=https://bsky.app/profile/andreskarjus.bsky.social>andreskarjus.bsky.social</a> <br>
+Mastodon: <a href=https://mastodon.social/@andreskarjus>mastodon.social/@AndresKarjus</a>
+<br>
+LinkedIn: <a href="https://www.linkedin.com/in/andreskarjus/">www.linkedin.com/in/andreskarjus/</a> <br> 
 </div>
 
 
