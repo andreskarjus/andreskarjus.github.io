@@ -259,7 +259,7 @@ Business/workshop inquiries: please contact via the Datafigure page
 <br>
 <br>
 Twitter / X: <a href=https://twitter.com/AndresKarjus>twitter.com/AndresKarjus</a> <br>
-Bluesky: <a href=https://bsky.app/profile/andreskarjus.bsky.social>andreskarjus.bsky.social</a> <br>
+Bluesky: <a href=https://bsky.app/profile/andreskarjus.bsky.social>bsky.app/profile/andreskarjus.bsky.social</a> <br>
 Mastodon: <a href=https://mastodon.social/@andreskarjus>mastodon.social/@AndresKarjus</a>
 <br>
 LinkedIn: <a href="https://www.linkedin.com/in/andreskarjus/">www.linkedin.com/in/andreskarjus/</a> <br> 
