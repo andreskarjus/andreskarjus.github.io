@@ -113,24 +113,41 @@ I also occasionally do workshops on **R**, stats & data visualization, and **AI*
 
 #### Publications (including in-review preprints)
 
+2023
+
 * Andres Karjus. 2023. Machine-assisted mixed methods: augmenting humanities and social sciences with artificial intelligence | [preprint](https://arxiv.org/abs/2309.14379) | [data&code](https://github.com/andreskarjus/MachineAssistedMixedMethods)
+* Juan Guerrero Montero, Andres Karjus, Kenny Smith, Richard A. Blythe. 2023. Reliable identification of selection mechanisms in language change. Corpus Linguistics and Linguistic Theory | [Open access](https://doi.org/10.1515/cllt-2023-0064)
 * Andres Karjus and Christine Cuskley. 2023. Evolving Linguistic Divergence on Polarizing Social Media | arXiv [preprint](https://arxiv.org/abs/2309.01659)
 * Tillmann Ohm, Mar Canet Solà, Andres Karjus, Maximilian Schich. 2023. Collection Space Navigator: An Interactive Visualization Interface for Multidimensional Datasets. VINCI 2023: Proceedings of the 16th International Symposium on Visual Information Communication and Interaction. | [open access](doi.acm.org?doi=3615522.3615546) | [extended preprint](https://arxiv.org/abs/2305.06809) | [interactive demo](https://collection-space-navigator.github.io/) | [code](https://github.com/Collection-Space-Navigator/CSN)
 * Andres Karjus, Mar Canet Solà, Tillmann Ohm, Sebastian Ahnert, Maximilian Schich. 2023. Compression ensembles quantify aesthetic complexity and the evolution of visual art. EPJ Data Science. 12, 21. | [open access](https://doi.org/10.1140/epjds/s13688-023-00397-3) | [code](https://github.com/andreskarjus/compression_ensembles)
 * Oiva, Mila, Ksenia Mukhina, Vejune Zemaityte, Tillmann Ohm, Mikhail Tamm, Andres Karjus, Mark Mets, Daniel Chávez Heras Mar Canet Solà, Helena Hanna Juht, Maximilian Schich. 2023. A Framework for the Analysis of Historical Newsreels | [preprint](https://doi.org/10.31235/osf.io/a4xsp)
 * Mehmet Burak Yilmaz, Elen Lotman, Andres Karjus, Pia Tikka. 2023. An embodiment of the cinematographer: emotional and perceptual responses to different camera movement techniques. Frontiers Neuroscience | [open access](https://doi.org/10.3389/fnins.2023.1160843) | [data](https://zenodo.org/record/7979713)
-* Juan Guerrero Montero, Andres Karjus, Kenny Smith, Richard A. Blythe. 2023. Reliable identification of selection mechanisms in language change | [preprint](https://arxiv.org/abs/2305.15914)
 * Vejune Zemaityte, Andres Karjus, Ulrike Rohn, Maximilian Schich, Indrek Ibrus. 2023. Quantifying the global film festival circuit: Networks, diversity, and public value creation | [preprint](https://doi.org/10.31235/osf.io/g9w4b) | [code & data](https://andreskarjus.github.io/cinandofestivals)
+
+2022
+
 * Indrek Ibrus, Andres Karjus, Vejune Zemaityte, Ulrike Rohn, Maximilian Schich. 2022. Quantifying public value creation by public service media using big programming data | [preprint](https://osf.io/preprints/socarxiv/hysma/)
 * Mark Mets, Andres Karjus, Indrek Ibrus, Maximilian Schich. 2023. Automated stance detection in complex topics and small languages: the challenging case of immigration in polarizing news media | [preprint](https://arxiv.org/abs/2305.13047)
 * Andres Karjus, Christine Cuskley. 2022. Evolving linguistic divergence in socio-political polarities. Proceedings of the Joint Conference on Language Evolution (JCoLE). | [proceedings pdf](http://www.evolang.org/jcole2022_proceedings/jcole2022_proceedings.pdf) 
+
+2021
+
 * Andres Karjus, Richard A. Blythe, Simon Kirby, Tianyu Wang, Kenny Smith. 2021. Conceptual similarity and communicative need shape colexification". [Cognitive Science](https://doi.org/10.1111/cogs.13035) (open access) | [pdf](https://andreskarjus.github.io/papers/Karjus_2021__Conceptual_Similarity_and_Communicative_Need_Shape_Colexification_An_Experimental_Study__Cognitive_Science.pdf) |  [bib](https://andreskarjus.github.io/bib/karjus_2021_cogsci.bib) | [code and data](https://github.com/andreskarjus/colexification_experiment)
+
+2020
+
 * Andres Karjus, 2020. Competition, selection and communicative need in language change. PhD thesis, University of Edinburgh | [pdf](https://andreskarjus.github.io/thesis/Andres_Karjus_phd_thesis.pdf) | [1-page non-technical summary](https://andreskarjus.github.io/thesis/english_summary.pdf) | [eestikeelne lühikokkuvõte](https://andreskarjus.github.io/thesis/doktoritoo_ylevaade_AK.pdf)
 *  Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith 2020. Communicative need modulates competition in language change | [preprint](https://arxiv.org/abs/2006.09277)
 * Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith 2020. Challenges in detecting evolutionary forces in language change using diachronic corpora. Glossa: a journal of general linguistics, 5(1), p.45. | [open access](http://doi.org/10.5334/gjgl.909) | [code](https://github.com/andreskarjus/wfsim_fit)
 * Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith, 2020. Quantifying the dynamics of topical fluctuations in language. Language Dynamics and Change 10(1), 86-125 | [open access](https://doi.org/10.1163/22105832-01001200) | [code](https://github.com/andreskarjus/topical_cultural_advection_model)
+
+2018
+
 * Andres Karjus, Martin Ehala, 2018. Testing an agent based model of language choice on sociolinguistic survey data. Language Dynamics and Change, 8, pp. 219-252 | [journal link](https://doi.org/10.1163/22105832-00802004) | [open postprint](Karjus_Ehala_2018_Testing_an_agent-based_model_of_language_choice_LDCpostprint.pdf) | <a href="karjus_testing_2018.bib" target="_blank">bib</a> | sociolinguistic [dataset](http://doi.org/10.15155/1-00-0000-0000-0000-00162L): 1000 respondents, 200 questions
 * Andres Karjus, Richard A. Blythe, Simon Kirby, Kenny Smith, 2018. Topical advection as a baseline model for diachronic lexical dynamics. Proceedings of The Society for Computation in Linguistics. Volume 1. [extended abstract, full paper above] | [open access](http://scholarworks.umass.edu/scil/) | <a href="karjus_topical_2018.bib" target="_blank">bib</a>
+
+2017
+
 *	Martin Haspelmath, Andres Karjus, 2017. Explaining asymmetries in number marking: Singulatives, pluratives and usage frequency. Linguistics, volume 55, issue 6. | [journal link](https://www.degruyter.com/view/j/ling.2017.55.issue-6/ling-2017-0026/ling-2017-0026.xml)  | [preprint](https://www.academia.edu/25032500/Explaining_asymmetries_in_number_marking_Singulatives_pluratives_and_usage_frequency) | <a href="haspelmath_explaining_2017.bib" target="_blank">bib</a>
 
 <details><summary> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Show older...</summary>
@@ -147,6 +164,8 @@ I also occasionally do workshops on **R**, stats & data visualization, and **AI*
 
 #### Conferences & seminars
 
+- Talk at the Tallinn University School of Humanities seminar on AI & humanities research
+- Seminar talk at the Change is Key project at the University of Gothenburg.
 - Talk on LLMs for studying texts and change at "Assessing and measuring systems change" workshop | [slides](https://andreskarjus.github.io/talks/Tartu_LLMtalk.pdf)
 - Poster on film festival research at Netsci 2023, Vienna
 - Presentation at the Bibliotheca Herziana workshop on computational approaches to art
@@ -190,7 +209,7 @@ I also occasionally do workshops on **R**, stats & data visualization, and **AI*
 I also teach workshops as an instructor in the private sector. 
 Some of these have been standalone events, some have been part of conferences, summer schools or academic retreats. 
 Feel free to get in touch if you are interested in talking about organizing a workshop on anything related to data science and statistics, artificial intelligence, data visualization, R, corpus linguistics, digital humanities, etc. <br>
-For more details, head over to [datafigure.eu](https://datafigure.eu)
+For more details and contact, head over to [datafigure.eu](https://datafigure.eu)
 
 <div style="text-align: justify"> 
 
@@ -255,7 +274,7 @@ Senior research fellow at <a href=https://www.ebs.ee>Estonian Business School</a
 Instructor at <a href=https://datafigure.eu>Datafigure OÜ</a>
 
 Academic email: andres.karjus --at-- tlu.ee <br>
-Business/workshop inquiries: please contact via the Datafigure page 
+Business and workshop inquiries: kindly contact via the <a href=https://datafigure.eu/contact.html</a> email  
 <br>
 <br>
 Twitter / X: <a href=https://twitter.com/AndresKarjus>twitter.com/AndresKarjus</a> <br>

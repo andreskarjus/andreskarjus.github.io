@@ -17,6 +17,10 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
+- Now out in Corpus Linguistics and Linguistic Theory: "Reliable identification of selection mechanisms in language change" | [Open access](https://doi.org/10.1515/cllt-2023-0064)
+
+- Mentored at the EdTech [Hackathon](https://eventornado.com/event/edtech-hack-2023?s=1#home) 2023 in Tallinn
+
 - New preprint [Machine-assisted mixed methods: augmenting humanities and social sciences with artificial intelligence](https://arxiv.org/abs/2309.14379) (24.09.2023)
 
 - Two new preprints this week: ["Evolving Linguistic Divergence on Polarizing Social Media"](https://arxiv.org/abs/2309.01659) and ["A Framework for the Analysis of Historical Newsreels"](https://doi.org/10.31235/osf.io/a4xsp)  (06.09.2023)
