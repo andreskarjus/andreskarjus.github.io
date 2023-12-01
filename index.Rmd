@@ -116,6 +116,7 @@ I also occasionally do workshops on **R**, stats & data visualization, and **AI*
 2023
 
 * Andres Karjus. 2023. Machine-assisted mixed methods: augmenting humanities and social sciences with artificial intelligence | [preprint](https://arxiv.org/abs/2309.14379) | [data&code](https://github.com/andreskarjus/MachineAssistedMixedMethods)
+* Indrek Ibrus, Andres Karjus, Vejune Zemaityte, Ulrike Rohn, Maximilian Schich. 2023. Quantifying public value creation by public service media using big programming data.  International Journal Of Communication, 17, 24. | [open access](https://ijoc.org/index.php/ijoc/article/view/21035) 
 * Juan Guerrero Montero, Andres Karjus, Kenny Smith, Richard A. Blythe. 2023. Reliable identification of selection mechanisms in language change. Corpus Linguistics and Linguistic Theory | [Open access](https://doi.org/10.1515/cllt-2023-0064)
 * Andres Karjus and Christine Cuskley. 2023. Evolving Linguistic Divergence on Polarizing Social Media | arXiv [preprint](https://arxiv.org/abs/2309.01659)
 * Tillmann Ohm, Mar Canet Solà, Andres Karjus, Maximilian Schich. 2023. Collection Space Navigator: An Interactive Visualization Interface for Multidimensional Datasets. VINCI 2023: Proceedings of the 16th International Symposium on Visual Information Communication and Interaction. | [open access](doi.acm.org?doi=3615522.3615546) | [extended preprint](https://arxiv.org/abs/2305.06809) | [interactive demo](https://collection-space-navigator.github.io/) | [code](https://github.com/Collection-Space-Navigator/CSN)
@@ -126,7 +127,6 @@ I also occasionally do workshops on **R**, stats & data visualization, and **AI*
 
 2022
 
-* Indrek Ibrus, Andres Karjus, Vejune Zemaityte, Ulrike Rohn, Maximilian Schich. 2022. Quantifying public value creation by public service media using big programming data | [preprint](https://osf.io/preprints/socarxiv/hysma/)
 * Mark Mets, Andres Karjus, Indrek Ibrus, Maximilian Schich. 2023. Automated stance detection in complex topics and small languages: the challenging case of immigration in polarizing news media | [preprint](https://arxiv.org/abs/2305.13047)
 * Andres Karjus, Christine Cuskley. 2022. Evolving linguistic divergence in socio-political polarities. Proceedings of the Joint Conference on Language Evolution (JCoLE). | [proceedings pdf](http://www.evolang.org/jcole2022_proceedings/jcole2022_proceedings.pdf) 
 
