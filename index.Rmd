@@ -164,7 +164,7 @@ I also occasionally do workshops on **R**, stats & data visualization, and **AI*
 
 #### Conferences & seminars
 
-- Talk at the [Cultural Data Analytics Conference 2023](https://cudan.tlu.ee/conference/) 14.12.2023 on using LLMs in a systematic mixed methods framework for large scale humanities & social science research | [slides](https://andreskarjus.github.io/talks/LLMs_humanities_talk_CUDAN2023_AndresKarjus)
+- Talk at the [Cultural Data Analytics Conference 2023](https://cudan.tlu.ee/conference/) 14.12.2023 on using LLMs in a systematic mixed methods framework for large scale humanities & social science research | [slides](https://andreskarjus.github.io/talks/LLMs_humanities_talk_CUDAN2023_AndresKarjus.pdf)
 - Talk at the Tekstipäev (Day of the Text) in Tartu on AI & humanities research (30.11.2023)
 - Talk at the Tallinn University School of Humanities seminar on AI & humanities research
 - Seminar talk at the Change is Key project at the University of Gothenburg.
