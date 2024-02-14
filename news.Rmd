@@ -17,9 +17,15 @@ ul{
 
 <div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
 
+- Participated at the UNESCO Global AI Ethics Forum (more on this in this [LinkedIn post](https://www.linkedin.com/posts/andreskarjus_aiethics-ai-activity-7159597653553524736-VnZv?utm_source=share&utm_medium=member_desktop) and Twitter/X [threads](https://twitter.com/AndresKarjus)) (February 2024)
+
+- Meanwhile, have done more AI workshops for schools and university departments across Estonia (details&booking requests see [here](datafigure.eu))
+
 - Now out in Corpus Linguistics and Linguistic Theory: "Reliable identification of selection mechanisms in language change" | [Open access](https://doi.org/10.1515/cllt-2023-0064)
 
 - Mentored at the EdTech [Hackathon](https://eventornado.com/event/edtech-hack-2023?s=1#home) 2023 in Tallinn
+
+- Joined Estonian Business School as a senior research fellow, initially part-time; continuing also at Tallinn University.
 
 - New preprint [Machine-assisted mixed methods: augmenting humanities and social sciences with artificial intelligence](https://arxiv.org/abs/2309.14379) (24.09.2023)
 
