@@ -10,41 +10,40 @@ theme: spacelab
 .main-container {
   padding: 0px;
 }
-ul{
-  padding-left: 16px;
+ul {
+  margin: 0; /* Removes any default margin */
+  padding-left: 15px; /* Moves bullets slightly to the left */
+  list-style-position: outside; /* Keeps bullets outside the text block */
+  line-height: 1.1; /* Reduces the space between lines */
 }
+
+
+
 </style>
 
-<div style="width: 100%; padding-top:2px; padding-left:0px; indent-left:0px">
+<div style="width: 100%; padding:0px; indent-left:0px">
 
+- 2024: managed to publish 5 papers (3 preprints still in press) and present in a handful of very nice conferences.
+- Mentored at the EdTech 2024 in Tallinn again. Also numerous AI workshops in Estonian schools this year.
+- Got awarded the Nationally recognized science communicator quality mark at this year's [awards](https://etag.ee/eesti-teaduse-populariseerimise-elutoopreemia-palvis-toivo-maimets/)
+- Visited and gave talks at the Meertens Institute and ILLC in Amsterdam
+- Visited the DISSINET group in Brno to discuss applications of AI to historical data
+- Appointed lecturer in DH and AI at Tallinn University (September 2024)
+- Gave a workshop at the Baltic DH summer school 2024 in Riga again
 - Participated at the UNESCO Global AI Ethics Forum (more on this in this [LinkedIn post](https://www.linkedin.com/posts/andreskarjus_aiethics-ai-activity-7159597653553524736-VnZv?utm_source=share&utm_medium=member_desktop) and Twitter/X [threads](https://twitter.com/AndresKarjus)) (February 2024)
-
 - Meanwhile, have done more AI workshops for schools and university departments across Estonia (details&booking requests see [here](datafigure.eu))
-
 - Now out in Corpus Linguistics and Linguistic Theory: "Reliable identification of selection mechanisms in language change" | [Open access](https://doi.org/10.1515/cllt-2023-0064)
-
 - Mentored at the EdTech [Hackathon](https://eventornado.com/event/edtech-hack-2023?s=1#home) 2023 in Tallinn
-
 - Joined Estonian Business School as a senior research fellow, initially part-time; continuing also at Tallinn University.
-
 - New preprint [Machine-assisted mixed methods: augmenting humanities and social sciences with artificial intelligence](https://arxiv.org/abs/2309.14379) (24.09.2023)
-
 - Two new preprints this week: ["Evolving Linguistic Divergence on Polarizing Social Media"](https://arxiv.org/abs/2309.01659) and ["A Framework for the Analysis of Historical Newsreels"](https://doi.org/10.31235/osf.io/a4xsp)  (06.09.2023)
-
 - Out now in Frontiers Neuroscience: Yilmaz, Lotman, Karjus, Tikka, "An embodiment of the cinematographer: emotional and perceptual responses to different camera movement techniques" | [open access](https://doi.org/10.3389/fnins.2023.1160843) (03.07.2023)
-
 - Out now in EPJDS: Karjus et al., "Compression ensembles quantify aesthetic complexity and the evolution of visual art" | [open access](https://doi.org/10.1140/epjds/s13688-023-00397-3) | [code](https://github.com/andreskarjus/compression_ensembles) (14.06.2023)
-
 - Published an opinion piece in the popular science outlet [Novaator](https://novaator.err.ee/1609007981/andres-karjus-tehisintellekt-seab-juba-sel-sugisel-koolid-sundvaliku-ette) on how generative AI will affect education in the near future (in Estonian; 16.06.2023)
-
 - New preprints: Ohm et al. "Collection Space Navigator: An Interactive Visualization Interface for Multidimensional Datasets", and Zemaityte et al. "Quantifying the global film festival circuit: Networks, diversity, and public value creation"
-
 - Spring 2023: Been doing more workshops at multiple Estonian higher education institutions, schools and companies on generative AI, text and image generators; several workshops and public speaking engagements coming up; more info at [datafigure.eu]((https://datafigure.eu)
-
 - Gave a talk about experiences of teaching digital skills, programming in R and data visualization, at the "Cross-university collaboration in Digital Humanities & Social Science (DHSS) and Digital Humanities & Cultural Heritage (DHCH) Education" workshop of the DHNB2023 conference | [slides](https://datafigure.eu/reports/AndresKarjusDatafigure_CrossUniversityDHworkshop.pdf)
-
 - Been doing a series of [workshops](https://twitter.com/AndresKarjus/status/1625844088023969792) at Tallinn University on the topic of ChatGPT, generative AI, what's coming and how it will be/is already affecting teaching and learning in the university and beyond. (15.02.2023)
-
 - New preprint "Quantifying public value creation by public service media using big programming data" [socarxiv](https://osf.io/preprints/socarxiv/hysma/)
 
 - Talk "Exploring Estonian Public Television Production 2004-2020 Using Big Programming Data" at the 8th Estonian Digital Humanities [Conference](https://dh.org.ee/events/dhe2022) (05.10.2022)
