@@ -7,6 +7,13 @@ theme: spacelab
 <base target="_blank">
 </head>
 <style>
+
+body {
+  margin: 0;
+  padding: 5px;   /* controls space from edges */
+}
+
+
 .main-container {
   padding: 0px;
 }
@@ -23,6 +30,14 @@ ul {
 
 <div style="width: 100%; padding:0px; indent-left:0px">
 
+- New preprint: "Machine-Assisted Grading of Nationwide School-Leaving Essay Exams with LLMs and Statistical NLP" [link](https://arxiv.org/abs/2601.16314) (January 2025)
+- Attended the Computational Humanities Conference 2025 in Luxembourg
+- Joined the University of Tartu as Associate professor of computational social science, part-time on the [RiDe project](https://www.deeptransitions.ut.ee/) (September 2025)
+- Joined the Edtech Talents project, and three four projects we applied for got funded, to do applied research on media analytics, edtech for academic writing, and social media video analytics, plus support to involve a private sector expert in research activities.
+- Published "Socioeconomic factors of national representation in the global film festival circuit: skewed toward the large and wealthy, but small countries can beat the odds" [open access](https://link.springer.com/article/10.1007/s10824-025-09557-x)
+- Got invited to give a talk at the Grammar and Corpora conference in Riga (June 2025)
+- Co-organized the DHNB 2025 conference in Tartu, Estonia (March)
+- New preprint: "Expertise elevates AI usage: experimental evidence comparing laypeople and professional artists" [link](https://arxiv.org/abs/2501.12374)
 - 2024: managed to publish 5 papers (3 preprints still in press) and present in a handful of very nice conferences.
 - Mentored at the EdTech 2024 in Tallinn again. Also numerous AI workshops in Estonian schools this year.
 - Got awarded the Nationally recognized science communicator quality mark at this year's [awards](https://etag.ee/eesti-teaduse-populariseerimise-elutoopreemia-palvis-toivo-maimets/)
