@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="480" viewBox="0 0 480 480">
+<style>
+.title{font:700 22px sans-serif;fill:#111827;}
+.subtitle{font:400 12px sans-serif;fill:#4b5563;}
+.axis{font:400 11px sans-serif;fill:#111827;}
+.celltext{font:400 10px sans-serif;fill:#111827;}
+.foot{font:400 11px sans-serif;fill:#4b5563;}
+.grid{stroke:#d1d5db;stroke-width:1;}
+</style>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="34" class="title">Right-wing populist disinformation narratives set-aware confusion matrix</text>
+<text x="24" y="56" class="subtitle">Diagonal = shared labels; off-diagonal = non-overlapping labels; [NONE] = empty set / NA.</text>
+<text x="24" y="456" class="foot">Built from 281 unordered rater pairs. Partial-overlap cases contribute to both diagonal and off-diagonal cells.</text>
+<text x="242.0" y="86" class="axis" text-anchor="middle"><tspan x="242.0" dy="0">sj extremism</tspan></text>
+<text x="286.0" y="86" class="axis" text-anchor="middle"><tspan x="286.0" dy="0">culture war</tspan></text>
+<text x="330.0" y="86" class="axis" text-anchor="middle"><tspan x="330.0" dy="0">cancel culture</tspan></text>
+<text x="374.0" y="86" class="axis" text-anchor="middle"><tspan x="374.0" dy="0">national</tspan><tspan x="374.0" dy="1.1em">threat</tspan></text>
+<text x="418.0" y="86" class="axis" text-anchor="middle"><tspan x="418.0" dy="0">[NONE]</tspan></text>
+<text x="208" y="166.0" class="axis" text-anchor="end"><tspan x="208" dy="0">sj extremism</tspan></text>
+<text x="208" y="210.0" class="axis" text-anchor="end"><tspan x="208" dy="0">culture war</tspan></text>
+<text x="208" y="254.0" class="axis" text-anchor="end"><tspan x="208" dy="0">cancel culture</tspan></text>
+<text x="208" y="292.0" class="axis" text-anchor="end"><tspan x="208" dy="0">national</tspan><tspan x="208" dy="1.1em">threat</tspan></text>
+<text x="208" y="342.0" class="axis" text-anchor="end"><tspan x="208" dy="0">[NONE]</tspan></text>
+<rect x="220" y="140" width="44" height="44" fill="rgb(16,80,80)" class="grid"/>
+<text x="242.0" y="166.0" class="celltext" text-anchor="middle" fill="#ffffff">106</text>
+<rect x="264" y="140" width="44" height="44" fill="rgb(16,210,210)" class="grid"/>
+<text x="286.0" y="166.0" class="celltext" text-anchor="middle" fill="#111827">27</text>
+<rect x="308" y="140" width="44" height="44" fill="rgb(16,226,226)" class="grid"/>
+<text x="330.0" y="166.0" class="celltext" text-anchor="middle" fill="#111827">17</text>
+<rect x="352" y="140" width="44" height="44" fill="rgb(16,215,215)" class="grid"/>
+<text x="374.0" y="166.0" class="celltext" text-anchor="middle" fill="#111827">24</text>
+<rect x="396" y="140" width="44" height="44" fill="rgb(16,154,154)" class="grid"/>
+<text x="418.0" y="166.0" class="celltext" text-anchor="middle" fill="#ffffff">61</text>
+<rect x="220" y="184" width="44" height="44" fill="rgb(16,210,210)" class="grid"/>
+<text x="242.0" y="210.0" class="celltext" text-anchor="middle" fill="#111827">27</text>
+<rect x="264" y="184" width="44" height="44" fill="rgb(16,109,109)" class="grid"/>
+<text x="286.0" y="210.0" class="celltext" text-anchor="middle" fill="#ffffff">88</text>
+<rect x="308" y="184" width="44" height="44" fill="rgb(16,241,241)" class="grid"/>
+<text x="330.0" y="210.0" class="celltext" text-anchor="middle" fill="#111827">8</text>
+<rect x="352" y="184" width="44" height="44" fill="rgb(16,192,192)" class="grid"/>
+<text x="374.0" y="210.0" class="celltext" text-anchor="middle" fill="#111827">38</text>
+<rect x="396" y="184" width="44" height="44" fill="rgb(16,175,175)" class="grid"/>
+<text x="418.0" y="210.0" class="celltext" text-anchor="middle" fill="#111827">48</text>
+<rect x="220" y="228" width="44" height="44" fill="rgb(16,226,226)" class="grid"/>
+<text x="242.0" y="254.0" class="celltext" text-anchor="middle" fill="#111827">17</text>
+<rect x="264" y="228" width="44" height="44" fill="rgb(16,241,241)" class="grid"/>
+<text x="286.0" y="254.0" class="celltext" text-anchor="middle" fill="#111827">8</text>
+<rect x="308" y="228" width="44" height="44" fill="rgb(16,241,241)" class="grid"/>
+<text x="330.0" y="254.0" class="celltext" text-anchor="middle" fill="#111827">8</text>
+<rect x="352" y="228" width="44" height="44" fill="rgb(16,238,238)" class="grid"/>
+<text x="374.0" y="254.0" class="celltext" text-anchor="middle" fill="#111827">10</text>
+<rect x="396" y="228" width="44" height="44" fill="rgb(16,243,243)" class="grid"/>
+<text x="418.0" y="254.0" class="celltext" text-anchor="middle" fill="#111827">7</text>
+<rect x="220" y="272" width="44" height="44" fill="rgb(16,215,215)" class="grid"/>
+<text x="242.0" y="298.0" class="celltext" text-anchor="middle" fill="#111827">24</text>
+<rect x="264" y="272" width="44" height="44" fill="rgb(16,192,192)" class="grid"/>
+<text x="286.0" y="298.0" class="celltext" text-anchor="middle" fill="#111827">38</text>
+<rect x="308" y="272" width="44" height="44" fill="rgb(16,238,238)" class="grid"/>
+<text x="330.0" y="298.0" class="celltext" text-anchor="middle" fill="#111827">10</text>
+<rect x="352" y="272" width="44" height="44" fill="rgb(16,198,198)" class="grid"/>
+<text x="374.0" y="298.0" class="celltext" text-anchor="middle" fill="#111827">34</text>
+<rect x="396" y="272" width="44" height="44" fill="rgb(16,179,179)" class="grid"/>
+<text x="418.0" y="298.0" class="celltext" text-anchor="middle" fill="#111827">46</text>
+<rect x="220" y="316" width="44" height="44" fill="rgb(16,154,154)" class="grid"/>
+<text x="242.0" y="342.0" class="celltext" text-anchor="middle" fill="#ffffff">61</text>
+<rect x="264" y="316" width="44" height="44" fill="rgb(16,175,175)" class="grid"/>
+<text x="286.0" y="342.0" class="celltext" text-anchor="middle" fill="#111827">48</text>
+<rect x="308" y="316" width="44" height="44" fill="rgb(16,243,243)" class="grid"/>
+<text x="330.0" y="342.0" class="celltext" text-anchor="middle" fill="#111827">7</text>
+<rect x="352" y="316" width="44" height="44" fill="rgb(16,179,179)" class="grid"/>
+<text x="374.0" y="342.0" class="celltext" text-anchor="middle" fill="#111827">46</text>
+<rect x="396" y="316" width="44" height="44" fill="rgb(16,243,243)" class="grid"/>
+<text x="418.0" y="342.0" class="celltext" text-anchor="middle" fill="#111827">7</text>
+</svg>
