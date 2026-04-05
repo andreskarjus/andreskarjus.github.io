@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TikTok Corpus Explorer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Static Research Dashboard</p>
+        <h1>TikTok Corpus Explorer</h1>
+        <p class="hero-text">
+          Explore the shared corpus layout from the paper with interactive coding variables, engagement metrics, and comment-response summaries.
+        </p>
+      </div>
+      <div class="hero-stats" id="hero-stats"></div>
+    </header>
+
+    <section class="control-grid">
+      <div class="panel control-panel">
+        <div class="panel-head">
+          <div>
+            <p class="panel-kicker">Map Controls</p>
+            <h2>Corpus map encoding</h2>
+          </div>
+        </div>
+        <div class="selector-grid selector-grid-map">
+          <div class="selector-slot">
+            <label for="map-color-selector-input">Point color</label>
+            <div id="map-color-selector"></div>
+          </div>
+          <div class="selector-slot">
+            <label for="map-size-selector-input">Point size</label>
+            <div id="map-size-selector"></div>
+          </div>
+        </div>
+        <div class="map-toggle-row">
+          <label class="sync-toggle">
+            <input type="checkbox" id="size-clip-toggle" checked>
+            <span>Clip size at 2nd / 98th percentile</span>
+          </label>
+        </div>
+        <div class="microcopy">
+          The map position stays fixed. Numeric colors use a clipped viridis scale; categorical colors keep rare or catch-all levels muted in gray.
+        </div>
+      </div>
+
+      <div class="panel control-panel">
+        <div class="panel-head">
+          <div>
+            <p class="panel-kicker">Analysis Controls</p>
+            <h2>Distribution and relationship plots</h2>
+          </div>
+          <label class="sync-toggle">
+            <input type="checkbox" id="sync-toggle" checked>
+            <span>Sync with map selections</span>
+          </label>
+        </div>
+        <div class="selector-grid selector-grid-analysis">
+          <div class="selector-slot">
+            <label for="analysis-a-selector-input">Variable A</label>
+            <div id="analysis-a-selector"></div>
+          </div>
+          <div class="selector-slot">
+            <label for="analysis-b-selector-input">Variable B</label>
+            <div id="analysis-b-selector"></div>
+          </div>
+        </div>
+        <div class="microcopy">
+          Each selected variable gets its own frequency plot. When both are selected, the relationship panel adapts to the variable types automatically.
+        </div>
+      </div>
+    </section>
+
+    <main class="dashboard-grid">
+      <section class="panel map-panel">
+        <div class="panel-head">
+          <div>
+            <p class="panel-kicker">Shared Projection</p>
+            <h2 id="map-title">Corpus map</h2>
+          </div>
+          <div class="legend-note" id="map-note"></div>
+        </div>
+        <div id="map-plot" class="plot plot-map" aria-label="Interactive corpus map"></div>
+      </section>
+
+      <section class="panel analysis-panel">
+        <div class="panel-head">
+          <div>
+            <p class="panel-kicker">Variable Views</p>
+            <h2 id="analysis-title">Selected variables</h2>
+          </div>
+        </div>
+        <div class="analysis-layout">
+          <div id="analysis-a-plot" class="plot plot-small" aria-label="Distribution plot for variable A"></div>
+          <div id="analysis-b-plot" class="plot plot-small" aria-label="Distribution plot for variable B"></div>
+          <div id="relationship-plot" class="plot plot-wide" aria-label="Relationship plot for the selected variables"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="vendor/plotly.min.js"></script>
+  <script src="data/app-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
