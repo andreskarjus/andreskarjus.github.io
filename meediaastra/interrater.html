@@ -7367,7 +7367,7 @@
               <h2>Politics Benchmark</h2>
               <p class="intro">These come from the `pol_1` to `pol_4` sheets, using the six ordinal variables defined in `pol.profileerimise koodid`. Rows with all six rating cells blank are skipped. If a row has at least one filled rating, remaining blank cells are backfilled to `NA`. No malformed rows were excluded from scoring.</p>
               <h3>Ordinal Agreement Summary</h3>
-              <p class="note">Signal Share is the share of pairwise comparisons where at least one rater used a numeric score. NA/Num Split | Signal is the share of those informative pairs where one rater used `NA` and the other used a number. Numeric MAD, +/-1 agreement, and ordinal quadratic weighted kappa use only the pairs where both raters assigned numeric scores.</p>
+              <p class="note">Signal Share is the share of pairwise comparisons where at least one rater used a numeric score. NA/Num Split | Signal is the share of those informative pairs where one rater used `NA` and the other used a number. Pairwise Numeric MAD, +/-1 agreement, and ordinal quadratic weighted kappa use only the pairs where both raters assigned numeric scores. Pairwise Numeric MAD is the mean absolute difference between two numeric raters on the same item-variable pair.</p>
               
       <div class="table-wrap">
         <table>
@@ -7377,7 +7377,7 @@
 <th>Support</th>
 <th>Signal Share</th>
 <th>NA/Num Split | Signal</th>
-<th>Numeric MAD</th>
+<th>Pairwise Numeric MAD</th>
 <th>+/-1 Agreement</th>
 <th>Ordinal Kappa</th>
 <th>Most Disagreement</th>
@@ -7407,7 +7407,7 @@
 <th>NA-Majority Items</th>
 <th>Numeric-Majority Items</th>
 <th>Presence Ties</th>
-<th>Mean Score MAD | Numeric Majority</th>
+<th>Within-Item MAD | Numeric Majority</th>
             </tr>
           </thead>
           <tbody>
@@ -8033,7 +8033,7 @@
               <h2>Politics Benchmark 2</h2>
               <p class="intro">These come from the `Poliit_prof_V2_vol1`, `Poliit_prof_V2_vol3`, and `Poliit_prof_V2_vol4` sheets, using the same six ordinal variables defined in `pol.profileerimise koodid`. The three annotator sheets share the same 23 article rows and matching `Link` / `Pealkiri` / `Tekst` fields. Rows with all six rating cells blank are skipped. If a row has at least one filled rating, remaining blank cells are backfilled to `NA`. No malformed rows were excluded from scoring.</p>
               <h3>Ordinal Agreement Summary</h3>
-              <p class="note">Signal Share is the share of pairwise comparisons where at least one rater used a numeric score. NA/Num Split | Signal is the share of those informative pairs where one rater used `NA` and the other used a number. Numeric MAD, +/-1 agreement, and ordinal quadratic weighted kappa use only the pairs where both raters assigned numeric scores.</p>
+              <p class="note">Signal Share is the share of pairwise comparisons where at least one rater used a numeric score. NA/Num Split | Signal is the share of those informative pairs where one rater used `NA` and the other used a number. Pairwise Numeric MAD, +/-1 agreement, and ordinal quadratic weighted kappa use only the pairs where both raters assigned numeric scores. Pairwise Numeric MAD is the mean absolute difference between two numeric raters on the same item-variable pair.</p>
               
       <div class="table-wrap">
         <table>
@@ -8043,7 +8043,7 @@
 <th>Support</th>
 <th>Signal Share</th>
 <th>NA/Num Split | Signal</th>
-<th>Numeric MAD</th>
+<th>Pairwise Numeric MAD</th>
 <th>+/-1 Agreement</th>
 <th>Ordinal Kappa</th>
 <th>Most Disagreement</th>
@@ -8073,7 +8073,7 @@
 <th>NA-Majority Items</th>
 <th>Numeric-Majority Items</th>
 <th>Presence Ties</th>
-<th>Mean Score MAD | Numeric Majority</th>
+<th>Within-Item MAD | Numeric Majority</th>
             </tr>
           </thead>
           <tbody>
@@ -8089,7 +8089,7 @@
     
     
       <h3>Politics Benchmark vs Politics Benchmark 2</h3>
-      <p class="note">Higher Signal Share and Numeric-Majority Share mean more item-variable cells are usable for score-based benchmarking. Lower Presence-Tie Share means fewer ambiguous `NA` versus numeric splits. Lower Numeric MAD and higher Ordinal Kappa mean more stable numeric scoring once raters agree the trait is present.</p>
+      <p class="note">Higher Signal Share and Numeric-Majority Share mean more item-variable cells are usable for score-based benchmarking. Lower Presence-Tie Share means fewer ambiguous `NA` versus numeric splits. The MAD column here is not the pairwise MAD from the summary above: it is the average within-item deviation from the numeric mean on numeric-majority items. Lower values mean tighter clustering around the eventual aggregated score. Higher Ordinal Kappa still means more stable pairwise numeric scoring.</p>
       
       <div class="table-wrap">
         <table>
@@ -8099,7 +8099,7 @@
 <th>Signal Share (P1 → P2)</th>
 <th>Numeric-Majority Share (P1 → P2)</th>
 <th>Presence-Tie Share (P1 → P2)</th>
-<th>Mean Score MAD (P1 → P2)</th>
+<th>Within-Item MAD (P1 → P2)</th>
 <th>Ordinal Kappa (P1 → P2)</th>
             </tr>
           </thead>
