@@ -1,0 +1,1323 @@
+{
+  "ordinal_scale_comment": "Scores 1-7 are treated as ordinal rather than purely categorical for reliability metrics. `NA` is treated as a separate not-applicable state for presence/absence agreement and for the confusion matrices.",
+  "parsing": {
+    "row_rule": "If a row has all six rating cells blank, that sheet contributes no rating for the item. If at least one rating cell is filled, remaining blank rating cells are backfilled to `NA`.",
+    "alignment_check": {
+      "sheets": [
+        "Poliit_prof_V2_vol1",
+        "Poliit_prof_V2_vol3",
+        "Poliit_prof_V2_vol4"
+      ],
+      "row_count_per_sheet": 23,
+      "checked_columns": [
+        "A",
+        "B",
+        "C"
+      ],
+      "content_mismatch_count": 0,
+      "content_mismatch_examples": []
+    },
+    "malformed_rows_excluded": [],
+    "sheet_stats": {
+      "Poliit_prof_V2_vol1": {
+        "all_blank_rows_skipped": 0,
+        "usable_rows": 23,
+        "partial_rows_backfilled_with_na": 0,
+        "blank_cells_backfilled_with_na": 0,
+        "malformed_rows_excluded": 0
+      },
+      "Poliit_prof_V2_vol3": {
+        "all_blank_rows_skipped": 0,
+        "usable_rows": 23,
+        "partial_rows_backfilled_with_na": 0,
+        "blank_cells_backfilled_with_na": 0,
+        "malformed_rows_excluded": 0
+      },
+      "Poliit_prof_V2_vol4": {
+        "all_blank_rows_skipped": 0,
+        "usable_rows": 23,
+        "partial_rows_backfilled_with_na": 0,
+        "blank_cells_backfilled_with_na": 0,
+        "malformed_rows_excluded": 0
+      }
+    }
+  },
+  "variables": {
+    "a_majandus": {
+      "support": {
+        "eligible_items": 23,
+        "excluded_items_fewer_than_two_usable_ratings": 0,
+        "total_ratings_used": 69,
+        "average_raters_per_eligible_item": 3.0,
+        "total_pairwise_comparisons": 69,
+        "eligible_item_rater_distribution": {
+          "3": 23
+        },
+        "distinct_raters": [
+          "Poliit_prof_V2_vol1",
+          "Poliit_prof_V2_vol3",
+          "Poliit_prof_V2_vol4"
+        ],
+        "rater_pair_overlap_counts": {
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol3": 23,
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol4": 23,
+          "Poliit_prof_V2_vol3__Poliit_prof_V2_vol4": 23
+        }
+      },
+      "metrics": {
+        "mean_pairwise_exact_categorical_agreement": 0.7826,
+        "unanimous_item_count": 17,
+        "unanimous_item_share": 0.7391,
+        "pairwise_presence_agreement": 0.8841,
+        "pairwise_na_vs_numeric_disagreement_rate": 0.1159,
+        "jointly_numeric_pairwise_observations": 11,
+        "both_na_pairwise_observations": 50,
+        "one_na_one_numeric_pairwise_observations": 8,
+        "informative_pairwise_observations": 19,
+        "informative_pair_share": 0.2754,
+        "both_na_pair_share": 0.7246,
+        "jointly_numeric_pair_share": 0.1594,
+        "jointly_numeric_given_informative": 0.5789,
+        "na_vs_numeric_given_informative": 0.4211,
+        "mean_absolute_difference_numeric_only": 1.7273,
+        "exact_numeric_agreement_numeric_only": 0.3636,
+        "tolerance_one_agreement_numeric_only": 0.4545
+      },
+      "ordinal_reliability": {
+        "method": "Quadratic weighted Cohen's kappa on the ordinal 1-7 scale, using only pairs where both raters assigned numeric scores. `NA` is handled separately as presence/absence disagreement.",
+        "pairwise_observations_with_joint_numeric_scores": 11,
+        "weighted_mean_pairwise_kappa": "0.319",
+        "macro_mean_pairwise_kappa": "0.340",
+        "pooled_pairwise_kappa": "0.348",
+        "sheet_pairs": {
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol3": {
+            "jointly_numeric_pairs": 4,
+            "exact_numeric_agreement": "0.500",
+            "quadratic_weighted_kappa": "0.683",
+            "kappa_defined": true
+          },
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol4": {
+            "jointly_numeric_pairs": 4,
+            "exact_numeric_agreement": "0.250",
+            "quadratic_weighted_kappa": "-0.235",
+            "kappa_defined": true
+          },
+          "Poliit_prof_V2_vol3__Poliit_prof_V2_vol4": {
+            "jointly_numeric_pairs": 3,
+            "exact_numeric_agreement": "0.333",
+            "quadratic_weighted_kappa": "0.571",
+            "kappa_defined": true
+          }
+        }
+      },
+      "presence_reliability": {
+        "method": "Binary Cohen's kappa for presence of a scored trait (numeric 1-7) versus `NA`.",
+        "sheet_pair_count": 3,
+        "defined_sheet_pair_count": 3,
+        "undefined_sheet_pair_count": 0,
+        "pairwise_observations": 69,
+        "undefined_pairwise_observations": 0,
+        "weighted_mean_pairwise_kappa": 0.6656,
+        "macro_mean_pairwise_kappa": 0.6656,
+        "pooled_pairwise_kappa": 0.663
+      },
+      "benchmark_aggregation": {
+        "recommended_rule": "Use a two-stage consensus: majority vote between `NA` and numeric presence; if numeric wins, use the mean of the numeric ratings as the gold score and retain within-item MAD as an uncertainty tag; if presence ties, mark the item-variable as ambiguous.",
+        "majority_na_item_count": 18,
+        "majority_na_item_share": 0.7826,
+        "majority_numeric_item_count": 5,
+        "majority_numeric_item_share": 0.2174,
+        "presence_tie_item_count": 0,
+        "presence_tie_item_share": 0.0,
+        "all_na_item_count": 16,
+        "all_na_item_share": 0.6957,
+        "all_numeric_item_count": 3,
+        "all_numeric_item_share": 0.1304,
+        "mean_within_item_mad_on_numeric_majority_items": 0.7222,
+        "mean_within_item_range_on_numeric_majority_items": 2.0
+      },
+      "error_analysis": {
+        "top_categorical_confusions": [
+          {
+            "labels": [
+              "6",
+              "NA"
+            ],
+            "count": 3,
+            "share_of_disagreements": 0.2,
+            "example_item_ids": [
+              "2",
+              "12",
+              "12"
+            ]
+          },
+          {
+            "labels": [
+              "2",
+              "4"
+            ],
+            "count": 2,
+            "share_of_disagreements": 0.1333,
+            "example_item_ids": [
+              "3",
+              "4"
+            ]
+          },
+          {
+            "labels": [
+              "1",
+              "NA"
+            ],
+            "count": 2,
+            "share_of_disagreements": 0.1333,
+            "example_item_ids": [
+              "14",
+              "14"
+            ]
+          },
+          {
+            "labels": [
+              "2",
+              "NA"
+            ],
+            "count": 2,
+            "share_of_disagreements": 0.1333,
+            "example_item_ids": [
+              "18",
+              "18"
+            ]
+          },
+          {
+            "labels": [
+              "5",
+              "NA"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0667,
+            "example_item_ids": [
+              "2"
+            ]
+          },
+          {
+            "labels": [
+              "5",
+              "6"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0667,
+            "example_item_ids": [
+              "2"
+            ]
+          },
+          {
+            "labels": [
+              "4",
+              "6"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0667,
+            "example_item_ids": [
+              "3"
+            ]
+          },
+          {
+            "labels": [
+              "2",
+              "6"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0667,
+            "example_item_ids": [
+              "3"
+            ]
+          },
+          {
+            "labels": [
+              "4",
+              "7"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0667,
+            "example_item_ids": [
+              "4"
+            ]
+          },
+          {
+            "labels": [
+              "2",
+              "7"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0667,
+            "example_item_ids": [
+              "4"
+            ]
+          }
+        ],
+        "absolute_difference_distribution_numeric_only": {
+          "0": 4,
+          "1": 1,
+          "2": 3,
+          "3": 1,
+          "4": 1,
+          "5": 1
+        }
+      }
+    },
+    "b_normid": {
+      "support": {
+        "eligible_items": 23,
+        "excluded_items_fewer_than_two_usable_ratings": 0,
+        "total_ratings_used": 69,
+        "average_raters_per_eligible_item": 3.0,
+        "total_pairwise_comparisons": 69,
+        "eligible_item_rater_distribution": {
+          "3": 23
+        },
+        "distinct_raters": [
+          "Poliit_prof_V2_vol1",
+          "Poliit_prof_V2_vol3",
+          "Poliit_prof_V2_vol4"
+        ],
+        "rater_pair_overlap_counts": {
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol3": 23,
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol4": 23,
+          "Poliit_prof_V2_vol3__Poliit_prof_V2_vol4": 23
+        }
+      },
+      "metrics": {
+        "mean_pairwise_exact_categorical_agreement": 0.5217,
+        "unanimous_item_count": 8,
+        "unanimous_item_share": 0.3478,
+        "pairwise_presence_agreement": 0.7391,
+        "pairwise_na_vs_numeric_disagreement_rate": 0.2609,
+        "jointly_numeric_pairwise_observations": 22,
+        "both_na_pairwise_observations": 29,
+        "one_na_one_numeric_pairwise_observations": 18,
+        "informative_pairwise_observations": 40,
+        "informative_pair_share": 0.5797,
+        "both_na_pair_share": 0.4203,
+        "jointly_numeric_pair_share": 0.3188,
+        "jointly_numeric_given_informative": 0.55,
+        "na_vs_numeric_given_informative": 0.45,
+        "mean_absolute_difference_numeric_only": 1.9091,
+        "exact_numeric_agreement_numeric_only": 0.3182,
+        "tolerance_one_agreement_numeric_only": 0.5
+      },
+      "ordinal_reliability": {
+        "method": "Quadratic weighted Cohen's kappa on the ordinal 1-7 scale, using only pairs where both raters assigned numeric scores. `NA` is handled separately as presence/absence disagreement.",
+        "pairwise_observations_with_joint_numeric_scores": 22,
+        "weighted_mean_pairwise_kappa": "0.386",
+        "macro_mean_pairwise_kappa": "0.361",
+        "pooled_pairwise_kappa": "0.359",
+        "sheet_pairs": {
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol3": {
+            "jointly_numeric_pairs": 10,
+            "exact_numeric_agreement": "0.500",
+            "quadratic_weighted_kappa": "0.499",
+            "kappa_defined": true
+          },
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol4": {
+            "jointly_numeric_pairs": 6,
+            "exact_numeric_agreement": "0.167",
+            "quadratic_weighted_kappa": "0.129",
+            "kappa_defined": true
+          },
+          "Poliit_prof_V2_vol3__Poliit_prof_V2_vol4": {
+            "jointly_numeric_pairs": 6,
+            "exact_numeric_agreement": "0.167",
+            "quadratic_weighted_kappa": "0.455",
+            "kappa_defined": true
+          }
+        }
+      },
+      "presence_reliability": {
+        "method": "Binary Cohen's kappa for presence of a scored trait (numeric 1-7) versus `NA`.",
+        "sheet_pair_count": 3,
+        "defined_sheet_pair_count": 3,
+        "undefined_sheet_pair_count": 0,
+        "pairwise_observations": 69,
+        "undefined_pairwise_observations": 0,
+        "weighted_mean_pairwise_kappa": 0.4929,
+        "macro_mean_pairwise_kappa": 0.4929,
+        "pooled_pairwise_kappa": 0.4939
+      },
+      "benchmark_aggregation": {
+        "recommended_rule": "Use a two-stage consensus: majority vote between `NA` and numeric presence; if numeric wins, use the mean of the numeric ratings as the gold score and retain within-item MAD as an uncertainty tag; if presence ties, mark the item-variable as ambiguous.",
+        "majority_na_item_count": 13,
+        "majority_na_item_share": 0.5652,
+        "majority_numeric_item_count": 10,
+        "majority_numeric_item_share": 0.4348,
+        "presence_tie_item_count": 0,
+        "presence_tie_item_share": 0.0,
+        "all_na_item_count": 8,
+        "all_na_item_share": 0.3478,
+        "all_numeric_item_count": 6,
+        "all_numeric_item_share": 0.2609,
+        "mean_within_item_mad_on_numeric_majority_items": 0.9444,
+        "mean_within_item_range_on_numeric_majority_items": 2.2
+      },
+      "error_analysis": {
+        "top_categorical_confusions": [
+          {
+            "labels": [
+              "5",
+              "NA"
+            ],
+            "count": 7,
+            "share_of_disagreements": 0.2121,
+            "example_item_ids": [
+              "1",
+              "1",
+              "9",
+              "15",
+              "15"
+            ]
+          },
+          {
+            "labels": [
+              "7",
+              "NA"
+            ],
+            "count": 5,
+            "share_of_disagreements": 0.1515,
+            "example_item_ids": [
+              "9",
+              "10",
+              "10",
+              "13",
+              "13"
+            ]
+          },
+          {
+            "labels": [
+              "6",
+              "NA"
+            ],
+            "count": 4,
+            "share_of_disagreements": 0.1212,
+            "example_item_ids": [
+              "11",
+              "11",
+              "14",
+              "14"
+            ]
+          },
+          {
+            "labels": [
+              "1",
+              "6"
+            ],
+            "count": 3,
+            "share_of_disagreements": 0.0909,
+            "example_item_ids": [
+              "2",
+              "5",
+              "5"
+            ]
+          },
+          {
+            "labels": [
+              "4",
+              "7"
+            ],
+            "count": 3,
+            "share_of_disagreements": 0.0909,
+            "example_item_ids": [
+              "6",
+              "8",
+              "8"
+            ]
+          },
+          {
+            "labels": [
+              "6",
+              "7"
+            ],
+            "count": 2,
+            "share_of_disagreements": 0.0606,
+            "example_item_ids": [
+              "2",
+              "6"
+            ]
+          },
+          {
+            "labels": [
+              "4",
+              "NA"
+            ],
+            "count": 2,
+            "share_of_disagreements": 0.0606,
+            "example_item_ids": [
+              "3",
+              "3"
+            ]
+          },
+          {
+            "labels": [
+              "1",
+              "3"
+            ],
+            "count": 2,
+            "share_of_disagreements": 0.0606,
+            "example_item_ids": [
+              "7",
+              "7"
+            ]
+          },
+          {
+            "labels": [
+              "5",
+              "6"
+            ],
+            "count": 2,
+            "share_of_disagreements": 0.0606,
+            "example_item_ids": [
+              "23",
+              "23"
+            ]
+          },
+          {
+            "labels": [
+              "1",
+              "7"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0303,
+            "example_item_ids": [
+              "2"
+            ]
+          }
+        ],
+        "absolute_difference_distribution_numeric_only": {
+          "0": 7,
+          "1": 4,
+          "2": 4,
+          "3": 3,
+          "5": 3,
+          "6": 1
+        }
+      }
+    },
+    "c_immigratsioon": {
+      "support": {
+        "eligible_items": 23,
+        "excluded_items_fewer_than_two_usable_ratings": 0,
+        "total_ratings_used": 69,
+        "average_raters_per_eligible_item": 3.0,
+        "total_pairwise_comparisons": 69,
+        "eligible_item_rater_distribution": {
+          "3": 23
+        },
+        "distinct_raters": [
+          "Poliit_prof_V2_vol1",
+          "Poliit_prof_V2_vol3",
+          "Poliit_prof_V2_vol4"
+        ],
+        "rater_pair_overlap_counts": {
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol3": 23,
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol4": 23,
+          "Poliit_prof_V2_vol3__Poliit_prof_V2_vol4": 23
+        }
+      },
+      "metrics": {
+        "mean_pairwise_exact_categorical_agreement": 0.7826,
+        "unanimous_item_count": 16,
+        "unanimous_item_share": 0.6957,
+        "pairwise_presence_agreement": 0.8841,
+        "pairwise_na_vs_numeric_disagreement_rate": 0.1159,
+        "jointly_numeric_pairwise_observations": 9,
+        "both_na_pairwise_observations": 52,
+        "one_na_one_numeric_pairwise_observations": 8,
+        "informative_pairwise_observations": 17,
+        "informative_pair_share": 0.2464,
+        "both_na_pair_share": 0.7536,
+        "jointly_numeric_pair_share": 0.1304,
+        "jointly_numeric_given_informative": 0.5294,
+        "na_vs_numeric_given_informative": 0.4706,
+        "mean_absolute_difference_numeric_only": 1.3333,
+        "exact_numeric_agreement_numeric_only": 0.2222,
+        "tolerance_one_agreement_numeric_only": 0.5556
+      },
+      "ordinal_reliability": {
+        "method": "Quadratic weighted Cohen's kappa on the ordinal 1-7 scale, using only pairs where both raters assigned numeric scores. `NA` is handled separately as presence/absence disagreement.",
+        "pairwise_observations_with_joint_numeric_scores": 9,
+        "weighted_mean_pairwise_kappa": "-0.214",
+        "macro_mean_pairwise_kappa": "-0.214",
+        "pooled_pairwise_kappa": "-0.350",
+        "sheet_pairs": {
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol3": {
+            "jointly_numeric_pairs": 3,
+            "exact_numeric_agreement": "0.333",
+            "quadratic_weighted_kappa": "-0.857",
+            "kappa_defined": true
+          },
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol4": {
+            "jointly_numeric_pairs": 3,
+            "exact_numeric_agreement": "0.333",
+            "quadratic_weighted_kappa": "0.500",
+            "kappa_defined": true
+          },
+          "Poliit_prof_V2_vol3__Poliit_prof_V2_vol4": {
+            "jointly_numeric_pairs": 3,
+            "exact_numeric_agreement": "0.000",
+            "quadratic_weighted_kappa": "-0.286",
+            "kappa_defined": true
+          }
+        }
+      },
+      "presence_reliability": {
+        "method": "Binary Cohen's kappa for presence of a scored trait (numeric 1-7) versus `NA`.",
+        "sheet_pair_count": 3,
+        "defined_sheet_pair_count": 3,
+        "undefined_sheet_pair_count": 0,
+        "pairwise_observations": 69,
+        "undefined_pairwise_observations": 0,
+        "weighted_mean_pairwise_kappa": 0.6237,
+        "macro_mean_pairwise_kappa": 0.6237,
+        "pooled_pairwise_kappa": 0.6209
+      },
+      "benchmark_aggregation": {
+        "recommended_rule": "Use a two-stage consensus: majority vote between `NA` and numeric presence; if numeric wins, use the mean of the numeric ratings as the gold score and retain within-item MAD as an uncertainty tag; if presence ties, mark the item-variable as ambiguous.",
+        "majority_na_item_count": 20,
+        "majority_na_item_share": 0.8696,
+        "majority_numeric_item_count": 3,
+        "majority_numeric_item_share": 0.1304,
+        "presence_tie_item_count": 0,
+        "presence_tie_item_share": 0.0,
+        "all_na_item_count": 16,
+        "all_na_item_share": 0.6957,
+        "all_numeric_item_count": 3,
+        "all_numeric_item_share": 0.1304,
+        "mean_within_item_mad_on_numeric_majority_items": 0.8148,
+        "mean_within_item_range_on_numeric_majority_items": 2.0
+      },
+      "error_analysis": {
+        "top_categorical_confusions": [
+          {
+            "labels": [
+              "4",
+              "NA"
+            ],
+            "count": 6,
+            "share_of_disagreements": 0.4,
+            "example_item_ids": [
+              "6",
+              "6",
+              "14",
+              "14",
+              "15"
+            ]
+          },
+          {
+            "labels": [
+              "4",
+              "5"
+            ],
+            "count": 3,
+            "share_of_disagreements": 0.2,
+            "example_item_ids": [
+              "9",
+              "9",
+              "10"
+            ]
+          },
+          {
+            "labels": [
+              "4",
+              "6"
+            ],
+            "count": 2,
+            "share_of_disagreements": 0.1333,
+            "example_item_ids": [
+              "11",
+              "11"
+            ]
+          },
+          {
+            "labels": [
+              "7",
+              "NA"
+            ],
+            "count": 2,
+            "share_of_disagreements": 0.1333,
+            "example_item_ids": [
+              "21",
+              "21"
+            ]
+          },
+          {
+            "labels": [
+              "4",
+              "7"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0667,
+            "example_item_ids": [
+              "10"
+            ]
+          },
+          {
+            "labels": [
+              "5",
+              "7"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0667,
+            "example_item_ids": [
+              "10"
+            ]
+          }
+        ],
+        "absolute_difference_distribution_numeric_only": {
+          "0": 2,
+          "1": 3,
+          "2": 3,
+          "3": 1
+        }
+      }
+    },
+    "d_eu": {
+      "support": {
+        "eligible_items": 23,
+        "excluded_items_fewer_than_two_usable_ratings": 0,
+        "total_ratings_used": 69,
+        "average_raters_per_eligible_item": 3.0,
+        "total_pairwise_comparisons": 69,
+        "eligible_item_rater_distribution": {
+          "3": 23
+        },
+        "distinct_raters": [
+          "Poliit_prof_V2_vol1",
+          "Poliit_prof_V2_vol3",
+          "Poliit_prof_V2_vol4"
+        ],
+        "rater_pair_overlap_counts": {
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol3": 23,
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol4": 23,
+          "Poliit_prof_V2_vol3__Poliit_prof_V2_vol4": 23
+        }
+      },
+      "metrics": {
+        "mean_pairwise_exact_categorical_agreement": 0.4783,
+        "unanimous_item_count": 7,
+        "unanimous_item_share": 0.3043,
+        "pairwise_presence_agreement": 0.7391,
+        "pairwise_na_vs_numeric_disagreement_rate": 0.2609,
+        "jointly_numeric_pairwise_observations": 27,
+        "both_na_pairwise_observations": 24,
+        "one_na_one_numeric_pairwise_observations": 18,
+        "informative_pairwise_observations": 45,
+        "informative_pair_share": 0.6522,
+        "both_na_pair_share": 0.3478,
+        "jointly_numeric_pair_share": 0.3913,
+        "jointly_numeric_given_informative": 0.6,
+        "na_vs_numeric_given_informative": 0.4,
+        "mean_absolute_difference_numeric_only": 1.3333,
+        "exact_numeric_agreement_numeric_only": 0.3333,
+        "tolerance_one_agreement_numeric_only": 0.5926
+      },
+      "ordinal_reliability": {
+        "method": "Quadratic weighted Cohen's kappa on the ordinal 1-7 scale, using only pairs where both raters assigned numeric scores. `NA` is handled separately as presence/absence disagreement.",
+        "pairwise_observations_with_joint_numeric_scores": 27,
+        "weighted_mean_pairwise_kappa": "0.516",
+        "macro_mean_pairwise_kappa": "0.509",
+        "pooled_pairwise_kappa": "0.518",
+        "sheet_pairs": {
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol3": {
+            "jointly_numeric_pairs": 10,
+            "exact_numeric_agreement": "0.500",
+            "quadratic_weighted_kappa": "0.669",
+            "kappa_defined": true
+          },
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol4": {
+            "jointly_numeric_pairs": 9,
+            "exact_numeric_agreement": "0.222",
+            "quadratic_weighted_kappa": "0.374",
+            "kappa_defined": true
+          },
+          "Poliit_prof_V2_vol3__Poliit_prof_V2_vol4": {
+            "jointly_numeric_pairs": 8,
+            "exact_numeric_agreement": "0.250",
+            "quadratic_weighted_kappa": "0.483",
+            "kappa_defined": true
+          }
+        }
+      },
+      "presence_reliability": {
+        "method": "Binary Cohen's kappa for presence of a scored trait (numeric 1-7) versus `NA`.",
+        "sheet_pair_count": 3,
+        "defined_sheet_pair_count": 3,
+        "undefined_sheet_pair_count": 0,
+        "pairwise_observations": 69,
+        "undefined_pairwise_observations": 0,
+        "weighted_mean_pairwise_kappa": 0.5095,
+        "macro_mean_pairwise_kappa": 0.5095,
+        "pooled_pairwise_kappa": 0.504
+      },
+      "benchmark_aggregation": {
+        "recommended_rule": "Use a two-stage consensus: majority vote between `NA` and numeric presence; if numeric wins, use the mean of the numeric ratings as the gold score and retain within-item MAD as an uncertainty tag; if presence ties, mark the item-variable as ambiguous.",
+        "majority_na_item_count": 12,
+        "majority_na_item_share": 0.5217,
+        "majority_numeric_item_count": 11,
+        "majority_numeric_item_share": 0.4783,
+        "presence_tie_item_count": 0,
+        "presence_tie_item_share": 0.0,
+        "all_na_item_count": 6,
+        "all_na_item_share": 0.2609,
+        "all_numeric_item_count": 8,
+        "all_numeric_item_share": 0.3478,
+        "mean_within_item_mad_on_numeric_majority_items": 0.8384,
+        "mean_within_item_range_on_numeric_majority_items": 1.9091
+      },
+      "error_analysis": {
+        "top_categorical_confusions": [
+          {
+            "labels": [
+              "6",
+              "NA"
+            ],
+            "count": 9,
+            "share_of_disagreements": 0.25,
+            "example_item_ids": [
+              "3",
+              "3",
+              "4",
+              "4",
+              "6"
+            ]
+          },
+          {
+            "labels": [
+              "5",
+              "NA"
+            ],
+            "count": 4,
+            "share_of_disagreements": 0.1111,
+            "example_item_ids": [
+              "9",
+              "9",
+              "10",
+              "10"
+            ]
+          },
+          {
+            "labels": [
+              "4",
+              "NA"
+            ],
+            "count": 3,
+            "share_of_disagreements": 0.0833,
+            "example_item_ids": [
+              "1",
+              "1",
+              "18"
+            ]
+          },
+          {
+            "labels": [
+              "5",
+              "7"
+            ],
+            "count": 3,
+            "share_of_disagreements": 0.0833,
+            "example_item_ids": [
+              "12",
+              "12",
+              "22"
+            ]
+          },
+          {
+            "labels": [
+              "1",
+              "4"
+            ],
+            "count": 3,
+            "share_of_disagreements": 0.0833,
+            "example_item_ids": [
+              "14",
+              "14",
+              "20"
+            ]
+          },
+          {
+            "labels": [
+              "6",
+              "7"
+            ],
+            "count": 3,
+            "share_of_disagreements": 0.0833,
+            "example_item_ids": [
+              "21",
+              "21",
+              "22"
+            ]
+          },
+          {
+            "labels": [
+              "3",
+              "4"
+            ],
+            "count": 2,
+            "share_of_disagreements": 0.0556,
+            "example_item_ids": [
+              "15",
+              "15"
+            ]
+          },
+          {
+            "labels": [
+              "4",
+              "6"
+            ],
+            "count": 2,
+            "share_of_disagreements": 0.0556,
+            "example_item_ids": [
+              "16",
+              "16"
+            ]
+          },
+          {
+            "labels": [
+              "3",
+              "6"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0278,
+            "example_item_ids": [
+              "11"
+            ]
+          },
+          {
+            "labels": [
+              "3",
+              "NA"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0278,
+            "example_item_ids": [
+              "11"
+            ]
+          }
+        ],
+        "absolute_difference_distribution_numeric_only": {
+          "0": 9,
+          "1": 7,
+          "2": 5,
+          "3": 5,
+          "4": 1
+        }
+      }
+    },
+    "e_keskkond": {
+      "support": {
+        "eligible_items": 23,
+        "excluded_items_fewer_than_two_usable_ratings": 0,
+        "total_ratings_used": 69,
+        "average_raters_per_eligible_item": 3.0,
+        "total_pairwise_comparisons": 69,
+        "eligible_item_rater_distribution": {
+          "3": 23
+        },
+        "distinct_raters": [
+          "Poliit_prof_V2_vol1",
+          "Poliit_prof_V2_vol3",
+          "Poliit_prof_V2_vol4"
+        ],
+        "rater_pair_overlap_counts": {
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol3": 23,
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol4": 23,
+          "Poliit_prof_V2_vol3__Poliit_prof_V2_vol4": 23
+        }
+      },
+      "metrics": {
+        "mean_pairwise_exact_categorical_agreement": 0.8116,
+        "unanimous_item_count": 17,
+        "unanimous_item_share": 0.7391,
+        "pairwise_presence_agreement": 0.913,
+        "pairwise_na_vs_numeric_disagreement_rate": 0.087,
+        "jointly_numeric_pairwise_observations": 10,
+        "both_na_pairwise_observations": 53,
+        "one_na_one_numeric_pairwise_observations": 6,
+        "informative_pairwise_observations": 16,
+        "informative_pair_share": 0.2319,
+        "both_na_pair_share": 0.7681,
+        "jointly_numeric_pair_share": 0.1449,
+        "jointly_numeric_given_informative": 0.625,
+        "na_vs_numeric_given_informative": 0.375,
+        "mean_absolute_difference_numeric_only": 1.3,
+        "exact_numeric_agreement_numeric_only": 0.3,
+        "tolerance_one_agreement_numeric_only": 0.6
+      },
+      "ordinal_reliability": {
+        "method": "Quadratic weighted Cohen's kappa on the ordinal 1-7 scale, using only pairs where both raters assigned numeric scores. `NA` is handled separately as presence/absence disagreement.",
+        "pairwise_observations_with_joint_numeric_scores": 10,
+        "weighted_mean_pairwise_kappa": "0.012",
+        "macro_mean_pairwise_kappa": "-0.005",
+        "pooled_pairwise_kappa": "0.065",
+        "sheet_pairs": {
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol3": {
+            "jointly_numeric_pairs": 3,
+            "exact_numeric_agreement": "0.667",
+            "quadratic_weighted_kappa": "0.000",
+            "kappa_defined": true
+          },
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol4": {
+            "jointly_numeric_pairs": 3,
+            "exact_numeric_agreement": "0.333",
+            "quadratic_weighted_kappa": "-0.182",
+            "kappa_defined": true
+          },
+          "Poliit_prof_V2_vol3__Poliit_prof_V2_vol4": {
+            "jointly_numeric_pairs": 4,
+            "exact_numeric_agreement": "0.000",
+            "quadratic_weighted_kappa": "0.167",
+            "kappa_defined": true
+          }
+        }
+      },
+      "presence_reliability": {
+        "method": "Binary Cohen's kappa for presence of a scored trait (numeric 1-7) versus `NA`.",
+        "sheet_pair_count": 3,
+        "defined_sheet_pair_count": 3,
+        "undefined_sheet_pair_count": 0,
+        "pairwise_observations": 69,
+        "undefined_pairwise_observations": 0,
+        "weighted_mean_pairwise_kappa": 0.7246,
+        "macro_mean_pairwise_kappa": 0.7246,
+        "pooled_pairwise_kappa": 0.716
+      },
+      "benchmark_aggregation": {
+        "recommended_rule": "Use a two-stage consensus: majority vote between `NA` and numeric presence; if numeric wins, use the mean of the numeric ratings as the gold score and retain within-item MAD as an uncertainty tag; if presence ties, mark the item-variable as ambiguous.",
+        "majority_na_item_count": 19,
+        "majority_na_item_share": 0.8261,
+        "majority_numeric_item_count": 4,
+        "majority_numeric_item_share": 0.1739,
+        "presence_tie_item_count": 0,
+        "presence_tie_item_share": 0.0,
+        "all_na_item_count": 17,
+        "all_na_item_share": 0.7391,
+        "all_numeric_item_count": 3,
+        "all_numeric_item_share": 0.1304,
+        "mean_within_item_mad_on_numeric_majority_items": 0.7917,
+        "mean_within_item_range_on_numeric_majority_items": 1.75
+      },
+      "error_analysis": {
+        "top_categorical_confusions": [
+          {
+            "labels": [
+              "2",
+              "NA"
+            ],
+            "count": 4,
+            "share_of_disagreements": 0.3077,
+            "example_item_ids": [
+              "4",
+              "4",
+              "14",
+              "14"
+            ]
+          },
+          {
+            "labels": [
+              "6",
+              "7"
+            ],
+            "count": 2,
+            "share_of_disagreements": 0.1538,
+            "example_item_ids": [
+              "16",
+              "16"
+            ]
+          },
+          {
+            "labels": [
+              "5",
+              "7"
+            ],
+            "count": 2,
+            "share_of_disagreements": 0.1538,
+            "example_item_ids": [
+              "17",
+              "17"
+            ]
+          },
+          {
+            "labels": [
+              "4",
+              "7"
+            ],
+            "count": 2,
+            "share_of_disagreements": 0.1538,
+            "example_item_ids": [
+              "19",
+              "19"
+            ]
+          },
+          {
+            "labels": [
+              "5",
+              "NA"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0769,
+            "example_item_ids": [
+              "18"
+            ]
+          },
+          {
+            "labels": [
+              "4",
+              "NA"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0769,
+            "example_item_ids": [
+              "18"
+            ]
+          },
+          {
+            "labels": [
+              "4",
+              "5"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0769,
+            "example_item_ids": [
+              "18"
+            ]
+          }
+        ],
+        "absolute_difference_distribution_numeric_only": {
+          "0": 3,
+          "1": 3,
+          "2": 2,
+          "3": 2
+        }
+      }
+    },
+    "f_tsentraliseeritus": {
+      "support": {
+        "eligible_items": 23,
+        "excluded_items_fewer_than_two_usable_ratings": 0,
+        "total_ratings_used": 69,
+        "average_raters_per_eligible_item": 3.0,
+        "total_pairwise_comparisons": 69,
+        "eligible_item_rater_distribution": {
+          "3": 23
+        },
+        "distinct_raters": [
+          "Poliit_prof_V2_vol1",
+          "Poliit_prof_V2_vol3",
+          "Poliit_prof_V2_vol4"
+        ],
+        "rater_pair_overlap_counts": {
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol3": 23,
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol4": 23,
+          "Poliit_prof_V2_vol3__Poliit_prof_V2_vol4": 23
+        }
+      },
+      "metrics": {
+        "mean_pairwise_exact_categorical_agreement": 0.7246,
+        "unanimous_item_count": 15,
+        "unanimous_item_share": 0.6522,
+        "pairwise_presence_agreement": 0.8841,
+        "pairwise_na_vs_numeric_disagreement_rate": 0.1159,
+        "jointly_numeric_pairwise_observations": 14,
+        "both_na_pairwise_observations": 47,
+        "one_na_one_numeric_pairwise_observations": 8,
+        "informative_pairwise_observations": 22,
+        "informative_pair_share": 0.3188,
+        "both_na_pair_share": 0.6812,
+        "jointly_numeric_pair_share": 0.2029,
+        "jointly_numeric_given_informative": 0.6364,
+        "na_vs_numeric_given_informative": 0.3636,
+        "mean_absolute_difference_numeric_only": 1.5,
+        "exact_numeric_agreement_numeric_only": 0.2143,
+        "tolerance_one_agreement_numeric_only": 0.5714
+      },
+      "ordinal_reliability": {
+        "method": "Quadratic weighted Cohen's kappa on the ordinal 1-7 scale, using only pairs where both raters assigned numeric scores. `NA` is handled separately as presence/absence disagreement.",
+        "pairwise_observations_with_joint_numeric_scores": 14,
+        "weighted_mean_pairwise_kappa": "0.196",
+        "macro_mean_pairwise_kappa": "0.181",
+        "pooled_pairwise_kappa": "0.176",
+        "sheet_pairs": {
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol3": {
+            "jointly_numeric_pairs": 5,
+            "exact_numeric_agreement": "0.400",
+            "quadratic_weighted_kappa": "0.182",
+            "kappa_defined": true
+          },
+          "Poliit_prof_V2_vol1__Poliit_prof_V2_vol4": {
+            "jointly_numeric_pairs": 4,
+            "exact_numeric_agreement": "0.000",
+            "quadratic_weighted_kappa": "-0.029",
+            "kappa_defined": true
+          },
+          "Poliit_prof_V2_vol3__Poliit_prof_V2_vol4": {
+            "jointly_numeric_pairs": 5,
+            "exact_numeric_agreement": "0.200",
+            "quadratic_weighted_kappa": "0.390",
+            "kappa_defined": true
+          }
+        }
+      },
+      "presence_reliability": {
+        "method": "Binary Cohen's kappa for presence of a scored trait (numeric 1-7) versus `NA`.",
+        "sheet_pair_count": 3,
+        "defined_sheet_pair_count": 3,
+        "undefined_sheet_pair_count": 0,
+        "pairwise_observations": 69,
+        "undefined_pairwise_observations": 0,
+        "weighted_mean_pairwise_kappa": 0.6994,
+        "macro_mean_pairwise_kappa": 0.6994,
+        "pooled_pairwise_kappa": 0.6997
+      },
+      "benchmark_aggregation": {
+        "recommended_rule": "Use a two-stage consensus: majority vote between `NA` and numeric presence; if numeric wins, use the mean of the numeric ratings as the gold score and retain within-item MAD as an uncertainty tag; if presence ties, mark the item-variable as ambiguous.",
+        "majority_na_item_count": 17,
+        "majority_na_item_share": 0.7391,
+        "majority_numeric_item_count": 6,
+        "majority_numeric_item_share": 0.2609,
+        "presence_tie_item_count": 0,
+        "presence_tie_item_share": 0.0,
+        "all_na_item_count": 15,
+        "all_na_item_share": 0.6522,
+        "all_numeric_item_count": 4,
+        "all_numeric_item_share": 0.1739,
+        "mean_within_item_mad_on_numeric_majority_items": 0.713,
+        "mean_within_item_range_on_numeric_majority_items": 1.8333
+      },
+      "error_analysis": {
+        "top_categorical_confusions": [
+          {
+            "labels": [
+              "4",
+              "NA"
+            ],
+            "count": 4,
+            "share_of_disagreements": 0.2105,
+            "example_item_ids": [
+              "15",
+              "15",
+              "20",
+              "20"
+            ]
+          },
+          {
+            "labels": [
+              "2",
+              "4"
+            ],
+            "count": 3,
+            "share_of_disagreements": 0.1579,
+            "example_item_ids": [
+              "14",
+              "14",
+              "22"
+            ]
+          },
+          {
+            "labels": [
+              "3",
+              "4"
+            ],
+            "count": 3,
+            "share_of_disagreements": 0.1579,
+            "example_item_ids": [
+              "19",
+              "19",
+              "22"
+            ]
+          },
+          {
+            "labels": [
+              "3",
+              "NA"
+            ],
+            "count": 2,
+            "share_of_disagreements": 0.1053,
+            "example_item_ids": [
+              "11",
+              "11"
+            ]
+          },
+          {
+            "labels": [
+              "5",
+              "6"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0526,
+            "example_item_ids": [
+              "3"
+            ]
+          },
+          {
+            "labels": [
+              "6",
+              "NA"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0526,
+            "example_item_ids": [
+              "3"
+            ]
+          },
+          {
+            "labels": [
+              "5",
+              "NA"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0526,
+            "example_item_ids": [
+              "3"
+            ]
+          },
+          {
+            "labels": [
+              "2",
+              "7"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0526,
+            "example_item_ids": [
+              "18"
+            ]
+          },
+          {
+            "labels": [
+              "2",
+              "5"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0526,
+            "example_item_ids": [
+              "18"
+            ]
+          },
+          {
+            "labels": [
+              "5",
+              "7"
+            ],
+            "count": 1,
+            "share_of_disagreements": 0.0526,
+            "example_item_ids": [
+              "18"
+            ]
+          }
+        ],
+        "absolute_difference_distribution_numeric_only": {
+          "0": 3,
+          "1": 5,
+          "2": 4,
+          "3": 1,
+          "5": 1
+        }
+      }
+    }
+  }
+}

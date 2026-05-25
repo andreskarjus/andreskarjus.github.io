@@ -1,0 +1,806 @@
+{
+  "sections": {
+    "main": {
+      "summary_rows": [
+        {
+          "variable": "sentiment",
+          "support": "300 items / 539 pairs",
+          "exact": "0.494",
+          "first_only": "-",
+          "first_kappa": "-",
+          "any_match": "-",
+          "soft": "-",
+          "kappa": "0.186",
+          "interpretation": "neutral/positive, negative/neutral, mixed/neutral"
+        },
+        {
+          "variable": "topics",
+          "support": "300 items / 539 pairs",
+          "exact": "0.216",
+          "first_only": "0.428",
+          "first_kappa": "0.339",
+          "any_match": "0.653",
+          "soft": "0.411",
+          "kappa": "0.179",
+          "interpretation": "Majandus, Investeeringud, Välismaa"
+        },
+        {
+          "variable": "stance",
+          "support": "300 items / 539 pairs",
+          "exact": "0.801",
+          "first_only": "-",
+          "first_kappa": "-",
+          "any_match": "-",
+          "soft": "0.959",
+          "kappa": "0.295",
+          "interpretation": "government, healthcare, education"
+        },
+        {
+          "variable": "state",
+          "support": "300 items / 539 pairs",
+          "exact": "0.554",
+          "first_only": "0.634",
+          "first_kappa": "0.480",
+          "any_match": "0.690",
+          "soft": "0.618",
+          "kappa": "0.378",
+          "interpretation": "Eesti, Läti, USA"
+        },
+        {
+          "variable": "media_narratives",
+          "support": "300 items / 539 pairs",
+          "exact": "0.771",
+          "first_only": "0.774",
+          "first_kappa": "0.267",
+          "any_match": "0.775",
+          "soft": "0.773",
+          "kappa": "0.264",
+          "interpretation": "startups, green_transition, digital"
+        },
+        {
+          "variable": "misinformation_narratives",
+          "support": "300 items / 539 pairs",
+          "exact": "0.982",
+          "first_only": "0.982",
+          "first_kappa": "0.088",
+          "any_match": "0.982",
+          "soft": "0.982",
+          "kappa": "0.088",
+          "interpretation": "läbikukkunud_eesti, ajalugu_võlts"
+        }
+      ],
+      "high_agreement_rows": [
+        {
+          "variable": "sentiment",
+          "eligible": "300",
+          "very_high": "126",
+          "share": "42.0%"
+        },
+        {
+          "variable": "topics",
+          "eligible": "300",
+          "very_high": "53",
+          "share": "17.7%"
+        },
+        {
+          "variable": "stance",
+          "eligible": "300",
+          "very_high": "231",
+          "share": "77.0%"
+        },
+        {
+          "variable": "state",
+          "eligible": "300",
+          "very_high": "148",
+          "share": "49.3%"
+        },
+        {
+          "variable": "media_narratives",
+          "eligible": "300",
+          "very_high": "217",
+          "share": "72.3%"
+        },
+        {
+          "variable": "misinformation_narratives",
+          "eligible": "300",
+          "very_high": "293",
+          "share": "97.7%"
+        }
+      ],
+      "extra_tables": [],
+      "matrices": {
+        "sentiment": {
+          "title": "sentiment confusion matrix",
+          "labels": [
+            "mixed",
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "total_cells_with_counts": 14,
+          "diagonal_count": 268,
+          "total_count": 810
+        },
+        "topics": {
+          "title": "topics set-aware confusion matrix",
+          "labels": [
+            "Arvamus",
+            "Finants",
+            "Haridus",
+            "Investeeringud",
+            "Keskkond",
+            "Krimi",
+            "Kultuur",
+            "Liiklus",
+            "Majandus",
+            "Põllumajandus",
+            "Seltskond",
+            "Sport",
+            "Tarbija",
+            "Teadus",
+            "Tervis",
+            "Välismaa",
+            "Ühiskond",
+            "[NONE]"
+          ],
+          "total_cells_with_counts": 190,
+          "diagonal_count": 390,
+          "total_count": 1580
+        },
+        "state": {
+          "title": "state set-aware confusion matrix",
+          "labels": [
+            "Aasia",
+            "Afganistaan",
+            "Afghanistaan",
+            "Angoola",
+            "Austraalia",
+            "Austria",
+            "Bahrein",
+            "Belgia",
+            "Benin",
+            "Benini",
+            "Bulgaaria",
+            "California",
+            "Dominikaani vabariik",
+            "Eesti",
+            "Euroopa",
+            "Filipiinid",
+            "Guinea",
+            "Hiina",
+            "Hispaania",
+            "Holland",
+            "Horvaatia",
+            "Iisrael",
+            "India",
+            "Indoneesia",
+            "Inglismaa",
+            "Island",
+            "Jaapan",
+            "Jeemen",
+            "Kampuchea",
+            "Kanaarid",
+            "Kasahstan",
+            "Kongo DV",
+            "Kreeka",
+            "Kõrgõztan",
+            "Leedu",
+            "Libeeria",
+            "Liibüa",
+            "Läti",
+            "Makedoonia",
+            "Maroko",
+            "Norra",
+            "Nulgaaria",
+            "Poola",
+            "Prantsusmaa",
+            "Principes",
+            "Põhja-Korea",
+            "Rootsi",
+            "Rootsi:Iisrael",
+            "Ruanda",
+            "Rumeenia",
+            "Saksamaa",
+            "Sao Tomes",
+            "Serbia",
+            "Sierra Leone",
+            "Slovakkia",
+            "Somaalia",
+            "Soome",
+            "Sudaan",
+            "Suurbritannia",
+            "Svaasimaa",
+            "Taani",
+            "Tai",
+            "Tenerife",
+            "Türgi",
+            "UK",
+            "USA",
+            "USA: Austraalia",
+            "Ukraina",
+            "Ungari",
+            "Usbekistan",
+            "Valgevene",
+            "Venemaa",
+            "Ühendkuningriik",
+            "Šveits",
+            "[NONE]"
+          ],
+          "total_cells_with_counts": 204,
+          "diagonal_count": 453,
+          "total_count": 1143
+        },
+        "media_narratives": {
+          "title": "media_narratives set-aware confusion matrix",
+          "labels": [
+            "corruption",
+            "digital",
+            "east_west",
+            "green_transition",
+            "institutional_trust",
+            "language",
+            "rural_urban",
+            "small_nation",
+            "startups",
+            "[NONE]"
+          ],
+          "total_cells_with_counts": 31,
+          "diagonal_count": 394,
+          "total_count": 698
+        },
+        "misinformation_narratives": {
+          "title": "misinformation_narratives set-aware confusion matrix",
+          "labels": [
+            "ajalugu_võlts",
+            "läbikukkunud_eesti",
+            "[NONE]"
+          ],
+          "total_cells_with_counts": 6,
+          "diagonal_count": 527,
+          "total_count": 551
+        }
+      }
+    },
+    "hate": {
+      "summary_rows": [
+        {
+          "variable": "Identity-based hateful narratives",
+          "support": "56 items / 281 pairs",
+          "exact": "0.497",
+          "first_only": "0.631",
+          "first_kappa": "0.348",
+          "any_match": "0.741",
+          "soft": "0.617",
+          "kappa": "0.291",
+          "interpretation": "lgbt_abnormal, religion_inferiority, male_dominance"
+        },
+        {
+          "variable": "Right-wing populist disinformation narratives",
+          "support": "56 items / 281 pairs",
+          "exact": "0.241",
+          "first_only": "0.438",
+          "first_kappa": "0.193",
+          "any_match": "0.658",
+          "soft": "0.430",
+          "kappa": "0.136",
+          "interpretation": "sj_extremism, culture_war, national_threat"
+        }
+      ],
+      "high_agreement_rows": [
+        {
+          "variable": "Identity-based hateful narratives",
+          "eligible": "56",
+          "very_high": "16",
+          "share": "28.6%"
+        },
+        {
+          "variable": "Right-wing populist disinformation narratives",
+          "eligible": "56",
+          "very_high": "4",
+          "share": "7.1%"
+        }
+      ],
+      "extra_tables": [],
+      "matrices": {
+        "identity_based_hateful_narratives": {
+          "title": "Identity-based hateful narratives set-aware confusion matrix",
+          "labels": [
+            "male_dominance",
+            "women_appearance",
+            "lgbt_abnormal",
+            "ethnic_inferiority",
+            "religion_inferiority",
+            "disability_abnormal",
+            "[NONE]"
+          ],
+          "total_cells_with_counts": 36,
+          "diagonal_count": 224,
+          "total_count": 582
+        },
+        "right_wing_populist_disinformation_narratives": {
+          "title": "Right-wing populist disinformation narratives set-aware confusion matrix",
+          "labels": [
+            "sj_extremism",
+            "culture_war",
+            "cancel_culture",
+            "national_threat",
+            "[NONE]"
+          ],
+          "total_cells_with_counts": 25,
+          "diagonal_count": 243,
+          "total_count": 815
+        }
+      }
+    },
+    "politics": {
+      "summary_rows": [
+        {
+          "variable": "Majandus: maksud vs avalikud teenused",
+          "support": "69 items / 139 pairs",
+          "signal_share": "0.151",
+          "na_numeric_split": "0.524",
+          "mad": "1.000 (10)",
+          "tol1": "0.700 (10)",
+          "ordinal_kappa": "0.095 (10)",
+          "interpretation": "4/NA, 5/NA, 4/6"
+        },
+        {
+          "variable": "Ühiskondlikud normid: sotsiaalliberaalsus vs konservatiivsus",
+          "support": "69 items / 139 pairs",
+          "signal_share": "0.525",
+          "na_numeric_split": "0.534",
+          "mad": "1.147 (34)",
+          "tol1": "0.647 (34)",
+          "ordinal_kappa": "0.378 (34)",
+          "interpretation": "5/NA, 4/NA, 3/NA"
+        },
+        {
+          "variable": "Immigratsioon: piirangute poolt vs vastu",
+          "support": "69 items / 139 pairs",
+          "signal_share": "0.093",
+          "na_numeric_split": "0.154",
+          "mad": "1.000 (11)",
+          "tol1": "0.818 (11)",
+          "ordinal_kappa": "0.295 (11)",
+          "interpretation": "3/4, 4/7, 3/7"
+        },
+        {
+          "variable": "Euroopa Liit ja eurointegratsioon",
+          "support": "69 items / 139 pairs",
+          "signal_share": "0.173",
+          "na_numeric_split": "0.542",
+          "mad": "0.636 (11)",
+          "tol1": "0.909 (11)",
+          "ordinal_kappa": "0.623 (11)",
+          "interpretation": "4/NA, 5/NA, 6/NA"
+        },
+        {
+          "variable": "Keskkond: keskkonnakaitse vs majanduskasv",
+          "support": "69 items / 139 pairs",
+          "signal_share": "0.223",
+          "na_numeric_split": "0.290",
+          "mad": "1.046 (22)",
+          "tol1": "0.727 (22)",
+          "ordinal_kappa": "-0.012 (22)",
+          "interpretation": "6/7, 4/NA, 4/7"
+        },
+        {
+          "variable": "Tsentraliseeritus: poolt vs vastu",
+          "support": "69 items / 139 pairs",
+          "signal_share": "0.360",
+          "na_numeric_split": "0.640",
+          "mad": "1.333 (18)",
+          "tol1": "0.667 (18)",
+          "ordinal_kappa": "0.230 (18)",
+          "interpretation": "3/NA, 4/NA, 2/NA"
+        }
+      ],
+      "high_agreement_rows": [],
+      "extra_tables": [
+        {
+          "title": "Benchmark Aggregation Structure",
+          "note": "Recommended politics gold construction: majority vote between `NA` and numeric presence; if numeric wins, use the mean of the numeric ratings as the gold score and retain within-item MAD as an uncertainty tag. Presence ties are ambiguous and should stay out of a strict benchmark split. For Within-Item MAD, the parenthesized N is the number of numeric-majority items.",
+          "rows": [
+            {
+              "variable": "Majandus: maksud vs avalikud teenused",
+              "majority_na": "54 (78.3%)",
+              "majority_numeric": "8 (11.6%)",
+              "presence_ties": "7 (10.1%)",
+              "numeric_majority_mad": "0.486 (8)"
+            },
+            {
+              "variable": "Ühiskondlikud normid: sotsiaalliberaalsus vs konservatiivsus",
+              "majority_na": "33 (47.8%)",
+              "majority_numeric": "19 (27.5%)",
+              "presence_ties": "17 (24.6%)",
+              "numeric_majority_mad": "0.506 (19)"
+            },
+            {
+              "variable": "Immigratsioon: piirangute poolt vs vastu",
+              "majority_na": "63 (91.3%)",
+              "majority_numeric": "4 (5.8%)",
+              "presence_ties": "2 (2.9%)",
+              "numeric_majority_mad": "0.483 (4)"
+            },
+            {
+              "variable": "Euroopa Liit ja eurointegratsioon",
+              "majority_na": "61 (88.4%)",
+              "majority_numeric": "4 (5.8%)",
+              "presence_ties": "4 (5.8%)",
+              "numeric_majority_mad": "0.455 (4)"
+            },
+            {
+              "variable": "Keskkond: keskkonnakaitse vs majanduskasv",
+              "majority_na": "55 (79.7%)",
+              "majority_numeric": "9 (13.0%)",
+              "presence_ties": "5 (7.2%)",
+              "numeric_majority_mad": "0.525 (9)"
+            },
+            {
+              "variable": "Tsentraliseeritus: poolt vs vastu",
+              "majority_na": "48 (69.6%)",
+              "majority_numeric": "8 (11.6%)",
+              "presence_ties": "13 (18.8%)",
+              "numeric_majority_mad": "0.649 (8)"
+            }
+          ]
+        }
+      ],
+      "matrices": {
+        "a_majandus": {
+          "title": "Majandus: maksud vs avalikud teenused confusion matrix",
+          "labels": [
+            "NA",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "total_cells_with_counts": 18,
+          "diagonal_count": 121,
+          "total_count": 157
+        },
+        "b_normid": {
+          "title": "Ühiskondlikud normid: sotsiaalliberaalsus vs konservatiivsus confusion matrix",
+          "labels": [
+            "NA",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "total_cells_with_counts": 40,
+          "diagonal_count": 82,
+          "total_count": 196
+        },
+        "c_immigratsioon": {
+          "title": "Immigratsioon: piirangute poolt vs vastu confusion matrix",
+          "labels": [
+            "NA",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "total_cells_with_counts": 13,
+          "diagonal_count": 131,
+          "total_count": 147
+        },
+        "d_eu": {
+          "title": "Euroopa Liit ja eurointegratsioon confusion matrix",
+          "labels": [
+            "NA",
+            "1",
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "total_cells_with_counts": 16,
+          "diagonal_count": 120,
+          "total_count": 158
+        },
+        "e_keskkond": {
+          "title": "Keskkond: keskkonnakaitse vs majanduskasv confusion matrix",
+          "labels": [
+            "NA",
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "total_cells_with_counts": 23,
+          "diagonal_count": 116,
+          "total_count": 162
+        },
+        "f_tsentraliseeritus": {
+          "title": "Tsentraliseeritus: poolt vs vastu confusion matrix",
+          "labels": [
+            "NA",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "total_cells_with_counts": 34,
+          "diagonal_count": 92,
+          "total_count": 186
+        }
+      }
+    },
+    "politics2": {
+      "summary_rows": [
+        {
+          "variable": "Majandus: maksud vs avalikud teenused",
+          "support": "23 items / 69 pairs",
+          "signal_share": "0.275",
+          "na_numeric_split": "0.421",
+          "mad": "1.727 (11)",
+          "tol1": "0.455 (11)",
+          "ordinal_kappa": "0.319 (11)",
+          "interpretation": "6/NA, 2/4, 1/NA"
+        },
+        {
+          "variable": "Ühiskondlikud normid: sotsiaalliberaalsus vs konservatiivsus",
+          "support": "23 items / 69 pairs",
+          "signal_share": "0.580",
+          "na_numeric_split": "0.450",
+          "mad": "1.909 (22)",
+          "tol1": "0.500 (22)",
+          "ordinal_kappa": "0.386 (22)",
+          "interpretation": "5/NA, 7/NA, 6/NA"
+        },
+        {
+          "variable": "Immigratsioon: piirangute poolt vs vastu",
+          "support": "23 items / 69 pairs",
+          "signal_share": "0.246",
+          "na_numeric_split": "0.471",
+          "mad": "1.333 (9)",
+          "tol1": "0.556 (9)",
+          "ordinal_kappa": "-0.214 (9)",
+          "interpretation": "4/NA, 4/5, 4/6"
+        },
+        {
+          "variable": "Euroopa Liit ja eurointegratsioon",
+          "support": "23 items / 69 pairs",
+          "signal_share": "0.652",
+          "na_numeric_split": "0.400",
+          "mad": "1.333 (27)",
+          "tol1": "0.593 (27)",
+          "ordinal_kappa": "0.516 (27)",
+          "interpretation": "6/NA, 5/NA, 4/NA"
+        },
+        {
+          "variable": "Keskkond: keskkonnakaitse vs majanduskasv",
+          "support": "23 items / 69 pairs",
+          "signal_share": "0.232",
+          "na_numeric_split": "0.375",
+          "mad": "1.300 (10)",
+          "tol1": "0.600 (10)",
+          "ordinal_kappa": "0.012 (10)",
+          "interpretation": "2/NA, 6/7, 5/7"
+        },
+        {
+          "variable": "Tsentraliseeritus: poolt vs vastu",
+          "support": "23 items / 69 pairs",
+          "signal_share": "0.319",
+          "na_numeric_split": "0.364",
+          "mad": "1.500 (14)",
+          "tol1": "0.571 (14)",
+          "ordinal_kappa": "0.196 (14)",
+          "interpretation": "4/NA, 2/4, 3/4"
+        }
+      ],
+      "high_agreement_rows": [],
+      "extra_tables": [
+        {
+          "title": "Benchmark Aggregation Structure",
+          "note": "Recommended politics gold construction: majority vote between `NA` and numeric presence; if numeric wins, use the mean of the numeric ratings as the gold score and retain within-item MAD as an uncertainty tag. Presence ties are ambiguous and should stay out of a strict benchmark split. For Within-Item MAD, the parenthesized N is the number of numeric-majority items.",
+          "rows": [
+            {
+              "variable": "Majandus: maksud vs avalikud teenused",
+              "majority_na": "18 (78.3%)",
+              "majority_numeric": "5 (21.7%)",
+              "presence_ties": "0 (0.0%)",
+              "numeric_majority_mad": "0.722 (5)"
+            },
+            {
+              "variable": "Ühiskondlikud normid: sotsiaalliberaalsus vs konservatiivsus",
+              "majority_na": "13 (56.5%)",
+              "majority_numeric": "10 (43.5%)",
+              "presence_ties": "0 (0.0%)",
+              "numeric_majority_mad": "0.944 (10)"
+            },
+            {
+              "variable": "Immigratsioon: piirangute poolt vs vastu",
+              "majority_na": "20 (87.0%)",
+              "majority_numeric": "3 (13.0%)",
+              "presence_ties": "0 (0.0%)",
+              "numeric_majority_mad": "0.815 (3)"
+            },
+            {
+              "variable": "Euroopa Liit ja eurointegratsioon",
+              "majority_na": "12 (52.2%)",
+              "majority_numeric": "11 (47.8%)",
+              "presence_ties": "0 (0.0%)",
+              "numeric_majority_mad": "0.838 (11)"
+            },
+            {
+              "variable": "Keskkond: keskkonnakaitse vs majanduskasv",
+              "majority_na": "19 (82.6%)",
+              "majority_numeric": "4 (17.4%)",
+              "presence_ties": "0 (0.0%)",
+              "numeric_majority_mad": "0.792 (4)"
+            },
+            {
+              "variable": "Tsentraliseeritus: poolt vs vastu",
+              "majority_na": "17 (73.9%)",
+              "majority_numeric": "6 (26.1%)",
+              "presence_ties": "0 (0.0%)",
+              "numeric_majority_mad": "0.713 (6)"
+            }
+          ]
+        },
+        {
+          "title": "Politics Benchmark vs Politics Benchmark 2",
+          "note": "Higher Signal Share and Numeric-Majority Share mean more item-variable cells are usable for score-based benchmarking. Lower Presence-Tie Share means fewer ambiguous `NA` versus numeric splits. The MAD column here is not the pairwise MAD from the summary above: it is the average within-item deviation from the numeric mean on numeric-majority items. Lower values mean tighter clustering around the eventual aggregated score. Higher Ordinal Kappa still means more stable pairwise numeric scoring. For Within-Item MAD, the parenthesized N is the number of numeric-majority items. For Ordinal Kappa, the parenthesized N is the number of jointly numeric rater pairs.",
+          "rows": [
+            {
+              "variable": "All six variables (macro mean)",
+              "signal_share": "25.4% → 38.4%",
+              "numeric_majority": "12.6% → 28.3%",
+              "presence_ties": "11.6% → 0.0%",
+              "numeric_mad": "0.517 (52) → 0.804 (39)",
+              "ordinal_kappa": "0.268 (106) → 0.203 (93)"
+            },
+            {
+              "variable": "Majandus: maksud vs avalikud teenused",
+              "signal_share": "15.1% → 27.5%",
+              "numeric_majority": "11.6% → 21.7%",
+              "presence_ties": "10.1% → 0.0%",
+              "numeric_mad": "0.486 (8) → 0.722 (5)",
+              "ordinal_kappa": "0.095 (10) → 0.319 (11)"
+            },
+            {
+              "variable": "Ühiskondlikud normid: sotsiaalliberaalsus vs konservatiivsus",
+              "signal_share": "52.5% → 58.0%",
+              "numeric_majority": "27.5% → 43.5%",
+              "presence_ties": "24.6% → 0.0%",
+              "numeric_mad": "0.506 (19) → 0.944 (10)",
+              "ordinal_kappa": "0.378 (34) → 0.386 (22)"
+            },
+            {
+              "variable": "Immigratsioon: piirangute poolt vs vastu",
+              "signal_share": "9.3% → 24.6%",
+              "numeric_majority": "5.8% → 13.0%",
+              "presence_ties": "2.9% → 0.0%",
+              "numeric_mad": "0.483 (4) → 0.815 (3)",
+              "ordinal_kappa": "0.295 (11) → -0.214 (9)"
+            },
+            {
+              "variable": "Euroopa Liit ja eurointegratsioon",
+              "signal_share": "17.3% → 65.2%",
+              "numeric_majority": "5.8% → 47.8%",
+              "presence_ties": "5.8% → 0.0%",
+              "numeric_mad": "0.455 (4) → 0.838 (11)",
+              "ordinal_kappa": "0.623 (11) → 0.516 (27)"
+            },
+            {
+              "variable": "Keskkond: keskkonnakaitse vs majanduskasv",
+              "signal_share": "22.3% → 23.2%",
+              "numeric_majority": "13.0% → 17.4%",
+              "presence_ties": "7.2% → 0.0%",
+              "numeric_mad": "0.525 (9) → 0.792 (4)",
+              "ordinal_kappa": "-0.012 (22) → 0.012 (10)"
+            },
+            {
+              "variable": "Tsentraliseeritus: poolt vs vastu",
+              "signal_share": "36.0% → 31.9%",
+              "numeric_majority": "11.6% → 26.1%",
+              "presence_ties": "18.8% → 0.0%",
+              "numeric_mad": "0.649 (8) → 0.713 (6)",
+              "ordinal_kappa": "0.230 (18) → 0.196 (14)"
+            }
+          ]
+        }
+      ],
+      "matrices": {
+        "a_majandus": {
+          "title": "Majandus: maksud vs avalikud teenused confusion matrix",
+          "labels": [
+            "NA",
+            "1",
+            "2",
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "total_cells_with_counts": 23,
+          "diagonal_count": 54,
+          "total_count": 84
+        },
+        "b_normid": {
+          "title": "Ühiskondlikud normid: sotsiaalliberaalsus vs konservatiivsus confusion matrix",
+          "labels": [
+            "NA",
+            "1",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "total_cells_with_counts": 29,
+          "diagonal_count": 36,
+          "total_count": 102
+        },
+        "c_immigratsioon": {
+          "title": "Immigratsioon: piirangute poolt vs vastu confusion matrix",
+          "labels": [
+            "NA",
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "total_cells_with_counts": 15,
+          "diagonal_count": 54,
+          "total_count": 84
+        },
+        "d_eu": {
+          "title": "Euroopa Liit ja eurointegratsioon confusion matrix",
+          "labels": [
+            "NA",
+            "1",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "total_cells_with_counts": 35,
+          "diagonal_count": 33,
+          "total_count": 105
+        },
+        "e_keskkond": {
+          "title": "Keskkond: keskkonnakaitse vs majanduskasv confusion matrix",
+          "labels": [
+            "NA",
+            "2",
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "total_cells_with_counts": 17,
+          "diagonal_count": 56,
+          "total_count": 82
+        },
+        "f_tsentraliseeritus": {
+          "title": "Tsentraliseeritus: poolt vs vastu confusion matrix",
+          "labels": [
+            "NA",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "total_cells_with_counts": 26,
+          "diagonal_count": 50,
+          "total_count": 88
+        }
+      }
+    }
+  }
+}
