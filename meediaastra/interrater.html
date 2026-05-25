@@ -145,7 +145,7 @@
         <li><strong>Kappa</strong>: Cohen's kappa on the strict exact response, so it asks how much exact agreement remains after correcting for chance agreement.</li>
       </ul>
       <p class="callout">
-        Blank cells are ignored unless a row is only partially filled and the parser explicitly backfills the remaining cells to <code>NA</code>. In practice this backfill is mainly relevant in the politics sheets, plus a small number of partially filled main-sheet rows; fully blank rows still remain missing and are excluded. The confusion matrices are descriptive pair-count visuals rather than a score: single-label and politics matrices show exact category-vs-category counts, while set-valued matrices show shared labels on the diagonal, non-overlap labels off the diagonal, and <code>[NONE]</code> for explicit no-label responses. Politics uses a separate benchmark-oriented setup: <strong>Signal Share</strong> is the share of pairwise comparisons where at least one rater used a numeric score, <strong>NA/Num Split | Signal</strong> is the share of those informative pairs where one side is <code>NA</code> and the other numeric, and <strong>Numeric MAD</strong>, <strong>+/-1 Agreement</strong>, and <strong>Ordinal Kappa</strong> are computed only on jointly numeric pairs.
+        Blank cells are ignored unless a row is only partially filled and the parser explicitly backfills the remaining cells to <code>NA</code>. In practice this backfill is mainly relevant in the politics sheets, plus a small number of partially filled main-sheet rows; fully blank rows still remain missing and are excluded. The confusion matrices are descriptive pair-count visuals rather than a score: single-label and politics matrices show exact category-vs-category counts, while set-valued matrices show shared labels on the diagonal, non-overlap labels off the diagonal, and <code>[NONE]</code> for explicit no-label responses. Politics uses a separate benchmark-oriented setup: <strong>Signal Share</strong> is the share of pairwise comparisons where at least one rater used a numeric score, <strong>NA/Num Split | Signal</strong> is the share of those informative pairs where one side is <code>NA</code> and the other numeric, <strong>Presence Kappa</strong> is chance-corrected agreement on <code>NA</code> versus numeric presence, and <strong>Pairwise Numeric MAD</strong>, <strong>+/-1 Agreement</strong>, and <strong>Ordinal Kappa</strong> are computed only on jointly numeric pairs.
       </p>
     </section>
     
@@ -7367,7 +7367,7 @@
               <h2>Politics Benchmark</h2>
               <p class="intro">These come from the `pol_1` to `pol_4` sheets, using the six ordinal variables defined in `pol.profileerimise koodid`. Rows with all six rating cells blank are skipped. If a row has at least one filled rating, remaining blank cells are backfilled to `NA`. No malformed rows were excluded from scoring.</p>
               <h3>Ordinal Agreement Summary</h3>
-              <p class="note">Signal Share is the share of pairwise comparisons where at least one rater used a numeric score. NA/Num Split | Signal is the share of those informative pairs where one rater used `NA` and the other used a number. Pairwise Numeric MAD, +/-1 agreement, and ordinal quadratic weighted kappa use only the pairs where both raters assigned numeric scores. Pairwise Numeric MAD is the mean absolute difference between two numeric raters on the same item-variable pair. For Pairwise Numeric MAD, +/-1 agreement, and Ordinal Kappa, the parenthesized N is the number of jointly numeric rater pairs used for that variable.</p>
+              <p class="note">Signal Share is the share of pairwise comparisons where at least one rater used a numeric score. NA/Num Split | Signal is the share of those informative pairs where one rater used `NA` and the other used a number. Presence Kappa is binary Cohen&#x27;s kappa for `NA` versus numeric presence over all pairwise comparisons. Pairwise Numeric MAD, +/-1 agreement, and ordinal quadratic weighted kappa use only the pairs where both raters assigned numeric scores. Pairwise Numeric MAD is the mean absolute difference between two numeric raters on the same item-variable pair. For Pairwise Numeric MAD, +/-1 agreement, and Ordinal Kappa, the parenthesized N is the number of jointly numeric rater pairs used for that variable.</p>
               
       <div class="table-wrap">
         <table>
@@ -7377,6 +7377,7 @@
 <th>Support</th>
 <th>Signal Share</th>
 <th>NA/Num Split | Signal</th>
+<th>Presence Kappa</th>
 <th>Pairwise Numeric MAD (N)</th>
 <th>+/-1 Agreement (N)</th>
 <th>Ordinal Kappa (N)</th>
@@ -7384,12 +7385,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td><span class="var">Majandus: maksud vs avalikud teenused</span></td><td>69 items / 139 pairs</td><td>0.151</td><td>0.524</td><td>1.000 (10)</td><td>0.700 (10)</td><td>0.095 (10)</td><td>4/NA, 5/NA, 4/6</td></tr>
-<tr><td><span class="var">Ühiskondlikud normid: sotsiaalliberaalsus vs konservatiivsus</span></td><td>69 items / 139 pairs</td><td>0.525</td><td>0.534</td><td>1.147 (34)</td><td>0.647 (34)</td><td>0.378 (34)</td><td>5/NA, 4/NA, 3/NA</td></tr>
-<tr><td><span class="var">Immigratsioon: piirangute poolt vs vastu</span></td><td>69 items / 139 pairs</td><td>0.093</td><td>0.154</td><td>1.000 (11)</td><td>0.818 (11)</td><td>0.295 (11)</td><td>3/4, 4/7, 3/7</td></tr>
-<tr><td><span class="var">Euroopa Liit ja eurointegratsioon</span></td><td>69 items / 139 pairs</td><td>0.173</td><td>0.542</td><td>0.636 (11)</td><td>0.909 (11)</td><td>0.623 (11)</td><td>4/NA, 5/NA, 6/NA</td></tr>
-<tr><td><span class="var">Keskkond: keskkonnakaitse vs majanduskasv</span></td><td>69 items / 139 pairs</td><td>0.223</td><td>0.290</td><td>1.046 (22)</td><td>0.727 (22)</td><td>-0.012 (22)</td><td>6/7, 4/NA, 4/7</td></tr>
-<tr><td><span class="var">Tsentraliseeritus: poolt vs vastu</span></td><td>69 items / 139 pairs</td><td>0.360</td><td>0.640</td><td>1.333 (18)</td><td>0.667 (18)</td><td>0.230 (18)</td><td>3/NA, 4/NA, 2/NA</td></tr>
+            <tr><td><span class="var">Majandus: maksud vs avalikud teenused</span></td><td>69 items / 139 pairs</td><td>0.151</td><td>0.524</td><td>0.571</td><td>1.000 (10)</td><td>0.700 (10)</td><td>0.095 (10)</td><td>4/NA, 5/NA, 4/6</td></tr>
+<tr><td><span class="var">Ühiskondlikud normid: sotsiaalliberaalsus vs konservatiivsus</span></td><td>69 items / 139 pairs</td><td>0.525</td><td>0.534</td><td>0.408</td><td>1.147 (34)</td><td>0.647 (34)</td><td>0.378 (34)</td><td>5/NA, 4/NA, 3/NA</td></tr>
+<tr><td><span class="var">Immigratsioon: piirangute poolt vs vastu</span></td><td>69 items / 139 pairs</td><td>0.093</td><td>0.154</td><td>0.926</td><td>1.000 (11)</td><td>0.818 (11)</td><td>0.295 (11)</td><td>3/4, 4/7, 3/7</td></tr>
+<tr><td><span class="var">Euroopa Liit ja eurointegratsioon</span></td><td>69 items / 139 pairs</td><td>0.173</td><td>0.542</td><td>0.579</td><td>0.636 (11)</td><td>0.909 (11)</td><td>0.623 (11)</td><td>4/NA, 5/NA, 6/NA</td></tr>
+<tr><td><span class="var">Keskkond: keskkonnakaitse vs majanduskasv</span></td><td>69 items / 139 pairs</td><td>0.223</td><td>0.290</td><td>0.787</td><td>1.046 (22)</td><td>0.727 (22)</td><td>-0.012 (22)</td><td>6/7, 4/NA, 4/7</td></tr>
+<tr><td><span class="var">Tsentraliseeritus: poolt vs vastu</span></td><td>69 items / 139 pairs</td><td>0.360</td><td>0.640</td><td>0.396</td><td>1.333 (18)</td><td>0.667 (18)</td><td>0.230 (18)</td><td>3/NA, 4/NA, 2/NA</td></tr>
           </tbody>
         </table>
       </div>
@@ -8033,7 +8034,7 @@
               <h2>Politics Benchmark 2</h2>
               <p class="intro">These come from the `Poliit_prof_V2_vol1`, `Poliit_prof_V2_vol3`, and `Poliit_prof_V2_vol4` sheets, using the same six ordinal variables defined in `pol.profileerimise koodid`. The three annotator sheets share the same 23 article rows and matching `Link` / `Pealkiri` / `Tekst` fields. Rows with all six rating cells blank are skipped. If a row has at least one filled rating, remaining blank cells are backfilled to `NA`. No malformed rows were excluded from scoring.</p>
               <h3>Ordinal Agreement Summary</h3>
-              <p class="note">Signal Share is the share of pairwise comparisons where at least one rater used a numeric score. NA/Num Split | Signal is the share of those informative pairs where one rater used `NA` and the other used a number. Pairwise Numeric MAD, +/-1 agreement, and ordinal quadratic weighted kappa use only the pairs where both raters assigned numeric scores. Pairwise Numeric MAD is the mean absolute difference between two numeric raters on the same item-variable pair. For Pairwise Numeric MAD, +/-1 agreement, and Ordinal Kappa, the parenthesized N is the number of jointly numeric rater pairs used for that variable.</p>
+              <p class="note">Signal Share is the share of pairwise comparisons where at least one rater used a numeric score. NA/Num Split | Signal is the share of those informative pairs where one rater used `NA` and the other used a number. Presence Kappa is binary Cohen&#x27;s kappa for `NA` versus numeric presence over all pairwise comparisons. Pairwise Numeric MAD, +/-1 agreement, and ordinal quadratic weighted kappa use only the pairs where both raters assigned numeric scores. Pairwise Numeric MAD is the mean absolute difference between two numeric raters on the same item-variable pair. For Pairwise Numeric MAD, +/-1 agreement, and Ordinal Kappa, the parenthesized N is the number of jointly numeric rater pairs used for that variable.</p>
               
       <div class="table-wrap">
         <table>
@@ -8043,6 +8044,7 @@
 <th>Support</th>
 <th>Signal Share</th>
 <th>NA/Num Split | Signal</th>
+<th>Presence Kappa</th>
 <th>Pairwise Numeric MAD (N)</th>
 <th>+/-1 Agreement (N)</th>
 <th>Ordinal Kappa (N)</th>
@@ -8050,12 +8052,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td><span class="var">Majandus: maksud vs avalikud teenused</span></td><td>23 items / 69 pairs</td><td>0.275</td><td>0.421</td><td>1.727 (11)</td><td>0.455 (11)</td><td>0.319 (11)</td><td>6/NA, 2/4, 1/NA</td></tr>
-<tr><td><span class="var">Ühiskondlikud normid: sotsiaalliberaalsus vs konservatiivsus</span></td><td>23 items / 69 pairs</td><td>0.580</td><td>0.450</td><td>1.909 (22)</td><td>0.500 (22)</td><td>0.386 (22)</td><td>5/NA, 7/NA, 6/NA</td></tr>
-<tr><td><span class="var">Immigratsioon: piirangute poolt vs vastu</span></td><td>23 items / 69 pairs</td><td>0.246</td><td>0.471</td><td>1.333 (9)</td><td>0.556 (9)</td><td>-0.214 (9)</td><td>4/NA, 4/5, 4/6</td></tr>
-<tr><td><span class="var">Euroopa Liit ja eurointegratsioon</span></td><td>23 items / 69 pairs</td><td>0.652</td><td>0.400</td><td>1.333 (27)</td><td>0.593 (27)</td><td>0.516 (27)</td><td>6/NA, 5/NA, 4/NA</td></tr>
-<tr><td><span class="var">Keskkond: keskkonnakaitse vs majanduskasv</span></td><td>23 items / 69 pairs</td><td>0.232</td><td>0.375</td><td>1.300 (10)</td><td>0.600 (10)</td><td>0.012 (10)</td><td>2/NA, 6/7, 5/7</td></tr>
-<tr><td><span class="var">Tsentraliseeritus: poolt vs vastu</span></td><td>23 items / 69 pairs</td><td>0.319</td><td>0.364</td><td>1.500 (14)</td><td>0.571 (14)</td><td>0.196 (14)</td><td>4/NA, 2/4, 3/4</td></tr>
+            <tr><td><span class="var">Majandus: maksud vs avalikud teenused</span></td><td>23 items / 69 pairs</td><td>0.275</td><td>0.421</td><td>0.666</td><td>1.727 (11)</td><td>0.455 (11)</td><td>0.319 (11)</td><td>6/NA, 2/4, 1/NA</td></tr>
+<tr><td><span class="var">Ühiskondlikud normid: sotsiaalliberaalsus vs konservatiivsus</span></td><td>23 items / 69 pairs</td><td>0.580</td><td>0.450</td><td>0.493</td><td>1.909 (22)</td><td>0.500 (22)</td><td>0.386 (22)</td><td>5/NA, 7/NA, 6/NA</td></tr>
+<tr><td><span class="var">Immigratsioon: piirangute poolt vs vastu</span></td><td>23 items / 69 pairs</td><td>0.246</td><td>0.471</td><td>0.624</td><td>1.333 (9)</td><td>0.556 (9)</td><td>-0.214 (9)</td><td>4/NA, 4/5, 4/6</td></tr>
+<tr><td><span class="var">Euroopa Liit ja eurointegratsioon</span></td><td>23 items / 69 pairs</td><td>0.652</td><td>0.400</td><td>0.509</td><td>1.333 (27)</td><td>0.593 (27)</td><td>0.516 (27)</td><td>6/NA, 5/NA, 4/NA</td></tr>
+<tr><td><span class="var">Keskkond: keskkonnakaitse vs majanduskasv</span></td><td>23 items / 69 pairs</td><td>0.232</td><td>0.375</td><td>0.725</td><td>1.300 (10)</td><td>0.600 (10)</td><td>0.012 (10)</td><td>2/NA, 6/7, 5/7</td></tr>
+<tr><td><span class="var">Tsentraliseeritus: poolt vs vastu</span></td><td>23 items / 69 pairs</td><td>0.319</td><td>0.364</td><td>0.699</td><td>1.500 (14)</td><td>0.571 (14)</td><td>0.196 (14)</td><td>4/NA, 2/4, 3/4</td></tr>
           </tbody>
         </table>
       </div>
