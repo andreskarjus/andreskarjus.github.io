@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interactive TikTok Corpus Atlas | Paekivi & Karjus 2026</title>
+  <link rel="stylesheet" href="styles.css?v=20260526d">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Supplement to Paekivi & Karjus (2026)</p>
+        <h1>Interactive TikTok Corpus Atlas</h1>
+        <p class="hero-text">
+          <span class="hero-title-line">Supplement to <span class="paper-title">Predicting Brand TikTok Engagement with a Machine-Assisted Multi-Theory Framework</span>.</span>
+          <span class="hero-title-line">The map shows Estonian brand and organizational TikTok videos in the article's fixed Hamming-distance t-SNE projection.</span>
+        </p>
+      </div>
+      <div class="hero-stats" id="hero-stats"></div>
+    </header>
+
+    <section class="control-grid">
+      <div class="panel control-panel">
+        <div class="panel-head">
+          <div>
+            <p class="panel-kicker">Map</p>
+            <h2>Visual Encoding</h2>
+          </div>
+        </div>
+        <div class="selector-grid selector-grid-map">
+          <div class="selector-slot">
+            <label for="map-color-selector-input">Color variable</label>
+            <div id="map-color-selector"></div>
+          </div>
+          <div class="selector-slot">
+            <label for="map-size-selector-input">Size variable</label>
+            <div id="map-size-selector"></div>
+          </div>
+        </div>
+        <div class="map-toggle-row">
+          <label class="pill-toggle">
+            <input type="checkbox" id="size-clip-toggle" checked>
+            <span>2nd / 98th percentile size clipping</span>
+          </label>
+        </div>
+        <div class="microcopy">
+          Coordinates remain fixed; only color and size encodings change.
+        </div>
+      </div>
+
+      <div class="panel control-panel">
+        <div class="panel-head">
+          <div>
+            <p class="panel-kicker">Summary</p>
+            <h2>Distributions and Association</h2>
+          </div>
+          <label class="pill-toggle">
+            <input type="checkbox" id="sync-toggle" checked>
+            <span>Use map variables</span>
+          </label>
+        </div>
+        <div class="selector-grid selector-grid-analysis">
+          <div class="selector-slot">
+            <label for="analysis-a-selector-input">Variable A</label>
+            <div id="analysis-a-selector"></div>
+          </div>
+          <div class="selector-slot">
+            <label for="analysis-b-selector-input">Variable B</label>
+            <div id="analysis-b-selector"></div>
+          </div>
+        </div>
+        <div class="microcopy">
+          The association view adapts to the selected variable types.
+        </div>
+      </div>
+    </section>
+
+    <main class="atlas-grid">
+      <section class="panel map-panel">
+        <div class="panel-head">
+          <div>
+            <p class="panel-kicker">Projection</p>
+            <h2 id="map-title">Corpus map</h2>
+          </div>
+          <div class="legend-note" id="map-note"></div>
+        </div>
+        <div id="map-plot" class="plot plot-map" aria-label="Interactive corpus map"></div>
+      </section>
+
+      <section class="panel analysis-panel">
+        <div class="panel-head">
+          <div>
+            <p class="panel-kicker">Selected Variables</p>
+            <h2 id="analysis-title">Selected variables</h2>
+          </div>
+        </div>
+        <div class="analysis-layout">
+          <div id="analysis-a-plot" class="plot plot-small" aria-label="Distribution plot for variable A"></div>
+          <div id="analysis-b-plot" class="plot plot-small" aria-label="Distribution plot for variable B"></div>
+          <div id="relationship-plot" class="plot plot-wide" aria-label="Relationship plot for the selected variables"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="vendor/plotly.min.js?v=20260526c"></script>
+  <script src="data/app-data.js?v=20260526c"></script>
+  <script src="app.js?v=20260526c"></script>
+</body>
+</html>
