@@ -143,7 +143,7 @@
         <li><strong>Any Match</strong>: mean pairwise overlap rate after treating explicit no-label responses as <code>NA</code>. A pair counts as a match when the two responses share at least one label or when both are explicit no-label.</li>
         <li><strong>Soft Overlap</strong>: pairwise Jaccard over unordered sets, computed as <code>|intersection| / |union|</code>.</li>
         <li><strong>Kappa</strong>: Cohen's kappa on the strict exact response, so it asks how much exact agreement remains after correcting for chance agreement.</li>
-        <li><strong>Strength QWK</strong>: used only in the second hate-speech benchmark. Each base label is scored on an ordinal 0-3 scale, where 0 means absent and 1-3 are the workbook strength suffixes; quadratic weighted kappa then gives smaller penalties for near-miss strengths than for large strength gaps.</li>
+        <li><strong>Strength QWK</strong>: used only in the second hate-speech benchmark. Each base label is scored on an ordinal 0-3 scale, where 0 means absent and 1-3 are the workbook strength suffixes; quadratic weighted kappa then gives smaller penalties for near-miss strengths than for large strength gaps. Higher values mean better agreement.</li>
       </ul>
       <p class="callout">
         Blank cells are ignored unless a row is only partially filled and the parser explicitly backfills the remaining cells to <code>NA</code>. In practice this backfill is mainly relevant in the politics sheets, plus a small number of partially filled main-sheet rows; fully blank rows still remain missing and are excluded. The confusion matrices are descriptive pair-count visuals rather than a score: single-label and politics matrices show exact category-vs-category counts, while set-valued matrices show shared labels on the diagonal, non-overlap labels off the diagonal, and <code>[NONE]</code> for explicit no-label responses. The second hate-speech benchmark uses the same set-valued matrix style, but its extra strength table keeps the `_1` / `_2` / `_3` suffixes on a separate ordinal 0-3 scale. Politics uses a separate benchmark-oriented setup: <strong>Signal Share</strong> is the share of pairwise comparisons where at least one rater used a numeric score, <strong>NA/Num Split | Signal</strong> is the share of those informative pairs where one side is <code>NA</code> and the other numeric, <strong>Presence Kappa</strong> is chance-corrected agreement on <code>NA</code> versus numeric presence, and <strong>Pairwise Numeric MAD</strong>, <strong>+/-1 Agreement</strong>, and <strong>Ordinal Kappa</strong> are computed only on jointly numeric pairs.
@@ -7431,7 +7431,7 @@
     
               
       <h3>Strength-Aware Agreement</h3>
-      <p class="note">These metrics use the new `_1` / `_2` / `_3` suffixes directly. Each base label is mapped to an ordinal 0-3 scale, where 0 means the label is absent and 1-3 are the annotated strength levels. Strength QWK is macro-averaged quadratic weighted kappa across the base labels of the variable. Positive-Conditioned Strength MAD uses only label-pair observations where at least one side selected the label. The parenthesized N for Strength QWK is the pairwise observation count per base label; for Strength MAD it is the number of positive-conditioned label-pair observations.</p>
+      <p class="note">These metrics use the new `_1` / `_2` / `_3` suffixes directly. Each base label is mapped to an ordinal 0-3 scale, where 0 means the label is absent and 1-3 are the annotated strength levels. Strength QWK is macro-averaged quadratic weighted kappa across the base labels of the variable. Positive-Conditioned Strength MAD uses only label-pair observations where at least one side selected the label. Higher Strength QWK means better agreement; lower Positive-Conditioned Strength MAD means tighter agreement. The parenthesized N for Strength QWK is the pairwise observation count per base label; for Strength MAD it is the number of positive-conditioned label-pair observations.</p>
       
       <div class="table-wrap">
         <table>
@@ -7476,7 +7476,7 @@
     
     
       <h3>Hate Narrative Test Sets vs Hate Narrative Test Sets 2</h3>
-      <p class="note">This comparison collapses the new `_1` / `_2` / `_3` label suffixes to their base labels so the two hate-speech attempts remain comparable at the label-presence level. The new attempt still reports its strength-aware agreement separately above. The old and new attempts align on the same article set by title and link.</p>
+      <p class="note">This comparison collapses the new `_1` / `_2` / `_3` label suffixes to their base labels so the two hate-speech attempts remain comparable at the label-presence level. The new attempt still reports its strength-aware agreement separately above. The old and new attempts align on the same article set by title and link. Interpretation: for the identity-based variable, the second attempt shows higher coarse overlap (`First Only` / `Any Match`) but weaker strict full-set agreement, which suggests better alignment on the main narrative label but more fragmentation in the full label set. For the right-wing variable, the second attempt is weaker on nearly all comparable base-label agreement measures.</p>
       
       <div class="table-wrap">
         <table>
