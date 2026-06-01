@@ -1,0 +1,1004 @@
+{
+  "base_label_report": {
+    "eligible_item_rule": "A variable contributes only items with at least two usable ratings for that variable. Agreement scores are computed from all rater pairs within each eligible item.",
+    "order_treatment": "Order is ignored in the set-based inter-rater calculations for the hate-set variables. Exact-set measures canonicalize each response to an unordered set, Jaccard is computed as |intersection| / |union|, and the any-match measure checks whether two responses share at least one label after treating explicit no-label responses as `NA`. The diagnostic first-label-only measure is the exception: it keeps only the first entered label and is therefore order-sensitive.",
+    "na_treatment": {
+      "identity_based_hateful_narratives": "An empty list is treated as an explicit `NA / no hateful narrative present` signal, so empty vs non-empty counts as disagreement.",
+      "right_wing_populist_disinformation_narratives": "An empty list is treated as an explicit `NA / no right-wing populist disinformation narrative present` signal, so empty vs non-empty counts as disagreement."
+    },
+    "normalization_comment": "The new hate-speech sheets add `_1` / `_2` / `_3` strength suffixes to the base labels. The headline set-overlap metrics collapse those suffixes to the base label, while the strength-aware table below keeps the suffix values on an ordinal 0-3 scale. The recurring typo `lgbt_abnornal` is still normalized to `lgbt_abnormal` before analysis.",
+    "variables": {
+      "identity_based_hateful_narratives": {
+        "consensus_comment": "Each label is kept when at least half of the available raters selected it. If no label reaches that threshold, the consensus keeps the most frequently selected label(s) instead.",
+        "agreement_comment": "Set agreement is reported both as exact-set agreement and as Jaccard similarity over unordered label sets.",
+        "na_treatment": "An empty label set is treated as an explicit `NA / no narrative selected` signal.",
+        "support": {
+          "eligible_items": 52,
+          "excluded_items_fewer_than_two_usable_ratings": 13,
+          "total_ratings_used": 146,
+          "average_raters_per_eligible_item": 2.8077,
+          "total_pairwise_comparisons": 136,
+          "eligible_item_rater_distribution": {
+            "2": 10,
+            "3": 42
+          },
+          "distinct_raters": [
+            "Vihakõne_MA_märgentatud_1",
+            "Vihakõne_MA_märgentatud_2",
+            "Vihakõne_MA_märgentatud_3"
+          ],
+          "rater_pair_overlap_counts": {
+            "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_2": 42,
+            "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_3": 42,
+            "Vihakõne_MA_märgentatud_2__Vihakõne_MA_märgentatud_3": 52
+          }
+        },
+        "metrics": {
+          "mean_pairwise_jaccard": 0.5507,
+          "mean_pairwise_exact_set_agreement": 0.3333,
+          "mean_pairwise_first_label_agreement": 0.6795,
+          "mean_pairwise_any_match_agreement": 0.8013,
+          "unanimous_item_count": 12,
+          "unanimous_item_share": 0.2308,
+          "fallback_plurality_item_count": 0,
+          "fallback_plurality_item_share": 0.0
+        },
+        "cohens_kappa": {
+          "exact_set": {
+            "method": "Strict Cohen's kappa treating the entire unordered label set, including the empty set, as one categorical response.",
+            "sheet_pair_count": 3,
+            "defined_sheet_pair_count": 3,
+            "undefined_sheet_pair_count": 0,
+            "pairwise_observations": 136,
+            "undefined_pairwise_observations": 0,
+            "weighted_mean_pairwise_kappa": 0.1886,
+            "macro_mean_pairwise_kappa": 0.1884,
+            "pooled_pairwise_kappa": 0.1821,
+            "sheet_pairs": {
+              "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_2": {
+                "overlapping_items": 42,
+                "exact_agreement": 0.4524,
+                "cohens_kappa": 0.2802,
+                "kappa_defined": true
+              },
+              "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_3": {
+                "overlapping_items": 42,
+                "exact_agreement": 0.1905,
+                "cohens_kappa": 0.0939,
+                "kappa_defined": true
+              },
+              "Vihakõne_MA_märgentatud_2__Vihakõne_MA_märgentatud_3": {
+                "overlapping_items": 52,
+                "exact_agreement": 0.3269,
+                "cohens_kappa": 0.1911,
+                "kappa_defined": true
+              }
+            }
+          },
+          "first_label": {
+            "method": "Cohen's kappa after pruning each response to its first entered label only. Empty responses are treated as the explicit `NA` class.",
+            "sheet_pair_count": 3,
+            "defined_sheet_pair_count": 3,
+            "undefined_sheet_pair_count": 0,
+            "pairwise_observations": 136,
+            "undefined_pairwise_observations": 0,
+            "weighted_mean_pairwise_kappa": 0.5055,
+            "macro_mean_pairwise_kappa": 0.5053,
+            "pooled_pairwise_kappa": 0.5046,
+            "sheet_pairs": {
+              "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_2": {
+                "overlapping_items": 42,
+                "exact_agreement": 0.6905,
+                "cohens_kappa": 0.54,
+                "kappa_defined": true
+              },
+              "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_3": {
+                "overlapping_items": 42,
+                "exact_agreement": 0.6429,
+                "cohens_kappa": 0.4675,
+                "kappa_defined": true
+              },
+              "Vihakõne_MA_märgentatud_2__Vihakõne_MA_märgentatud_3": {
+                "overlapping_items": 52,
+                "exact_agreement": 0.7308,
+                "cohens_kappa": 0.5084,
+                "kappa_defined": true
+              }
+            }
+          },
+          "label_wise_binary": {
+            "method": "For each label, Cohen's kappa is computed on a binary present-vs-absent task. The empty set is therefore treated as an explicit absence signal.",
+            "defined_label_count": 6,
+            "undefined_label_count": 0,
+            "macro_mean_label_kappa": 0.3266,
+            "positive_weighted_mean_label_kappa": 0.362,
+            "top_labels_by_kappa": [
+              {
+                "label": "women_appearance",
+                "weighted_mean_pairwise_kappa": 0.4764,
+                "pairwise_any_present": 13
+              },
+              {
+                "label": "male_dominance",
+                "weighted_mean_pairwise_kappa": 0.4447,
+                "pairwise_any_present": 53
+              },
+              {
+                "label": "ethnic_inferiority",
+                "weighted_mean_pairwise_kappa": 0.3718,
+                "pairwise_any_present": 53
+              },
+              {
+                "label": "religion_inferiority",
+                "weighted_mean_pairwise_kappa": 0.3421,
+                "pairwise_any_present": 25
+              },
+              {
+                "label": "lgbt_abnormal",
+                "weighted_mean_pairwise_kappa": 0.3246,
+                "pairwise_any_present": 119
+              }
+            ],
+            "bottom_labels_by_kappa": [
+              {
+                "label": "disability_abnormal",
+                "weighted_mean_pairwise_kappa": 0.0,
+                "pairwise_any_present": 4
+              },
+              {
+                "label": "lgbt_abnormal",
+                "weighted_mean_pairwise_kappa": 0.3246,
+                "pairwise_any_present": 119
+              },
+              {
+                "label": "religion_inferiority",
+                "weighted_mean_pairwise_kappa": 0.3421,
+                "pairwise_any_present": 25
+              },
+              {
+                "label": "ethnic_inferiority",
+                "weighted_mean_pairwise_kappa": 0.3718,
+                "pairwise_any_present": 53
+              },
+              {
+                "label": "male_dominance",
+                "weighted_mean_pairwise_kappa": 0.4447,
+                "pairwise_any_present": 53
+              }
+            ],
+            "labels": {
+              "male_dominance": {
+                "pairwise_observations": 136,
+                "pairwise_any_present": 53,
+                "both_present": 21,
+                "both_absent": 83,
+                "one_present_one_absent": 32,
+                "disagreement_share": 0.2353,
+                "positive_conditioned_disagreement_rate": 0.6038,
+                "weighted_mean_pairwise_kappa": 0.4447,
+                "pooled_pairwise_kappa": 0.4322,
+                "undefined_pairwise_observations": 0,
+                "example_item_ids": [
+                  "3",
+                  "5",
+                  "7",
+                  "8",
+                  "9"
+                ]
+              },
+              "women_appearance": {
+                "pairwise_observations": 136,
+                "pairwise_any_present": 13,
+                "both_present": 4,
+                "both_absent": 123,
+                "one_present_one_absent": 9,
+                "disagreement_share": 0.0662,
+                "positive_conditioned_disagreement_rate": 0.6923,
+                "weighted_mean_pairwise_kappa": 0.4764,
+                "pooled_pairwise_kappa": 0.4457,
+                "undefined_pairwise_observations": 0,
+                "example_item_ids": [
+                  "6",
+                  "8",
+                  "23",
+                  "31",
+                  "43"
+                ]
+              },
+              "lgbt_abnormal": {
+                "pairwise_observations": 136,
+                "pairwise_any_present": 119,
+                "both_present": 75,
+                "both_absent": 17,
+                "one_present_one_absent": 44,
+                "disagreement_share": 0.3235,
+                "positive_conditioned_disagreement_rate": 0.3697,
+                "weighted_mean_pairwise_kappa": 0.3246,
+                "pooled_pairwise_kappa": 0.2988,
+                "undefined_pairwise_observations": 0,
+                "example_item_ids": [
+                  "1",
+                  "2",
+                  "3",
+                  "4",
+                  "8"
+                ]
+              },
+              "ethnic_inferiority": {
+                "pairwise_observations": 136,
+                "pairwise_any_present": 53,
+                "both_present": 18,
+                "both_absent": 83,
+                "one_present_one_absent": 35,
+                "disagreement_share": 0.2574,
+                "positive_conditioned_disagreement_rate": 0.6604,
+                "weighted_mean_pairwise_kappa": 0.3718,
+                "pooled_pairwise_kappa": 0.3568,
+                "undefined_pairwise_observations": 0,
+                "example_item_ids": [
+                  "1",
+                  "3",
+                  "6",
+                  "8",
+                  "12"
+                ]
+              },
+              "religion_inferiority": {
+                "pairwise_observations": 136,
+                "pairwise_any_present": 25,
+                "both_present": 6,
+                "both_absent": 111,
+                "one_present_one_absent": 19,
+                "disagreement_share": 0.1397,
+                "positive_conditioned_disagreement_rate": 0.76,
+                "weighted_mean_pairwise_kappa": 0.3421,
+                "pooled_pairwise_kappa": 0.3401,
+                "undefined_pairwise_observations": 0,
+                "example_item_ids": [
+                  "2",
+                  "5",
+                  "6",
+                  "12",
+                  "14"
+                ]
+              },
+              "disability_abnormal": {
+                "pairwise_observations": 136,
+                "pairwise_any_present": 4,
+                "both_present": 0,
+                "both_absent": 132,
+                "one_present_one_absent": 4,
+                "disagreement_share": 0.0294,
+                "positive_conditioned_disagreement_rate": 1.0,
+                "weighted_mean_pairwise_kappa": 0.0,
+                "pooled_pairwise_kappa": -0.0149,
+                "undefined_pairwise_observations": 42,
+                "example_item_ids": [
+                  "18",
+                  "19"
+                ]
+              }
+            }
+          }
+        },
+        "error_analysis": {
+          "pairwise_set_disagreement_count": 92,
+          "pairwise_set_disagreement_share": 0.6765,
+          "pairwise_set_case_breakdown": {
+            "disjoint_nonempty": {
+              "count": 6,
+              "share": 0.0441,
+              "example_item_ids": [
+                "3",
+                "12",
+                "13",
+                "21"
+              ]
+            },
+            "empty_vs_nonempty": {
+              "count": 19,
+              "share": 0.1397,
+              "example_item_ids": [
+                "4",
+                "8",
+                "17"
+              ]
+            },
+            "identical_nonempty": {
+              "count": 44,
+              "share": 0.3235,
+              "example_item_ids": [
+                "1",
+                "4",
+                "5",
+                "7",
+                "9"
+              ]
+            },
+            "partial_overlap": {
+              "count": 67,
+              "share": 0.4926,
+              "example_item_ids": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          "labels_most_often_disputed": [
+            {
+              "label": "lgbt_abnormal",
+              "disagreement_count": 44,
+              "share_of_label_disagreement_events": 0.3077,
+              "pairwise_any_present": 119,
+              "positive_conditioned_disagreement_rate": 0.3697,
+              "weighted_mean_pairwise_kappa": 0.3246,
+              "example_item_ids": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "8"
+              ]
+            },
+            {
+              "label": "ethnic_inferiority",
+              "disagreement_count": 35,
+              "share_of_label_disagreement_events": 0.2448,
+              "pairwise_any_present": 53,
+              "positive_conditioned_disagreement_rate": 0.6604,
+              "weighted_mean_pairwise_kappa": 0.3718,
+              "example_item_ids": [
+                "1",
+                "3",
+                "6",
+                "8",
+                "12"
+              ]
+            },
+            {
+              "label": "male_dominance",
+              "disagreement_count": 32,
+              "share_of_label_disagreement_events": 0.2238,
+              "pairwise_any_present": 53,
+              "positive_conditioned_disagreement_rate": 0.6038,
+              "weighted_mean_pairwise_kappa": 0.4447,
+              "example_item_ids": [
+                "3",
+                "5",
+                "7",
+                "8",
+                "9"
+              ]
+            },
+            {
+              "label": "religion_inferiority",
+              "disagreement_count": 19,
+              "share_of_label_disagreement_events": 0.1329,
+              "pairwise_any_present": 25,
+              "positive_conditioned_disagreement_rate": 0.76,
+              "weighted_mean_pairwise_kappa": 0.3421,
+              "example_item_ids": [
+                "2",
+                "5",
+                "6",
+                "12",
+                "14"
+              ]
+            },
+            {
+              "label": "women_appearance",
+              "disagreement_count": 9,
+              "share_of_label_disagreement_events": 0.0629,
+              "pairwise_any_present": 13,
+              "positive_conditioned_disagreement_rate": 0.6923,
+              "weighted_mean_pairwise_kappa": 0.4764,
+              "example_item_ids": [
+                "6",
+                "8",
+                "23",
+                "31",
+                "43"
+              ]
+            },
+            {
+              "label": "disability_abnormal",
+              "disagreement_count": 4,
+              "share_of_label_disagreement_events": 0.028,
+              "pairwise_any_present": 4,
+              "positive_conditioned_disagreement_rate": 1.0,
+              "weighted_mean_pairwise_kappa": 0.0,
+              "example_item_ids": [
+                "18",
+                "19"
+              ]
+            }
+          ],
+          "imbalance": {
+            "top_3_labels_share_of_label_disagreement_events": 0.7762
+          }
+        }
+      },
+      "right_wing_populist_disinformation_narratives": {
+        "consensus_comment": "Each label is kept when at least half of the available raters selected it. If no label reaches that threshold, the consensus keeps the most frequently selected label(s) instead.",
+        "agreement_comment": "Set agreement is reported both as exact-set agreement and as Jaccard similarity over unordered label sets.",
+        "na_treatment": "An empty label set is treated as an explicit `NA / no narrative selected` signal.",
+        "support": {
+          "eligible_items": 53,
+          "excluded_items_fewer_than_two_usable_ratings": 12,
+          "total_ratings_used": 147,
+          "average_raters_per_eligible_item": 2.7736,
+          "total_pairwise_comparisons": 135,
+          "eligible_item_rater_distribution": {
+            "2": 12,
+            "3": 41
+          },
+          "distinct_raters": [
+            "Vihakõne_MA_märgentatud_1",
+            "Vihakõne_MA_märgentatud_2",
+            "Vihakõne_MA_märgentatud_3"
+          ],
+          "rater_pair_overlap_counts": {
+            "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_2": 42,
+            "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_3": 41,
+            "Vihakõne_MA_märgentatud_2__Vihakõne_MA_märgentatud_3": 52
+          }
+        },
+        "metrics": {
+          "mean_pairwise_jaccard": 0.315,
+          "mean_pairwise_exact_set_agreement": 0.0943,
+          "mean_pairwise_first_label_agreement": 0.3333,
+          "mean_pairwise_any_match_agreement": 0.6038,
+          "unanimous_item_count": 2,
+          "unanimous_item_share": 0.0377,
+          "fallback_plurality_item_count": 2,
+          "fallback_plurality_item_share": 0.0377
+        },
+        "cohens_kappa": {
+          "exact_set": {
+            "method": "Strict Cohen's kappa treating the entire unordered label set, including the empty set, as one categorical response.",
+            "sheet_pair_count": 3,
+            "defined_sheet_pair_count": 3,
+            "undefined_sheet_pair_count": 0,
+            "pairwise_observations": 135,
+            "undefined_pairwise_observations": 0,
+            "weighted_mean_pairwise_kappa": 0.0023,
+            "macro_mean_pairwise_kappa": 0.0007,
+            "pooled_pairwise_kappa": -0.0008,
+            "sheet_pairs": {
+              "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_2": {
+                "overlapping_items": 42,
+                "exact_agreement": 0.1429,
+                "cohens_kappa": -0.0033,
+                "kappa_defined": true
+              },
+              "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_3": {
+                "overlapping_items": 41,
+                "exact_agreement": 0.0,
+                "cohens_kappa": -0.0151,
+                "kappa_defined": true
+              },
+              "Vihakõne_MA_märgentatud_2__Vihakõne_MA_märgentatud_3": {
+                "overlapping_items": 52,
+                "exact_agreement": 0.0962,
+                "cohens_kappa": 0.0204,
+                "kappa_defined": true
+              }
+            }
+          },
+          "first_label": {
+            "method": "Cohen's kappa after pruning each response to its first entered label only. Empty responses are treated as the explicit `NA` class.",
+            "sheet_pair_count": 3,
+            "defined_sheet_pair_count": 3,
+            "undefined_sheet_pair_count": 0,
+            "pairwise_observations": 135,
+            "undefined_pairwise_observations": 0,
+            "weighted_mean_pairwise_kappa": 0.13,
+            "macro_mean_pairwise_kappa": 0.1273,
+            "pooled_pairwise_kappa": 0.1188,
+            "sheet_pairs": {
+              "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_2": {
+                "overlapping_items": 42,
+                "exact_agreement": 0.2381,
+                "cohens_kappa": 0.0434,
+                "kappa_defined": true
+              },
+              "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_3": {
+                "overlapping_items": 41,
+                "exact_agreement": 0.3659,
+                "cohens_kappa": 0.1704,
+                "kappa_defined": true
+              },
+              "Vihakõne_MA_märgentatud_2__Vihakõne_MA_märgentatud_3": {
+                "overlapping_items": 52,
+                "exact_agreement": 0.4231,
+                "cohens_kappa": 0.168,
+                "kappa_defined": true
+              }
+            }
+          },
+          "label_wise_binary": {
+            "method": "For each label, Cohen's kappa is computed on a binary present-vs-absent task. The empty set is therefore treated as an explicit absence signal.",
+            "defined_label_count": 4,
+            "undefined_label_count": 0,
+            "macro_mean_label_kappa": 0.1402,
+            "positive_weighted_mean_label_kappa": 0.1023,
+            "top_labels_by_kappa": [
+              {
+                "label": "cancel_culture",
+                "weighted_mean_pairwise_kappa": 0.2413,
+                "pairwise_any_present": 22
+              },
+              {
+                "label": "national_threat",
+                "weighted_mean_pairwise_kappa": 0.2191,
+                "pairwise_any_present": 73
+              },
+              {
+                "label": "culture_war",
+                "weighted_mean_pairwise_kappa": 0.0588,
+                "pairwise_any_present": 105
+              },
+              {
+                "label": "sj_extremism",
+                "weighted_mean_pairwise_kappa": 0.0418,
+                "pairwise_any_present": 116
+              }
+            ],
+            "bottom_labels_by_kappa": [
+              {
+                "label": "sj_extremism",
+                "weighted_mean_pairwise_kappa": 0.0418,
+                "pairwise_any_present": 116
+              },
+              {
+                "label": "culture_war",
+                "weighted_mean_pairwise_kappa": 0.0588,
+                "pairwise_any_present": 105
+              },
+              {
+                "label": "national_threat",
+                "weighted_mean_pairwise_kappa": 0.2191,
+                "pairwise_any_present": 73
+              },
+              {
+                "label": "cancel_culture",
+                "weighted_mean_pairwise_kappa": 0.2413,
+                "pairwise_any_present": 22
+              }
+            ],
+            "labels": {
+              "sj_extremism": {
+                "pairwise_observations": 135,
+                "pairwise_any_present": 116,
+                "both_present": 38,
+                "both_absent": 19,
+                "one_present_one_absent": 78,
+                "disagreement_share": 0.5778,
+                "positive_conditioned_disagreement_rate": 0.6724,
+                "weighted_mean_pairwise_kappa": 0.0418,
+                "pooled_pairwise_kappa": 0.0635,
+                "undefined_pairwise_observations": 0,
+                "example_item_ids": [
+                  "1",
+                  "2",
+                  "4",
+                  "5",
+                  "6"
+                ]
+              },
+              "culture_war": {
+                "pairwise_observations": 135,
+                "pairwise_any_present": 105,
+                "both_present": 29,
+                "both_absent": 30,
+                "one_present_one_absent": 76,
+                "disagreement_share": 0.563,
+                "positive_conditioned_disagreement_rate": 0.7238,
+                "weighted_mean_pairwise_kappa": 0.0588,
+                "pooled_pairwise_kappa": 0.0598,
+                "undefined_pairwise_observations": 0,
+                "example_item_ids": [
+                  "3",
+                  "4",
+                  "5",
+                  "6",
+                  "7"
+                ]
+              },
+              "cancel_culture": {
+                "pairwise_observations": 135,
+                "pairwise_any_present": 22,
+                "both_present": 4,
+                "both_absent": 113,
+                "one_present_one_absent": 18,
+                "disagreement_share": 0.1333,
+                "positive_conditioned_disagreement_rate": 0.8182,
+                "weighted_mean_pairwise_kappa": 0.2413,
+                "pooled_pairwise_kappa": 0.2416,
+                "undefined_pairwise_observations": 0,
+                "example_item_ids": [
+                  "7",
+                  "12",
+                  "14",
+                  "20",
+                  "28"
+                ]
+              },
+              "national_threat": {
+                "pairwise_observations": 135,
+                "pairwise_any_present": 73,
+                "both_present": 24,
+                "both_absent": 62,
+                "one_present_one_absent": 49,
+                "disagreement_share": 0.363,
+                "positive_conditioned_disagreement_rate": 0.6712,
+                "weighted_mean_pairwise_kappa": 0.2191,
+                "pooled_pairwise_kappa": 0.222,
+                "undefined_pairwise_observations": 0,
+                "example_item_ids": [
+                  "1",
+                  "2",
+                  "3",
+                  "4",
+                  "5"
+                ]
+              }
+            }
+          }
+        },
+        "error_analysis": {
+          "pairwise_set_disagreement_count": 124,
+          "pairwise_set_disagreement_share": 0.9185,
+          "pairwise_set_case_breakdown": {
+            "both_empty": {
+              "count": 1,
+              "share": 0.0074,
+              "example_item_ids": [
+                "39"
+              ]
+            },
+            "disjoint_nonempty": {
+              "count": 38,
+              "share": 0.2815,
+              "example_item_ids": [
+                "4",
+                "5",
+                "7",
+                "8",
+                "10"
+              ]
+            },
+            "empty_vs_nonempty": {
+              "count": 13,
+              "share": 0.0963,
+              "example_item_ids": [
+                "9",
+                "21",
+                "23"
+              ]
+            },
+            "identical_nonempty": {
+              "count": 10,
+              "share": 0.0741,
+              "example_item_ids": [
+                "3",
+                "6",
+                "16",
+                "20",
+                "25"
+              ]
+            },
+            "partial_overlap": {
+              "count": 73,
+              "share": 0.5407,
+              "example_item_ids": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          "labels_most_often_disputed": [
+            {
+              "label": "sj_extremism",
+              "disagreement_count": 78,
+              "share_of_label_disagreement_events": 0.3529,
+              "pairwise_any_present": 116,
+              "positive_conditioned_disagreement_rate": 0.6724,
+              "weighted_mean_pairwise_kappa": 0.0418,
+              "example_item_ids": [
+                "1",
+                "2",
+                "4",
+                "5",
+                "6"
+              ]
+            },
+            {
+              "label": "culture_war",
+              "disagreement_count": 76,
+              "share_of_label_disagreement_events": 0.3439,
+              "pairwise_any_present": 105,
+              "positive_conditioned_disagreement_rate": 0.7238,
+              "weighted_mean_pairwise_kappa": 0.0588,
+              "example_item_ids": [
+                "3",
+                "4",
+                "5",
+                "6",
+                "7"
+              ]
+            },
+            {
+              "label": "national_threat",
+              "disagreement_count": 49,
+              "share_of_label_disagreement_events": 0.2217,
+              "pairwise_any_present": 73,
+              "positive_conditioned_disagreement_rate": 0.6712,
+              "weighted_mean_pairwise_kappa": 0.2191,
+              "example_item_ids": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+              ]
+            },
+            {
+              "label": "cancel_culture",
+              "disagreement_count": 18,
+              "share_of_label_disagreement_events": 0.0814,
+              "pairwise_any_present": 22,
+              "positive_conditioned_disagreement_rate": 0.8182,
+              "weighted_mean_pairwise_kappa": 0.2413,
+              "example_item_ids": [
+                "7",
+                "12",
+                "14",
+                "20",
+                "28"
+              ]
+            }
+          ],
+          "imbalance": {
+            "top_3_labels_share_of_label_disagreement_events": 0.9186
+          }
+        }
+      }
+    }
+  },
+  "strength_report": {
+    "method": "Each base label is converted to an ordinal 0-3 scale per rater, where 0 means the label is absent/NA and 1-3 are the workbook strength suffixes. Strength QWK is macro-averaged quadratic weighted Cohen's kappa across the base labels of each variable. Positive-conditioned Strength MAD is the mean absolute difference on the same 0-3 scale, but only on label-pair observations where at least one side selected the label.",
+    "variables": {
+      "identity_based_hateful_narratives": {
+        "support": {
+          "eligible_items": 52,
+          "excluded_items_fewer_than_two_usable_ratings": 13,
+          "total_ratings_used": 146,
+          "average_raters_per_eligible_item": 2.8077,
+          "total_pairwise_comparisons": 136,
+          "eligible_item_rater_distribution": {
+            "2": 10,
+            "3": 42
+          },
+          "distinct_raters": [
+            "Vihakõne_MA_märgentatud_1",
+            "Vihakõne_MA_märgentatud_2",
+            "Vihakõne_MA_märgentatud_3"
+          ],
+          "rater_pair_overlap_counts": {
+            "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_2": 42,
+            "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_3": 42,
+            "Vihakõne_MA_märgentatud_2__Vihakõne_MA_märgentatud_3": 52
+          }
+        },
+        "metrics": {
+          "macro_strength_qwk": 0.4843,
+          "pairwise_observations_per_label": 136,
+          "positive_conditioned_strength_mad": 0.9513,
+          "positive_conditioned_pairwise_observations": 267
+        },
+        "labels": {
+          "male_dominance": {
+            "weighted_mean_pairwise_kappa": 0.566,
+            "pairwise_observations": 136,
+            "positive_conditioned_pairwise_observations": 53,
+            "positive_conditioned_mad": 1.2075
+          },
+          "women_appearance": {
+            "weighted_mean_pairwise_kappa": 0.781,
+            "pairwise_observations": 136,
+            "positive_conditioned_pairwise_observations": 13,
+            "positive_conditioned_mad": 0.8462
+          },
+          "lgbt_abnormal": {
+            "weighted_mean_pairwise_kappa": 0.626,
+            "pairwise_observations": 136,
+            "positive_conditioned_pairwise_observations": 119,
+            "positive_conditioned_mad": 0.7731
+          },
+          "ethnic_inferiority": {
+            "weighted_mean_pairwise_kappa": 0.59,
+            "pairwise_observations": 136,
+            "positive_conditioned_pairwise_observations": 53,
+            "positive_conditioned_mad": 1.0566
+          },
+          "religion_inferiority": {
+            "weighted_mean_pairwise_kappa": 0.343,
+            "pairwise_observations": 136,
+            "positive_conditioned_pairwise_observations": 25,
+            "positive_conditioned_mad": 1.08
+          },
+          "disability_abnormal": {
+            "weighted_mean_pairwise_kappa": 0.0,
+            "pairwise_observations": 136,
+            "positive_conditioned_pairwise_observations": 4,
+            "positive_conditioned_mad": 1.0
+          }
+        },
+        "lowest_agreement_labels": [
+          "disability_abnormal",
+          "religion_inferiority",
+          "male_dominance"
+        ]
+      },
+      "right_wing_populist_disinformation_narratives": {
+        "support": {
+          "eligible_items": 53,
+          "excluded_items_fewer_than_two_usable_ratings": 12,
+          "total_ratings_used": 147,
+          "average_raters_per_eligible_item": 2.7736,
+          "total_pairwise_comparisons": 135,
+          "eligible_item_rater_distribution": {
+            "2": 12,
+            "3": 41
+          },
+          "distinct_raters": [
+            "Vihakõne_MA_märgentatud_1",
+            "Vihakõne_MA_märgentatud_2",
+            "Vihakõne_MA_märgentatud_3"
+          ],
+          "rater_pair_overlap_counts": {
+            "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_2": 42,
+            "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_3": 41,
+            "Vihakõne_MA_märgentatud_2__Vihakõne_MA_märgentatud_3": 52
+          }
+        },
+        "metrics": {
+          "macro_strength_qwk": 0.189,
+          "pairwise_observations_per_label": 135,
+          "positive_conditioned_strength_mad": 1.6171,
+          "positive_conditioned_pairwise_observations": 316
+        },
+        "labels": {
+          "sj_extremism": {
+            "weighted_mean_pairwise_kappa": 0.209,
+            "pairwise_observations": 135,
+            "positive_conditioned_pairwise_observations": 116,
+            "positive_conditioned_mad": 1.4397
+          },
+          "culture_war": {
+            "weighted_mean_pairwise_kappa": 0.063,
+            "pairwise_observations": 135,
+            "positive_conditioned_pairwise_observations": 105,
+            "positive_conditioned_mad": 1.7333
+          },
+          "cancel_culture": {
+            "weighted_mean_pairwise_kappa": 0.27,
+            "pairwise_observations": 135,
+            "positive_conditioned_pairwise_observations": 22,
+            "positive_conditioned_mad": 1.8182
+          },
+          "national_threat": {
+            "weighted_mean_pairwise_kappa": 0.214,
+            "pairwise_observations": 135,
+            "positive_conditioned_pairwise_observations": 73,
+            "positive_conditioned_mad": 1.6712
+          }
+        },
+        "lowest_agreement_labels": [
+          "culture_war",
+          "sj_extremism",
+          "national_threat"
+        ]
+      }
+    }
+  },
+  "evidence_report": {
+    "method": "Colored evidence spans are extracted from rich-text runs in the article text cells. Red runs are treated as identity-based evidence spans and purple/magenta runs as right-wing-populist evidence spans. Span Jaccard is computed on character positions for pairs where both raters marked the variable positive and both provided at least one colored span.",
+    "variables": {
+      "identity_based_hateful_narratives": {
+        "positive_rating_count": 146,
+        "positive_with_spans_count": 112,
+        "positive_with_spans_share": 0.7671,
+        "mean_span_segment_count_when_positive": 11.5357,
+        "mean_highlight_char_share_when_positive": 0.2077,
+        "positive_positive_pairs_with_spans": 49,
+        "mean_pairwise_span_jaccard_on_positive_pairs": 0.1639
+      },
+      "right_wing_populist_disinformation_narratives": {
+        "positive_rating_count": 150,
+        "positive_with_spans_count": 64,
+        "positive_with_spans_share": 0.4267,
+        "mean_span_segment_count_when_positive": 2.8594,
+        "mean_highlight_char_share_when_positive": 0.1035,
+        "positive_positive_pairs_with_spans": 1,
+        "mean_pairwise_span_jaccard_on_positive_pairs": 0.0
+      }
+    }
+  },
+  "parsing": {
+    "strength_suffix_rule": "Labels with suffixes `_1`, `_2`, and `_3` are parsed to the same base label for the main set-overlap tables, while the suffix values are retained separately for strength-aware agreement metrics.",
+    "alignment_check": {
+      "sheets": [
+        "Vihakõne_MA_märgentatud_1",
+        "Vihakõne_MA_märgentatud_2",
+        "Vihakõne_MA_märgentatud_3"
+      ],
+      "row_count_per_sheet": 65,
+      "checked_columns": [
+        "A",
+        "B",
+        "C"
+      ],
+      "content_mismatch_count": 0,
+      "content_mismatch_examples": [],
+      "old_attempt_title_link_mismatch_count": 0,
+      "old_attempt_title_link_mismatch_examples": []
+    },
+    "sheet_stats": {
+      "Vihakõne_MA_märgentatud_1": {
+        "all_blank_rows_skipped": 23,
+        "usable_rows": 42,
+        "identity_positive_rows": 34,
+        "identity_explicit_na_rows": 8,
+        "right_positive_rows": 37,
+        "right_explicit_na_rows": 5
+      },
+      "Vihakõne_MA_märgentatud_2": {
+        "all_blank_rows_skipped": 12,
+        "usable_rows": 53,
+        "identity_positive_rows": 49,
+        "identity_explicit_na_rows": 4,
+        "right_positive_rows": 49,
+        "right_explicit_na_rows": 4
+      },
+      "Vihakõne_MA_märgentatud_3": {
+        "all_blank_rows_skipped": 0,
+        "usable_rows": 65,
+        "identity_positive_rows": 63,
+        "identity_explicit_na_rows": 0,
+        "right_positive_rows": 64,
+        "right_explicit_na_rows": 0
+      }
+    },
+    "unknown_labels": {
+      "identity_based_hateful_narratives": [],
+      "right_wing_populist_disinformation_narratives": []
+    },
+    "evidence_span_colors": {
+      "identity_based_hateful_narratives": [
+        "FFFF0000"
+      ],
+      "right_wing_populist_disinformation_narratives": [
+        "FF9900FF",
+        "FFFF00FF"
+      ]
+    },
+    "observed_label_orders": {
+      "identity_based_hateful_narratives": [
+        "male_dominance",
+        "women_appearance",
+        "lgbt_abnormal",
+        "ethnic_inferiority",
+        "religion_inferiority",
+        "disability_abnormal"
+      ],
+      "right_wing_populist_disinformation_narratives": [
+        "sj_extremism",
+        "culture_war",
+        "cancel_culture",
+        "national_threat"
+      ]
+    }
+  }
+}

@@ -143,9 +143,10 @@
         <li><strong>Any Match</strong>: mean pairwise overlap rate after treating explicit no-label responses as <code>NA</code>. A pair counts as a match when the two responses share at least one label or when both are explicit no-label.</li>
         <li><strong>Soft Overlap</strong>: pairwise Jaccard over unordered sets, computed as <code>|intersection| / |union|</code>.</li>
         <li><strong>Kappa</strong>: Cohen's kappa on the strict exact response, so it asks how much exact agreement remains after correcting for chance agreement.</li>
+        <li><strong>Strength QWK</strong>: used only in the second hate-speech benchmark. Each base label is scored on an ordinal 0-3 scale, where 0 means absent and 1-3 are the workbook strength suffixes; quadratic weighted kappa then gives smaller penalties for near-miss strengths than for large strength gaps.</li>
       </ul>
       <p class="callout">
-        Blank cells are ignored unless a row is only partially filled and the parser explicitly backfills the remaining cells to <code>NA</code>. In practice this backfill is mainly relevant in the politics sheets, plus a small number of partially filled main-sheet rows; fully blank rows still remain missing and are excluded. The confusion matrices are descriptive pair-count visuals rather than a score: single-label and politics matrices show exact category-vs-category counts, while set-valued matrices show shared labels on the diagonal, non-overlap labels off the diagonal, and <code>[NONE]</code> for explicit no-label responses. Politics uses a separate benchmark-oriented setup: <strong>Signal Share</strong> is the share of pairwise comparisons where at least one rater used a numeric score, <strong>NA/Num Split | Signal</strong> is the share of those informative pairs where one side is <code>NA</code> and the other numeric, <strong>Presence Kappa</strong> is chance-corrected agreement on <code>NA</code> versus numeric presence, and <strong>Pairwise Numeric MAD</strong>, <strong>+/-1 Agreement</strong>, and <strong>Ordinal Kappa</strong> are computed only on jointly numeric pairs.
+        Blank cells are ignored unless a row is only partially filled and the parser explicitly backfills the remaining cells to <code>NA</code>. In practice this backfill is mainly relevant in the politics sheets, plus a small number of partially filled main-sheet rows; fully blank rows still remain missing and are excluded. The confusion matrices are descriptive pair-count visuals rather than a score: single-label and politics matrices show exact category-vs-category counts, while set-valued matrices show shared labels on the diagonal, non-overlap labels off the diagonal, and <code>[NONE]</code> for explicit no-label responses. The second hate-speech benchmark uses the same set-valued matrix style, but its extra strength table keeps the `_1` / `_2` / `_3` suffixes on a separate ordinal 0-3 scale. Politics uses a separate benchmark-oriented setup: <strong>Signal Share</strong> is the share of pairwise comparisons where at least one rater used a numeric score, <strong>NA/Num Split | Signal</strong> is the share of those informative pairs where one side is <code>NA</code> and the other numeric, <strong>Presence Kappa</strong> is chance-corrected agreement on <code>NA</code> versus numeric presence, and <strong>Pairwise Numeric MAD</strong>, <strong>+/-1 Agreement</strong>, and <strong>Ordinal Kappa</strong> are computed only on jointly numeric pairs.
       </p>
     </section>
     
@@ -7360,6 +7361,335 @@
 <text x="418.0" y="342.0" class="celltext" text-anchor="middle" fill="#111827">7</text>
 </svg></div>
                   <p class="foot">Built from 281 unordered rater pairs. Partial-overlap cases contribute to both diagonal and off-diagonal cells.</p>
+                </section>
+                
+            
+            <section class="card section-head">
+              <h2>Hate Narrative Test Sets 2</h2>
+              <p class="intro">These come from the `Vihakõne_MA_märgentatud_1` to `Vihakõne_MA_märgentatud_3` sheets. The article rows align across annotators on `link`, `Pealkiri`, and `Tekst`. The base variables follow the same codebook as the first hate-speech attempt, but the labels now carry `_1` / `_2` / `_3` strength suffixes and the text cells contain color-highlighted evidence spans.</p>
+              <h3>Agreement Summary</h3>
+              <p class="note">The headline summary below collapses the new strength suffixes to their base labels so it remains comparable to the first hate-speech attempt. The extra tables then add strength-aware ordinal agreement and evidence-span overlap.</p>
+              
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Variable</th>
+<th>Support</th>
+<th>Exact</th>
+<th>First Only</th>
+<th>First Kappa</th>
+<th>Any Match</th>
+<th>Soft Overlap</th>
+<th>Kappa</th>
+<th>Most Disagreement</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="var">Identity-based hateful narratives</span></td><td>52 items / 136 pairs</td><td>0.333</td><td>0.679</td><td>0.505</td><td>0.801</td><td>0.551</td><td>0.189</td><td>lgbt_abnormal, ethnic_inferiority, male_dominance</td></tr>
+<tr><td><span class="var">Right-wing populist disinformation narratives</span></td><td>53 items / 135 pairs</td><td>0.094</td><td>0.333</td><td>0.130</td><td>0.604</td><td>0.315</td><td>0.002</td><td>sj_extremism, culture_war, national_threat</td></tr>
+          </tbody>
+        </table>
+      </div>
+    
+              <h3>Higher-Agreement Subset</h3>
+      <p class="note">
+        Very high agreement threshold: all available usable raters for the item gave exactly the same response.
+        For set-valued variables, this means the same unordered label set; empty/NA counts as a real category.
+        For <code>stance</code>, it means an exact match on the full five-target object.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Variable</th>
+              <th>Eligible Multi-Rater Items</th>
+              <th>Very High-Agreement Items</th>
+              <th>Share</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+        <tr>
+          <td><span class="var">Identity-based hateful narratives</span></td>
+          <td>52</td>
+          <td>12</td>
+          <td>23.1%</td>
+        </tr>
+        
+
+        <tr>
+          <td><span class="var">Right-wing populist disinformation narratives</span></td>
+          <td>53</td>
+          <td>2</td>
+          <td>3.8%</td>
+        </tr>
+        
+          </tbody>
+        </table>
+      </div>
+    
+              
+      <h3>Strength-Aware Agreement</h3>
+      <p class="note">These metrics use the new `_1` / `_2` / `_3` suffixes directly. Each base label is mapped to an ordinal 0-3 scale, where 0 means the label is absent and 1-3 are the annotated strength levels. Strength QWK is macro-averaged quadratic weighted kappa across the base labels of the variable. Positive-Conditioned Strength MAD uses only label-pair observations where at least one side selected the label. The parenthesized N for Strength QWK is the pairwise observation count per base label; for Strength MAD it is the number of positive-conditioned label-pair observations.</p>
+      
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Variable</th>
+<th>Support</th>
+<th>Strength QWK (N)</th>
+<th>Positive-Conditioned Strength MAD (N)</th>
+<th>Lowest-Agreement Labels</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="var">Identity-based hateful narratives</span></td><td>52 items / 136 pairs</td><td>0.484 (136)</td><td>0.951 (267)</td><td>disability_abnormal, religion_inferiority, male_dominance</td></tr>
+<tr><td><span class="var">Right-wing populist disinformation narratives</span></td><td>53 items / 135 pairs</td><td>0.189 (135)</td><td>1.617 (316)</td><td>culture_war, sj_extremism, national_threat</td></tr>
+          </tbody>
+        </table>
+      </div>
+    
+    
+      <h3>Evidence Span Coverage</h3>
+      <p class="note">Evidence spans are extracted from rich-text color highlights in the article text cells. Red is treated as identity-based evidence, and purple/magenta as right-wing-populist evidence. Span Jaccard is a character-level overlap score computed only on positive-positive rater pairs where both sides provided at least one colored span.</p>
+      
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Variable</th>
+<th>Positive Ratings</th>
+<th>Positive Ratings With Spans</th>
+<th>Mean Span Segments | Positive</th>
+<th>Mean Highlight Share | Positive</th>
+<th>Span Jaccard (N)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="var">Identity-based hateful narratives</span></td><td>146</td><td>112 (76.7%)</td><td>11.536</td><td>20.8%</td><td>0.164 (49)</td></tr>
+<tr><td><span class="var">Right-wing populist disinformation narratives</span></td><td>150</td><td>64 (42.7%)</td><td>2.859</td><td>10.3%</td><td>0.000 (1)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    
+    
+      <h3>Hate Narrative Test Sets vs Hate Narrative Test Sets 2</h3>
+      <p class="note">This comparison collapses the new `_1` / `_2` / `_3` label suffixes to their base labels so the two hate-speech attempts remain comparable at the label-presence level. The new attempt still reports its strength-aware agreement separately above. The old and new attempts align on the same article set by title and link.</p>
+      
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Variable</th>
+<th>Support (H1 -&gt; H2)</th>
+<th>Exact (H1 -&gt; H2)</th>
+<th>Any Match (H1 -&gt; H2)</th>
+<th>Soft Overlap (H1 -&gt; H2)</th>
+<th>Kappa (H1 -&gt; H2)</th>
+<th>Very High Share (H1 -&gt; H2)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="var">Identity-based hateful narratives</span></td><td>56 items / 281 pairs -&gt; 52 items / 136 pairs</td><td>0.497 → 0.333</td><td>0.741 → 0.801</td><td>0.617 → 0.551</td><td>0.291 → 0.189</td><td>28.6% → 23.1%</td></tr>
+<tr><td><span class="var">Right-wing populist disinformation narratives</span></td><td>56 items / 281 pairs -&gt; 53 items / 135 pairs</td><td>0.241 → 0.094</td><td>0.658 → 0.604</td><td>0.430 → 0.315</td><td>0.136 → 0.002</td><td>7.1% → 3.8%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    
+    
+              <h3>Notes</h3><div class="insights"><p class="note">Alignment across the three `Vihakõne_MA_märgentatud_*` sheets found 0 row-level content mismatches after comparing `link`, `Pealkiri`, and `Tekst`.</p><p class="note">Title/link alignment against `Test_hate_narrative_1` found 0 mismatches, so the old and new hate attempts are comparable on the same article set at the title-link level.</p><p class="note">Strength-aware agreement is reported separately because the new suffixes encode salience on an ordinal 0-3 scale; macro Strength QWK is 0.484 for the identity-based variable and 0.189 for the right-wing variable.</p><p class="note">Evidence highlighting is widespread in positive ratings: 76.7% of positive identity-based ratings and 42.7% of positive right-wing ratings include at least one extracted colored span.</p></div>
+            </section>
+            
+                <section class="card">
+                  <h3>Identity-based hateful narratives set-aware confusion matrix</h3>
+                  <p class="note">Diagonal = shared labels; off-diagonal = non-overlapping labels; [NONE] = empty set / NA.</p>
+                  <div class="svg-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="568" height="568" viewBox="0 0 568 568">
+<style>
+.title{font:700 22px sans-serif;fill:#111827;}
+.subtitle{font:400 12px sans-serif;fill:#4b5563;}
+.axis{font:400 11px sans-serif;fill:#111827;}
+.celltext{font:400 10px sans-serif;fill:#111827;}
+.foot{font:400 11px sans-serif;fill:#4b5563;}
+.grid{stroke:#d1d5db;stroke-width:1;}
+</style>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="34" class="title">Identity-based hateful narratives set-aware confusion matrix</text>
+<text x="24" y="56" class="subtitle">Diagonal = shared labels; off-diagonal = non-overlapping labels; [NONE] = empty set / NA.</text>
+<text x="24" y="544" class="foot">Built from 136 unordered rater pairs. Partial-overlap cases contribute to both diagonal and off-diagonal cells.</text>
+<text x="242.0" y="86" class="axis" text-anchor="middle"><tspan x="242.0" dy="0">male dominance</tspan></text>
+<text x="286.0" y="86" class="axis" text-anchor="middle"><tspan x="286.0" dy="0">women</tspan><tspan x="286.0" dy="1.1em">appearance</tspan></text>
+<text x="330.0" y="86" class="axis" text-anchor="middle"><tspan x="330.0" dy="0">lgbt abnormal</tspan></text>
+<text x="374.0" y="86" class="axis" text-anchor="middle"><tspan x="374.0" dy="0">ethnic</tspan><tspan x="374.0" dy="1.1em">inferiority</tspan></text>
+<text x="418.0" y="86" class="axis" text-anchor="middle"><tspan x="418.0" dy="0">religion</tspan><tspan x="418.0" dy="1.1em">inferiority</tspan></text>
+<text x="462.0" y="86" class="axis" text-anchor="middle"><tspan x="462.0" dy="0">disability</tspan><tspan x="462.0" dy="1.1em">abnormal</tspan></text>
+<text x="506.0" y="86" class="axis" text-anchor="middle"><tspan x="506.0" dy="0">[NONE]</tspan></text>
+<text x="208" y="166.0" class="axis" text-anchor="end"><tspan x="208" dy="0">male dominance</tspan></text>
+<text x="208" y="204.0" class="axis" text-anchor="end"><tspan x="208" dy="0">women</tspan><tspan x="208" dy="1.1em">appearance</tspan></text>
+<text x="208" y="254.0" class="axis" text-anchor="end"><tspan x="208" dy="0">lgbt abnormal</tspan></text>
+<text x="208" y="292.0" class="axis" text-anchor="end"><tspan x="208" dy="0">ethnic</tspan><tspan x="208" dy="1.1em">inferiority</tspan></text>
+<text x="208" y="336.0" class="axis" text-anchor="end"><tspan x="208" dy="0">religion</tspan><tspan x="208" dy="1.1em">inferiority</tspan></text>
+<text x="208" y="380.0" class="axis" text-anchor="end"><tspan x="208" dy="0">disability</tspan><tspan x="208" dy="1.1em">abnormal</tspan></text>
+<text x="208" y="430.0" class="axis" text-anchor="end"><tspan x="208" dy="0">[NONE]</tspan></text>
+<rect x="220" y="140" width="44" height="44" fill="rgb(16,206,206)" class="grid"/>
+<text x="242.0" y="166.0" class="celltext" text-anchor="middle" fill="#111827">21</text>
+<rect x="264" y="140" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="308" y="140" width="44" height="44" fill="rgb(16,248,248)" class="grid"/>
+<text x="330.0" y="166.0" class="celltext" text-anchor="middle" fill="#111827">3</text>
+<rect x="352" y="140" width="44" height="44" fill="rgb(16,245,245)" class="grid"/>
+<text x="374.0" y="166.0" class="celltext" text-anchor="middle" fill="#111827">4</text>
+<rect x="396" y="140" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="440" y="140" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="484" y="140" width="44" height="44" fill="rgb(16,194,194)" class="grid"/>
+<text x="506.0" y="166.0" class="celltext" text-anchor="middle" fill="#111827">26</text>
+<rect x="220" y="184" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="264" y="184" width="44" height="44" fill="rgb(16,245,245)" class="grid"/>
+<text x="286.0" y="210.0" class="celltext" text-anchor="middle" fill="#111827">4</text>
+<rect x="308" y="184" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="352" y="184" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="396" y="184" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="440" y="184" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="484" y="184" width="44" height="44" fill="rgb(16,234,234)" class="grid"/>
+<text x="506.0" y="210.0" class="celltext" text-anchor="middle" fill="#111827">9</text>
+<rect x="220" y="228" width="44" height="44" fill="rgb(16,248,248)" class="grid"/>
+<text x="242.0" y="254.0" class="celltext" text-anchor="middle" fill="#111827">3</text>
+<rect x="264" y="228" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="308" y="228" width="44" height="44" fill="rgb(16,80,80)" class="grid"/>
+<text x="330.0" y="254.0" class="celltext" text-anchor="middle" fill="#ffffff">75</text>
+<rect x="352" y="228" width="44" height="44" fill="rgb(16,245,245)" class="grid"/>
+<text x="374.0" y="254.0" class="celltext" text-anchor="middle" fill="#111827">4</text>
+<rect x="396" y="228" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="440" y="228" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="484" y="228" width="44" height="44" fill="rgb(16,168,168)" class="grid"/>
+<text x="506.0" y="254.0" class="celltext" text-anchor="middle" fill="#111827">37</text>
+<rect x="220" y="272" width="44" height="44" fill="rgb(16,245,245)" class="grid"/>
+<text x="242.0" y="298.0" class="celltext" text-anchor="middle" fill="#111827">4</text>
+<rect x="264" y="272" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="308" y="272" width="44" height="44" fill="rgb(16,245,245)" class="grid"/>
+<text x="330.0" y="298.0" class="celltext" text-anchor="middle" fill="#111827">4</text>
+<rect x="352" y="272" width="44" height="44" fill="rgb(16,213,213)" class="grid"/>
+<text x="374.0" y="298.0" class="celltext" text-anchor="middle" fill="#111827">18</text>
+<rect x="396" y="272" width="44" height="44" fill="rgb(16,248,248)" class="grid"/>
+<text x="418.0" y="298.0" class="celltext" text-anchor="middle" fill="#111827">3</text>
+<rect x="440" y="272" width="44" height="44" fill="rgb(16,252,252)" class="grid"/>
+<text x="462.0" y="298.0" class="celltext" text-anchor="middle" fill="#111827">1</text>
+<rect x="484" y="272" width="44" height="44" fill="rgb(16,189,189)" class="grid"/>
+<text x="506.0" y="298.0" class="celltext" text-anchor="middle" fill="#111827">28</text>
+<rect x="220" y="316" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="264" y="316" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="308" y="316" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="352" y="316" width="44" height="44" fill="rgb(16,248,248)" class="grid"/>
+<text x="374.0" y="342.0" class="celltext" text-anchor="middle" fill="#111827">3</text>
+<rect x="396" y="316" width="44" height="44" fill="rgb(16,241,241)" class="grid"/>
+<text x="418.0" y="342.0" class="celltext" text-anchor="middle" fill="#111827">6</text>
+<rect x="440" y="316" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="484" y="316" width="44" height="44" fill="rgb(16,217,217)" class="grid"/>
+<text x="506.0" y="342.0" class="celltext" text-anchor="middle" fill="#111827">16</text>
+<rect x="220" y="360" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="264" y="360" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="308" y="360" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="352" y="360" width="44" height="44" fill="rgb(16,252,252)" class="grid"/>
+<text x="374.0" y="386.0" class="celltext" text-anchor="middle" fill="#111827">1</text>
+<rect x="396" y="360" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="440" y="360" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+<rect x="484" y="360" width="44" height="44" fill="rgb(16,248,248)" class="grid"/>
+<text x="506.0" y="386.0" class="celltext" text-anchor="middle" fill="#111827">3</text>
+<rect x="220" y="404" width="44" height="44" fill="rgb(16,194,194)" class="grid"/>
+<text x="242.0" y="430.0" class="celltext" text-anchor="middle" fill="#111827">26</text>
+<rect x="264" y="404" width="44" height="44" fill="rgb(16,234,234)" class="grid"/>
+<text x="286.0" y="430.0" class="celltext" text-anchor="middle" fill="#111827">9</text>
+<rect x="308" y="404" width="44" height="44" fill="rgb(16,168,168)" class="grid"/>
+<text x="330.0" y="430.0" class="celltext" text-anchor="middle" fill="#111827">37</text>
+<rect x="352" y="404" width="44" height="44" fill="rgb(16,189,189)" class="grid"/>
+<text x="374.0" y="430.0" class="celltext" text-anchor="middle" fill="#111827">28</text>
+<rect x="396" y="404" width="44" height="44" fill="rgb(16,217,217)" class="grid"/>
+<text x="418.0" y="430.0" class="celltext" text-anchor="middle" fill="#111827">16</text>
+<rect x="440" y="404" width="44" height="44" fill="rgb(16,248,248)" class="grid"/>
+<text x="462.0" y="430.0" class="celltext" text-anchor="middle" fill="#111827">3</text>
+<rect x="484" y="404" width="44" height="44" fill="rgb(249,250,251)" class="grid"/>
+</svg></div>
+                  <p class="foot">Built from 136 unordered rater pairs. Partial-overlap cases contribute to both diagonal and off-diagonal cells.</p>
+                </section>
+                
+                <section class="card">
+                  <h3>Right-wing populist disinformation narratives set-aware confusion matrix</h3>
+                  <p class="note">Diagonal = shared labels; off-diagonal = non-overlapping labels; [NONE] = empty set / NA.</p>
+                  <div class="svg-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="480" height="480" viewBox="0 0 480 480">
+<style>
+.title{font:700 22px sans-serif;fill:#111827;}
+.subtitle{font:400 12px sans-serif;fill:#4b5563;}
+.axis{font:400 11px sans-serif;fill:#111827;}
+.celltext{font:400 10px sans-serif;fill:#111827;}
+.foot{font:400 11px sans-serif;fill:#4b5563;}
+.grid{stroke:#d1d5db;stroke-width:1;}
+</style>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="24" y="34" class="title">Right-wing populist disinformation narratives set-aware confusion matrix</text>
+<text x="24" y="56" class="subtitle">Diagonal = shared labels; off-diagonal = non-overlapping labels; [NONE] = empty set / NA.</text>
+<text x="24" y="456" class="foot">Built from 135 unordered rater pairs. Partial-overlap cases contribute to both diagonal and off-diagonal cells.</text>
+<text x="242.0" y="86" class="axis" text-anchor="middle"><tspan x="242.0" dy="0">sj extremism</tspan></text>
+<text x="286.0" y="86" class="axis" text-anchor="middle"><tspan x="286.0" dy="0">culture war</tspan></text>
+<text x="330.0" y="86" class="axis" text-anchor="middle"><tspan x="330.0" dy="0">cancel culture</tspan></text>
+<text x="374.0" y="86" class="axis" text-anchor="middle"><tspan x="374.0" dy="0">national</tspan><tspan x="374.0" dy="1.1em">threat</tspan></text>
+<text x="418.0" y="86" class="axis" text-anchor="middle"><tspan x="418.0" dy="0">[NONE]</tspan></text>
+<text x="208" y="166.0" class="axis" text-anchor="end"><tspan x="208" dy="0">sj extremism</tspan></text>
+<text x="208" y="210.0" class="axis" text-anchor="end"><tspan x="208" dy="0">culture war</tspan></text>
+<text x="208" y="254.0" class="axis" text-anchor="end"><tspan x="208" dy="0">cancel culture</tspan></text>
+<text x="208" y="292.0" class="axis" text-anchor="end"><tspan x="208" dy="0">national</tspan><tspan x="208" dy="1.1em">threat</tspan></text>
+<text x="208" y="342.0" class="axis" text-anchor="end"><tspan x="208" dy="0">[NONE]</tspan></text>
+<rect x="220" y="140" width="44" height="44" fill="rgb(16,122,122)" class="grid"/>
+<text x="242.0" y="166.0" class="celltext" text-anchor="middle" fill="#ffffff">38</text>
+<rect x="264" y="140" width="44" height="44" fill="rgb(16,220,220)" class="grid"/>
+<text x="286.0" y="166.0" class="celltext" text-anchor="middle" fill="#111827">10</text>
+<rect x="308" y="140" width="44" height="44" fill="rgb(16,220,220)" class="grid"/>
+<text x="330.0" y="166.0" class="celltext" text-anchor="middle" fill="#111827">10</text>
+<rect x="352" y="140" width="44" height="44" fill="rgb(16,202,202)" class="grid"/>
+<text x="374.0" y="166.0" class="celltext" text-anchor="middle" fill="#111827">15</text>
+<rect x="396" y="140" width="44" height="44" fill="rgb(16,101,101)" class="grid"/>
+<text x="418.0" y="166.0" class="celltext" text-anchor="middle" fill="#ffffff">44</text>
+<rect x="220" y="184" width="44" height="44" fill="rgb(16,220,220)" class="grid"/>
+<text x="242.0" y="210.0" class="celltext" text-anchor="middle" fill="#111827">10</text>
+<rect x="264" y="184" width="44" height="44" fill="rgb(16,153,153)" class="grid"/>
+<text x="286.0" y="210.0" class="celltext" text-anchor="middle" fill="#ffffff">29</text>
+<rect x="308" y="184" width="44" height="44" fill="rgb(16,227,227)" class="grid"/>
+<text x="330.0" y="210.0" class="celltext" text-anchor="middle" fill="#111827">8</text>
+<rect x="352" y="184" width="44" height="44" fill="rgb(16,227,227)" class="grid"/>
+<text x="374.0" y="210.0" class="celltext" text-anchor="middle" fill="#111827">8</text>
+<rect x="396" y="184" width="44" height="44" fill="rgb(16,80,80)" class="grid"/>
+<text x="418.0" y="210.0" class="celltext" text-anchor="middle" fill="#ffffff">50</text>
+<rect x="220" y="228" width="44" height="44" fill="rgb(16,220,220)" class="grid"/>
+<text x="242.0" y="254.0" class="celltext" text-anchor="middle" fill="#111827">10</text>
+<rect x="264" y="228" width="44" height="44" fill="rgb(16,227,227)" class="grid"/>
+<text x="286.0" y="254.0" class="celltext" text-anchor="middle" fill="#111827">8</text>
+<rect x="308" y="228" width="44" height="44" fill="rgb(16,241,241)" class="grid"/>
+<text x="330.0" y="254.0" class="celltext" text-anchor="middle" fill="#111827">4</text>
+<rect x="352" y="228" width="44" height="44" fill="rgb(16,244,244)" class="grid"/>
+<text x="374.0" y="254.0" class="celltext" text-anchor="middle" fill="#111827">3</text>
+<rect x="396" y="228" width="44" height="44" fill="rgb(16,234,234)" class="grid"/>
+<text x="418.0" y="254.0" class="celltext" text-anchor="middle" fill="#111827">6</text>
+<rect x="220" y="272" width="44" height="44" fill="rgb(16,202,202)" class="grid"/>
+<text x="242.0" y="298.0" class="celltext" text-anchor="middle" fill="#111827">15</text>
+<rect x="264" y="272" width="44" height="44" fill="rgb(16,227,227)" class="grid"/>
+<text x="286.0" y="298.0" class="celltext" text-anchor="middle" fill="#111827">8</text>
+<rect x="308" y="272" width="44" height="44" fill="rgb(16,244,244)" class="grid"/>
+<text x="330.0" y="298.0" class="celltext" text-anchor="middle" fill="#111827">3</text>
+<rect x="352" y="272" width="44" height="44" fill="rgb(16,171,171)" class="grid"/>
+<text x="374.0" y="298.0" class="celltext" text-anchor="middle" fill="#111827">24</text>
+<rect x="396" y="272" width="44" height="44" fill="rgb(16,160,160)" class="grid"/>
+<text x="418.0" y="298.0" class="celltext" text-anchor="middle" fill="#111827">27</text>
+<rect x="220" y="316" width="44" height="44" fill="rgb(16,101,101)" class="grid"/>
+<text x="242.0" y="342.0" class="celltext" text-anchor="middle" fill="#ffffff">44</text>
+<rect x="264" y="316" width="44" height="44" fill="rgb(16,80,80)" class="grid"/>
+<text x="286.0" y="342.0" class="celltext" text-anchor="middle" fill="#ffffff">50</text>
+<rect x="308" y="316" width="44" height="44" fill="rgb(16,234,234)" class="grid"/>
+<text x="330.0" y="342.0" class="celltext" text-anchor="middle" fill="#111827">6</text>
+<rect x="352" y="316" width="44" height="44" fill="rgb(16,160,160)" class="grid"/>
+<text x="374.0" y="342.0" class="celltext" text-anchor="middle" fill="#111827">27</text>
+<rect x="396" y="316" width="44" height="44" fill="rgb(16,251,251)" class="grid"/>
+<text x="418.0" y="342.0" class="celltext" text-anchor="middle" fill="#111827">1</text>
+</svg></div>
+                  <p class="foot">Built from 135 unordered rater pairs. Partial-overlap cases contribute to both diagonal and off-diagonal cells.</p>
                 </section>
                 
             
