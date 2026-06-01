@@ -7430,6 +7430,27 @@
       </div>
     
               
+      <h3>Presence-Only Agreement</h3>
+      <p class="note">This collapses each variable to explicit no-label versus any label present, ignoring which category was chosen. For the new strength-suffixed sheets, this is equivalent to `0` versus any `1`/`2`/`3`. Higher Presence Agreement and higher Presence Kappa both mean better agreement on whether any hate/disinformation signal is present at all.</p>
+      
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Variable</th>
+<th>Support</th>
+<th>Presence Agreement</th>
+<th>Presence Kappa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="var">Identity-based hateful narratives</span></td><td>52 items / 136 pairs</td><td>0.840</td><td>0.000</td></tr>
+<tr><td><span class="var">Right-wing populist disinformation narratives</span></td><td>53 items / 135 pairs</td><td>0.906</td><td>0.055</td></tr>
+          </tbody>
+        </table>
+      </div>
+    
+    
       <h3>Strength-Aware Agreement</h3>
       <p class="note">These metrics use the new `_1` / `_2` / `_3` suffixes directly. Each base label is mapped to an ordinal 0-3 scale, where 0 means the label is absent and 1-3 are the annotated strength levels. Strength QWK is macro-averaged quadratic weighted kappa across the base labels of the variable. Positive-Conditioned Strength MAD uses only label-pair observations where at least one side selected the label. Higher Strength QWK means better agreement; lower Positive-Conditioned Strength MAD means tighter agreement. The parenthesized N for Strength QWK is the pairwise observation count per base label; for Strength MAD it is the number of positive-conditioned label-pair observations.</p>
       
@@ -7488,12 +7509,14 @@
 <th>Any Match (H1 -&gt; H2)</th>
 <th>Soft Overlap (H1 -&gt; H2)</th>
 <th>Kappa (H1 -&gt; H2)</th>
+<th>Presence Agreement (H1 -&gt; H2)</th>
+<th>Presence Kappa (H1 -&gt; H2)</th>
 <th>Very High Share (H1 -&gt; H2)</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td><span class="var">Identity-based hateful narratives</span></td><td>56 items / 281 pairs -&gt; 52 items / 136 pairs</td><td>0.497 → 0.333</td><td>0.741 → 0.801</td><td>0.617 → 0.551</td><td>0.291 → 0.189</td><td>28.6% → 23.1%</td></tr>
-<tr><td><span class="var">Right-wing populist disinformation narratives</span></td><td>56 items / 281 pairs -&gt; 53 items / 135 pairs</td><td>0.241 → 0.094</td><td>0.658 → 0.604</td><td>0.430 → 0.315</td><td>0.136 → 0.002</td><td>7.1% → 3.8%</td></tr>
+            <tr><td><span class="var">Identity-based hateful narratives</span></td><td>56 items / 281 pairs -&gt; 52 items / 136 pairs</td><td>0.497 → 0.333</td><td>0.741 → 0.801</td><td>0.617 → 0.551</td><td>0.291 → 0.189</td><td>0.768 → 0.840</td><td>0.140 → 0.000</td><td>28.6% → 23.1%</td></tr>
+<tr><td><span class="var">Right-wing populist disinformation narratives</span></td><td>56 items / 281 pairs -&gt; 53 items / 135 pairs</td><td>0.241 → 0.094</td><td>0.658 → 0.604</td><td>0.430 → 0.315</td><td>0.136 → 0.002</td><td>0.860 → 0.906</td><td>0.410 → 0.055</td><td>7.1% → 3.8%</td></tr>
           </tbody>
         </table>
       </div>

@@ -766,6 +766,84 @@
       }
     }
   },
+  "presence_report": {
+    "variables": {
+      "identity_based_hateful_narratives": {
+        "support": {
+          "eligible_items": 52,
+          "excluded_items_fewer_than_two_usable_ratings": 13,
+          "total_ratings_used": 146,
+          "average_raters_per_eligible_item": 2.8077,
+          "total_pairwise_comparisons": 136,
+          "eligible_item_rater_distribution": {
+            "2": 10,
+            "3": 42
+          },
+          "distinct_raters": [
+            "Vihakõne_MA_märgentatud_1",
+            "Vihakõne_MA_märgentatud_2",
+            "Vihakõne_MA_märgentatud_3"
+          ],
+          "rater_pair_overlap_counts": {
+            "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_2": 42,
+            "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_3": 42,
+            "Vihakõne_MA_märgentatud_2__Vihakõne_MA_märgentatud_3": 52
+          }
+        },
+        "metrics": {
+          "mean_pairwise_presence_agreement": 0.8397
+        },
+        "presence_kappa": {
+          "method": "Binary Cohen's kappa for no-label versus any-label presence, ignoring the specific hate category.",
+          "sheet_pair_count": 3,
+          "defined_sheet_pair_count": 3,
+          "undefined_sheet_pair_count": 0,
+          "pairwise_observations": 136,
+          "undefined_pairwise_observations": 0,
+          "weighted_mean_pairwise_kappa": 0.0,
+          "macro_mean_pairwise_kappa": 0.0,
+          "pooled_pairwise_kappa": 0.0
+        }
+      },
+      "right_wing_populist_disinformation_narratives": {
+        "support": {
+          "eligible_items": 53,
+          "excluded_items_fewer_than_two_usable_ratings": 12,
+          "total_ratings_used": 147,
+          "average_raters_per_eligible_item": 2.7736,
+          "total_pairwise_comparisons": 135,
+          "eligible_item_rater_distribution": {
+            "2": 12,
+            "3": 41
+          },
+          "distinct_raters": [
+            "Vihakõne_MA_märgentatud_1",
+            "Vihakõne_MA_märgentatud_2",
+            "Vihakõne_MA_märgentatud_3"
+          ],
+          "rater_pair_overlap_counts": {
+            "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_2": 42,
+            "Vihakõne_MA_märgentatud_1__Vihakõne_MA_märgentatud_3": 41,
+            "Vihakõne_MA_märgentatud_2__Vihakõne_MA_märgentatud_3": 52
+          }
+        },
+        "metrics": {
+          "mean_pairwise_presence_agreement": 0.9057
+        },
+        "presence_kappa": {
+          "method": "Binary Cohen's kappa for no-label versus any-label presence, ignoring the specific hate category.",
+          "sheet_pair_count": 3,
+          "defined_sheet_pair_count": 3,
+          "undefined_sheet_pair_count": 0,
+          "pairwise_observations": 135,
+          "undefined_pairwise_observations": 0,
+          "weighted_mean_pairwise_kappa": 0.0549,
+          "macro_mean_pairwise_kappa": 0.0588,
+          "pooled_pairwise_kappa": 0.1014
+        }
+      }
+    }
+  },
   "strength_report": {
     "method": "Each base label is converted to an ordinal 0-3 scale per rater, where 0 means the label is absent/NA and 1-3 are the workbook strength suffixes. Strength QWK is macro-averaged quadratic weighted Cohen's kappa across the base labels of each variable. Positive-conditioned Strength MAD is the mean absolute difference on the same 0-3 scale, but only on label-pair observations where at least one side selected the label.",
     "variables": {
