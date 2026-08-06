@@ -1660,8 +1660,12 @@ fn broadWidthPassable(p: vec2i, n: i32) -> bool {
       let sampleValue = state.values[gridIndex(sampleCell.x, sampleCell.y)];
       let sampleTerrain = sampleValue.x + sampleValue.y;
       let safelyBelowSea = sampleTerrain < uniforms.physics.w - 0.018;
-      let alreadyDeepWater = sampleValue.z > 0.075;
-      if (!(safelyBelowSea || alreadyDeepWater)) {
+      // Water-body size alone never grants ocean infinity. Established marine
+      // water may bridge the narrow sea-level shelf, but a deep player-made
+      // puddle on higher terrain cannot turn itself into broad ocean.
+      let establishedMarineWater = sampleValue.z > 0.075
+        && sampleTerrain < uniforms.physics.w + 0.012;
+      if (!(safelyBelowSea || establishedMarineWater)) {
         return false;
       }
     }
@@ -1993,6 +1997,19 @@ fn hasActiveOutputNeighbor(tileIndex: u32, tileCount: u32) -> bool {
   return false;
 }
 
+fn isSleepingOceanExteriorMetric(metric: WaterTileMetric) -> bool {
+  let broadOceanCells = metric.secondary.y;
+  let wetCells = metric.secondary.z;
+  let marineCoverage = broadOceanCells / max(wetCells, 1.0);
+  // One broad-connected shoreline cell used to turn its whole 8x8 tile into a
+  // sleeping exterior tile. That froze thin sloping sheets into jelly-like
+  // shelves. Only a deep, mostly wet marine core may become the inert exterior.
+  return broadOceanCells >= 24.0
+    && wetCells >= 32.0
+    && marineCoverage >= 0.68
+    && metric.primary.y >= 0.12;
+}
+
 fn isWakeCandidate(
   tileIndex: u32,
   tileCount: u32,
@@ -2007,7 +2024,7 @@ fn isWakeCandidate(
   let tile = vec2i(i32(tileIndex % tileCount), i32(tileIndex / tileCount));
   let interactionPriority = interactionActive
     && all(abs(tile - interactionCenter) <= vec2i(1));
-  let broadOcean = metric.secondary.y > 0.5;
+  let broadOcean = isSleepingOceanExteriorMetric(metric);
   let soilActive = metric.secondary.w > 0.0008;
   let movingWater = metric.primary.z > 0.000025
     || (metric.primary.w > 0.004 && metric.primary.y > 0.001)
@@ -2080,7 +2097,7 @@ fn main(@builtin(global_invocation_id) gid: vec3u) {
   for (var tileIndex = 0u; tileIndex < tileTotal; tileIndex = tileIndex + 1u) {
     let metric = metrics.values[tileIndex];
     let previous = tileStateIn.values[tileIndex];
-    let broadOcean = metric.secondary.y > 0.5;
+    let broadOcean = isSleepingOceanExteriorMetric(metric);
     let soilActive = metric.secondary.w > 0.0008;
     let energetic = metric.primary.z > 0.00002
       || (metric.primary.w > 0.0035 && metric.primary.y > 0.001)
@@ -3160,8 +3177,45 @@ struct WaterDiagnosticsBuffer { values: array<atomic<u32>>, }
 @group(0) @binding(5) var<storage, read_write> diagnostics: WaterDiagnosticsBuffer;
 
 const FILM_CHECK_INTERVAL_SECONDS: f32 = 0.5;
-const FILM_PERSISTENCE_SECONDS: f32 = 5.0;
-const MAXIMUM_FILM_DEPTH: f32 = 0.052;
+const FILM_PERSISTENCE_SECONDS: f32 = 4.0;
+const MAXIMUM_FILM_DEPTH: f32 = 0.075;
+const DEEP_MARINE_NEIGHBOR_DEPTH: f32 = 0.28;
+
+fn insideFilmCell(p: vec2i, n: i32) -> bool {
+  return p.x >= 0 && p.y >= 0 && p.x < n && p.y < n;
+}
+
+fn verifiedMarineCore(position: vec2i, index: u32, n: i32) -> bool {
+  if (stableConnectivity.values[index].y == 0u) {
+    return false;
+  }
+  if (state.values[index].z >= 0.18) {
+    return true;
+  }
+  // A real shoreline has deep verified sea within two cells. A thin sheet that
+  // merely inherited connectivity while crawling over a flat has no such core
+  // and is allowed to soak away after its persistence delay.
+  for (var oy = -2; oy <= 2; oy = oy + 1) {
+    for (var ox = -2; ox <= 2; ox = ox + 1) {
+      if (ox == 0 && oy == 0) {
+        continue;
+      }
+      let neighbor = position + vec2i(ox, oy);
+      if (!insideFilmCell(neighbor, n)) {
+        continue;
+      }
+      let neighborCell = vec2u(neighbor);
+      let neighborIndex = gridIndex(neighborCell.x, neighborCell.y);
+      if (
+        stableConnectivity.values[neighborIndex].y != 0u
+        && state.values[neighborIndex].z >= DEEP_MARINE_NEIGHBOR_DEPTH
+      ) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
 
 @compute @workgroup_size(8, 8)
 fn main(@builtin(global_invocation_id) gid: vec3u) {
@@ -3173,10 +3227,12 @@ fn main(@builtin(global_invocation_id) gid: vec3u) {
     waterFlux.values[index].x,
     length(waterFlux.values[index].zw)
   );
-  let finiteInterior = stableConnectivity.values[index].y == 0u;
+  let position = vec2i(gid.xy);
+  let marineCore = verifiedMarineCore(position, index, i32(n));
   let shallowFilm = value.z > 0.0008 && value.z < MAXIMUM_FILM_DEPTH;
   let stagnant = localFlux < 0.0012;
-  let qualifying = finiteInterior && shallowFilm && stagnant;
+  let evaporableFilm = !marineCore && shallowFilm;
+  let qualifying = evaporableFilm && stagnant;
   var age = thinFilmAge.values[index];
   age = select(
     max(0.0, age - FILM_CHECK_INTERVAL_SECONDS * 2.0),
@@ -3189,8 +3245,8 @@ fn main(@builtin(global_invocation_id) gid: vec3u) {
       FILM_PERSISTENCE_SECONDS + 4.0,
       age
     );
-    let maximumInfiltration = min(0.0022, value.z * 0.16);
-    let infiltrated = maximumInfiltration * mix(0.18, 1.0, maturity);
+    let maximumInfiltration = min(0.003, value.z * 0.18);
+    let infiltrated = maximumInfiltration * mix(0.22, 1.0, maturity);
     value.z = max(0.0, value.z - infiltrated);
     value.w = max(0.0, value.w - infiltrated * 0.7);
     state.values[index] = value;
@@ -6637,7 +6693,7 @@ fn waterVisualAtCell(p: vec2i) -> WaterVisualSample {
   // The CFL-bounded solver moves less per tick than the former unstable one.
   // Lower visual thresholds recover readable whitewater without feeding flow
   // back into geometry, alpha, or the shoreline classification.
-  let flow = smoothstep(0.0012, 0.055, rawFlow) * wetness;
+  let flow = smoothstep(0.00035, 0.035, rawFlow) * wetness;
   let directionLength = length(flux.zw);
   let flowVector = select(
     vec2f(0.0),
@@ -6650,7 +6706,11 @@ fn waterVisualAtCell(p: vec2i) -> WaterVisualSample {
     wetness,
     shoreProfile,
     openness,
-    select(0.0, 1.0, stableConnectivity.values[index].y != 0u),
+    select(
+      0.0,
+      smoothstep(0.14, 0.42, physicalDepth),
+      stableConnectivity.values[index].y != 0u
+    ),
     flow,
     flowVector
   );
@@ -6827,12 +6887,12 @@ fn fragmentMain(input: VertexOutput) -> @location(0) vec4f {
     input.flowVector / max(flowVectorLength, 0.0001),
     flowVectorLength > 0.0001
   );
-  let meaningfulFlow = smoothstep(0.025, 0.14, flowVectorLength)
-    * smoothstep(0.04, 0.18, input.flowHint);
+  let meaningfulFlow = smoothstep(0.003, 0.055, flowVectorLength)
+    * smoothstep(0.004, 0.075, input.flowHint);
   // Constant-phase lines of dot(position, flowDirection) are orthogonal to the
   // actual flow vector. A derivative-sized zero crossing keeps them thin.
   let streamPhase = dot(worldXZ, streamDirection) * 3.4
-    - time * (1.35 + input.flowHint * 2.8)
+    - time * (0.28 + input.flowHint * 2.4)
     + detailNoise * 0.46;
   let streamCarrier = sin(streamPhase);
   let streamAA = max(0.018, fwidth(streamCarrier) * 0.76);
@@ -6841,14 +6901,14 @@ fn fragmentMain(input: VertexOutput) -> @location(0) vec4f {
     0.5,
     detailNoise * 0.82 + opticalField.y * 0.18
   );
-  let fastFlow = smoothstep(0.035, 0.22, input.flowHint);
+  let ordinaryFlowMotion = smoothstep(0.004, 0.11, input.flowHint)
+    * meaningfulFlow;
   let rapidFlow = smoothstep(0.2, 0.56, input.flowHint);
   let flowOpticalSlope = streamDirection
     * cos(streamPhase)
-    * fastFlow
-    * meaningfulFlow
+    * ordinaryFlowMotion
     * streamBreak
-    * 0.0075;
+    * (0.0055 + input.flowHint * 0.009);
 
   let waterBodyScale = max(
     input.oceanMask,
@@ -6937,6 +6997,26 @@ fn fragmentMain(input: VertexOutput) -> @location(0) vec4f {
   color = color * (
     1.0 + surfaceTexture * mix(0.028, 0.046, day)
   );
+  // Even gentle transport advects a restrained broken brightness texture along
+  // the measured flow direction. It is not foam and never appears without a
+  // stable vector, but makes slow rivers visibly distinct from still lakes.
+  let advectedFlowCrest = smoothstep(
+    -0.18,
+    0.72,
+    sin(streamPhase) * 0.7 + detailNoise * 0.3
+  );
+  let advectedFlowTexture = (advectedFlowCrest - 0.38)
+    * streamBreak
+    * ordinaryFlowMotion;
+  color = color * (1.0 + advectedFlowTexture * 0.055);
+  let ordinaryFlowCrest = advectedFlowCrest
+    * streamBreak
+    * ordinaryFlowMotion;
+  color = mix(
+    color,
+    mix(reflectedSky, vec3f(0.32, 0.46, 0.43), 0.42),
+    ordinaryFlowCrest * 0.13
+  );
   let reflectionWeight = clamp(
     0.075
       + fresnel * 0.56
@@ -6980,25 +7060,23 @@ fn fragmentMain(input: VertexOutput) -> @location(0) vec4f {
   // Periodic ebb belongs only to the verified broad exterior sea. Inland lakes,
   // rivers, and newly trapped components retain a still physical shoreline.
   let ebb01 = 0.5 + 0.5 * sin(time * (6.28318530718 / 8.0));
+  let verifiedOceanDepth = smoothstep(0.08, 0.34, depth);
   let oceanBodyScale = input.oceanMask
-    * smoothstep(0.006, 0.12, input.coverage);
-  let washCenter = mix(0.16, 0.7, ebb01) + surfaceNoise * 0.018;
-  let washAA = max(0.035, fwidth(input.shoreProfile) * 1.45);
+    * verifiedOceanDepth
+    * smoothstep(0.025, 0.14, input.coverage);
+  let washCenter = mix(0.31, 0.52, ebb01) + surfaceNoise * 0.012;
+  let washAA = clamp(
+    max(0.022, fwidth(input.shoreProfile) * 0.82),
+    0.022,
+    0.072
+  );
   let washBand = (
     1.0 - smoothstep(
-      washAA * 0.45,
-      washAA * 5.0,
+      washAA * 0.35,
+      washAA * 2.2,
       abs(input.shoreProfile - washCenter)
     )
   ) * oceanBodyScale;
-  let trailingCenter = washCenter - 0.115;
-  let trailingBand = (
-    1.0 - smoothstep(
-      washAA * 0.55,
-      washAA * 4.2,
-      abs(input.shoreProfile - trailingCenter)
-    )
-  ) * oceanBodyScale * 0.38;
   let washBreakup = mix(
     0.78,
     1.0,
@@ -7008,16 +7086,15 @@ fn fragmentMain(input: VertexOutput) -> @location(0) vec4f {
       surfaceNoise * 0.82 + opticalField.y * 0.18
     )
   );
-  let shoreline = clamp(washBand + trailingBand, 0.0, 1.0)
-    * washBreakup;
+  let shoreline = washBand * washBreakup;
   let shoreSheen = smoothstep(
-    washCenter - 0.24,
-    washCenter - 0.035,
+    washCenter - 0.12,
+    washCenter - 0.025,
     input.shoreProfile
   ) * (
     1.0 - smoothstep(
-      washCenter + 0.035,
-      washCenter + 0.24,
+      washCenter + 0.025,
+      washCenter + 0.12,
       input.shoreProfile
     )
   ) * oceanBodyScale;
