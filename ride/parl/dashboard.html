@@ -15,7 +15,7 @@
 <header class="header"><h1>Parliamentary frame trajectories</h1><span class="date" id="created"></span></header>
 <nav class="nav" aria-label="Views" role="tablist">
 <button role="tab" data-tab="home" aria-selected="true">Compare Series</button>
-<span class="nav-label" role="presentation">Normalize by:</span>
+<span class="nav-label" role="presentation">All frames, normalized by:</span>
 <button role="tab" data-tab="route" aria-selected="false">RoBERTa topics</button>
 <button role="tab" data-tab="words" aria-selected="false">Corpus words</button>
 <button role="tab" data-tab="corpus" aria-selected="false">Corpus documents</button>
@@ -44,7 +44,7 @@ const DATA=JSON.parse(document.getElementById('data').textContent);
 const COUNTRY={US:'Congress',UK:'Hansard'}, NORMS={route:'RoBERTa topics',words:'Corpus words',corpus:'Corpus documents',raw:'Raw frequency'};
 const UNIT={route:'Frame frequency (% of relevant RoBERTa texts)',corpus:'Frame frequency (% of corpus documents)',words:'Frame occurrences per million corpus words',raw:'Raw frequency (frame hits per year)'};
 const OWN=new Set(['T1_superior','T1_dominated','T4_instrumental','T4_irrelevant']);
-const state={tab:'home',norm:'route',country:'all',trait:'all',scale:'uniform',ribbon:true,points:false,selections:[{country:'US',frame:'T11_optimism'}]};
+const state={tab:'home',norm:'route',country:'all',trait:'all',scale:'frame',ribbon:true,points:false,selections:[{country:'US',frame:'T4_instrumental'}]};
 const dash=['','8 4','2 4'];
 const el=id=>document.getElementById(id), esc=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const frameName=f=>f.replace('_',' · ').replaceAll('_',' '), traitOf=f=>f.split('_')[0];
@@ -59,7 +59,7 @@ function niceMax(value){if(!(value>0))return 1;const target=value*1.04,power=10*
 const stops=[[0,[174,181,191]],[.5,[155,174,187]],[.8,[101,170,210]],[.9,[67,138,232]],[.95,[167,120,240]],[1,[223,156,247]]];
 function ink(score){const v=Math.max(0,Math.min(1,score||0));let i=1;while(i<stops.length-1&&v>stops[i][0])i++;const a=stops[i-1],b=stops[i],t=(v-a[0])/(b[0]-a[0]);return `rgb(${a[1].map((n,j)=>Math.round(n+(b[1][j]-n)*t)).join(',')})`;}
 function select(label,id,choices,value){return `<label class="control">${label}<select id="${id}">${Object.entries(choices).map(([v,l])=>`<option value="${v}" ${v===value?'selected':''}>${esc(l)}</option>`).join('')}</select></label>`;}
-function legend(){return '<div class="legend"><div class="legend-title">Direction robustness · 5-year mean</div><div class="legend-track"><i class="legend-mark" title="0.90: high directional agreement guide"></i></div><div class="legend-ticks"><span>0</span><span>0.5</span><span>0.9 │ 1</span></div><div class="legend-note">0.90: high directional agreement guide · not significance</div></div>';}
+function legend(){return '<div class="legend"><div class="legend-title">Direction robustness · 5-year mean</div><div class="legend-track"><i class="legend-mark" title="0.90: high directional agreement guide"></i></div><div class="legend-ticks"><span>0</span><span>0.5</span><span>0.9 │ 1</span></div><div class="legend-note">0.90: high directional agreement guide · not significance</div><div class="band-key" style="margin-top:12px;font-size:12px;color:var(--muted)">Bands: <span style="background:color-mix(in srgb,var(--band) 13%,var(--bg));padding:2px 8px">95% outer</span> <span style="background:color-mix(in srgb,var(--band) 30%,var(--bg));padding:2px 8px">80%</span> <span style="background:color-mix(in srgb,var(--band) 50%,var(--bg));padding:2px 8px">50% inner</span> · envelopes across scenarios</div></div>';}
 let charts=[];
 function render(){
   el('tooltip').hidden=true;charts=[];
@@ -69,7 +69,7 @@ function render(){
   const frames=DATA.frames.filter(f=>state.trait==='all'||traitOf(f)===state.trait);
   const traits=Object.fromEntries(Array.from({length:11},(_,i)=>[`T${i+1}`,`T${i+1}`]));
   el('controls').innerHTML=(home?select('Normalization','norm',NORMS,state.norm):select('Country','country',{all:'Both countries',...COUNTRY},state.country)+select('Trait','trait',{all:'All 11 traits',...traits},state.trait)+select('Y-axis','scale',{uniform:'Uniform',frame:'Frame-variable'},state.scale))+
-    (raw?'':`<label class="check"><input id="ribbon" type="checkbox" ${state.ribbon?'checked':''}>Sensitivity bands</label><label class="check"><input id="points" type="checkbox" ${state.points?'checked':''}>Observed annual rates</label>${legend()}<div class="band-key" style="flex-basis:100%;font-size:12px;color:var(--muted)">Bands: <span style="background:color-mix(in srgb,var(--band) 13%,var(--bg));padding:2px 8px">95% outer</span> <span style="background:color-mix(in srgb,var(--band) 30%,var(--bg));padding:2px 8px">80%</span> <span style="background:color-mix(in srgb,var(--band) 50%,var(--bg));padding:2px 8px">50% inner</span> · envelopes across scenarios</div>`);
+    (raw?'':`<label class="check"><input id="ribbon" type="checkbox" ${state.ribbon?'checked':''}>Sensitivity bands</label><label class="check"><input id="points" type="checkbox" ${state.points?'checked':''}>Observed annual rates</label>${legend()}`);
   for(const id of ['norm','country','trait','scale'])if(el(id))el(id).onchange=e=>{state[id]=e.target.value;render();};
   for(const id of ['ribbon','points'])if(el(id))el(id).onchange=e=>{state[id]=e.target.checked;render();};
   if(home){
