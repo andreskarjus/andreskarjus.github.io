@@ -30,7 +30,15 @@ ul {
 
 <div style="width: 100%; padding:0px; indent-left:0px">
 
-- New preprint: "Machine-Assisted Grading of Nationwide School-Leaving Essay Exams with LLMs and Statistical NLP" [link](https://arxiv.org/abs/2601.16314) (January 2025)
+- Gave an invited talk, "Large language models, big data, and the agentic future", in the University of Potsdam's ["Code & Culture" lecture series](https://www.uni-potsdam.de/en/digital-humanities/initiatives/code-culture-lecture-series) (26 October 2026).
+- New chapter preprint: "Large Language Models, Machine-Assisted Cultural Analytics, and the Agentic Turn" | [preprint](https://arxiv.org/abs/2610.12792) (October 2026)
+- New preprint: "Student Evaluation of Repeated AI Feedback Across a Semester of Writing" | [preprint](https://arxiv.org/abs/2607.16115) (July 2026)
+- New preprint: "Modeling Engagement with Brand and Organizational TikTok Videos Using Machine-Assisted Theory-Ensemble Annotation" | [preprint](https://arxiv.org/abs/2606.16053) (June 2026)
+- Published "Expertise Elevates AI Usage: Experimental Evidence Comparing Laypeople and Professional Artists" in the International Journal of Human–Computer Interaction | [open access](https://doi.org/10.1080/10447318.2026.2669041) (May 2026)
+- Published the chapter "Evolutionary Linguistics" in the International Encyclopedia of Language and Linguistics | [chapter](https://doi.org/10.1016/B978-0-323-95504-1.00907-8) | [extended preprint](https://osf.io/download/rt5ha) (2026)
+- Presented recent research at DHNB 2026 in Aarhus and Evolang 2026 in Plovdiv.
+- New preprint: "Machine-Assisted Grading of Nationwide School-Leaving Essay Exams with LLMs and Statistical NLP" [link](https://arxiv.org/abs/2601.16314) (January 2026)
+- Published the CresCine report "CresCine's Film Industry Data Repository (FIDA)" | [Zenodo](https://zenodo.org/records/17829236) | [pdf](papers/CresCine_FIDA_Data_paper.pdf) (December 2025)
 - Attended the Computational Humanities Conference 2025 in Luxembourg
 - Joined the University of Tartu as Associate professor of computational social science, part-time on the [RiDe project](https://www.deeptransitions.ut.ee/) (September 2025)
 - Joined the Edtech Talents project, and three four projects we applied for got funded, to do applied research on media analytics, edtech for academic writing, and social media video analytics, plus support to involve a private sector expert in research activities.

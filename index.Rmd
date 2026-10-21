@@ -156,7 +156,7 @@ I was recently granted the title of "Nationally Recognized Science Communicator"
 
 #### Publications (including in-review preprints)
 
-2026
+2026 <a href="https://doi.org/10.1080/10447318.2026.2669041" target="_blank"><img class="thumbnail" src="papers/Screenshot 2026-10-21 163250.png" alt="Expertise Elevates AI Usage paper thumbnail" style="margin-top: 0;"></a>
 
 - Andres Karjus. 2026. "Large Language Models, Machine-Assisted Cultural Analytics, and the Agentic Turn" (chapter preprint) | [preprint](https://arxiv.org/abs/2610.12792)
 - Andres Karjus, Janika Leoste, Tiia Õun. 2026. "Student Evaluation of Repeated AI Feedback Across a Semester of Writing" | [preprint](https://arxiv.org/abs/2607.16115)
@@ -235,7 +235,8 @@ I was recently granted the title of "Nationally Recognized Science Communicator"
 
 #### Conferences & seminars (probably not complete list)
 
-- Talks on measuring the evolution of ideas around industrial modernity at DHNB2026 and Evolang2026
+- Gave an invited talk, "Large language models, big data, and the agentic future", in the University of Potsdam's ["Code & Culture" lecture series](https://www.uni-potsdam.de/en/digital-humanities/initiatives/code-culture-lecture-series) (26 October 2026).
+- Presented recent research on the evolution of ideas around industrial modernity at DHNB 2026 in Aarhus, Denmark, and Evolang 2026 in Plovdiv, Bulgaria.
 - Talk at the [CHR2026](https://2025.computational-humanities-research.org/) in Luxembourg on rapid cultural analytics using LLMs and cross-sector collaboration
 - Invited talk at Grammar and Corpora 2025 on LLM-assisted corpus research
 - Coauthored talk on AI and art at the IC2S2 2025 in Sweden
@@ -313,14 +314,14 @@ My position now includes some teaching activities on digital skills and AI at Ta
 
 **Academic advisory**
 
-I also serve on a number of academic advisory board type things:
+I serve on the following advisory boards and working groups:
 
-- AI Advisory Board (Tehisintellekti nõukoda) of Tallinn University, and Research board of the Humanities department
-- R&D board and senate of EBS
-- Program committee of the EKKD funding scheme of the Estonian Science Foundation
-- Digital Heritage Board of the Ministry of Culture
-- Editorial board of the Computational Humanities Research journal
-- In the past I've served as student rep on institutional boards of the University of Tartu and KU Leuven, and the board of the Digital Humanities in the Nordics and Baltics organization.
+- Member of the "Digilahendused igas eluvaldkonnas" working group, Estonian Science Foundation (2026–present)
+- Member of the Digital Heritage Board, Estonian Ministry of Culture (2024–present)
+- Member of the artificial intelligence advisory board (Tehisintellekti nõukoda) of Tallinn University (2023–present)
+- Program board member of "Estonian language and culture in the digital age 2019–2027", Estonian Science Foundation (2023–present)
+- Member of the "Elujõuline Eesti ühiskond, keel ja kultuuriruum" working group, Estonian Science Foundation (2023–present)
+- In the past I've served on the research board of Tallinn University's Humanities department, the R&D board and senate of EBS, and the editorial board of the Computational Humanities Research journal, as well as the board of the Digital Humanities in the Nordics and Baltics organization and institutional boards of the University of Tartu and KU Leuven as a student representative.
 
 
 </div>
@@ -333,6 +334,8 @@ I also serve on a number of academic advisory board type things:
 
 **Various essays, media appearances and interviews in Estonian media:**
 
+- Featured in [Delfi](https://www.delfi.ee/artikkel/120608356/tehisaru-vastab-sekundiga-aga-on-sul-sest-ka-kasu) as a mentor in its AI Kool programme on practical AI use (September 2026).
+- Provided expert commentary for [Postimees](https://tehnika.postimees.ee/8485037/tehisintellektid-eksamitules-ehk-kas-ai-saaks-pohikooli-lopetatud) on whether AI could pass basic-school final exams (June 2026).
 - Appeared in the "Õhtu!" (Evening!) talk show of the Estonian Kanal2 TV channel to talk about AI risks (December 2025)
 - Story in the Estonian [ERR](https://www.err.ee/1609770612/innar-liiv-ja-andres-karjus-tehisaru-abil-pilk-eestlaste-unistustesse) on AI-powered analytics
 - Was awarded the "Nationally Recognized Science Communicator" (riiklikult tunnustatud teaduse populariseerija) title at the annual Science Popularization prize 2024 of the Estonian Science Foundation | [press](https://www.tlu.ee/ht/uudised/tallinna-ulikooli-teadlased-palvisid-teaduse-populariseerimise-preemia)
