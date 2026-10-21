@@ -146,7 +146,7 @@ using compression ensembles"](https://andreskarjus.github.io/talks/cultureconfer
 
 ---
 
-- [Slides](https://andreskarjus.github.io/evoforces_cletalk/slides.html) of the talk _Challenges in detecting evolutionary forces in language change using diachronic corpora_ presented at the [CLE](http://www.lel.ed.ac.uk/cle/) seminar series, 06.11.2018 | paper preprint now also on [arXiv](http://arxiv.org/abs/1811.01275) | [code](https://github.com/andreskarjus/wfsim_fit)
+- [Slides](https://andreskarjus.github.io/evoforces_cletalk/slides.html) of the talk _Challenges in detecting evolutionary forces in language change using diachronic corpora_ presented at the [CLE](https://cle.ppls.ed.ac.uk/) seminar series, 06.11.2018 | paper preprint now also on [arXiv](http://arxiv.org/abs/1811.01275) | [code](https://github.com/andreskarjus/wfsim_fit)
 
 - Out now in Language Dynamics and Change: Karjus & Ehala 2018, Testing an agent based model of language choice on sociolinguistic survey data | [Online at Brill](https://doi.org/10.1163/22105832-00802004) | [PDF](Karjus_Ehala_2018_Testing_an_agent-based model_of_language_choice_LDCpostprint.pdf) | [dataset](http://doi.org/10.15155/1-00-0000-0000-0000-00162L): representative sample of 1000 respondents from Estonia, 200 questions on language attitudes and use
 

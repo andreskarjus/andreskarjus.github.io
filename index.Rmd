@@ -127,7 +127,9 @@ ul {
 
 ### New things
 
-<iframe src="news.html" width="100%" height="110" style="border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"></iframe>
+<div class="news-box" style="padding: 6px 0; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+<iframe src="news.html" width="100%" height="110" style="display: block; border: 0;"></iframe>
+</div>
 
 
 
@@ -142,7 +144,7 @@ ul {
 
 <div style="text-align: justify; padding-left:1px">
 I work on language and culture dynamics, using large corpora, machine learning & AI, and cognitive experiments. Recently I have been also collaborating on edtech, art history and creative industries projects, and advising cross-sector initiatives between academia and the public and private sectors. I am affiliated with Tallinn University as a lecturer in digital humanities and artificial intelligence (and a member of the [CUDAN](http://cudan.tlu.ee/) Cultural Data Analytics lab), with [Estonian Business School](https://www.ebs.ee/en) as senior researcher, and the University of Tartu as an associate professor of computational social science, on the ERC funded RiDe project at the [Deep Transitions](https://www.deeptransitions.ut.ee/) lab.
-I did my PhD at the [Centre for Language Evolution](http://www.lel.ed.ac.uk/cle/) of the University of Edinburgh, on lexical dynamics and communicative need in language. <br>
+I did my PhD at the [Centre for Language Evolution](https://cle.ppls.ed.ac.uk/) of the University of Edinburgh, on lexical dynamics and communicative need in language. <br>
 I also do consulting and workshops on **R**, stats & data visualization, and generative **AI** (see [more here](https://datafigure.eu)). 
 I was recently granted the title of "Nationally Recognized Science Communicator" (riiklikult tunnustatud teaduse populariseerija) by the Estonian Science Foundation. 
 </div>
@@ -270,7 +272,7 @@ I was recently granted the title of "Nationally Recognized Science Communicator"
 - [CL2019](http://www.cl2019.org/). Slides [here](https://andreskarjus.github.io/cl2019talk.html).
 - [Culture Conference 2019](https://culture-conference.com/programme-2019/), Poster [here](https://andreskarjus.github.io/lexcom_poster).
 - [Inaugural ISLE workshop](https://www.comparativelinguistics.uzh.ch/en/events/ISLE-inaugural-workshop.html) | _Modelling lexical interactions in diachronic corpora_ |  [poster](https://andreskarjus.github.io/isle_poster)
-- University of Edinburgh [Centre for Language Evolution](http://www.lel.ed.ac.uk/cle/) seminar series | _Challenges in detecting evolutionary forces in language change using diachronic corpora_ | [slides](https://andreskarjus.github.io/evoforces_cletalk/slides.html) | [code](https://github.com/andreskarjus/wfsim_fit)
+- University of Edinburgh [Centre for Language Evolution](https://cle.ppls.ed.ac.uk/) seminar series | _Challenges in detecting evolutionary forces in language change using diachronic corpora_ | [slides](https://andreskarjus.github.io/evoforces_cletalk/slides.html) | [code](https://github.com/andreskarjus/wfsim_fit)
 - Corpus Linguistics in Scotland Network Meeting, _Topical Fluctuations and Lexical Interactions in Diachronic Corpora_
 - New directions in language evolution research workshop, at the [SLE 2018](http://sle2018.eu/) | _Two problems and solutions in evolutionary corpus-based language dynamics research_ | [slides](https://andreskarjus.github.io/sle_tallinn_languagedynamics) with interactive plots | [code](https://github.com/andreskarjus/sle_tallinn_languagedynamics)
 - [Applications in Cultural Evolution: Arts, Languages, Technologies](https://cultevol.ut.ee/) | _Selection above the baseline: quantifying the advection effect in four domains of cumulative culture_ | [slides](https://andreskarjus.github.io/cultevol_tartu_slides) with interactive data&plots | [code](https://github.com/andreskarjus/cultural_advection_Tartuce)
@@ -321,7 +323,10 @@ I serve on the following advisory boards and working groups:
 - Member of the artificial intelligence advisory board (Tehisintellekti nõukoda) of Tallinn University (2023–present)
 - Program board member of "Estonian language and culture in the digital age 2019–2027", Estonian Science Foundation (2023–present)
 - Member of the "Elujõuline Eesti ühiskond, keel ja kultuuriruum" working group, Estonian Science Foundation (2023–present)
-- In the past I've served on the research board of Tallinn University's Humanities department, the R&D board and senate of EBS, and the editorial board of the Computational Humanities Research journal, as well as the board of the Digital Humanities in the Nordics and Baltics organization and institutional boards of the University of Tartu and KU Leuven as a student representative.
+- Member of the research board of Tallinn University's Humanities department
+- Member of the R&D board of EBS
+- Member of the editorial board of the Computational Humanities Research journal
+- In the past I've served on the senate of EBS, the board of the Digital Humanities in the Nordics and Baltics organization, and institutional boards of the University of Tartu and KU Leuven as a student representative.
 
 
 </div>
