@@ -158,14 +158,18 @@ I was recently granted the title of "Nationally Recognized Science Communicator"
 
 2026
 
+- Andres Karjus. 2026. "Large Language Models, Machine-Assisted Cultural Analytics, and the Agentic Turn" (chapter preprint) | [preprint](https://arxiv.org/abs/2610.12792)
+- Andres Karjus, Janika Leoste, Tiia Õun. 2026. "Student Evaluation of Repeated AI Feedback Across a Semester of Writing" | [preprint](https://arxiv.org/abs/2607.16115)
+- Sander Paekivi, Andres Karjus. 2026. "Modeling Engagement with Brand and Organizational TikTok Videos Using Machine-Assisted Theory-Ensemble Annotation" | [preprint](https://arxiv.org/abs/2606.16053)
+- Thomas F. Eisenmann and Andres Karjus (joint first), Mar Canet Sola, Levin Brinkmann, Bramantyo Ibrahim Supriyatno, Iyad Rahwan. 2026. "Expertise Elevates AI Usage: Experimental Evidence Comparing Laypeople and Professional Artists". International Journal of Human–Computer Interaction, 1-22 | [open access](https://doi.org/10.1080/10447318.2026.2669041) | [preprint](https://arxiv.org/abs/2501.12374)
+- Jonas M. Nölle, Andres Karjus, Stefan Hartmann. 2026. "Evolutionary Linguistics". International Encyclopedia of Language and Linguistics, 375-379. Elsevier | [chapter](https://doi.org/10.1016/B978-0-323-95504-1.00907-8) | [extended preprint](https://osf.io/download/rt5ha)
 - Andres Karjus, Kais Allkivi, Silvia Maine, Katarin Leppik, Krister Kruusmaa, Merilin Aruvee. 2026. "Machine-Assisted Grading of Nationwide School-Leaving Essay Exams with LLMs and Statistical NLP" | [preprint](https://arxiv.org/abs/2601.16314)
 
 <br>2025   <a href="https://www.nature.com/articles/s41599-025-04503-w" target="_blank"><img class="thumbnail" src="papers/machineassisted.png" alt="Machine-assisted quantitizing designs thumbnail"></a>
 
-- Thomas F. Eisenmann and Andres Karjus (joint first), Mar Canet Sola, Levin Brinkmann, Bramantyo Ibrahim Supriyatno, Iyad Rahwan. 2025. "Expertise elevates AI usage: experimental evidence comparing laypeople and professional artists" | [preprint](https://arxiv.org/abs/2501.12374)
+- Indrek Ibrus, Manuel Marques Pita, Gabriela Eleuterio Soares, João Pedro Carvalho, Tiago Paiva, Ksenia Mukhina, Andres Karjus, Ana Falcón, Zuil Pirola, Bruno Saraiva, Marius Øfsti, Aksel Nõmmela, Alisa Zeleva, Jukka Huhtala, Jenny Grouiller-Ruhland, Saara Hyvönen, Timo Norros, Sergei Posysaev, Vejune Zemaityte. 2025. "CresCine's Film Industry Data Repository (FIDA)". Report. Zenodo | [Zenodo](https://zenodo.org/records/17829236) | [pdf](papers/CresCine_FIDA_Data_paper.pdf)
 - Andres Karjus. 2025. "Machine-assisted quantitizing designs: augmenting humanities and social sciences with artificial intelligence". Humanities and Social Sciences Communications 12 (1), 1-18 | [open access](https://www.nature.com/articles/s41599-025-04503-w) 
-- Andres Karjus. 2025. "Socioeconomic factors of national representation in the global film festival circuit: skewed toward the large and wealthy, but small countries can beat the odds". Journal of Cultural Analytics | [open access](https://link.springer.com/article/10.1007/s10824-025-09557-x)
-- Jonas M Nölle, Andres Karjus, Stefan Hartmann. 2025. "Evolutionary Linguistics" (upcoming chapter [https://osf.io/download/rt5ha](preprint))
+- Andres Karjus, Vejune Zemaityte. 2025. "Socioeconomic factors of national representation in the global film festival circuit: skewed toward the large and wealthy, but small countries can beat the odds". Journal of Cultural Economics | [open access](https://link.springer.com/article/10.1007/s10824-025-09557-x)
 - Tillmann Ohm, A Karjus, MV Tamm, M Schich. 2025. "fruit-SALAD: A Style Aligned Artwork Dataset to reveal similarity perception in image embeddings". Scientific Data 12 (1), 254. | [open access](https://www.nature.com/articles/s41597-025-04529-4)
 
 <br>2024  <a href="https://www.nature.com/articles/s41599-024-02922-9" target="_blank">
